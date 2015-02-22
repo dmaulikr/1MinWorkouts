@@ -58,8 +58,6 @@ class OneMWStartViewController: UIViewController {
         super.viewDidLoad()
         
         GlobalVars.exerciseIndexCount = 0
-
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "End Day", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil) //changes the back button label
         
         //notificationsAreOk()// runs to see what notification settings state is
         
@@ -213,43 +211,48 @@ class OneMWStartViewController: UIViewController {
         let month = components.month
         let year = components.year
         let day = components.day
-        var tomorrow = (day + 1)
+        var repeatHour = NSCalendarUnit.CalendarUnitHour
+        var repeatDay = NSCalendarUnit.CalendarUnitDay
+        var noRepeat = NSCalendarUnit.allZeros
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"drawAShape:", name: "actionOnePressed", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"showAMessage:", name: "actionTwoPressed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"drawAShape:", name: "actionTwoPressed", object: nil)
         
         var dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
         dateComp.hour = hour    // sets to current hour
-        dateComp.minute = 50
+        dateComp.minute = 55
+        dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
         var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         var date:NSDate = calender.dateFromComponents(dateComp)!
         
         var notification:UILocalNotification = UILocalNotification()
-        notification.category = "FIRST_CATEGORY"
+        notification.category = "WORKOUT-NOW_CATEGORY"
         notification.alertBody = "It's time for a 1 Minute Workout!"
+        notification.alertAction = "View App"
         notification.fireDate = date
         notification.soundName = UILocalNotificationDefaultSoundName
+        notification.repeatInterval = noRepeat //NSCalendarUnit.CalendarUnitHour // repeat the notification every hour
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         //------------------------------------ /Notification Stuff ----------------------------------------------------//
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
-    func drawAShape(notification:NSNotification){
-        var view:UIView = UIView(frame:CGRectMake(10, 10, 100, 100))
-        view.backgroundColor = UIColor.redColor()
-        
-        self.view.addSubview(view)
-        
-    }
+//    func drawAShape(notification:NSNotification){
+//        var view:UIView = UIView(frame:CGRectMake(10, 10, 100, 100))
+//        view.backgroundColor = UIColor.redColor()
+//        
+//        self.view.addSubview(view)
+//        
+//    }
     
-    func showAMessage(notification:NSNotification){
-        var message:UIAlertController = UIAlertController(title: "A Notification Message", message: "Hello there", preferredStyle: UIAlertControllerStyle.Alert)
+    func segueToWorkoutNow(notification:NSNotification){
+        var message:UIAlertController = UIAlertController(title: "Workout Now", message: "You hit the Workout Now action", preferredStyle: UIAlertControllerStyle.Alert)
         message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         
         self.presentViewController(message, animated: true, completion: nil)

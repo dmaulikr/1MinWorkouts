@@ -20,36 +20,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Notification Actions
         var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        firstAction.identifier = "FIRST_ACTION"
-        firstAction.title = "First Action"
-        
-        firstAction.activationMode = UIUserNotificationActivationMode.Background
-        firstAction.destructive = true
+        firstAction.identifier = "WORKOUT-NOW_ACTION"
+        firstAction.title = "Workout Now"
+        firstAction.activationMode = UIUserNotificationActivationMode.Foreground
+        firstAction.destructive = false
         firstAction.authenticationRequired = false
         
-        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        secondAction.identifier = "SECOND_ACTION"
-        secondAction.title = "Second Action"
+//        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+//        secondAction.identifier = "SECOND_ACTION"
+//        secondAction.title = "Second Action"
+//        secondAction.activationMode = UIUserNotificationActivationMode.Foreground
+//        secondAction.destructive = false
+//        secondAction.authenticationRequired = false
         
-        secondAction.activationMode = UIUserNotificationActivationMode.Foreground
-        secondAction.destructive = false
-        secondAction.authenticationRequired = false
-        
-        var thirdAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        thirdAction.identifier = "THIRD_ACTION"
-        thirdAction.title = "Third Action"
-        
-        thirdAction.activationMode = UIUserNotificationActivationMode.Background
-        thirdAction.destructive = false
-        thirdAction.authenticationRequired = false
+//        var thirdAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+//        thirdAction.identifier = "THIRD_ACTION"
+//        thirdAction.title = "Third Action"
+//        thirdAction.activationMode = UIUserNotificationActivationMode.Background
+//        thirdAction.destructive = false
+//        thirdAction.authenticationRequired = false
         
         
         // Notification Category
         var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-        firstCategory.identifier = "FIRST_CATEGORY"
+        firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
+
+        let defaultActions:NSArray = [firstAction]
+        let minimalActions:NSArray = [firstAction]
         
-        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
-        let minimalActions:NSArray = [firstAction, secondAction]
+//        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
+//        let minimalActions:NSArray = [firstAction, secondAction]
         
         firstCategory.setActions(defaultActions, forContext: UIUserNotificationActionContext.Default)
         firstCategory.setActions(minimalActions, forContext: UIUserNotificationActionContext.Minimal)
@@ -70,16 +70,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // To know what notification actions were tapped   
     func application(application: UIApplication!, handleActionWithIdentifier identifier:String!, forLocalNotification notification:UILocalNotification!, completionHandler: (() -> Void)!){
         
-        if (identifier == "FIRST_ACTION"){
+        if (identifier == "WORKOUT-NOW_ACTION"){
             
-            NSNotificationCenter.defaultCenter().postNotificationName("actionOnePressed", object: nil)
-            
-        }else if (identifier == "SECOND_ACTION"){
-            NSNotificationCenter.defaultCenter().postNotificationName("actionTwoPressed", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("workoutNowPressed", object: nil)
             
         }
+//        else if (identifier == "SECOND_ACTION"){
+//            NSNotificationCenter.defaultCenter().postNotificationName("actionTwoPressed", object: nil)
+//            
+//        }
         
         completionHandler()
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        // Do something serious in a real app.
+        println("Received Local Notification:")
+        println(notification.alertBody)
+        
+        var message:UIAlertController = UIAlertController(title: "Workout Time", message: "It's time for a 1 Minute Workout", preferredStyle: UIAlertControllerStyle.Alert)
+        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.window?.rootViewController?.presentViewController(message, animated: true, completion: nil)
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -95,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
