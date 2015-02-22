@@ -213,7 +213,7 @@ class OneMWStartViewController: UIViewController {
         let month = components.month
         let year = components.year
         let day = components.day
-        var tomorrow = day + 1
+        var tomorrow = (day + 1)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"drawAShape:", name: "actionOnePressed", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"showAMessage:", name: "actionTwoPressed", object: nil)
