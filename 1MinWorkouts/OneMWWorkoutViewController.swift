@@ -47,6 +47,7 @@ class OneMWWorkoutViewController: UIViewController {
         getReadyView.hidden = false
         workoutCountdownLabel.hidden = false
         
+        exerciseCountdownTimer.invalidate()
         setExerciseTimerGetReady(5, timerLabel: "5")
     }
     
@@ -158,6 +159,12 @@ class OneMWWorkoutViewController: UIViewController {
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
+        
+        startWorkoutBtn.hidden = true
+        getReadyView.hidden = false
+        workoutCountdownLabel.hidden = false
+        
+        setExerciseTimerGetReady(5, timerLabel: "5")
         
 //        if GlobalVars.exerciseGroup == true{ // reversed from start page because once it leaves that pages it's set to the alternate bool
 //            exerciseTypeTitle.text = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name

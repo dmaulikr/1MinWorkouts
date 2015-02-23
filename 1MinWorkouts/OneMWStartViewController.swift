@@ -2,7 +2,7 @@
 //  OneMWStartViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 12/31/14.
+//  Created by Justin on 12/31/14.
 //  Copyright (c) 2014 Good Enough LLC. All rights reserved.
 //
 
@@ -12,47 +12,13 @@ class OneMWStartViewController: UIViewController {
    
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
     
-    @IBAction func workoutNotifications(sender: UISwitch) {
+    @IBAction func upperBodyBtn(sender: AnyObject) {
+        GlobalVars.exerciseGroup = false
     }
 
-    @IBAction func startDayBtn(sender: AnyObject) {
-        /*
-        // send alert explaining why notifications are needed for app
-        if notificationsAreOk() == false {
-            //do something
-            var notificationExplainAlert = UIAlertController(title: "About Notifications", message: "This app uses notifications as a reminder to start the app every day and as a nudge when it's time to do a 1 Minute Workout. Please allow or turn on notifications for this app.", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            notificationExplainAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{ (action: UIAlertAction!) in
-                UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
-            }))
-            
-            self.presentViewController(notificationExplainAlert, animated: true, completion: nil)
-            
-        } else{
-            //do something else
-            println("already registerd for notifications")
-        }
-    */
+    @IBAction func lowerBodyBtn(sender: AnyObject) {
+        GlobalVars.exerciseGroup = true
     }
-    /*
-    func notificationsAreOk() -> Bool {
-        let wishedTypes = UIUserNotificationType.Badge |
-            UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound;
-        let wishedBadge = UIUserNotificationType.Badge
-        let wishedAlert = UIUserNotificationType.Alert
-        let wishedSound = UIUserNotificationType.Sound
-        let application = UIApplication.sharedApplication()
-        let settings = application.currentUserNotificationSettings()
-        if settings == nil {
-            return false
-        }
-        if settings.types != wishedTypes {
-            return false
-        }
-        return true
-    }
-    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -265,31 +231,20 @@ class OneMWStartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "segueToExerciseType"{
-            
-            // false = UB objects (default start)  true = LB objects
-            if GlobalVars.exerciseGroup == false{
-                // set up OneMWViewController to show Upper Body stuff
-                GlobalVars.exerciseGroup = true
-                
-                let vc = segue.destinationViewController as OneMWViewController
-                vc.navTitle = "Upper Body"
-                vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
-                vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)                    }else{
-                // set up OneMWViewController to show Lower Body stuff
-                GlobalVars.exerciseGroup = false
-                
-                let vc = segue.destinationViewController as OneMWViewController
-                vc.navTitle = "Lower Body"
-                vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
-                vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
-                
-            }
+        if segue.identifier == "segueToUBExerciseType"{
+            let vc = segue.destinationViewController as OneMWViewController
+            vc.navTitle = "Upper Body"
+            vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
+            vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)                
+        }else {
+            let vc = segue.destinationViewController as OneMWViewController
+            vc.navTitle = "Lower Body"
+            vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
+            vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
         }
     }
-    
+
 
 }
