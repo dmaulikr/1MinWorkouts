@@ -84,7 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        // Do something serious in a real app.
+        // Do something in real app when a notification is fired
+        
         println("Received Local Notification:")
         println(notification.alertBody)
         

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OneMWWorkoutViewControllerDelegate{
-    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int)
+    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int,notifTime:String)
 }
 
 class OneMWWorkoutViewController: UIViewController {
@@ -27,22 +27,28 @@ class OneMWWorkoutViewController: UIViewController {
     @IBOutlet var closeWorkoutBtnLabel: UIButton!
     
     @IBAction func closeWorkoutBtn(sender: AnyObject) {
+        
+        // dissmises the currently viewed VC
         self.dismissViewControllerAnimated(true, completion: nil)
         
+        // kills the workout countdown timer
         exerciseCountdownTimer.invalidate()
         
         // increments the index variable to update to the next exercise
         changeExercise()
         println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
         
+        // resets notifications
+        updateNotificationRepeat()
+        
         // passes the incremented variable to the prior screen delegate
         if (delegate != nil) {
-            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, notifTime: GlobalVars.workoutNotificationTime)
             println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
         }
     }
     
-    @IBAction func startWorkoutBtn(sender: AnyObject) {
+    @IBAction func restartWorkoutBtn(sender: AnyObject) {
         startWorkoutBtn.hidden = true
         getReadyView.hidden = false
         workoutCountdownLabel.hidden = false
@@ -67,6 +73,39 @@ class OneMWWorkoutViewController: UIViewController {
             newCount++
             return GlobalVars.exerciseIndexCount = newCount
         }
+        
+    }
+    
+    
+    func updateNotificationRepeat() -> (Int, NSCalendarUnit, String){
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour // gets current hour
+        var endHour = GlobalVars.workoutNotificationEndHour - 1
+        
+        if hour == GlobalVars.workoutNotificationStartHour{ // if it's 9 and 9 do this
+            
+            GlobalVars.workoutNotificationHour++
+            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
+            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
+            
+            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+            
+        }else if hour > GlobalVars.workoutNotificationStartHour && hour < GlobalVars.workoutNotificationEndHour - 1{ // between 10am and 4pm
+            GlobalVars.workoutNotificationHour = hour
+            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
+            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
+            
+            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+            
+        }else{
+            GlobalVars.workoutNotificationHour = GlobalVars.workoutNotificationStartHour
+            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitDay
+            GlobalVars.workoutNotificationText = "It's time for your last 1 Minute Workout"
+            
+            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+        }
     }
     
     /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
@@ -89,7 +128,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             // passes the incremented variable to the prior screen delegate
             if (delegate != nil) {
-                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, notifTime: GlobalVars.workoutNotificationTime)
                 println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
             }
             
@@ -165,18 +204,6 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.hidden = false
         
         setExerciseTimerGetReady(5, timerLabel: "5")
-        
-//        if GlobalVars.exerciseGroup == true{ // reversed from start page because once it leaves that pages it's set to the alternate bool
-//            exerciseTypeTitle.text = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
-//            var image = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
-//            exerciseTypeImage.image = image
-//        }else{
-//            exerciseTypeTitle.text = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
-//            var image = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
-//            exerciseTypeImage.image = image
-//        }
-        
-        //closeWorkoutBtnLabel.setTitle("Skip", forState: UIControlState.Normal) // how to control button label        
     }
     
     
@@ -185,11 +212,6 @@ class OneMWWorkoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "segueToInfo"{
             

@@ -177,34 +177,34 @@ class OneMWStartViewController: UIViewController {
         let month = components.month
         let year = components.year
         let day = components.day
-        var repeatHour = NSCalendarUnit.CalendarUnitHour
-        var repeatDay = NSCalendarUnit.CalendarUnitDay
-        var noRepeat = NSCalendarUnit.allZeros
+//        var repeatHour = NSCalendarUnit.CalendarUnitHour
+//        var repeatDay = NSCalendarUnit.CalendarUnitDay
+//        var noRepeat = NSCalendarUnit.allZeros
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector:"drawAShape:", name: "actionTwoPressed", object: nil)
         
+        //------------------------start work day notification------------------//
         var dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = hour    // sets to current hour
-        dateComp.minute = 55
+        dateComp.hour = GlobalVars.workoutNotificationHour    // sets to work day start time hour
+        dateComp.minute = 50
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
         var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         var date:NSDate = calender.dateFromComponents(dateComp)!
         
-        var notification:UILocalNotification = UILocalNotification()
-        notification.category = "WORKOUT-NOW_CATEGORY"
-        notification.alertBody = "It's time for a 1 Minute Workout!"
-        notification.alertAction = "View App"
-        notification.fireDate = date
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.repeatInterval = noRepeat //NSCalendarUnit.CalendarUnitHour // repeat the notification every hour
+        var startNotification:UILocalNotification = UILocalNotification()
+        startNotification.category = "WORKOUT-NOW_CATEGORY"
+        startNotification.alertBody = GlobalVars.workoutNotificationText
+        startNotification.alertAction = "View App"
+        startNotification.fireDate = date
+        startNotification.soundName = UILocalNotificationDefaultSoundName
+        startNotification.repeatInterval = GlobalVars.workoutNotificationRepeater // repeat the notification every day
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
         //------------------------------------ /Notification Stuff ----------------------------------------------------//
     }
     

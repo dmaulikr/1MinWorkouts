@@ -17,6 +17,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
+    @IBOutlet var notificationTime: UILabel!
     
     @IBAction func workoutNowBtn(sender: AnyObject) {
         
@@ -39,15 +40,17 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // Dispose of any resources that can be recreated.
     }
     
-    func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int) {
+    func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int, notifTime: String) {
         if navigationItem.title == "Upper Body"{
             var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
+            notificationTime.text = notifTime
         }else{
             var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
+            notificationTime.text = notifTime
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }
