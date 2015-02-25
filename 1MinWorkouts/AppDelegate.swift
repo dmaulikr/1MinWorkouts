@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firstAction.destructive = false
         firstAction.authenticationRequired = false
         
-//        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-//        secondAction.identifier = "SECOND_ACTION"
-//        secondAction.title = "Second Action"
-//        secondAction.activationMode = UIUserNotificationActivationMode.Foreground
-//        secondAction.destructive = false
-//        secondAction.authenticationRequired = false
+        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        secondAction.identifier = "SKIP-WORKOUT_ACTION"
+        secondAction.title = "Skip Workout"
+        secondAction.activationMode = UIUserNotificationActivationMode.Foreground
+        secondAction.destructive = false
+        secondAction.authenticationRequired = false
         
 //        var thirdAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
 //        thirdAction.identifier = "THIRD_ACTION"
@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
-        let defaultActions:NSArray = [firstAction]
-        let minimalActions:NSArray = [firstAction]
+        let defaultActions:NSArray = [firstAction, secondAction]
+        let minimalActions:NSArray = [firstAction, secondAction]
         
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
@@ -75,10 +75,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("workoutNowPressed", object: nil)
             
         }
-//        else if (identifier == "SECOND_ACTION"){
-//            NSNotificationCenter.defaultCenter().postNotificationName("actionTwoPressed", object: nil)
-//            
-//        }
+        else if (identifier == "SKIP-WORKOUT_ACTION"){
+            NSNotificationCenter.defaultCenter().postNotificationName("skipWorkout", object: nil)
+            
+        }
         
         completionHandler()
     }

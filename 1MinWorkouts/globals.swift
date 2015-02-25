@@ -16,5 +16,10 @@ struct GlobalVars {
     static var exerciseUB = [Exercise]()
     static var exerciseLB = [Exercise]()
     static var exerciseIndexCount = 0
-    static var workoutNotificationHour = 9
+    
+    static var workoutNotificationHour = workoutNotificationStartHour
+    static var workoutNotificationStartHour = 11 // 9AM
+    static var workoutNotificationEndHour = 17  // 5PM
+    static var workoutNotificationText = "It's time for your first 1 Minute Workout!"
+    static var workoutNotificationRepeater = NSCalendarUnit.CalendarUnitDay
 }

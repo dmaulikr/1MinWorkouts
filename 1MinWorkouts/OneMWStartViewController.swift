@@ -182,14 +182,14 @@ class OneMWStartViewController: UIViewController {
         var noRepeat = NSCalendarUnit.allZeros
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"drawAShape:", name: "actionTwoPressed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
         var dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = hour    // sets to current hour
-        dateComp.minute = 55
+        dateComp.hour = GlobalVars.workoutNotificationHour    // sets to current hour
+        dateComp.minute = 20
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
@@ -202,27 +202,26 @@ class OneMWStartViewController: UIViewController {
         notification.alertAction = "View App"
         notification.fireDate = date
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.repeatInterval = noRepeat //NSCalendarUnit.CalendarUnitHour // repeat the notification every hour
+        notification.repeatInterval = GlobalVars.workoutNotificationRepeater // sets when the notification repeats
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         //------------------------------------ /Notification Stuff ----------------------------------------------------//
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
-//    func drawAShape(notification:NSNotification){
-//        var view:UIView = UIView(frame:CGRectMake(10, 10, 100, 100))
-//        view.backgroundColor = UIColor.redColor()
-//        
-//        self.view.addSubview(view)
-//        
-//    }
     
     func segueToWorkoutNow(notification:NSNotification){
         var message:UIAlertController = UIAlertController(title: "Workout Now", message: "You hit the Workout Now action", preferredStyle: UIAlertControllerStyle.Alert)
         message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         
         self.presentViewController(message, animated: true, completion: nil)
+    }
+    
+    func skippedWorkout(notification:NSNotification){
+        var message:UIAlertController = UIAlertController(title: "Skipped", message: "You skipped this workout", preferredStyle: UIAlertControllerStyle.Alert)
+        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         
+        self.presentViewController(message, animated: true, completion: nil)
     }
     //------------------------------------ /Notification Functions ----------------------------------------------------//
     
