@@ -189,21 +189,21 @@ class OneMWStartViewController: UIViewController {
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = GlobalVars.workoutNotificationHour    // sets to work day start time hour
-        dateComp.minute = 50
+        dateComp.hour = hour//GlobalVars.workoutNotificationHour    // sets to work day start time hour
+        dateComp.minute = 54
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
         var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         var date:NSDate = calender.dateFromComponents(dateComp)!
         
-        var startNotification:UILocalNotification = UILocalNotification()
-        startNotification.category = "WORKOUT-NOW_CATEGORY"
-        startNotification.alertBody = GlobalVars.workoutNotificationText
-        startNotification.alertAction = "View App"
-        startNotification.fireDate = date
-        startNotification.soundName = UILocalNotificationDefaultSoundName
-        startNotification.repeatInterval = GlobalVars.workoutNotificationRepeater // repeat the notification every day
+        var notification:UILocalNotification = UILocalNotification()
+        notification.category = "WORKOUT-NOW_CATEGORY"
+        notification.alertBody = "workout now"//GlobalVars.workoutNotificationText
+        notification.alertAction = "View App"
+        notification.fireDate = date
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.repeatInterval = NSCalendarUnit.allZeros //GlobalVars.workoutNotificationRepeater // repeat default the notification every day
         
         //------------------------------------ /Notification Stuff ----------------------------------------------------//
     }

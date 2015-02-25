@@ -39,7 +39,7 @@ class OneMWWorkoutViewController: UIViewController {
         println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
         
         // resets notifications
-        updateNotificationRepeat()
+        //updateNotificationRepeat()
         
         // passes the incremented variable to the prior screen delegate
         if (delegate != nil) {
@@ -77,36 +77,36 @@ class OneMWWorkoutViewController: UIViewController {
     }
     
     
-    func updateNotificationRepeat() -> (Int, NSCalendarUnit, String){
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour // gets current hour
-        var endHour = GlobalVars.workoutNotificationEndHour - 1
-        
-        if hour == GlobalVars.workoutNotificationStartHour{ // if it's 9 and 9 do this
-            
-            GlobalVars.workoutNotificationHour++
-            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
-            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
-            
-            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
-            
-        }else if hour > GlobalVars.workoutNotificationStartHour && hour < GlobalVars.workoutNotificationEndHour - 1{ // between 10am and 4pm
-            GlobalVars.workoutNotificationHour = hour
-            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
-            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
-            
-            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
-            
-        }else{
-            GlobalVars.workoutNotificationHour = GlobalVars.workoutNotificationStartHour
-            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitDay
-            GlobalVars.workoutNotificationText = "It's time for your last 1 Minute Workout"
-            
-            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
-        }
-    }
+//    func updateNotificationRepeat() -> (Int, NSCalendarUnit, String){
+//        let today = NSDate()
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+//        let hour = components.hour // gets current hour
+//        var endHour = GlobalVars.workoutNotificationEndHour - 1
+//        
+//        if hour == GlobalVars.workoutNotificationStartHour{ // if it's 9 and 9 do this
+//            
+//            GlobalVars.workoutNotificationHour++
+//            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
+//            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
+//            
+//            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+//            
+//        }else if hour > GlobalVars.workoutNotificationStartHour && hour < GlobalVars.workoutNotificationEndHour - 1{ // between 10am and 4pm
+//            GlobalVars.workoutNotificationHour = hour
+//            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitHour
+//            GlobalVars.workoutNotificationText = "It's time for another 1 Minute Workout"
+//            
+//            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+//            
+//        }else{
+//            GlobalVars.workoutNotificationHour = GlobalVars.workoutNotificationStartHour
+//            GlobalVars.workoutNotificationRepeater = NSCalendarUnit.CalendarUnitDay
+//            GlobalVars.workoutNotificationText = "It's time for your last 1 Minute Workout"
+//            
+//            return (GlobalVars.workoutNotificationHour, GlobalVars.workoutNotificationRepeater, GlobalVars.workoutNotificationText)
+//        }
+//    }
     
     /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
     func exerciseTimerRun(){
