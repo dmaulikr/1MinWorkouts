@@ -248,12 +248,11 @@
                         <outlet property="exerciseTypeImage" destination="Jgm-Yf-lVO" id="G1o-UI-ikV"/>
                         <outlet property="exerciseTypeInfoBtn" destination="60Y-6M-ldK" id="Wjf-C8-9gL"/>
                         <outlet property="exerciseTypeTitle" destination="Vpd-dE-5C1" id="1DZ-b0-eLI"/>
-                        <outlet property="notificationTime" destination="EOQ-8r-u7w" id="WnM-82-fbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6Q-8H-iGE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="-342"/>
+            <point key="canvasLocation" x="2197" y="-335"/>
         </scene>
         <!--exerciseNow-->
         <scene sceneID="gvU-F6-W5z">
@@ -305,7 +304,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="restartWorkoutBtn:" destination="JFD-yd-la9" eventType="touchUpInside" id="GkN-0l-siP"/>
+                                    <action selector="startWorkoutBtn:" destination="JFD-yd-la9" eventType="touchUpInside" id="Flq-8b-rxR"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IE-hH-b1Z">
@@ -764,6 +763,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QRN-hZ-SCW"/>
-        <segue reference="gPk-jv-ujV"/>
+        <segue reference="cXJ-4s-CSg"/>
     </inferredMetricsTieBreakers>
 </document>
