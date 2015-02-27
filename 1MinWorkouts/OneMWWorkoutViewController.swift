@@ -24,6 +24,12 @@ class OneMWWorkoutViewController: UIViewController {
     //var exerciseSecondsCount = 0
     var totalTime = 0
     
+    @IBOutlet var startWorkoutBtn: UILabel!
+    @IBOutlet var getReadyCounterLabel: UILabel! // label that counts down from 5 to the workout
+    @IBOutlet var getReadyView: UIVisualEffectView!
+    @IBOutlet var workoutCountdownLabel: UILabel! // label that counts down from 60 for the workout
+    @IBOutlet var exerciseTypeTitle: UILabel!
+    @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var closeWorkoutBtnLabel: UIButton!
     
     @IBAction func closeWorkoutBtn(sender: AnyObject) {
@@ -50,14 +56,7 @@ class OneMWWorkoutViewController: UIViewController {
         exerciseCountdownTimer.invalidate()
         setExerciseTimerGetReady(5, timerLabel: "5")
     }
-    
-    @IBOutlet var startWorkoutBtn: UILabel!
-    @IBOutlet var getReadyCounterLabel: UILabel! // label that counts down from 5 to the workout
-    @IBOutlet var getReadyView: UIVisualEffectView!
-    @IBOutlet var workoutCountdownLabel: UILabel! // label that counts down from 60 for the workout
-    @IBOutlet var exerciseTypeTitle: UILabel!
-    @IBOutlet var exerciseTypeImage: UIImageView!
-    
+        
     func changeExercise(){
         if GlobalVars.exerciseIndexCount == 7{
             println("exercise index started over")
@@ -101,8 +100,19 @@ class OneMWWorkoutViewController: UIViewController {
             
             var alert = UIAlertController(title: "Nice Job!", message: "Take an hour break ;)", preferredStyle: UIAlertControllerStyle.Alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-                self.dismissViewControllerAnimated(true, completion: nil)}))
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
+                (action: UIAlertAction!) in
+                // increments the index variable to update to the next exercise
+                self.changeExercise()
+                println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
+                
+                // passes the incremented variable to the prior screen delegate
+                if (self.delegate != nil) {
+                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+                    println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
+                }
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
             
             self.presentViewController(alert, animated: true, completion: nil)
             
@@ -165,18 +175,6 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.hidden = false
         
         setExerciseTimerGetReady(5, timerLabel: "5")
-        
-//        if GlobalVars.exerciseGroup == true{ // reversed from start page because once it leaves that pages it's set to the alternate bool
-//            exerciseTypeTitle.text = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
-//            var image = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
-//            exerciseTypeImage.image = image
-//        }else{
-//            exerciseTypeTitle.text = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
-//            var image = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
-//            exerciseTypeImage.image = image
-//        }
-        
-        //closeWorkoutBtnLabel.setTitle("Skip", forState: UIControlState.Normal) // how to control button label        
     }
     
     

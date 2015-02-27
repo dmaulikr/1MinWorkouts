@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         secondAction.identifier = "SKIP-WORKOUT_ACTION"
         secondAction.title = "Skip Workout"
-        secondAction.activationMode = UIUserNotificationActivationMode.Foreground
+        secondAction.activationMode = UIUserNotificationActivationMode.Background
         secondAction.destructive = false
         secondAction.authenticationRequired = false
         

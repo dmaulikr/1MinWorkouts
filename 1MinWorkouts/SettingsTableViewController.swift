@@ -21,8 +21,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     let settingsUser = [
-        ("Start Day Reminder", "8:30 AM"),
-        ("Auto End Day", "5:30 PM")
+        ("Work Day Begins", "8:00 AM"),
+        ("Work Day Ends", "5:30 PM")
     ]
     
     let settingsApp = [
@@ -45,7 +45,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         
         mailComposerVC.setToRecipients(["justinmandell@gmail.com"])
         mailComposerVC.setSubject("1MW Feedback")
-        //mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        mailComposerVC.setMessageBody("Constructive criticism is great! Trolling, not so great...", isHTML: false)
         
         return mailComposerVC
     }
