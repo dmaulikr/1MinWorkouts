@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol NotificatinoTimeViewControllerDelegate{
-    func myVCDidFinish2(controller:OneMWViewController, exerciseTime: String)
-}
 
 class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate {
     
-    var delegate:NotificatinoTimeViewControllerDelegate? = nil
     var exerciseTitle = ""
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
@@ -29,15 +25,18 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }    
     
     @IBAction func endDayBtn(sender: AnyObject) {
-//        var message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
-//        message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-//        message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.endDay()}))
-//        
-//        self.presentViewController(message, animated: true, completion: nil)        
+        var message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
+        message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.endDay()}))
+        
+        self.presentViewController(message, animated: true, completion: nil)        
     }
     
     func endDay(){
-        UIApplication.sharedApplication().cancelAllLocalNotifications() // clears out all set notifications
+        
+        // clears out all set notifications
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
         // need to reset next days start notification
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -48,15 +47,12 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         let year = components.year
         let day = components.day
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
-        
         var dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
-        dateComp.day = day      // sets to current day
-        dateComp.hour = GlobalVars.workoutNotificationStartHour    // sets to current hour
-        dateComp.minute = 50
+        dateComp.day = day + 1      // sets to tomorrow
+        dateComp.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
+        dateComp.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
@@ -64,44 +60,21 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         var date:NSDate = calender.dateFromComponents(dateComp)!
         
         var notification:UILocalNotification = UILocalNotification()
-        notification.category = "WORKOUT-NOW_CATEGORY"
-        notification.alertBody = "It's time for a 1 Minute Workout!"
+        notification.category = ""
+        notification.alertBody = "Time to start your day!"
         notification.alertAction = "View App"
         notification.fireDate = date
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)        
         
-        // need to segue out of this view and back to home
+        // segue out of this view and back to home
         navigationController?.popToRootViewControllerAnimated(true)
-        
-        // need to update the next workout notification label and pass it to home
-        if (delegate != nil) {
-            delegate!.myVCDidFinish2(self, exerciseTime: GlobalVars.endDayNotificationLabel)
-            println("\(GlobalVars.endDayNotificationLabel)")
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        
-        if hour == GlobalVars.workoutNotificationEndHour{
-            nextWorkoutNotificationLabel.text = "\(GlobalVars.workoutNotificationStartHour):50 AM Tomorrow"
-        }else if hour < 12{
-            nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-        }else {
-            nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-        }
         
         //my modal transition style
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -110,6 +83,41 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minutes = components.minute
+        let seconds = components.second
+        let month = components.month
+        let year = components.year
+        let day = components.day
+        let weekday = components.weekday
+        
+        // sets the label for when next workout notification will be sent
+        if seconds > 0 && minutes < 50{
+            if hour < 12 {
+                nextWorkoutNotificationLabel.text = "\(hour):50 AM"
+                println("hour < 12 < 50")
+            }else if hour > 12 && minutes < 50{
+                nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
+                println("else hour > 12 < 50")
+            }else {
+                nextWorkoutNotificationLabel.text = "\(hour):50 PM"
+                println("else 12")
+            }
+        }else
+            if hour < 12 {
+                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+                println("hour < 12 and > 50")
+            }else {
+                nextWorkoutNotificationLabel.text = "\(hour - 11 ):50 PM"
+                println("else hour > 12 and > 50")
+        }
     }
     
     override func didReceiveMemoryWarning() {

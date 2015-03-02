@@ -17,8 +17,7 @@ struct GlobalVars {
     static var exerciseLB = [Exercise]()
     static var exerciseIndexCount = 0
     
-    static var workoutNotificationHour = workoutNotificationStartHour
-    static var workoutNotificationStartHour = 9 // 9AM
-    static var workoutNotificationEndHour = 17  // 5PM
-    static var endDayNotificationLabel = "\(GlobalVars.workoutNotificationStartHour):50 AM Tomorrow"
+    static var workoutNotificationStartHour = 8 // set by the user at start up
+    static var workoutNotificationStartMin = 30 // set by the user at start up
+    static var workoutNotificationCategory = "WORKOUT-NOW_CATEGORY"
 }

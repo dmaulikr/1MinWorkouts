@@ -41,74 +41,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stopwatch_icon_start" translatesAutoresizingMaskIntoConstraints="NO" id="66c-0a-y3Q">
-                                <rect key="frame" x="238" y="84" width="125" height="142"/>
+                                <rect key="frame" x="227" y="106" width="147" height="167"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="m45-v4-DkQ"/>
+                                    <constraint firstAttribute="width" constant="147" id="ZGK-Bg-8gz"/>
                                 </constraints>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="79" y="136" width="242" height="182"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your next workout is at:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fq-dC-sQp">
-                                <rect key="frame" x="16" y="485" width="568" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="4M5-la-TUr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.40481715140000002" green="0.40262895059999998" blue="0.4070053522" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:50 AM Tomorrow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db6-vg-70u">
-                                <rect key="frame" x="16" y="510" width="568" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="ute-3c-9te"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
-                                <color key="textColor" red="0.40481715140000002" green="0.40262895059999998" blue="0.4070053522" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANF-MS-xwv">
-                                <rect key="frame" x="16" y="402" width="568" height="55"/>
-                                <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="lhH-M4-kRL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Lower Body Workouts">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="373" width="368" height="55"/>
-                                </variation>
-                                <connections>
-                                    <action selector="lowerBodyBtn:" destination="zMj-6f-bLn" eventType="touchUpInside" id="apk-ai-C3L"/>
-                                    <segue destination="jm9-jA-Q8X" kind="show" identifier="segueToLBExerciseType" id="QRN-hZ-SCW"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a muscle group to workout for the day." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwU-Cu-OPC">
-                                <rect key="frame" x="146" y="234" width="308" height="66"/>
+                                <rect key="frame" x="146" y="299" width="308" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="308" id="wt2-zG-LrQ"/>
+                                    <constraint firstAttribute="width" constant="308" id="OfC-c7-yH9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alternate muscle groups every day." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5G-nS-rGf">
-                                <rect key="frame" x="187" y="295" width="227" height="17"/>
+                                <rect key="frame" x="187" y="360" width="227" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="sIi-5F-DG3"/>
+                                    <constraint firstAttribute="height" constant="17" id="PfH-xM-CfI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40481715140000002" green="0.40262895059999998" blue="0.4070053522" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygI-gM-6DI">
-                                <rect key="frame" x="16" y="339" width="568" height="55"/>
-                                <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygI-gM-6DI">
+                                <rect key="frame" x="16" y="414" width="568" height="55"/>
+                                <color key="backgroundColor" red="0.4392156862745098" green="0.68235294117647061" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="Ff1-6Y-xm6"/>
+                                    <constraint firstAttribute="height" constant="55" id="z6s-ud-fZq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Upper Body Workouts">
@@ -123,35 +86,45 @@
                                     <segue destination="jm9-jA-Q8X" kind="show" identifier="segueToUBExerciseType" id="RKc-4M-Vs2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANF-MS-xwv">
+                                <rect key="frame" x="16" y="475" width="568" height="55"/>
+                                <color key="backgroundColor" red="0.4392156862745098" green="0.68235294117647061" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="q1Y-OJ-woX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Lower Body Workouts">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="373" width="368" height="55"/>
+                                </variation>
+                                <connections>
+                                    <action selector="lowerBodyBtn:" destination="zMj-6f-bLn" eventType="touchUpInside" id="apk-ai-C3L"/>
+                                    <segue destination="jm9-jA-Q8X" kind="show" identifier="segueToLBExerciseType" id="QRN-hZ-SCW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0fq-dC-sQp" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" id="14L-JL-iJt"/>
-                            <constraint firstItem="ygI-gM-6DI" firstAttribute="top" secondItem="UwU-Cu-OPC" secondAttribute="bottom" constant="39" id="1UK-Ns-jcE"/>
-                            <constraint firstItem="db6-vg-70u" firstAttribute="leading" secondItem="0fq-dC-sQp" secondAttribute="leading" id="EpH-xI-X9p"/>
-                            <constraint firstItem="0fq-dC-sQp" firstAttribute="top" secondItem="ANF-MS-xwv" secondAttribute="bottom" constant="28" id="IRQ-dj-1wB"/>
-                            <constraint firstItem="ANF-MS-xwv" firstAttribute="leading" secondItem="0fq-dC-sQp" secondAttribute="leading" id="LfP-nQ-kKf"/>
-                            <constraint firstItem="ygI-gM-6DI" firstAttribute="trailing" secondItem="ANF-MS-xwv" secondAttribute="trailing" id="Lhx-dn-BS5"/>
-                            <constraint firstItem="66c-0a-y3Q" firstAttribute="centerX" secondItem="UwU-Cu-OPC" secondAttribute="centerX" id="NC6-lg-YIq"/>
-                            <constraint firstItem="Clm-Yt-Kh0" firstAttribute="top" secondItem="db6-vg-70u" secondAttribute="bottom" constant="18" id="Oox-ab-wYG"/>
-                            <constraint firstItem="db6-vg-70u" firstAttribute="top" secondItem="0fq-dC-sQp" secondAttribute="bottom" constant="2" id="QVj-Ck-xnj"/>
-                            <constraint firstItem="ANF-MS-xwv" firstAttribute="top" secondItem="ygI-gM-6DI" secondAttribute="bottom" constant="8" symbolic="YES" id="Rue-tk-SfN"/>
-                            <constraint firstItem="ygI-gM-6DI" firstAttribute="centerX" secondItem="Y5G-nS-rGf" secondAttribute="centerX" id="Sj3-EN-JBO"/>
-                            <constraint firstItem="ygI-gM-6DI" firstAttribute="top" secondItem="Y5G-nS-rGf" secondAttribute="bottom" constant="27" id="bjQ-ut-4oK"/>
-                            <constraint firstItem="0fq-dC-sQp" firstAttribute="trailing" secondItem="ANF-MS-xwv" secondAttribute="trailing" id="cLB-Eo-zXq"/>
-                            <constraint firstItem="db6-vg-70u" firstAttribute="trailing" secondItem="0fq-dC-sQp" secondAttribute="trailing" id="fch-DF-njr"/>
-                            <constraint firstItem="UwU-Cu-OPC" firstAttribute="top" secondItem="66c-0a-y3Q" secondAttribute="bottom" constant="8" symbolic="YES" id="kNx-R6-N7y"/>
-                            <constraint firstItem="db6-vg-70u" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" id="mcA-6j-gQr"/>
-                            <constraint firstItem="Y5G-nS-rGf" firstAttribute="top" secondItem="66c-0a-y3Q" secondAttribute="bottom" constant="69" id="njv-ln-8V0"/>
-                            <constraint firstItem="UwU-Cu-OPC" firstAttribute="centerX" secondItem="Y5G-nS-rGf" secondAttribute="centerX" id="o9J-rd-hzG"/>
-                            <constraint firstItem="ygI-gM-6DI" firstAttribute="leading" secondItem="ANF-MS-xwv" secondAttribute="leading" id="pMY-9r-LR2"/>
-                            <constraint firstItem="66c-0a-y3Q" firstAttribute="top" secondItem="oyR-tE-8by" secondAttribute="bottom" constant="20" id="r1P-yB-S8i"/>
+                            <constraint firstItem="ANF-MS-xwv" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" id="0Kx-2D-Dmz"/>
+                            <constraint firstItem="66c-0a-y3Q" firstAttribute="top" secondItem="oyR-tE-8by" secondAttribute="bottom" constant="42" id="2OA-X8-jOC"/>
+                            <constraint firstItem="ANF-MS-xwv" firstAttribute="trailing" secondItem="ygI-gM-6DI" secondAttribute="trailing" id="5jB-od-GWt"/>
+                            <constraint firstItem="UwU-Cu-OPC" firstAttribute="top" secondItem="66c-0a-y3Q" secondAttribute="bottom" constant="26" id="8A4-PQ-JeV"/>
+                            <constraint firstItem="Y5G-nS-rGf" firstAttribute="centerX" secondItem="UwU-Cu-OPC" secondAttribute="centerX" id="GlX-Ia-B7k"/>
+                            <constraint firstItem="ANF-MS-xwv" firstAttribute="leading" secondItem="ygI-gM-6DI" secondAttribute="leading" id="Kih-uo-1fj"/>
+                            <constraint firstItem="ygI-gM-6DI" firstAttribute="top" secondItem="Y5G-nS-rGf" secondAttribute="bottom" constant="37" id="P0a-kZ-mt2"/>
+                            <constraint firstItem="ygI-gM-6DI" firstAttribute="centerX" secondItem="Y5G-nS-rGf" secondAttribute="centerX" id="TN7-jN-jRc"/>
+                            <constraint firstItem="Clm-Yt-Kh0" firstAttribute="top" secondItem="ANF-MS-xwv" secondAttribute="bottom" constant="21" id="hgn-8e-NgP"/>
+                            <constraint firstItem="Y5G-nS-rGf" firstAttribute="top" secondItem="66c-0a-y3Q" secondAttribute="bottom" constant="87" id="n90-mT-7nV"/>
+                            <constraint firstItem="66c-0a-y3Q" firstAttribute="centerX" secondItem="UwU-Cu-OPC" secondAttribute="centerX" id="slE-iz-fNG"/>
+                            <constraint firstItem="ygI-gM-6DI" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" id="uet-uw-27M"/>
+                            <constraint firstItem="ygI-gM-6DI" firstAttribute="top" secondItem="UwU-Cu-OPC" secondAttribute="bottom" constant="49" id="uiM-76-LOm"/>
+                            <constraint firstItem="ANF-MS-xwv" firstAttribute="top" secondItem="ygI-gM-6DI" secondAttribute="bottom" constant="6" id="xgU-nO-8Yz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="1 Minute Workouts" id="TDq-2N-0Jx"/>
-                    <connections>
-                        <outlet property="nextWorkoutNotificationLabel" destination="db6-vg-70u" id="Ctd-EA-WSr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGl-qm-Mn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

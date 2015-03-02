@@ -8,28 +8,32 @@
 
 import UIKit
 
-class OneMWStartViewController: UIViewController, NotificatinoTimeViewControllerDelegate {
-   
-    @IBOutlet var nextWorkoutNotificationLabel: UILabel!
+class OneMWStartViewController: UIViewController {
     
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
+        
+        // sets workout notifications for the day
+        if GlobalVars.workoutNotificationStartMin >= 30{
+            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        }else {
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        }
     }
 
     @IBAction func lowerBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = true
+        
+        // sets workout notifications
+        if GlobalVars.workoutNotificationStartMin >= 30{
+            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        }else {
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        }
     }
     
-    func myVCDidFinish2(controller: OneMWViewController, exerciseTime: String) {
-        nextWorkoutNotificationLabel.text = exerciseTime
-        controller.navigationController?.popViewControllerAnimated(true)
-        println("myVCDidFinish2 ran")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                
-        GlobalVars.exerciseIndexCount = 0
+    //------------------------------------ Notification Stuff ----------------------------------------------------//
+    func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -39,16 +43,39 @@ class OneMWStartViewController: UIViewController, NotificatinoTimeViewController
         let month = components.month
         let year = components.year
         let day = components.day
+        let weekday = components.weekday
         
-        if hour == GlobalVars.workoutNotificationEndHour{
-            nextWorkoutNotificationLabel.text = "\(GlobalVars.workoutNotificationStartHour):50 AM Tomorrow"
-        }else if hour < 12{
-            nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-        }else {
-            nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        //notificationsAreOk()// runs to see what notification settings state is
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.year = year    // sets to current year
+        dateComp.month = month  // sets to current month
+        dateComp.day = day      // sets to current day
+        dateComp.hour = fHour    // sets to current hour
+        dateComp.minute = fMin
+        dateComp.second = 0
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        var date:NSDate = calender.dateFromComponents(dateComp)!
+        
+        var notification:UILocalNotification = UILocalNotification()
+        notification.category = fCategory
+        notification.alertBody = fAlertBody
+        notification.alertAction = "View App"
+        notification.fireDate = date
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.repeatInterval = fRepeat // sets when the notification repeats
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    //------------------------------------ /Notification Stuff ----------------------------------------------------//
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        GlobalVars.exerciseIndexCount = 0
         
         // instantiates the Upper Body array data        
         var newExercise = Exercise(name: "Push-Ups", filename: "push-ups", tips:
@@ -191,62 +218,9 @@ class OneMWStartViewController: UIViewController, NotificatinoTimeViewController
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseLB.append(newExercise)
 
-        //------------------------------------ Notification Stuff ----------------------------------------------------//
-        func workoutNotification(fHour: Int, fMin: Int, fAlertBody: String, fRepeat: NSCalendarUnit){
-           
-            let today = NSDate()
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-            let hour = components.hour
-            let minutes = components.minute
-            let month = components.month
-            let year = components.year
-            let day = components.day
-            
-            NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
-            //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
-        
-            var dateComp:NSDateComponents = NSDateComponents()
-            dateComp.year = year    // sets to current year
-            dateComp.month = month  // sets to current month
-            dateComp.day = day      // sets to current day
-            dateComp.hour = fHour    // sets to current hour
-            dateComp.minute = fMin
-            dateComp.second = 0
-            dateComp.timeZone = NSTimeZone.systemTimeZone()
-        
-            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
-            var date:NSDate = calender.dateFromComponents(dateComp)!
-        
-            var notification:UILocalNotification = UILocalNotification()
-            notification.category = "WORKOUT-NOW_CATEGORY"
-            notification.alertBody = fAlertBody
-            notification.alertAction = "View App"
-            notification.fireDate = date
-            notification.soundName = UILocalNotificationDefaultSoundName
-            notification.repeatInterval = fRepeat // sets when the notification repeats
-        
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        }
-        
-        // sets start notification
-        workoutNotification(GlobalVars.workoutNotificationHour, 50, "It's time for a 1 Minute Workout!", NSCalendarUnit.CalendarUnitDay)
-        
-        // sets daily notifications after start notification and before end of day (i = 9; i < 17-2; i++)
-        for (var i = GlobalVars.workoutNotificationHour; i < GlobalVars.workoutNotificationEndHour - 2; i++){
-            
-            GlobalVars.workoutNotificationHour++
-            
-            workoutNotification(GlobalVars.workoutNotificationHour, 50, "It's time for another 1 Minute Workout!", NSCalendarUnit.allZeros)
-            println("workout notification repeated \(GlobalVars.workoutNotificationHour)")
-            
-        }
-        
-        // sets end of day notification
-        workoutNotification(GlobalVars.workoutNotificationEndHour, 50, "It's time for your last 1 Minute Workout of the day!", NSCalendarUnit.allZeros)
-        
-        //------------------------------------ /Notification Stuff ----------------------------------------------------//
-        
+        // sets start 1MW App notification
+        workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+                
         println("the start page's view did indeed load")
     }
     
@@ -271,7 +245,7 @@ class OneMWStartViewController: UIViewController, NotificatinoTimeViewController
             let vc = segue.destinationViewController as OneMWViewController
             vc.navTitle = "Upper Body"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
-            vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)                
+            vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
         }else {
             let vc = segue.destinationViewController as OneMWViewController
             vc.navTitle = "Lower Body"
