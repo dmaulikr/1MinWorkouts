@@ -21,6 +21,7 @@ struct GlobalVars {
     static var workoutNotificationStartMin = 30 // set by the user at start up
     static var workoutNotificationCategory = "WORKOUT-NOW_CATEGORY"
     static var workoutNotificationLabel = "\(workoutNotificationStartHour):50 AM"
+    static var notificationDayOfWeek = "monday"
     static var notificationSettingsWeekday = true
     static var notificationSettingsWeekend = false
 }

@@ -223,6 +223,7 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseLB.append(newExercise)
 
         // sets start 1MW App notification
+//        if GlobalVars.notificationSettingsWeekday
         workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
                 
         println("the start page's view did indeed load")
