@@ -406,13 +406,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oHa-05-bOr" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="EX1-in-RLJ"/>
-                            <constraint firstItem="oHa-05-bOr" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="QOn-uH-ncW"/>
-                            <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="oHa-05-bOr" secondAttribute="centerX" id="W1a-fN-dm7"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="XgT-Ey-N9N"/>
-                            <constraint firstItem="oHa-05-bOr" firstAttribute="leading" secondItem="1zJ-w1-TFl" secondAttribute="leading" id="dGJ-ip-OGW"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="oD2-Mu-GXU"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" id="ziC-k7-QLG"/>
+                            <constraint firstItem="oHa-05-bOr" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="7gN-J1-aV7"/>
+                            <constraint firstItem="Do1-hl-ICq" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="top" id="Pb0-L6-zpV"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="oHa-05-bOr" secondAttribute="leading" id="QZZ-gu-RdV"/>
+                            <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="oHa-05-bOr" secondAttribute="centerX" id="Qsj-vb-7Tx"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="eeO-qA-Azn" secondAttribute="top" constant="20" symbolic="YES" id="SaI-qg-fG7"/>
+                            <constraint firstItem="oHa-05-bOr" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="Z2W-gf-Ud5"/>
+                            <constraint firstItem="oHa-05-bOr" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="o5X-ZO-6bJ"/>
                         </constraints>
                     </view>
                     <connections>

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 12/29/14.
+//  Created by Justin on 12/29/14.
 //  Copyright (c) 2014 Good Enough LLC. All rights reserved.
 //
 
@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Actions
-        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        firstAction.identifier = "WORKOUT-NOW_ACTION"
-        firstAction.title = "Workout Now"
-        firstAction.activationMode = UIUserNotificationActivationMode.Foreground
-        firstAction.destructive = false
-        firstAction.authenticationRequired = false
+//        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+//        firstAction.identifier = "WORKOUT-NOW_ACTION"
+//        firstAction.title = "Workout Now"
+//        firstAction.activationMode = UIUserNotificationActivationMode.Foreground
+//        firstAction.destructive = false
+//        firstAction.authenticationRequired = false
         
         var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         secondAction.identifier = "SKIP-WORKOUT_ACTION"
@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
-        let defaultActions:NSArray = [firstAction, secondAction]
-        let minimalActions:NSArray = [firstAction, secondAction]
+        let defaultActions:NSArray = [secondAction]
+        let minimalActions:NSArray = [secondAction]
         
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         // Do something serious in a real app.
         println("Received Local Notification:")
-        println(notification.alertBody)
         
         var message:UIAlertController = UIAlertController(title: "Workout Time", message: "It's time for a 1 Minute Workout", preferredStyle: UIAlertControllerStyle.Alert)
         message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -107,7 +106,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        
+//        
+//        let today = NSDate()
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+//        let hour = components.hour
+//        let minutes = components.minute
+//        let seconds = components.second
+//        let month = components.month
+//        let year = components.year
+//        let day = components.day
+//        let weekday = components.weekday
+//        
+//        // sets the label for when next workout notification will be sent
+//        if seconds > 0 && minutes < 50{
+//            if hour < 12 {
+//                GlobalVars.workoutNotificationLabel = "\(hour):50 AM"
+//                println("hour < 12 < 50")
+//            }else if hour > 12 && minutes < 50{
+//                GlobalVars.workoutNotificationLabel = "\(hour - 12):50 PM"
+//                println("else hour > 12 < 50")
+//            }else {
+//                GlobalVars.workoutNotificationLabel = "\(hour):50 PM"
+//                println("else 12")
+//            }
+//        }else
+//            if hour < 12 {
+//                GlobalVars.workoutNotificationLabel = "\(hour + 1):50 AM"
+//                println("hour < 12 and > 50")
+//            }else {
+//                GlobalVars.workoutNotificationLabel = "\(hour - 11 ):50 PM"
+//                println("else hour > 12 and > 50")
+//        }
+//
+//        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

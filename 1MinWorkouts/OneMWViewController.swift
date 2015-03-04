@@ -81,11 +81,11 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
-        exerciseTypeImage.image = exerciseImage
-        
+        exerciseTypeImage.image = exerciseImage        
     }
     
     override func viewWillAppear(animated: Bool) {
+//        nextWorkoutNotificationLabel.text = GlobalVars.workoutNotificationLabel
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()

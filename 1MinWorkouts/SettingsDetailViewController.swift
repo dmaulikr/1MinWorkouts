@@ -2,7 +2,7 @@
 //  SettingsDetailViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 1/14/15.
+//  Created by Justin on 1/14/15.
 //  Copyright (c) 2015 Good Enough LLC. All rights reserved.
 //
 

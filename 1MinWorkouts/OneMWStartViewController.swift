@@ -16,8 +16,10 @@ class OneMWStartViewController: UIViewController {
         // sets workout notifications for the day
         if GlobalVars.workoutNotificationStartMin >= 30{
             workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            println("notification set for upper body >= 30")
         }else {
             workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            println("notification set for upper body < 30")
         }
     }
 
@@ -27,8 +29,10 @@ class OneMWStartViewController: UIViewController {
         // sets workout notifications
         if GlobalVars.workoutNotificationStartMin >= 30{
             workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            println("notification set for lower body >= 30")
         }else {
             workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            println("notification set for lower body < 30")
         }
     }
     
@@ -227,10 +231,8 @@ class OneMWStartViewController: UIViewController {
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
     
     func segueToWorkoutNow(notification:NSNotification){
-        var message:UIAlertController = UIAlertController(title: "Workout Now", message: "You hit the Workout Now action", preferredStyle: UIAlertControllerStyle.Alert)
-        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        
-        self.presentViewController(message, animated: true, completion: nil)
+        // segue out of this view and back to home
+        //performSegueWithIdentifier("segueToExerciseNow", sender: self)
     }
     //------------------------------------ /Notification Functions ----------------------------------------------------//
     
