@@ -94,65 +94,86 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         3) Check if the start time's minute is >= 30 we need to add an hour
         4) Check if it's noon
         */
-        if seconds > 0 && minutes < 50 || seconds > 0 && minutes > 50{
-            if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                println("handles start time for when min is 30 or more and it's morning")
-            }else if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-                println("handles start time for when min is less than 30 and it's morning")
-            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
-                println("handles start time for when min is 30 or more and it's noon")
-            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour):50 PM"
-                println("handles start time for when min is less than 30 and it's noon")
-            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
-                println("handles start time for when min is 30 or more and it's afternoon")
-            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-                println("handles start time for when min is less than 30 and it's afternoon")
-            }else if hour < 12 && hour != GlobalVars.workoutNotificationStartHour{
-                nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-                println("handles time for when it's not the start time and it's morning")
-            }else if hour > 12 && hour != GlobalVars.workoutNotificationStartHour{
-                nextWorkoutNotificationLabel.text = "\(hour - 12):50 AM"
-                println("handles time for when it's not the start time and it's afternoon")
-            }else{
-                nextWorkoutNotificationLabel.text = "\(hour):50 PM"
-                println("handles time for when it's not the start time and it's noon")
-            }
-        }else if seconds > 0 && minutes == 50{ // deals with notification label time after users has done exercise
-            if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour + 2):50 AM"
-                println("handles start time for when min is 30 or more and it's morning")
-            }else if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                println("handles start time for when min is less than 30 and it's morning")
-            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 10):50 PM"
-                println("handles start time for when min is 30 or more and it's noon")
-            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour + 1):50 PM"
-                println("handles start time for when min is less than 30 and it's noon")
-            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 10):50 PM"
-                println("handles start time for when min is 30 or more and it's afternoon")
-            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
-                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
-                println("handles start time for when min is less than 30 and it's afternoon")
-            }else if hour < 12 && hour != GlobalVars.workoutNotificationStartHour{
-                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                println("handles time for when it's not the start time and it's morning")
-            }else if hour > 12 && hour != GlobalVars.workoutNotificationStartHour{
-                nextWorkoutNotificationLabel.text = "\(hour - 11):50 AM"
-                println("handles time for when it's not the start time and it's afternoon")
-            }else{
-                nextWorkoutNotificationLabel.text = "\(hour + 1):50 PM"
-                println("handles time for when it's not the start time and it's noon")
-            }
-        }
+        
+//        if seconds > 0 && minutes < 50 || seconds > 0 && minutes > 50{
+//            if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+//                println("handles start time for when min is 30 or more and it's morning - 1st")
+//            }else if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour):50 AM"
+//                println("handles start time for when min is less than 30 and it's morning - 1st")
+//            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
+//                println("handles start time for when min is 30 or more and it's noon - 1st")
+//            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour):50 PM"
+//                println("handles start time for when min is less than 30 and it's noon - 1st")
+//            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
+//                println("handles start time for when min is 30 or more and it's afternoon - 1st")
+//            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
+//                println("handles start time for when min is less than 30 and it's afternoon - 1st")
+//            }else if hour < 12 && hour != GlobalVars.workoutNotificationStartHour{
+//                nextWorkoutNotificationLabel.text = "\(hour):50 AM"
+//                println("handles time for when it's not the start time and it's morning - 1st")
+//            }else if hour > 12 && hour != GlobalVars.workoutNotificationStartHour{
+//                nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
+//                println("handles time for when it's not the start time and it's afternoon - 1st")
+//            }else if hour == 12 && hour != GlobalVars.workoutNotificationStartHour{
+//                nextWorkoutNotificationLabel.text = "\(hour):50 PM"
+//                println("handles time for when it's not the start time and it's noon - 1st")
+//            }
+//        }else if seconds > 0 && minutes == 50{ // deals with notification label time after users has done exercise
+//            if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour + 2):50 AM"
+//                println("handles start time for when min is 30 or more and it's morning - 2nd")
+//            }else if hour < 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+//                println("handles start time for when min is less than 30 and it's morning - 2nd")
+//            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 10):50 PM"
+//                println("handles start time for when min is 30 or more and it's noon - 2nd")
+//            }else if hour == 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour + 1):50 PM"
+//                println("handles start time for when min is less than 30 and it's noon - 2nd")
+//            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin >= 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 10):50 PM"
+//                println("handles start time for when min is 30 or more and it's afternoon - 2nd")
+//            }else if hour > 12 && hour == GlobalVars.workoutNotificationStartHour && GlobalVars.workoutNotificationStartMin < 30{
+//                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
+//                println("handles start time for when min is less than 30 and it's afternoon - 2nd")
+//            }else if hour < 12 && hour != GlobalVars.workoutNotificationStartHour{
+//                nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+//                println("handles time for when it's not the start time and it's morning - 2nd")
+//            }else if hour > 12 && hour != GlobalVars.workoutNotificationStartHour{
+//                nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
+//                println("handles time for when it's not the start time and it's afternoon - 2nd")
+//            }else{
+//                nextWorkoutNotificationLabel.text = "\(hour - 11):50 PM"
+//                println("handles time for when it's not the start time and it's noon - 2nd")
+//            }
+//        }
+        
+                if seconds > 0 && minutes < 50{
+                    if hour < 12 {
+                        nextWorkoutNotificationLabel.text = "\(hour):50 AM"
+                        println("hour < 12 < 50")
+                    }else if hour > 12 && minutes < 50{
+                        nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
+                        println("else hour > 12 < 50")
+                    }else {
+                        nextWorkoutNotificationLabel.text = "\(hour):50 PM"
+                        println("else 12")
+                    }
+                }else
+                    if hour < 12 {
+                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+                        println("hour < 12 and > 50")
+                    }else {
+                        nextWorkoutNotificationLabel.text = "\(hour - 11 ):50 PM"
+                        println("else hour > 12 and > 50")
+                }
     }
     
     override func viewDidLoad() {
