@@ -156,23 +156,26 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
 //        }
         
                 if seconds > 0 && minutes < 50{
-                    if hour < 12 {
+                    if GlobalVars.workoutNotificationStartMin >= 30{
+                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
+                        println("hour < 12 < 50 - 1st")
+                    }else if hour < 12 {
                         nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-                        println("hour < 12 < 50")
+                        println("it's the morning - 1st")
                     }else if hour > 12 && minutes < 50{
                         nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-                        println("else hour > 12 < 50")
+                        println("it's afternoon and not too late in the hour - 1st")
                     }else {
                         nextWorkoutNotificationLabel.text = "\(hour):50 PM"
-                        println("else 12")
+                        println("It's noon - 1st")
                     }
                 }else
                     if hour < 12 {
                         nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                        println("hour < 12 and > 50")
+                        println("it's the morning - 2nd")
                     }else {
                         nextWorkoutNotificationLabel.text = "\(hour - 11 ):50 PM"
-                        println("else hour > 12 and > 50")
+                        println("it's afternoon - 2nd")
                 }
     }
     
