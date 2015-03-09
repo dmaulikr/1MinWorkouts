@@ -74,6 +74,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             NSNotificationCenter.defaultCenter().postNotificationName("snoozePressed", object: nil)
             
+            // need to reset next days start notification
+            let today = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+            let hour = components.hour
+            let minutes = components.minute
+            let month = components.month
+            let year = components.year
+            let day = components.day
+            
+            var dateComp:NSDateComponents = NSDateComponents()
+            dateComp.year = year            // sets to current year
+            dateComp.month = month          // sets to current month
+            dateComp.day = day              // sets to today
+            dateComp.hour = hour            // sets to current hour
+            dateComp.minute = minutes + 5   // sets to users work start time
+            dateComp.second = 0
+            dateComp.timeZone = NSTimeZone.systemTimeZone()
+            
+            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+            var date:NSDate = calender.dateFromComponents(dateComp)!
+            
+            var notification:UILocalNotification = UILocalNotification()
+            notification.category = "WORKOUT-NOW_CATEGORY"
+            notification.alertBody = "Time for a 1 Minute Workout!"
+            notification.alertAction = "View App"
+            notification.fireDate = date
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.repeatInterval = NSCalendarUnit.allZeros // sets when the notification repeats
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            
+            println("snooze pressed")
+            
         }
         else if (identifier == "SKIP-WORKOUT_ACTION"){
             NSNotificationCenter.defaultCenter().postNotificationName("skipWorkout", object: nil)

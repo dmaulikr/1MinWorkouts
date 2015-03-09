@@ -28,10 +28,10 @@ class OneMWStartViewController: UIViewController {
         
         // sets workout notifications
         if GlobalVars.workoutNotificationStartMin >= 30{
-            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
             println("notification set for lower body >= 30")
         }else {
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
             println("notification set for lower body < 30")
         }
     }
@@ -49,7 +49,7 @@ class OneMWStartViewController: UIViewController {
         let day = components.day
         let weekday = components.weekday
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"segueToWorkoutNow:", name: "workoutNowPressed", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
         var dateComp:NSDateComponents = NSDateComponents()
@@ -231,10 +231,10 @@ class OneMWStartViewController: UIViewController {
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
     
-    func snoozeWorkout(notification:NSNotification){
-        
-        
-    }
+//    func snoozeWorkout(notification:NSNotification){
+//        
+//        println("5 min snooze hit")
+//    }
     //------------------------------------ /Notification Functions ----------------------------------------------------//
     
     override func didReceiveMemoryWarning() {
