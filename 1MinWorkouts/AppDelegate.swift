@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Actions
-//        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-//        firstAction.identifier = "WORKOUT-NOW_ACTION"
-//        firstAction.title = "Workout Now"
-//        firstAction.activationMode = UIUserNotificationActivationMode.Foreground
-//        firstAction.destructive = false
-//        firstAction.authenticationRequired = false
+        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        firstAction.identifier = "SNOOZE_ACTION"
+        firstAction.title = "5 Min Snooze"
+        firstAction.activationMode = UIUserNotificationActivationMode.Background
+        firstAction.destructive = false
+        firstAction.authenticationRequired = false
         
         var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         secondAction.identifier = "SKIP-WORKOUT_ACTION"
@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
-        let defaultActions:NSArray = [secondAction]
-        let minimalActions:NSArray = [secondAction]
+        let defaultActions:NSArray = [firstAction, secondAction]
+        let minimalActions:NSArray = [firstAction, secondAction]
         
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
@@ -70,9 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // To know what notification actions were tapped   
     func application(application: UIApplication!, handleActionWithIdentifier identifier:String!, forLocalNotification notification:UILocalNotification!, completionHandler: (() -> Void)!){
         
-        if (identifier == "WORKOUT-NOW_ACTION"){
+        if (identifier == "SNOOZE_ACTION"){
             
-            NSNotificationCenter.defaultCenter().postNotificationName("workoutNowPressed", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("snoozePressed", object: nil)
             
         }
         else if (identifier == "SKIP-WORKOUT_ACTION"){
@@ -83,15 +83,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler()
     }
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        // Do something serious in a real app.
-        println("Received Local Notification:")
-        
-        var message:UIAlertController = UIAlertController(title: "Workout Time", message: "It's time for a 1 Minute Workout", preferredStyle: UIAlertControllerStyle.Alert)
-        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        
-        self.window?.rootViewController?.presentViewController(message, animated: true, completion: nil)
-    }
+//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+//        // Do something serious in a real app.
+//        println("Received Local Notification:")
+//        
+//        var message:UIAlertController = UIAlertController(title: "Workout Time", message: "It's time for a 1 Minute Workout", preferredStyle: UIAlertControllerStyle.Alert)
+//        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//        
+//        self.window?.rootViewController?.presentViewController(message, animated: true, completion: nil)
+//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

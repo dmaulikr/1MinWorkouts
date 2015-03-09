@@ -231,9 +231,9 @@ class OneMWStartViewController: UIViewController {
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
     
-    func segueToWorkoutNow(notification:NSNotification){
-        // segue out of this view and back to home
-        //performSegueWithIdentifier("segueToExerciseNow", sender: self)
+    func snoozeWorkout(notification:NSNotification){
+        
+        
     }
     //------------------------------------ /Notification Functions ----------------------------------------------------//
     
