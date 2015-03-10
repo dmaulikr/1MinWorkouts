@@ -21,8 +21,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     let settingsUser = [
-        ("Work Day Begins", "8:00 AM"),
-        ("Work Day Ends", "5:30 PM")
+        ("Start Day Notification", "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"),
+        //("Work Day Ends", "5:30PM")
     ]
     
     let settingsApp = [
@@ -65,11 +65,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
+        
+        // Return the number of sections in table
         return 2
     }
 
@@ -83,6 +81,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
         if indexPath.section == 0{
@@ -98,7 +97,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         
         return cell
     }
-
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

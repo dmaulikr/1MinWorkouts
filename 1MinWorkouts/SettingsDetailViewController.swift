@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
     
-    var settingsSet = GlobalVars.settingsSet
+    //var settingsSet = GlobalVars.settingsSet
     
     @IBOutlet var startDayReminderView: UIView!
     
@@ -38,7 +38,7 @@ class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("checkedCells", forIndexPath: indexPath) as UITableViewCell
         
            let (settingsTitle) = settingsStartDay[indexPath.row]
             cell.textLabel?.text = settingsTitle
@@ -46,24 +46,33 @@ class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
         return cell
     }
 
-//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        cell.accessoryType = .None
-//    }
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        if cell.accessoryType == UITableViewCellAccessoryType.None {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        println("You selected cell #\(indexPath.row)!")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if GlobalVars.settingsSet == "Start Day Reminder"{
+        if GlobalVars.settingsSet == "Start Day Notification"{
             startDayReminderView.hidden = false
             autoEndDayView.hidden = true
             aboutView.hidden = true
-            navigationItem.title = "Start Day Reminder"
-        }else if GlobalVars.settingsSet == "Auto End Day"{
-            autoEndDayView.hidden = false
-            startDayReminderView.hidden = true
-            aboutView.hidden = true
-            navigationItem.title = "Auto End Day"
-        }
+            navigationItem.title = "Start Day Notification"
+        }//else if GlobalVars.settingsSet == "Auto End Day"{
+//            autoEndDayView.hidden = false
+//            startDayReminderView.hidden = true
+//            aboutView.hidden = true
+//            navigationItem.title = "Auto End Day"
+//        }
         else{
             aboutView.hidden = false
             startDayReminderView.hidden = true

@@ -8,7 +8,52 @@
 
 import UIKit
 
-class OneMWStartViewController: UIViewController {
+class OneMWStartViewController: UIViewController, UITableViewDataSource {
+    
+
+    @IBOutlet weak var setupView: UIView!
+    
+    @IBAction func saveSettingsBtn(sender: AnyObject) {
+        setupView.hidden = true
+    }
+    
+    let settingsStartDay = [
+        ("Monday - Friday"),
+        ("Saturday and Sunday")
+    ]
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return settingsStartDay.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("startDaysCheckmarkCells", forIndexPath: indexPath) as UITableViewCell
+        
+        let (settingsTitle) = settingsStartDay[indexPath.row]
+        cell.textLabel?.text = settingsTitle
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        if cell.accessoryType == UITableViewCellAccessoryType.None {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        println("You selected cell #\(indexPath.row)!")
+    }
+
     
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
