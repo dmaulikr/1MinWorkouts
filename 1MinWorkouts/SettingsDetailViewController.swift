@@ -13,14 +13,13 @@ class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
     //var settingsSet = GlobalVars.settingsSet
     
     @IBOutlet var startDayReminderView: UIView!
-    
-    @IBOutlet var autoEndDayView: UIView!
-    
-    @IBOutlet var aboutView: UIView!
-    
+    @IBOutlet var startDayToggle: UISwitch!
     @IBOutlet var startDayPicker: UIDatePicker!
     
+    @IBOutlet var autoEndDayView: UIView!
     @IBOutlet var autoEndDayPicker: UIDatePicker!
+    
+    @IBOutlet var aboutView: UIView!
     
     let settingsStartDay = [
         ("Monday - Friday"),
