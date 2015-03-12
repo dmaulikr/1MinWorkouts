@@ -43,9 +43,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
-        mailComposerVC.setToRecipients(["justinmandell@gmail.com"])
+        mailComposerVC.setToRecipients(["onemwfeedback@gmail.com"])
         mailComposerVC.setSubject("1MW Feedback")
-        mailComposerVC.setMessageBody("Constructive criticism is great! Trolling, not so great...", isHTML: false)
+        mailComposerVC.setMessageBody("Feedback is great! Trolling, not so great...", isHTML: false)
         
         return mailComposerVC
     }

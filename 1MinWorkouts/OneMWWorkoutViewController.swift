@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 protocol OneMWWorkoutViewControllerDelegate{
     func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int)
@@ -102,9 +103,6 @@ class OneMWWorkoutViewController: UIViewController {
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
-                // increments the index variable to update to the next exercise
-                self.changeExercise()
-                println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
                 
                 // passes the incremented variable to the prior screen delegate
                 if (self.delegate != nil) {
@@ -116,7 +114,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             self.presentViewController(alert, animated: true, completion: nil)
             
-            
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
         }
     }
     
@@ -128,7 +126,7 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.text = timerLabel // sets timer label to starting time desired
         
         GlobalVars.exerciseSecondsCount = totalTime; // sets timer to an hour
-        exerciseCountdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("exerciseTimerRun"), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown  
+        exerciseCountdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("exerciseTimerRun"), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
     /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
@@ -145,7 +143,7 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             getReadyView.hidden = true
-            setExerciseTimer(5, timerLabel: "05")
+            setExerciseTimer(60, timerLabel: "60")
         }
     }
     

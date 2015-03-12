@@ -51,7 +51,18 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        println("You selected cell #\(indexPath.row)!")
+        if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
+            println("index 0 is now checked: \(indexPath.row)!")
+        }else if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.None{
+            println("index 0 is now UNchecked: \(indexPath.row)!")
+        }
+        
+        if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
+            println("index 1 is now checked: \(indexPath.row)!")
+        }else if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.None{
+            println("index 1 is now UNchecked: \(indexPath.row)!")
+        }
+        
     }
 
     

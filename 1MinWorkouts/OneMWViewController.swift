@@ -37,6 +37,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // clears out all set notifications
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
+        // reset workout counter to 0
+        GlobalVars.exerciseIndexCount = 0
+        
         // need to reset next days start notification
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
