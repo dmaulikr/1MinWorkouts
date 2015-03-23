@@ -24,4 +24,7 @@ struct GlobalVars {
     static var notificationDayOfWeek = "monday"
     static var notificationSettingsWeekday = true
     static var notificationSettingsWeekend = false
+    
+    //NSUserDefaults
+    static let oobeSetup = "oobeSetup"
 }

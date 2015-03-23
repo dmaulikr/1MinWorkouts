@@ -10,11 +10,14 @@ import UIKit
 
 class OneMWStartViewController: UIViewController, UITableViewDataSource {
     
-
     @IBOutlet weak var setupView: UIView!
     
     @IBAction func saveSettingsBtn(sender: AnyObject) {
         setupView.hidden = true
+        
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        appUserSettings.setValue(true, forKey: GlobalVars.oobeSetup)
+        println("I just set appUserSettings to: \(appUserSettings.valueForKey(GlobalVars.oobeSetup))")
     }
     
     @IBAction func upperBodyBtn(sender: AnyObject) {
@@ -54,13 +57,8 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
             println("notification set for lower body < 30")
         }
     }
-
-    let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
     
-    let settingsStartDay = [
-        ("Monday - Friday"),
-        ("Saturday and Sunday")
-    ]
+    let settingsStartDay = [("Monday - Friday"), ("Saturday and Sunday")]
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -82,26 +80,50 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+//        let selectedItem = settingsStartDay[indexPath.row]
+//        
+//        var newCell = tableView.cellForRowAtIndexPath(indexPath)
+//        if selectedItem == "Monday - Friday" && newCell != nil && GlobalVars.notificationSettingsWeekday == true {
+//           
+//            //setting the accessory type to the "Checkmark"
+//            newCell?.accessoryType = .Checkmark
+//            
+//        } else if selectedItem == "Monday - Friday" && newCell != nil && GlobalVars.notificationSettingsWeekday == false {
+//            
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            //setting the accessory type to "None"
+//            newCell?.accessoryType = .None
+//            
+//        } else if selectedItem == "Saturday and Sunday" && newCell != nil && GlobalVars.notificationSettingsWeekend == true {
+//            
+//            //setting the accessory type to the "Checkmark"
+//            newCell?.accessoryType = .Checkmark
+//            
+//        } else if selectedItem == "Saturday and Sunday" && newCell != nil && GlobalVars.notificationSettingsWeekend == false {
+//            //setting the accessory type to the "Checkmark"
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            newCell?.accessoryType = .None
+//        }
         
-        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-        if cell.accessoryType == UITableViewCellAccessoryType.None {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryType.None
-        }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
-            println("index 0 is now checked: \(indexPath.row)!")
-        }else if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.None{
-            println("index 0 is now UNchecked: \(indexPath.row)!")
-        }
-        
-        if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
-            println("index 1 is now checked: \(indexPath.row)!")
-        }else if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.None{
-            println("index 1 is now UNchecked: \(indexPath.row)!")
-        }
+//        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+//        if cell.accessoryType == UITableViewCellAccessoryType.None {
+//            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+//        } else {
+//            cell.accessoryType = UITableViewCellAccessoryType.None
+//        }
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
+//            println("index 0 is now checked: \(indexPath.row)!")
+//        }else if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.None{
+//            println("index 0 is now UNchecked: \(indexPath.row)!")
+//        }
+//        
+//        if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
+//            println("index 1 is now checked: \(indexPath.row)!")
+//        }else if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.None{
+//            println("index 1 is now UNchecked: \(indexPath.row)!")
+//        }
         
     }
 
@@ -146,6 +168,18 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     //------------------------------------ /Notification Stuff ----------------------------------------------------//
+    
+    override func viewWillAppear(animated: Bool) {
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeSetup){
+            setupView.hidden = true
+            println("The user has oobe defined: \(oobeShown)")
+        }else{
+            setupView.hidden = false
+            println("appUserSettings was set to \(appUserSettings.valueForKey(GlobalVars.oobeSetup))")
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
