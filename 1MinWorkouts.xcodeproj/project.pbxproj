@@ -23,6 +23,12 @@
 		ACD1CD7F1A5C687B00CC197E /* globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1CD7E1A5C687B00CC197E /* globals.swift */; };
 		ACD1CD811A5CB51D00CC197E /* OneMWInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1CD801A5CB51D00CC197E /* OneMWInfoViewController.swift */; };
 		ACD1CD831A5CB53900CC197E /* OneMWWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1CD821A5CB53900CC197E /* OneMWWorkoutViewController.swift */; };
+		ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0F26A1AC0D642003E4F5E /* TutorialViewController.swift */; };
+		ACE0F26E1AC0D934003E4F5E /* TutorialXIBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0F26C1AC0D934003E4F5E /* TutorialXIBViewController.swift */; };
+		ACE0F26F1AC0D934003E4F5E /* TutorialXIBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE0F26D1AC0D934003E4F5E /* TutorialXIBViewController.xib */; };
+		ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0F2701ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift */; };
+		ACE0F2731ACA2AF0003E4F5E /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0F2711ACA2AF0003E4F5E /* BWWalkthroughViewController.swift */; };
+		ACE0F2751ACA33CB003E4F5E /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE0F2741ACA33CB003E4F5E /* Walkthrough.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		ACD1CD7E1A5C687B00CC197E /* globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globals.swift; sourceTree = "<group>"; };
 		ACD1CD801A5CB51D00CC197E /* OneMWInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMWInfoViewController.swift; sourceTree = "<group>"; };
 		ACD1CD821A5CB53900CC197E /* OneMWWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMWWorkoutViewController.swift; sourceTree = "<group>"; };
+		ACE0F26A1AC0D642003E4F5E /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		ACE0F26C1AC0D934003E4F5E /* TutorialXIBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialXIBViewController.swift; sourceTree = "<group>"; };
+		ACE0F26D1AC0D934003E4F5E /* TutorialXIBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialXIBViewController.xib; sourceTree = "<group>"; };
+		ACE0F2701ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		ACE0F2711ACA2AF0003E4F5E /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
+		ACE0F2741ACA33CB003E4F5E /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC8D7D161ACDA62D00BEAA04 /* OOBE */ = {
+			isa = PBXGroup;
+			children = (
+				ACE0F2741ACA33CB003E4F5E /* Walkthrough.storyboard */,
+				ACE0F26C1AC0D934003E4F5E /* TutorialXIBViewController.swift */,
+				ACE0F26D1AC0D934003E4F5E /* TutorialXIBViewController.xib */,
+				ACE0F2701ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift */,
+				ACE0F2711ACA2AF0003E4F5E /* BWWalkthroughViewController.swift */,
+			);
+			name = OOBE;
+			sourceTree = "<group>";
+		};
 		ACCF20231A6729A1007DB43A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +113,7 @@
 		ACD1CCD91A521E5E00CC197E = {
 			isa = PBXGroup;
 			children = (
+				ACE0F26A1AC0D642003E4F5E /* TutorialViewController.swift */,
 				ACD1CCE41A521E5E00CC197E /* 1MinWorkouts */,
 				ACD1CCFC1A521E5E00CC197E /* 1MinWorkoutsTests */,
 				ACD1CCE31A521E5E00CC197E /* Products */,
@@ -113,6 +138,7 @@
 				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
 				ACCF20231A6729A1007DB43A /* Settings */,
 				ACD1CCED1A521E5E00CC197E /* Main.storyboard */,
+				AC8D7D161ACDA62D00BEAA04 /* OOBE */,
 				ACD1CCE71A521E5E00CC197E /* AppDelegate.swift */,
 				AC2645141A85434100E5B081 /* MyTabBarController.swift */,
 				ACD1CD7E1A5C687B00CC197E /* globals.swift */,
@@ -249,7 +275,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACE0F26F1AC0D934003E4F5E /* TutorialXIBViewController.xib in Resources */,
 				ACD1CCEF1A521E5E00CC197E /* Main.storyboard in Resources */,
+				ACE0F2751ACA33CB003E4F5E /* Walkthrough.storyboard in Resources */,
 				ACD1CCF41A521E5E00CC197E /* LaunchScreen.xib in Resources */,
 				ACD1CCF11A521E5E00CC197E /* Images.xcassets in Resources */,
 			);
@@ -271,13 +299,17 @@
 			files = (
 				ACD1CD771A52310B00CC197E /* WorkoutsViewController.swift in Sources */,
 				ACD1CD811A5CB51D00CC197E /* OneMWInfoViewController.swift in Sources */,
+				ACE0F26E1AC0D934003E4F5E /* TutorialXIBViewController.swift in Sources */,
 				ACD1CD731A5230EB00CC197E /* OneMWViewController.swift in Sources */,
 				ACD1CD751A52310000CC197E /* StatsViewController.swift in Sources */,
 				ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */,
 				AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */,
+				ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */,
 				ACD1CD7B1A545EEB00CC197E /* OneMWStartViewController.swift in Sources */,
+				ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */,
 				ACD1CD831A5CB53900CC197E /* OneMWWorkoutViewController.swift in Sources */,
 				ACCF20271A6742E3007DB43A /* SettingsTableViewController.swift in Sources */,
+				ACE0F2731ACA2AF0003E4F5E /* BWWalkthroughViewController.swift in Sources */,
 				ACD1CCE81A521E5E00CC197E /* AppDelegate.swift in Sources */,
 				ACCF20251A6729B8007DB43A /* SettingsDetailViewController.swift in Sources */,
 				ACD1CD7F1A5C687B00CC197E /* globals.swift in Sources */,

@@ -18,7 +18,7 @@ class OneMWInfoViewController: UIViewController {
     }
     
     @IBOutlet var exerciseTypeTitle: UILabel!
-    @IBOutlet var exerciseDescription: UILabel!
+    @IBOutlet var exerciseDescription: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

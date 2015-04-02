@@ -16,8 +16,8 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
         setupView.hidden = true
         
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        appUserSettings.setValue(true, forKey: GlobalVars.oobeSetup)
-        println("I just set appUserSettings to: \(appUserSettings.valueForKey(GlobalVars.oobeSetup))")
+        appUserSettings.setValue(true, forKey: GlobalVars.oobeTute)
+        println("I just set appUserSettings to: \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
     }
     
     @IBAction func upperBodyBtn(sender: AnyObject) {
@@ -57,6 +57,10 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
             println("notification set for lower body < 30")
         }
     }
+    
+    
+    // instantiates the tutorial XIB
+    let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     let settingsStartDay = [("Monday - Friday"), ("Saturday and Sunday")]
     
@@ -170,13 +174,19 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
     //------------------------------------ /Notification Stuff ----------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
+        
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeSetup){
-            setupView.hidden = true
+        if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
+            //setupView.hidden = true // hides the initial settings info
+            
             println("The user has oobe defined: \(oobeShown)")
         }else{
-            setupView.hidden = false
-            println("appUserSettings was set to \(appUserSettings.valueForKey(GlobalVars.oobeSetup))")
+            //setupView.hidden = false // shows the initial settings info
+            
+            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            presentViewController(vc, animated: true, completion: nil)
+            
+            println("appUserSettings was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
         }
         
     }
@@ -185,7 +195,7 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         GlobalVars.exerciseIndexCount = 0
-        
+       
         // instantiates the Upper Body array data        
         var newExercise = Exercise(name: "Push-Ups", filename: "push-ups", tips:
             "Lie on the floor face down and place your hands just about at your shoulders while holding your torso up at arms length. \n\n" +
@@ -193,7 +203,7 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
             "Now breathe out and press your upper body back up to the starting position while squeezing your chest.\n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 0
         GlobalVars.exerciseUB.append(newExercise)
-        
+                
         newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
             "Lie down with your back flat to the floor.\n\n" +
             "Bend your knees are at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place. \n\n" +
@@ -279,19 +289,19 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
             "Do as many as you can in a minute, but take breaks as needed.") // 1
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
-            "Stand with your feet should width apart. You can hold the back of a chair for balance if needed. \n\n" +
-            "Lift your heels until you're standing on your tippy toes. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
-            "Stay on your tippy toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.") // 2
-        GlobalVars.exerciseLB.append(newExercise)
-        
         newExercise = Exercise(name: "Lunges", filename: "lunges", tips:
             "Stand up straight with your feet about a shoulder width apart.Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. Engage your core \n\n" +
             "Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
             "As you step forward, lower your hips and bend your knees until they both form 90 degree angles. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
             "Pause at the bottom of the lunge for up to 5 seconds. Push off the heel of your front foot to return to the starting position. \n\n" +
             "Alternate legs as you go. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 2
+        GlobalVars.exerciseLB.append(newExercise)
+        
+        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
+            "Stand with your feet should width apart. You can hold the back of a chair for balance if needed. \n\n" +
+                "Lift your heels until you're standing on your tippy toes. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
+                "Stay on your tippy toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 3
         GlobalVars.exerciseLB.append(newExercise)
         
@@ -311,19 +321,19 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
             "Do as many as you can in a minute, but take breaks as needed.") //5
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
-            "Stand with your feet should width apart. You can hold the back of a chair for balance if needed. \n\n" +
-            "Lift your heels until you're standing on your tippy toes. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
-            "Stay on your tippy toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.") // 6
-        GlobalVars.exerciseLB.append(newExercise)
-        
         newExercise = Exercise(name: "Lunges", filename: "lunges", tips:
             "Stand up straight with your feet about a shoulder width apart.Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. Engage your core \n\n" +
             "Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
             "As you step forward, lower your hips and bend your knees until they both form 90 degree angles. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
             "Pause at the bottom of the lunge for up to 5 seconds. Push off the heel of your front foot to return to the starting position. \n\n" +
             "Alternate legs as you go. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 6
+        GlobalVars.exerciseLB.append(newExercise)
+        
+        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
+            "Stand with your feet should width apart. You can hold the back of a chair for balance if needed. \n\n" +
+                "Lift your heels until you're standing on your tippy toes. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
+                "Stay on your tippy toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseLB.append(newExercise)
 

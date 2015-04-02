@@ -26,5 +26,6 @@ struct GlobalVars {
     static var notificationSettingsWeekend = false
     
     //NSUserDefaults
-    static let oobeSetup = "oobeSetup"
+    static let oobeTute = "oobeTute"
+    static let oobeDisclaimer = "oobeDisclaimer"
 }
