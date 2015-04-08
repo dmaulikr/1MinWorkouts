@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "upper-body-icon-btn.png"
+      "filename" : "checkmark-on.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "upper-body-icon-btn@2x.png"
+      "filename" : "checkmark-on@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "upper-body-icon-btn@3x.png"
+      "filename" : "checkmark-on@3x.png"
     }
   ],
   "info" : {

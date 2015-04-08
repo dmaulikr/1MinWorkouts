@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2645141A85434100E5B081 /* MyTabBarController.swift */; };
+		AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */; };
 		ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF201D1A5CBA01007DB43A /* Exercise.swift */; };
 		ACCF20251A6729B8007DB43A /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF20241A6729B8007DB43A /* SettingsDetailViewController.swift */; };
 		ACCF20271A6742E3007DB43A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		AC2645141A85434100E5B081 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartDaySettingsViewController.swift; path = ../StartDaySettingsViewController.swift; sourceTree = "<group>"; };
 		AC4131CA1A994EF400224BE7 /* 1MinWorkouts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = 1MinWorkouts.entitlements; sourceTree = "<group>"; };
 		ACCF201D1A5CBA01007DB43A /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		ACCF20241A6729B8007DB43A /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				ACE0F2741ACA33CB003E4F5E /* Walkthrough.storyboard */,
+				AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */,
 				ACE0F26C1AC0D934003E4F5E /* TutorialXIBViewController.swift */,
 				ACE0F26D1AC0D934003E4F5E /* TutorialXIBViewController.xib */,
 				ACE0F2701ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift */,
@@ -304,6 +307,7 @@
 				ACD1CD751A52310000CC197E /* StatsViewController.swift in Sources */,
 				ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */,
 				AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */,
+				AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */,
 				ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */,
 				ACD1CD7B1A545EEB00CC197E /* OneMWStartViewController.swift in Sources */,
 				ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */,

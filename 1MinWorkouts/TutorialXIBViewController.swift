@@ -30,15 +30,14 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     
     // sets the disclaimer setting
     func setDisclaimerAgreed(){
-        disclaimerView.hidden = true    // hides the disclaimer
-        //tutorialView.hidden = false     // shows turotial view
         
+        // set oobeDisclaimer to true (agreed on)
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         appUserSettings.setValue(true, forKey: GlobalVars.oobeDisclaimer)
         println("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
         
-        // Get view controllers and build the walkthrough
+        // Get view controllers and build and show the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
         let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as BWWalkthroughViewController
         let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as UIViewController
@@ -58,26 +57,24 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     
     override func viewWillAppear(animated: Bool) {
         
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        
-        // check to see if oobeDisclaimer has a settings
-        if let disclaimerShown = appUserSettings.stringForKey(GlobalVars.oobeDisclaimer){
-            disclaimerView.hidden = true // hides the disclaimer
-            //tutorialView.hidden = false // shows tutorial
-            println("disclaimer is set to: \(disclaimerShown)")
-            
-        }else{
-            disclaimerView.hidden = false // shows the disclaimer
-            println("oobeDisclaimer is set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
-        }
+//        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+//        
+//        // check to see if oobeDisclaimer has a settings
+//        if let disclaimerShown = appUserSettings.stringForKey(GlobalVars.oobeDisclaimer){
+//            disclaimerView.hidden = true // hides the disclaimer
+//            //tutorialView.hidden = false // shows tutorial
+//            println("disclaimer is set to: \(disclaimerShown)")
+//            
+//        }else{
+//            disclaimerView.hidden = false // shows the disclaimer
+//            println("oobeDisclaimer is set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
+//        }
         
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //tutorialView.hidden = true
         
         disclaimerText.sizeToFit() // sets the exerciseDescription label so it will dynamically change size based on text content
         disclaimerText.text =

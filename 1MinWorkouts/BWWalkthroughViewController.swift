@@ -54,8 +54,41 @@ At the moment it's only used to perform custom animations on didScroll.
     @IBOutlet var getStrated: UIButton!
     
     @IBAction func getStarted(sender: AnyObject) {
-        delegate?.walkthroughCloseButtonPressed?()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        if let oobeStartDaySetup = appUserSettings.stringForKey(GlobalVars.oobeStartDaySetup){
+            // if there is a value set this will happen
+            
+            // is setup has been set, pops off walkthrough and pops off discliamer
+            delegate?.walkthroughCloseButtonPressed?()
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            // pops back to the root, prior to the disclaimer xib
+            navigationController?.popToRootViewControllerAnimated(true)
+            
+            println("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
+        }else{
+            // there was no value set so this will happen
+            
+            // if start day is not set show start day setup
+            performSegueWithIdentifier("startDayNotifSetupSegue", sender: self)
+            
+            println("oobeStartDaySetup is set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+        }
+        
+    }
+    
+    @IBAction func saveStartDaySetup(sender: AnyObject){
+        // need to set notification on/off
+        // if on: 
+        /////////need to set start notification time
+        /////////need to set weekday on/off
+        /////////need to set weekend on/off
+        
+        // sets oobeStartDaySetup as being set
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        appUserSettings.setValue(true, forKey: GlobalVars.oobeStartDaySetup)
     }
     
     
@@ -154,8 +187,31 @@ At the moment it's only used to perform custom animations on didScroll.
     // TODO: If you want to implement a "skip" option 
     // connect a button to this IBAction and implement the delegate with the skipWalkthrough
     @IBAction func close(sender: AnyObject){
-        delegate?.walkthroughCloseButtonPressed?()
-        self.dismissViewControllerAnimated(true, completion: nil)
+//        delegate?.walkthroughCloseButtonPressed?()
+//        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        if let oobeStartDaySetup = appUserSettings.stringForKey(GlobalVars.oobeStartDaySetup){
+            // if there is a value set this will happen
+            
+            // is setup has been set, pops off walkthrough and pops off discliamer
+            delegate?.walkthroughCloseButtonPressed?()
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            // pops back to the root, prior to the disclaimer xib
+            navigationController?.popToRootViewControllerAnimated(true)
+            
+            println("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
+        }else{
+            // there was no value set so this will happen
+            
+            // if start day is not set show start day setup
+            performSegueWithIdentifier("startDayNotifSetupSegue", sender: self)
+            
+            println("oobeStartDaySetup is set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+        }
+        
     }
     
     /**

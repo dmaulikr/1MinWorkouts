@@ -8,12 +8,9 @@
 
 import UIKit
 
-class OneMWStartViewController: UIViewController, UITableViewDataSource {
-    
-    @IBOutlet weak var setupView: UIView!
+class OneMWStartViewController: UIViewController {
     
     @IBAction func saveSettingsBtn(sender: AnyObject) {
-        setupView.hidden = true
         
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         appUserSettings.setValue(true, forKey: GlobalVars.oobeTute)
@@ -62,76 +59,6 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
     // instantiates the tutorial XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
-    let settingsStartDay = [("Monday - Friday"), ("Saturday and Sunday")]
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return settingsStartDay.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("startDaysCheckmarkCells", forIndexPath: indexPath) as UITableViewCell
-        
-        let (settingsTitle) = settingsStartDay[indexPath.row]
-        cell.textLabel?.text = settingsTitle
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        let selectedItem = settingsStartDay[indexPath.row]
-//        
-//        var newCell = tableView.cellForRowAtIndexPath(indexPath)
-//        if selectedItem == "Monday - Friday" && newCell != nil && GlobalVars.notificationSettingsWeekday == true {
-//           
-//            //setting the accessory type to the "Checkmark"
-//            newCell?.accessoryType = .Checkmark
-//            
-//        } else if selectedItem == "Monday - Friday" && newCell != nil && GlobalVars.notificationSettingsWeekday == false {
-//            
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//            //setting the accessory type to "None"
-//            newCell?.accessoryType = .None
-//            
-//        } else if selectedItem == "Saturday and Sunday" && newCell != nil && GlobalVars.notificationSettingsWeekend == true {
-//            
-//            //setting the accessory type to the "Checkmark"
-//            newCell?.accessoryType = .Checkmark
-//            
-//        } else if selectedItem == "Saturday and Sunday" && newCell != nil && GlobalVars.notificationSettingsWeekend == false {
-//            //setting the accessory type to the "Checkmark"
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//            newCell?.accessoryType = .None
-//        }
-        
-//        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-//        if cell.accessoryType == UITableViewCellAccessoryType.None {
-//            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-//        } else {
-//            cell.accessoryType = UITableViewCellAccessoryType.None
-//        }
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        
-//        if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
-//            println("index 0 is now checked: \(indexPath.row)!")
-//        }else if indexPath.row == 0 && cell.accessoryType == UITableViewCellAccessoryType.None{
-//            println("index 0 is now UNchecked: \(indexPath.row)!")
-//        }
-//        
-//        if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.Checkmark{
-//            println("index 1 is now checked: \(indexPath.row)!")
-//        }else if indexPath.row == 1 && cell.accessoryType == UITableViewCellAccessoryType.None{
-//            println("index 1 is now UNchecked: \(indexPath.row)!")
-//        }
-        
-    }
-
-    
     
     //------------------------------------ Notification Stuff ----------------------------------------------------//
     func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
@@ -175,18 +102,17 @@ class OneMWStartViewController: UIViewController, UITableViewDataSource {
     
     override func viewWillAppear(animated: Bool) {
         
+        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
-            //setupView.hidden = true // hides the initial settings info
-            
+            // if there is a value set this will happen
             println("The user has oobe defined: \(oobeShown)")
         }else{
-            //setupView.hidden = false // shows the initial settings info
-            
+            // there was no value set so this will happen
             vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             presentViewController(vc, animated: true, completion: nil)
             
-            println("appUserSettings was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
+            println("oobeTute was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
         }
         
     }

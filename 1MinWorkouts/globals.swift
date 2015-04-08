@@ -28,4 +28,16 @@ struct GlobalVars {
     //NSUserDefaults
     static let oobeTute = "oobeTute"
     static let oobeDisclaimer = "oobeDisclaimer"
+    static let oobeStartDaySetup = "oobeStartDaySetup"
+}
+
+class StartDay: NSObject {
+    var day: String
+    var checkmark: Int
+    
+    init(day: String, checkmark: Int) {
+        self.day = day
+        self.checkmark = checkmark
+        super.init()
+    }
 }
