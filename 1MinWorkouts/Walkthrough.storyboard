@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uds-Dv-JjF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uds-Dv-JjF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -338,7 +338,6 @@
         <!--Start Day Settings View Controller-->
         <scene sceneID="GkK-Hk-2L2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2mN-bf-QXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="SGK-kR-mTl" customClass="StartDaySettingsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ef4-Mp-vzj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -383,7 +382,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Day Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO8-4O-tja">
                                                     <rect key="frame" x="8" y="16" width="164" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1B-pc-Zrd">
@@ -406,11 +405,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0b-Xo-qBe" id="odt-Bc-R3k">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dOz-hU-Rua">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOz-hU-Rua">
                                                     <rect key="frame" x="8" y="8" width="584" height="162"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="447700829.74438798">
-                                                        <!--2015-03-10 17:20:29 +0000-->
+                                                    <date key="date" timeIntervalSinceReferenceDate="447694200.74438798">
+                                                        <!--2015-03-10 15:30:00 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="startDayPIcker:" destination="SGK-kR-mTl" eventType="valueChanged" id="97e-Gx-kd4"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -428,7 +430,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday - Friday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38d-5z-DaD">
                                                     <rect key="frame" x="8" y="16" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark-on" translatesAutoresizingMaskIntoConstraints="NO" id="MGj-Zn-Dpx">
@@ -455,7 +457,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday and Sunday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ss9-dY-OF5">
                                                     <rect key="frame" x="8" y="16" width="166" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark-on" translatesAutoresizingMaskIntoConstraints="NO" id="3Lr-2S-Oin">
@@ -474,7 +476,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Save Button Cell" rowHeight="159" id="yy1-GC-Alc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Save Button Cell" rowHeight="300" id="yy1-GC-Alc">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yy1-GC-Alc" id="LJA-ab-jn9">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -496,7 +498,7 @@
                                                 <constraint firstItem="PMO-9m-qOW" firstAttribute="leading" secondItem="LJA-ab-jn9" secondAttribute="leadingMargin" id="ErZ-9R-fGt"/>
                                                 <constraint firstItem="PMO-9m-qOW" firstAttribute="trailing" secondItem="LJA-ab-jn9" secondAttribute="trailingMargin" id="TF5-ZX-oQs"/>
                                                 <constraint firstItem="PMO-9m-qOW" firstAttribute="top" secondItem="LJA-ab-jn9" secondAttribute="topMargin" constant="16" id="WbV-Md-uxh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="PMO-9m-qOW" secondAttribute="bottom" constant="71" id="xDX-XK-5bs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="PMO-9m-qOW" secondAttribute="bottom" constant="212" id="xDX-XK-5bs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -513,11 +515,13 @@
                         <outlet property="mfCheckmark" destination="MGj-Zn-Dpx" id="Dm1-6b-BDZ"/>
                         <outlet property="monFriCell" destination="9g7-WO-0wv" id="mLS-4D-O8z"/>
                         <outlet property="satSunCell" destination="MfF-7Y-LrR" id="k7w-pz-g8y"/>
+                        <outlet property="saveButtonCell" destination="yy1-GC-Alc" id="QB0-Z3-thu"/>
                         <outlet property="ssCheckmark" destination="3Lr-2S-Oin" id="zZW-jQ-UGw"/>
-                        <outlet property="startDayPicker" destination="odt-Bc-R3k" id="hYd-nA-304"/>
+                        <outlet property="startDayPicker" destination="dOz-hU-Rua" id="DGW-7V-yk6"/>
                         <outlet property="startDaySwitch" destination="c1B-pc-Zrd" id="LO7-Fm-r7p"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2mN-bf-QXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="369" y="1271"/>
         </scene>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -10,7 +10,7 @@
         <!--1 Minute Workouts-->
         <scene sceneID="QpU-rj-b8w">
             <objects>
-                <navigationController restorationIdentifier="oneMWTabControl" title="1 Minute Workouts" id="Qcy-wR-NVu" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="oneMWTabControl" storyboardIdentifier="oneMWTabControl" title="1 Minute Workouts" id="Qcy-wR-NVu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="1MW's" image="1MW-icon" id="JSI-gL-rPz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YEY-8d-fAX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -509,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="744" y="359"/>
         </scene>
         <!--Workouts-->
         <scene sceneID="Tdz-6Z-j2f">
@@ -542,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbn-By-MQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="1098"/>
+            <point key="canvasLocation" x="744" y="1037"/>
         </scene>
         <!--Settings-->
         <scene sceneID="47s-qt-BE7">

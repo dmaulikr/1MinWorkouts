@@ -17,27 +17,23 @@ struct GlobalVars {
     static var exerciseLB = [Exercise]()
     static var exerciseIndexCount = 0
     
-    static var workoutNotificationStartHour = 8 // set by the user at start up
-    static var workoutNotificationStartMin = 30 // set by the user at start up
+    static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    static var workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!           //8 // set by the user at start up
+    static var workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!             //30 // set by the user at start up
+    static var notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!    //true
+    static var notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!    //false
+    
     static var workoutNotificationCategory = "WORKOUT-NOW_CATEGORY"
     static var workoutNotificationLabel = "\(workoutNotificationStartHour):50 AM"
     static var notificationDayOfWeek = "monday"
-    static var notificationSettingsWeekday = true
-    static var notificationSettingsWeekend = false
     
-    //NSUserDefaults
+    //NSUserDefaults Keys
     static let oobeTute = "oobeTute"
     static let oobeDisclaimer = "oobeDisclaimer"
     static let oobeStartDaySetup = "oobeStartDaySetup"
-}
-
-class StartDay: NSObject {
-    var day: String
-    var checkmark: Int
     
-    init(day: String, checkmark: Int) {
-        self.day = day
-        self.checkmark = checkmark
-        super.init()
-    }
+    static let startDayHour = "startDayHour"
+    static let startDayMin = "startDayMin"
+    static let notificationWeekday = "notificationWeekday"
+    static let notificationWeekend = "notificationWeekend"
 }

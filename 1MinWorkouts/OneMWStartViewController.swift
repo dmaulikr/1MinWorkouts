@@ -104,15 +104,16 @@ class OneMWStartViewController: UIViewController {
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
-            // if there is a value set this will happen
+            // if there IS a value set this will happen
             println("The user has oobe defined: \(oobeShown)")
         }else{
-            // there was no value set so this will happen
-            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            // there is NO value set so this will happen
+            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical  // show disclaimer XIB which leads to walkthrough and initial setup
             presentViewController(vc, animated: true, completion: nil)
+            println("oobeTute is set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
-            println("oobeTute was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
         }
         
     }
@@ -263,10 +264,33 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseLB.append(newExercise)
 
+        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         // sets start 1MW App notification
-//        if GlobalVars.notificationSettingsWeekday
-        workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
-                
+        if let startNotifSet: AnyObject = appUserSettings.valueForKey("startDayHour"){
+            // if there IS a value set this will happen
+            var startHour = appUserSettings.integerForKey(GlobalVars.startDayHour)
+            var startMin = appUserSettings.integerForKey(GlobalVars.startDayMin)
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+            //workoutNotification(startHour, fMin: startMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+            println("startDayHour is set to \(appUserSettings.integerForKey(GlobalVars.startDayHour)) and \(startHour)")
+            println("startDayMin is set to \(appUserSettings.integerForKey(GlobalVars.startDayMin)) and \(startMin)")
+            println("GlobalVars.workoutNotificationStartHour is set to \(GlobalVars.workoutNotificationStartHour)")
+            println("startDayMin is set to \(appUserSettings.integerForKey(GlobalVars.startDayMin))")
+            println("GlobalVars.workoutNotificationStartMin is set to \(GlobalVars.workoutNotificationStartMin)")
+            println("Start Notifcations have been set: \(startNotifSet)")
+        }else{
+            // there is NO value set so this will happen
+//            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
+//            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
+//            appUserSettings.setValue(30, forKey: GlobalVars.startDayMin)
+//            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
+//            appUserSettings.setValue(true, forKey: GlobalVars.notificationWeekday)
+//            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
+//            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
+//            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
+        }
+        
         println("the start page's view did indeed load")
     }
     
