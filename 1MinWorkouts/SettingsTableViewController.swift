@@ -20,15 +20,6 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         }
     }
     
-    let settingsUser = [
-        ("Start Day Notification", "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"),
-        //("Work Day Ends", "5:30PM")
-    ]
-    
-    let settingsApp = [
-        ("About", "version 0.01")
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,57 +56,12 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         // Dispose of any resources that can be recreated.
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        // Return the number of sections in table
-        return 2
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return settingsUser.count
-        }else{
-            return settingsApp.count
-        }
-    }
-
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-        
-        if indexPath.section == 0{
-            let (settingsTitle, settingsSet) = settingsUser[indexPath.row]
-            cell.textLabel?.text = settingsTitle
-            cell.detailTextLabel?.text = settingsSet
-        }else{
-            let (settingsTitle, settingsSet) = settingsApp[indexPath.row]
-            cell.textLabel?.text = settingsTitle
-            cell.detailTextLabel?.text = settingsSet
-        }
-        
-        
-        return cell
-    }
-    
     
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //Get the new view controller using segue.destinationViewController.
-        var settingsDetailScene = segue.destinationViewController as! SettingsDetailViewController
-        //Pass the selected object to the new view controller.
-        if let indexPath = self.tableView.indexPathForSelectedRow(){
-            if indexPath.section == 0{
-                let (settingsTitle, settingsSet) = settingsUser[indexPath.row]
-                GlobalVars.settingsSet = settingsTitle
-            }else{
-                let (settingsTitle, settingsSet) = settingsApp[indexPath.row]
-                GlobalVars.settingsSet = settingsTitle
-            }
-            
-        }
+        
     }
     
     /*

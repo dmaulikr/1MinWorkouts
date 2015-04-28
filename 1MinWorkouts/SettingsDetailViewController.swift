@@ -61,24 +61,6 @@ class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if GlobalVars.settingsSet == "Start Day Notification"{
-            startDayReminderView.hidden = false
-            autoEndDayView.hidden = true
-            aboutView.hidden = true
-            navigationItem.title = "Start Day Notification"
-        }//else if GlobalVars.settingsSet == "Auto End Day"{
-//            autoEndDayView.hidden = false
-//            startDayReminderView.hidden = true
-//            aboutView.hidden = true
-//            navigationItem.title = "Auto End Day"
-//        }
-        else{
-            aboutView.hidden = false
-            startDayReminderView.hidden = true
-            autoEndDayView.hidden = true
-            navigationItem.title = "About"
-        }
-        
         // Do any additional setup after loading the view.
     }
     
