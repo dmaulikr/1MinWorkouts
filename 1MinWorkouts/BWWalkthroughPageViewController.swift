@@ -13,22 +13,22 @@ enum WalkthroughAnimationType{
     case Curve
     case Zoom
     case InOut
-
+    
     static func fromString(str:String)->WalkthroughAnimationType{
         switch(str){
-            case "Linear":
+        case "Linear":
             return .Linear
             
-            case "Curve":
+        case "Curve":
             return .Curve
             
-            case "Zoom":
+        case "Zoom":
             return .Zoom
             
-            case "InOut":
+        case "InOut":
             return .InOut
             
-            default:
+        default:
             return .Linear
         }
     }
@@ -41,7 +41,7 @@ class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
     @IBInspectable var speedVariance:CGPoint = CGPoint(x: 0.0, y: 0.0)     // Note if you set this value via Attribute inspector it can only be an Integer (change it manually via User defined runtime attribute if you need a Float)
     @IBInspectable var animationType:String = "Linear"                     //
     @IBInspectable var animateAlpha:Bool = false                           //
-
+    
     
     private var subsWeights:[CGPoint] = Array()
     
@@ -66,18 +66,18 @@ class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
             
             // Perform Transition/Scale/Rotate animations
             switch WalkthroughAnimationType.fromString(animationType){
-            
-                case WalkthroughAnimationType.Linear:
-                    animationLinear(i, offset)
-                    
-                case WalkthroughAnimationType.Zoom:
-                    animationZoom(i, offset)
-                    
-                case WalkthroughAnimationType.Curve:
-                    animationCurve(i, offset)
-                    
-                case WalkthroughAnimationType.InOut:
-                    animationInOut(i, offset)
+                
+            case WalkthroughAnimationType.Linear:
+                animationLinear(i, offset)
+                
+            case WalkthroughAnimationType.Zoom:
+                animationZoom(i, offset)
+                
+            case WalkthroughAnimationType.Curve:
+                animationCurve(i, offset)
+                
+            case WalkthroughAnimationType.InOut:
+                animationInOut(i, offset)
             }
             
             // Animate alpha
@@ -86,12 +86,12 @@ class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
             }
         }
     }
-
+    
     
     // MARK: Animations (WIP)
     
     private func animationAlpha(index:Int, var _ offset:CGFloat){
-        let cView = view.subviews[index] as UIView
+        let cView = view.subviews[index] as! UIView
         
         if(offset > 1.0){
             offset = 1.0 + (1.0 - offset)
@@ -108,7 +108,7 @@ class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
     
     private func animationZoom(index:Int, _ offset:CGFloat){
         var transform = CATransform3DIdentity
-
+        
         var tmpOffset = offset
         if(tmpOffset > 1.0){
             tmpOffset = 1.0 + (1.0 - tmpOffset)
@@ -135,7 +135,7 @@ class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
         }
         transform = CATransform3DTranslate(transform, (1.0 - tmpOffset) * subsWeights[index].x * 100, (1.0 - tmpOffset) * subsWeights[index].y * 100, 0)
         view.subviews[index].layer.transform = transform
-
+        
     }
     
 }

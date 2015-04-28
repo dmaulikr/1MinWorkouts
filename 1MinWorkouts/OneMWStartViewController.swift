@@ -85,7 +85,7 @@ class OneMWStartViewController: UIViewController {
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         var date:NSDate = calender.dateFromComponents(dateComp)!
         
         var notification:UILocalNotification = UILocalNotification()
@@ -310,12 +310,12 @@ class OneMWStartViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "segueToUBExerciseType"{
-            let vc = segue.destinationViewController as OneMWViewController
+            let vc = segue.destinationViewController as! OneMWViewController
             vc.navTitle = "Upper Body"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
         }else {
-            let vc = segue.destinationViewController as OneMWViewController
+            let vc = segue.destinationViewController as! OneMWViewController
             vc.navTitle = "Lower Body"
             vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
