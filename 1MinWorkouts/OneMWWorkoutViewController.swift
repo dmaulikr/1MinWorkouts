@@ -189,14 +189,14 @@ class OneMWWorkoutViewController: UIViewController {
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as OneMWInfoViewController
+                let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
             }else{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as OneMWInfoViewController
+                let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
             }

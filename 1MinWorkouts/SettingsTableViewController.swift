@@ -82,7 +82,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         
         if indexPath.section == 0{
             let (settingsTitle, settingsSet) = settingsUser[indexPath.row]
@@ -104,7 +104,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //Get the new view controller using segue.destinationViewController.
-        var settingsDetailScene = segue.destinationViewController as SettingsDetailViewController
+        var settingsDetailScene = segue.destinationViewController as! SettingsDetailViewController
         //Pass the selected object to the new view controller.
         if let indexPath = self.tableView.indexPathForSelectedRow(){
             if indexPath.section == 0{

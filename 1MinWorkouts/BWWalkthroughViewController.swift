@@ -21,10 +21,10 @@ Probably the Walkthrough is presented by this delegate.
     @objc optional func walkthroughNextButtonPressed()               //
     @objc optional func walkthroughPrevButtonPressed()               //
     @objc optional func walkthroughPageDidChange(pageNumber:Int)     // Called when current page changes
-
+    
 }
 
-/** 
+/**
 Walkthrough Page:
 The walkthrough page represents any page added to the Walkthrough.
 At the moment it's only used to perform custom animations on didScroll.
@@ -81,7 +81,7 @@ At the moment it's only used to perform custom animations on didScroll.
     
     @IBAction func saveStartDaySetup(sender: AnyObject){
         // need to set notification on/off
-        // if on: 
+        // if on:
         /////////need to set start notification time
         /////////need to set weekday on/off
         /////////need to set weekend on/off
@@ -95,10 +95,8 @@ At the moment it's only used to perform custom animations on didScroll.
     var currentPage:Int{    // The index of the current page (readonly)
         get{
             let page = Int((scrollview.contentOffset.x / view.bounds.size.width))
-            println("the page is \(page)")
             return page
         }
-        
     }
     
     
@@ -112,8 +110,6 @@ At the moment it's only used to perform custom animations on didScroll.
     // MARK: - Overrides -
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
         // Setup the scrollview
         scrollview = UIScrollView()
         scrollview.showsHorizontalScrollIndicator = false
@@ -122,13 +118,16 @@ At the moment it's only used to perform custom animations on didScroll.
         
         // Controllers as empty array
         controllers = Array()
+        
+        super.init(coder: aDecoder)
     }
     
-    override init() {
-        super.init()
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         scrollview = UIScrollView()
         controllers = Array()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +146,7 @@ At the moment it's only used to perform custom animations on didScroll.
         
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[scrollview]-0-|", options:nil, metrics: nil, views: ["scrollview":scrollview]))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[scrollview]-0-|", options:nil, metrics: nil, views: ["scrollview":scrollview]))
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -154,7 +154,6 @@ At the moment it's only used to perform custom animations on didScroll.
         
         pageControl?.numberOfPages = controllers.count
         pageControl?.currentPage = 0
-        
     }
     
     
@@ -184,11 +183,12 @@ At the moment it's only used to perform custom animations on didScroll.
         }
     }
     
-    // TODO: If you want to implement a "skip" option 
+    
+    // TODO: If you want to implement a "skip" option
     // connect a button to this IBAction and implement the delegate with the skipWalkthrough
     @IBAction func close(sender: AnyObject){
-//        delegate?.walkthroughCloseButtonPressed?()
-//        self.dismissViewControllerAnimated(true, completion: nil)
+        //        delegate?.walkthroughCloseButtonPressed?()
+        //        self.dismissViewControllerAnimated(true, completion: nil)
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
@@ -216,8 +216,8 @@ At the moment it's only used to perform custom animations on didScroll.
     
     /**
     addViewController
-    Add a new page to the walkthrough. 
-    To have information about the current position of the page in the walkthrough add a UIVIewController which implements BWWalkthroughPage    
+    Add a new page to the walkthrough.
+    To have information about the current position of the page in the walkthrough add a UIVIewController which implements BWWalkthroughPage
     */
     func addViewController(vc:UIViewController)->Void{
         
@@ -253,15 +253,15 @@ At the moment it's only used to perform custom animations on didScroll.
             scrollview.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[previousView]-0-[view]", options:nil, metrics: nil, views: ["previousView":previousView,"view":vc.view]))
             
             if let cst = lastViewConstraint{
-                scrollview.removeConstraints(cst)
+                scrollview.removeConstraints(cst as [AnyObject])
             }
             lastViewConstraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-0-|", options:nil, metrics: nil, views: ["view":vc.view])
-            scrollview.addConstraints(lastViewConstraint!)
+            scrollview.addConstraints(lastViewConstraint! as [AnyObject])
         }
     }
-
-    /** 
-    Update the UI to reflect the current walkthrough situation 
+    
+    /**
+    Update the UI to reflect the current walkthrough situation
     **/
     
     private func updateUI(){
@@ -287,12 +287,6 @@ At the moment it's only used to perform custom animations on didScroll.
         }else{
             prevButton?.hidden = false
         }
-        
-        if currentPage == 3{
-            getStrated.hidden = false
-        }else {
-            getStrated.hidden = true
-        }
     }
     
     // MARK: - Scrollview Delegate -
@@ -302,7 +296,7 @@ At the moment it's only used to perform custom animations on didScroll.
         for var i=0; i < controllers.count; i++ {
             
             if let vc = controllers[i] as? BWWalkthroughPage{
-            
+                
                 let mx = ((scrollview.contentOffset.x + view.bounds.size.width) - (view.bounds.size.width * CGFloat(i))) / view.bounds.size.width
                 
                 // While sliding to the "next" slide (from right to left), the "current" slide changes its offset from 1.0 to 2.0 while the "next" slide changes it from 0.0 to 1.0

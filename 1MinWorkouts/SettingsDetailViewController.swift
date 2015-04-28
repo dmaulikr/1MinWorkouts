@@ -37,7 +37,7 @@ class SettingsDetailViewController: UIViewController , UITableViewDataSource  {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("checkedCells", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("checkedCells", forIndexPath: indexPath) as! UITableViewCell
         
            let (settingsTitle) = settingsStartDay[indexPath.row]
             cell.textLabel?.text = settingsTitle
