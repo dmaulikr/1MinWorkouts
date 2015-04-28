@@ -636,6 +636,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="I0h-B0-GrU"/>
+                    <connections>
+                        <outlet property="aboutDetailLabel" destination="DSr-UT-bwY" id="VWb-qD-oJh"/>
+                        <outlet property="startDayDetailLabel" destination="gac-PB-5Ca" id="ZIm-vJ-h5O"/>
+                        <outlet property="viewWalkthroughCell" destination="SA7-tN-9aN" id="ngR-9o-UW4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GyF-rP-5po" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

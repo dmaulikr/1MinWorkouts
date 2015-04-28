@@ -11,6 +11,10 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet var startDayDetailLabel: UILabel!
+    @IBOutlet var aboutDetailLabel: UILabel!
+    @IBOutlet var viewWalkthroughCell: UITableViewCell!
+    
     @IBAction func sendFeedbackBtn(sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -22,12 +26,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        if GlobalVars.workoutNotificationStartHour < 12{
+            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"
+        }else{
+            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)PM"
+        }
+        aboutDetailLabel.text = "Version 0.02"
+        
     }
 
     func configuredMailComposeViewController() -> MFMailComposeViewController {
