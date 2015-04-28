@@ -51,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
         
-        firstCategory.setActions(defaultActions as [AnyObject], forContext: UIUserNotificationActionContext.Default)
-        firstCategory.setActions(minimalActions as [AnyObject], forContext: UIUserNotificationActionContext.Minimal)
+        firstCategory.setActions(defaultActions, forContext: UIUserNotificationActionContext.Default)
+        firstCategory.setActions(minimalActions, forContext: UIUserNotificationActionContext.Minimal)
         
         // NSSet of all our categories
         let categories:NSSet = NSSet(objects: firstCategory)
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let types:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
         
-        let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set<NSObject>)
+        let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
                 
         UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
                         
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // To know what notification actions were tapped   
-    func application(application: UIApplication, handleActionWithIdentifier identifier:String?, forLocalNotification notification:UILocalNotification, completionHandler: (() -> Void)){
+    func application(application: UIApplication!, handleActionWithIdentifier identifier:String!, forLocalNotification notification:UILocalNotification!, completionHandler: (() -> Void)!){
         
         if (identifier == "SNOOZE_ACTION"){
             
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dateComp.second = 0
             dateComp.timeZone = NSTimeZone.systemTimeZone()
             
-            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
             var date:NSDate = calender.dateFromComponents(dateComp)!
             
             var notification:UILocalNotification = UILocalNotification()

@@ -39,11 +39,11 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         
         // Get view controllers, build and show the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-        let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as! BWWalkthroughViewController
-        let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as! UIViewController
-        let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as! UIViewController
-        let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as! UIViewController
-        let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as! UIViewController
+        let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as BWWalkthroughViewController
+        let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as UIViewController
+        let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as UIViewController
+        let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as UIViewController
+        let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as UIViewController
         
         // Attach the pages to the master
         walkthrough.delegate = self

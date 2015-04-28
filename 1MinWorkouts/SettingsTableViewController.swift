@@ -9,14 +9,8 @@
 import UIKit
 import MessageUI
 
-class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
-    @IBOutlet var startDayDetailLabel: UILabel!
-    @IBOutlet var aboutDetailLabel: UILabel!
-    @IBOutlet var startDayCell: UITableViewCell!
-    @IBOutlet var viewWalkthroughCell: UITableViewCell!
-    @IBOutlet var aboutCell: UITableViewCell!
-    
     @IBAction func sendFeedbackBtn(sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -25,17 +19,24 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             self.showSendMailErrorAlert()
         }
     }
+    
+    let settingsUser = [
+        ("Start Day Notification", "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"),
+        //("Work Day Ends", "5:30PM")
+    ]
+    
+    let settingsApp = [
+        ("About", "version 0.01")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if GlobalVars.workoutNotificationStartHour < 12{
-            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"
-        }else{
-            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)PM"
-        }
-        aboutDetailLabel.text = "Version 0.02"
-        
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -64,33 +65,93 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        if indexPath.row == 0 {
-            viewWalkthroughCell.selected = false
-            
-            // Get view controllers, build and show the walkthrough
-            let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-            let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as! BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as! UIViewController
-            let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as! UIViewController
-            let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as! UIViewController
-            let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as! UIViewController
-            
-            // Attach the pages to the master
-            walkthrough.delegate = self
-            walkthrough.addViewController(page_one)
-            walkthrough.addViewController(page_two)
-            walkthrough.addViewController(page_three)
-            walkthrough.addViewController(page_four)
-            
-            //walkthrough.closeButton?.setTitle("Done", forState: UIControlState.Normal)
-            
-            self.presentViewController(walkthrough, animated: true, completion: nil)
-            
-            println("viewWalkthroughCell tapped")
+        // Return the number of sections in table
+        return 2
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            return settingsUser.count
+        }else{
+            return settingsApp.count
         }
     }
+
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        
+        if indexPath.section == 0{
+            let (settingsTitle, settingsSet) = settingsUser[indexPath.row]
+            cell.textLabel?.text = settingsTitle
+            cell.detailTextLabel?.text = settingsSet
+        }else{
+            let (settingsTitle, settingsSet) = settingsApp[indexPath.row]
+            cell.textLabel?.text = settingsTitle
+            cell.detailTextLabel?.text = settingsSet
+        }
+        
+        
+        return cell
+    }
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //Get the new view controller using segue.destinationViewController.
+        var settingsDetailScene = segue.destinationViewController as SettingsDetailViewController
+        //Pass the selected object to the new view controller.
+        if let indexPath = self.tableView.indexPathForSelectedRow(){
+            if indexPath.section == 0{
+                let (settingsTitle, settingsSet) = settingsUser[indexPath.row]
+                GlobalVars.settingsSet = settingsTitle
+            }else{
+                let (settingsTitle, settingsSet) = settingsApp[indexPath.row]
+                GlobalVars.settingsSet = settingsTitle
+            }
+            
+        }
+    }
+    
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return NO if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return NO if you do not want the item to be re-orderable.
+        return true
+    }
+    */
 
 
 }

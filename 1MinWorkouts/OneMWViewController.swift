@@ -77,7 +77,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         dateCompSkipWeek.second = 0
         dateCompSkipWeek.timeZone = NSTimeZone.systemTimeZone()
         
-        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
         var date:NSDate = calender.dateFromComponents(dateComp)!
         var dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
         var dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
@@ -378,7 +378,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                let vc = segue.destinationViewController as OneMWWorkoutViewController
                 vc.navTitle = "Upper Body"
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
@@ -387,7 +387,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                let vc = segue.destinationViewController as OneMWWorkoutViewController
                 vc.navTitle = "Lower Body"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
@@ -402,14 +402,14 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destinationViewController as OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
             }else{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destinationViewController as OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
             }
