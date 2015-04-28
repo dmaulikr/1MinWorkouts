@@ -591,7 +591,7 @@
                                             <segue destination="HtL-bp-wdn" kind="show" id="1nW-1H-JZ8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="C44-mj-PBW" style="IBUITableViewCellStyleDefault" id="SA7-tN-9aN" userLabel="View Walkthrough Cell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="C44-mj-PBW" style="IBUITableViewCellStyleDefault" id="SA7-tN-9aN" userLabel="View Walkthrough Cell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SA7-tN-9aN" id="iIf-dG-vwz">
                                             <autoresizingMask key="autoresizingMask"/>
