@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>521E21C5-BA7E-4565-BB4E-4E2B24A22AA3</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>1MinWorkouts</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FCB69B696EC59AAFE7A27D1B83A875830DA83002</key>
 		<string>https://github.com/jammyman34/1MinWorkouts.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>1MinWorkouts.xcodeproj/project.xcworkspace</string>
+	<string>1MinWorkouts.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>FCB69B696EC59AAFE7A27D1B83A875830DA83002</key>

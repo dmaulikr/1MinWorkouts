@@ -32,6 +32,15 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         }else{
             startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)PM"
         }
+        
+        if GlobalVars.workoutNotificationStartMin < 10{
+            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):0\(GlobalVars.workoutNotificationStartMin)AM"
+        }
+        
+        if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == false{
+            startDayDetailLabel.text = "Off"
+        }
+        
         aboutDetailLabel.text = "Version 0.02"
         
     }
@@ -66,9 +75,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
