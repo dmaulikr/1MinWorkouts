@@ -17,11 +17,11 @@ struct GlobalVars {
     static var exerciseLB = [Exercise]()
     static var exerciseIndexCount = 0
     
-    //static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    static var workoutNotificationStartHour = 8     // will get overriden at app launch
-    static var workoutNotificationStartMin = 30     // will get overriden at app launch
-    static var notificationSettingsWeekday = true   // will get overriden at app launch
-    static var notificationSettingsWeekend = false  // will get overriden at app launch
+    static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    static var workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!           //8 // set by the user at start up
+    static var workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!             //30 // set by the user at start up
+    static var notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!    //true
+    static var notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!    //false
     
     static var workoutNotificationCategory = "WORKOUT-NOW_CATEGORY"
     static var workoutNotificationLabel = "\(workoutNotificationStartHour):50 AM"

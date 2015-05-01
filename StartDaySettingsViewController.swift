@@ -63,10 +63,10 @@ class StartDaySettingsViewController: UITableViewController{
             appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
             println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
+            /*--- Need to figure out how to pop off StartDaySettings, walkthrough and Disclaimer XIB and go back to 1MW start (Main.storyboard) ---*/
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)
-            let oneMWStart = stb.instantiateViewControllerWithIdentifier("TabControllerMain") as! MyTabBarController
-
+            let oneMWStart = stb.instantiateViewControllerWithIdentifier("oneMWTabControl") as! UINavigationController
             
             self.presentViewController(oneMWStart, animated: true, completion: nil)
         }else{
@@ -88,10 +88,8 @@ class StartDaySettingsViewController: UITableViewController{
             println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
             // pops back to the root, prior to the disclaimer xib
-            let stb = UIStoryboard(name: "Main", bundle: nil)
-            let oneMWStart = stb.instantiateViewControllerWithIdentifier("TabControllerMain") as! MyTabBarController
-            
-            self.presentViewController(oneMWStart, animated: true, completion: nil)
+            navigationController?.popToRootViewControllerAnimated(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     

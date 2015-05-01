@@ -135,18 +135,6 @@ At the moment it's only used to perform custom animations on didScroll.
         // hides the get started button to start
         getStrated.hidden = true
         
-        // sets label of Skip button (closeButton)
-        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        
-        if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
-             closeButton?.setTitle("Done", forState: UIControlState.Normal)
-        }else{
-            // there is NO value set so this will happen
-             closeButton?.setTitle("Skip", forState: UIControlState.Normal)
-        }
-       
-        
         // Initialize UIScrollView
         
         scrollview.delegate = self
@@ -298,12 +286,6 @@ At the moment it's only used to perform custom animations on didScroll.
             prevButton?.hidden = true
         }else{
             prevButton?.hidden = false
-        }
-        
-        if currentPage == 3{
-            getStrated.hidden = false
-        }else {
-            getStrated.hidden = true
         }
     }
     

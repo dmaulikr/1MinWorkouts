@@ -10,10 +10,10 @@ import UIKit
 
 class SettingsDetailViewController: UITableViewController{
     
-    var hour = GlobalVars.workoutNotificationStartHour
-    var min = GlobalVars.workoutNotificationStartMin
-    var weekday = GlobalVars.notificationSettingsWeekday
-    var weekend = GlobalVars.notificationSettingsWeekend
+    var hour = 8
+    var min = 30
+    var weekday = true
+    var weekend = false
     
     @IBOutlet var startDaySwitch: UISwitch!
     @IBAction func startDaySwitch(sender: AnyObject) {
@@ -38,58 +38,7 @@ class SettingsDetailViewController: UITableViewController{
     @IBOutlet var saveButtonCell: UITableViewCell!
     
     @IBAction func saveSettingsButton(sender: AnyObject) {
-            }
-    
-    @IBOutlet var startDayPicker: UIDatePicker!
-    
-    @IBAction func startDayPIcker(sender: AnyObject) {
-        // sets the hour and min vars to whatever was changed on the startDayPIcker
-        hour = sender.hour
-        min = sender.minute
-        println("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == false{
-            startDaySwitch.on = false
-            datePickerCell.hidden = true
-            monFriCell.hidden = true
-            satSunCell.hidden = true
-        }else {
-            startDaySwitch.on = true
-        }
-        
-        // sets the date picker to show the current setting
-        var calendar:NSCalendar = NSCalendar.currentCalendar()
-        let components = calendar.components(NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute, fromDate: NSDate())
-        components.hour = GlobalVars.workoutNotificationStartHour
-        components.minute = GlobalVars.workoutNotificationStartMin
-        startDayPicker.setDate(calendar.dateFromComponents(components)!, animated: true)
-        
-        // sets the look of the weekend checkmark to off, which matches the starting var value
-        if GlobalVars.notificationSettingsWeekday == true{
-            mfCheckmark.image = UIImage(named: "checkmark-on")
-        }else{
-            mfCheckmark.image = UIImage(named: "checkmark-off")
-        }
-        
-        if GlobalVars.notificationSettingsWeekend == true{
-            ssCheckmark.image = UIImage(named: "checkmark-on")
-        }else{
-            ssCheckmark.image = UIImage(named: "checkmark-off")
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        println("viewWillDisappear")
+        println("saveSettingsButton tapped")
         if startDaySwitch.on{
             println("startDaySwitch is on")
             
@@ -114,6 +63,12 @@ class SettingsDetailViewController: UITableViewController{
             appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
             println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
+            /*--- Need to figure out how to pop off StartDaySettings, walkthrough and Disclaimer XIB and go back to 1MW start (Main.storyboard) ---*/
+            // pops back to the root, prior to the disclaimer xib
+            let stb = UIStoryboard(name: "Main", bundle: nil)
+            let oneMWStart = stb.instantiateViewControllerWithIdentifier("oneMWTabControl") as! UINavigationController
+            
+            self.presentViewController(oneMWStart, animated: true, completion: nil)
         }else{
             println("startDaySwitch is off")
             
@@ -132,14 +87,27 @@ class SettingsDetailViewController: UITableViewController{
             appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
             println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
+            // pops back to the root, prior to the disclaimer xib
+            navigationController?.popToRootViewControllerAnimated(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
-        GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
-        GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
-        GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
-        println("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
-
+    }
+    
+    @IBOutlet var startDayPicker: UIDatePicker!
+    
+    @IBAction func startDayPIcker(sender: AnyObject) {
+        // sets the hour and min vars to whatever was changed on the startDayPIcker
+        hour = sender.hour
+        min = sender.minute
+        println("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // sets the look of the weekend checkmark to off, which matches the starting var value
+        ssCheckmark.image = UIImage(named: "checkmark-off")
     }
     
     override func didReceiveMemoryWarning() {
