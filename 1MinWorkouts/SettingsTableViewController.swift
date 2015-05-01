@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
-
+    
     @IBOutlet var startDayDetailLabel: UILabel!
     @IBOutlet var aboutDetailLabel: UILabel!
     @IBOutlet var viewWalkthroughCell: UITableViewCell!
@@ -75,9 +75,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

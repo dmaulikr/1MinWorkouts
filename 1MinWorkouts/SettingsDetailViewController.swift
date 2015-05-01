@@ -9,36 +9,11 @@
 import UIKit
 
 class SettingsDetailViewController: UITableViewController{
-    
+ 
     var hour = GlobalVars.workoutNotificationStartHour
     var min = GlobalVars.workoutNotificationStartMin
     var weekday = GlobalVars.notificationSettingsWeekday
     var weekend = GlobalVars.notificationSettingsWeekend
-    
-    @IBOutlet var startDaySwitch: UISwitch!
-    @IBAction func startDaySwitch(sender: AnyObject) {
-        if startDaySwitch.on{
-            datePickerCell.hidden = false
-            monFriCell.hidden = false
-            satSunCell.hidden = false
-            println("startDaySwitch is on")
-        }else{
-            datePickerCell.hidden = true
-            monFriCell.hidden = true
-            satSunCell.hidden = true
-            println("startDaySwitch is off")
-        }
-    }
-    
-    @IBOutlet var datePickerCell: UITableViewCell!
-    @IBOutlet var monFriCell: UITableViewCell!
-    @IBOutlet var satSunCell: UITableViewCell!
-    @IBOutlet var mfCheckmark: UIImageView!
-    @IBOutlet var ssCheckmark: UIImageView!
-    @IBOutlet var saveButtonCell: UITableViewCell!
-    
-    @IBAction func saveSettingsButton(sender: AnyObject) {
-            }
     
     @IBOutlet var startDayPicker: UIDatePicker!
     
@@ -86,60 +61,6 @@ class SettingsDetailViewController: UITableViewController{
         super.viewDidLoad()
         
         
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        println("viewWillDisappear")
-        if startDaySwitch.on{
-            println("startDaySwitch is on")
-            
-            // save the time, weekday/end settings
-            let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-            
-            appUserSettings.setInteger(hour, forKey: GlobalVars.startDayHour)
-            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
-            
-            appUserSettings.setInteger(min, forKey: GlobalVars.startDayMin)
-            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
-            
-            appUserSettings.setBool(weekday, forKey: GlobalVars.notificationWeekday)
-            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
-            
-            appUserSettings.setBool(weekend, forKey: GlobalVars.notificationWeekend)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
-            
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
-            
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
-            
-        }else{
-            println("startDaySwitch is off")
-            
-            //save the weekday/end settings as false
-            let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-            
-            appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekday)
-            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
-            
-            appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekend)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
-            
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
-            
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
-            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
-            
-        }
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
-        GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
-        GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
-        GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
-        println("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
-
     }
     
     override func didReceiveMemoryWarning() {
