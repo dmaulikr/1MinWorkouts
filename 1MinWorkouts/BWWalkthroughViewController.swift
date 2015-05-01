@@ -140,12 +140,12 @@ At the moment it's only used to perform custom animations on didScroll.
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
-            closeButton?.setTitle("Done", forState: UIControlState.Normal)
+             closeButton?.setTitle("Done", forState: UIControlState.Normal)
         }else{
             // there is NO value set so this will happen
-            closeButton?.setTitle("Skip", forState: UIControlState.Normal)
+             closeButton?.setTitle("Skip", forState: UIControlState.Normal)
         }
-        
+       
         
         // Initialize UIScrollView
         
