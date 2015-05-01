@@ -101,9 +101,15 @@ class OneMWStartViewController: UIViewController {
     //------------------------------------ /Notification Stuff ----------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
+        var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
+        GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
+        GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
+        GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
+        println("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        //let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
             // if there IS a value set this will happen

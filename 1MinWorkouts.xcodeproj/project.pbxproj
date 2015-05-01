@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC12930E1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */; };
+		AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930F1AF4196600830EA5 /* AboutViewController.swift */; };
 		AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2645141A85434100E5B081 /* MyTabBarController.swift */; };
 		AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */; };
 		ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF201D1A5CBA01007DB43A /* Exercise.swift */; };
-		ACCF20251A6729B8007DB43A /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF20241A6729B8007DB43A /* SettingsDetailViewController.swift */; };
 		ACCF20271A6742E3007DB43A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */; };
 		ACD1CCE81A521E5E00CC197E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1CCE71A521E5E00CC197E /* AppDelegate.swift */; };
 		ACD1CCEF1A521E5E00CC197E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD1CCED1A521E5E00CC197E /* Main.storyboard */; };
@@ -43,11 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStartDayTableViewController.swift; sourceTree = "<group>"; };
+		AC12930F1AF4196600830EA5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ../AboutViewController.swift; sourceTree = "<group>"; };
 		AC2645141A85434100E5B081 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartDaySettingsViewController.swift; path = ../StartDaySettingsViewController.swift; sourceTree = "<group>"; };
 		AC4131CA1A994EF400224BE7 /* 1MinWorkouts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = 1MinWorkouts.entitlements; sourceTree = "<group>"; };
 		ACCF201D1A5CBA01007DB43A /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		ACCF20241A6729B8007DB43A /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
 		ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		ACD1CCE21A521E5E00CC197E /* 1MinWorkouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1MinWorkouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD1CCE61A521E5E00CC197E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,7 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */,
-				ACCF20241A6729B8007DB43A /* SettingsDetailViewController.swift */,
+				AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */,
+				AC12930F1AF4196600830EA5 /* AboutViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				ACD1CD771A52310B00CC197E /* WorkoutsViewController.swift in Sources */,
 				ACD1CD811A5CB51D00CC197E /* OneMWInfoViewController.swift in Sources */,
+				AC12930E1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift in Sources */,
 				ACE0F26E1AC0D934003E4F5E /* TutorialXIBViewController.swift in Sources */,
 				ACD1CD731A5230EB00CC197E /* OneMWViewController.swift in Sources */,
 				ACD1CD751A52310000CC197E /* StatsViewController.swift in Sources */,
@@ -311,11 +315,11 @@
 				ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */,
 				ACD1CD7B1A545EEB00CC197E /* OneMWStartViewController.swift in Sources */,
 				ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */,
+				AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */,
 				ACD1CD831A5CB53900CC197E /* OneMWWorkoutViewController.swift in Sources */,
 				ACCF20271A6742E3007DB43A /* SettingsTableViewController.swift in Sources */,
 				ACE0F2731ACA2AF0003E4F5E /* BWWalkthroughViewController.swift in Sources */,
 				ACD1CCE81A521E5E00CC197E /* AppDelegate.swift in Sources */,
-				ACCF20251A6729B8007DB43A /* SettingsDetailViewController.swift in Sources */,
 				ACD1CD7F1A5C687B00CC197E /* globals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
