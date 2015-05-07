@@ -605,7 +605,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="NlD-Ap-qbm" kind="show" id="LEt-KH-B4A"/>
+                                            <segue destination="NlD-Ap-qbm" kind="show" identifier="startDaySettingsSegue" id="LEt-KH-B4A"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="C44-mj-PBW" style="IBUITableViewCellStyleDefault" id="SA7-tN-9aN" userLabel="View Walkthrough Cell">
@@ -706,10 +706,10 @@ After that you'll be able to do an in-app purchase so you can build your own wor
             </objects>
             <point key="canvasLocation" x="744" y="1713"/>
         </scene>
-        <!--Settings Start Day Table View Controller-->
+        <!--Start Day Notification-->
         <scene sceneID="h3x-55-jTd">
             <objects>
-                <tableViewController id="NlD-Ap-qbm" customClass="SettingsStartDayTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Start Day Notification" id="NlD-Ap-qbm" customClass="SettingsStartDayTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="YZY-1E-tQL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -717,31 +717,22 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                         <sections>
                             <tableViewSection id="sGZ-pT-ogh">
                                 <cells>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Instructions Cell" rowHeight="103" id="yYo-1i-WVW">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Instructions Cell" rowHeight="66" id="yYo-1i-WVW">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="yYo-1i-WVW" id="XI0-ud-Jg4">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Day Notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtW-Ed-uKS">
-                                                    <rect key="frame" x="16" y="20" width="568" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                                    <color key="textColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a notification reminder to start 1Minute Workouts when you begin your work day." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-CY-HYB">
-                                                    <rect key="frame" x="16" y="57" width="576" height="17"/>
+                                                    <rect key="frame" x="1" y="19" width="598" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="NtW-Ed-uKS" firstAttribute="top" secondItem="XI0-ud-Jg4" secondAttribute="topMargin" constant="12" id="IpC-P7-eC1"/>
-                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="leading" secondItem="NtW-Ed-uKS" secondAttribute="leading" id="V5J-Ti-qAS"/>
-                                                <constraint firstItem="NtW-Ed-uKS" firstAttribute="centerX" secondItem="XI0-ud-Jg4" secondAttribute="centerX" id="Y5i-vL-X6T"/>
-                                                <constraint firstItem="NtW-Ed-uKS" firstAttribute="leading" secondItem="XI0-ud-Jg4" secondAttribute="leadingMargin" constant="8" id="aG3-Wi-nEm"/>
-                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="trailing" secondItem="XI0-ud-Jg4" secondAttribute="trailingMargin" id="m8s-IQ-0Ke"/>
-                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="top" secondItem="NtW-Ed-uKS" secondAttribute="bottom" constant="8" symbolic="YES" id="qTJ-AB-WxO"/>
+                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="leading" secondItem="XI0-ud-Jg4" secondAttribute="leadingMargin" constant="-7" id="BOR-IE-xgZ"/>
+                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="centerX" secondItem="XI0-ud-Jg4" secondAttribute="centerX" id="PMi-F9-L9A"/>
+                                                <constraint firstItem="QBB-CY-HYB" firstAttribute="top" secondItem="XI0-ud-Jg4" secondAttribute="topMargin" constant="11" id="bLz-J3-XqT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -847,7 +838,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Blank Cell" rowHeight="100" id="yMb-GY-CJc" userLabel="blank cell">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Blank Cell" rowHeight="130" id="yMb-GY-CJc" userLabel="blank cell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="yMb-GY-CJc" id="qeG-Cp-mAa">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -861,6 +852,13 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                             <outlet property="delegate" destination="NlD-Ap-qbm" id="c1d-cl-hGn"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Start Day Notification" id="RDT-sf-rsK">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="ZzP-AE-Obp">
+                            <connections>
+                                <action selector="saveSettingsBtn:" destination="NlD-Ap-qbm" id="kl8-k4-Kl8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="datePickerCell" destination="tPN-y9-MXZ" id="gda-FA-0Gn"/>
                         <outlet property="mfCheckmark" destination="awf-wm-5YF" id="vKm-0h-bmm"/>
@@ -875,10 +873,10 @@ After that you'll be able to do an in-app purchase so you can build your own wor
             </objects>
             <point key="canvasLocation" x="2254" y="1446"/>
         </scene>
-        <!--About View Controller-->
+        <!--About-->
         <scene sceneID="U4x-RO-Qok">
             <objects>
-                <viewController id="OGU-2s-bBM" customClass="AboutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About" id="OGU-2s-bBM" customClass="AboutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1T0-DS-uuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="zga-zf-wgN"/>

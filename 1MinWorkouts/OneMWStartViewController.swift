@@ -10,13 +10,6 @@ import UIKit
 
 class OneMWStartViewController: UIViewController {
     
-    @IBAction func saveSettingsBtn(sender: AnyObject) {
-        
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        appUserSettings.setValue(true, forKey: GlobalVars.oobeTute)
-        println("I just set appUserSettings to: \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
-    }
-    
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
@@ -101,15 +94,11 @@ class OneMWStartViewController: UIViewController {
     //------------------------------------ /Notification Stuff ----------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
-        var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
-        GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
-        GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
-        GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
-        println("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
+        
+        setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        //let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
             // if there IS a value set this will happen

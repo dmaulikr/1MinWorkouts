@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate, SettingsStartDayTableViewControllerDelegate {
 
     @IBOutlet var startDayDetailLabel: UILabel!
     @IBOutlet var aboutDetailLabel: UILabel!
@@ -29,7 +29,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         
         if GlobalVars.workoutNotificationStartHour < 12{
             startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)AM"
-        }else{
+        }else if GlobalVars.workoutNotificationStartHour >= 13{
+            startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour - 12):\(GlobalVars.workoutNotificationStartMin)PM"
+        }else if GlobalVars.workoutNotificationStartHour == 12{
             startDayDetailLabel.text = "\(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin)PM"
         }
         
@@ -41,8 +43,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             startDayDetailLabel.text = "Off"
         }
         
-        aboutDetailLabel.text = GlobalVars.appVersion
-        
+        aboutDetailLabel.text = GlobalVars.appVersion        
     }
 
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -71,14 +72,6 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         // Dispose of any resources that can be recreated.
     }
 
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.row == 1 {
@@ -106,41 +99,18 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             println("viewWalkthroughCell tapped")
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func myVCDidFinish(controller: SettingsStartDayTableViewController, text: String) {
+        startDayDetailLabel.text = text
+        controller.navigationController?.popViewControllerAnimated(true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "startDaySettingsSegue"{
+            let vc = segue.destinationViewController as! SettingsStartDayTableViewController
+            vc.startTime = startDayDetailLabel.text!
+            vc.delegate = self
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 
 }

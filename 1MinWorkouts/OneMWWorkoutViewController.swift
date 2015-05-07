@@ -99,7 +99,7 @@ class OneMWWorkoutViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-            var alert = UIAlertController(title: "Nice Job!", message: "Take an hour break ;)", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
@@ -111,6 +111,12 @@ class OneMWWorkoutViewController: UIViewController {
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
             }))
+            
+            let thumbsImage = UIImage(named: "thumbs-up")
+            var imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            imageView.image = thumbsImage
+            
+            alert.view.addSubview(imageView)
             
             self.presentViewController(alert, animated: true, completion: nil)
             
