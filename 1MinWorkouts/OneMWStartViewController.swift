@@ -94,7 +94,7 @@ class OneMWStartViewController: UIViewController {
     //------------------------------------ /Notification Stuff ----------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
-        
+        println("start pages viewWillAppear")
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
@@ -268,14 +268,11 @@ class OneMWStartViewController: UIViewController {
             // if there IS a value set this will happen
             var startHour = appUserSettings.integerForKey(GlobalVars.startDayHour)
             var startMin = appUserSettings.integerForKey(GlobalVars.startDayMin)
+            
+            setNotifVars()// sets globalvars and prints curren notfication settings
+            
             workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
-            //workoutNotification(startHour, fMin: startMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
-            println("startDayHour is set to \(appUserSettings.integerForKey(GlobalVars.startDayHour)) and \(startHour)")
-            println("startDayMin is set to \(appUserSettings.integerForKey(GlobalVars.startDayMin)) and \(startMin)")
-            println("GlobalVars.workoutNotificationStartHour is set to \(GlobalVars.workoutNotificationStartHour)")
-            println("startDayMin is set to \(appUserSettings.integerForKey(GlobalVars.startDayMin))")
-            println("GlobalVars.workoutNotificationStartMin is set to \(GlobalVars.workoutNotificationStartMin)")
-            println("Start Notifcations have been set: \(startNotifSet)")
+            
         }else{
             // there is NO value set so this will happen
 //            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
@@ -288,7 +285,7 @@ class OneMWStartViewController: UIViewController {
 //            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
         }
         
-        println("the start page's view did indeed load")
+        println(" start page's viewDidLoad")
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
