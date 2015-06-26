@@ -435,7 +435,7 @@
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="Vb1-pA-Sbq"/>
                             <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="eSM-ED-rln"/>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="jP1-53-MbO"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="xug-Wq-RS6"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="xug-Wq-RS6"/>
                         </constraints>
                     </view>
                     <connections>
