@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--1 Minute Workouts-->
+        <!--1Minute Workouts-->
         <scene sceneID="QpU-rj-b8w">
             <objects>
-                <navigationController restorationIdentifier="oneMWTabControl" storyboardIdentifier="oneMWTabControl" title="1 Minute Workouts" id="Qcy-wR-NVu" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="oneMWTabControl" storyboardIdentifier="oneMWTabControl" title="1Minute Workouts" id="Qcy-wR-NVu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="1MW's" image="1MW-icon" id="JSI-gL-rPz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YEY-8d-fAX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="744" y="-356"/>
         </scene>
-        <!--1 Minute Workouts-->
+        <!--1Minute Workouts-->
         <scene sceneID="E4d-iM-Vc2">
             <objects>
                 <viewController storyboardIdentifier="oneMWTabControl-start" id="zMj-6f-bLn" customClass="OneMWStartViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                                     <constraint firstAttribute="height" constant="55" id="gIW-vJ-PSP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Upper Body Workouts">
+                                <state key="normal" title="Upper Body + Core">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -93,7 +93,7 @@
                                     <constraint firstAttribute="height" constant="55" id="S7i-z8-lzf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Lower Body Workouts">
+                                <state key="normal" title="Lower Body  + Core">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -124,7 +124,7 @@
                             <constraint firstItem="ygI-gM-6DI" firstAttribute="centerX" secondItem="Y5G-nS-rGf" secondAttribute="centerX" id="y33-UP-NMO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="1 Minute Workouts" id="TDq-2N-0Jx"/>
+                    <navigationItem key="navigationItem" title="1Minute Workouts" id="TDq-2N-0Jx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGl-qm-Mn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -954,6 +954,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="gPk-jv-ujV"/>
+        <segue reference="cXJ-4s-CSg"/>
     </inferredMetricsTieBreakers>
 </document>

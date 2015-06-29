@@ -271,7 +271,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
     
     func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int) {
-        if navigationItem.title == "Upper Body"{
+        if navigationItem.title == "Upper Body + Core"{
             var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
@@ -287,12 +287,12 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         if segue.identifier == "segueToExerciseNow"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "Upper Body + Core"{
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
                 let vc = segue.destinationViewController as! OneMWWorkoutViewController
-                vc.navTitle = "Upper Body"
+                vc.navTitle = "Upper Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
@@ -301,7 +301,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destinationViewController as! OneMWWorkoutViewController
-                vc.navTitle = "Lower Body"
+                vc.navTitle = "Lower Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
@@ -311,7 +311,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         if segue.identifier == "segueToExerciseInfo"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "Upper Body + Core"{
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 

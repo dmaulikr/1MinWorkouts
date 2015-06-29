@@ -305,12 +305,12 @@ class OneMWStartViewController: UIViewController {
         
         if segue.identifier == "segueToUBExerciseType"{
             let vc = segue.destinationViewController as! OneMWViewController
-            vc.navTitle = "Upper Body"
+            vc.navTitle = "Upper Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
         }else {
             let vc = segue.destinationViewController as! OneMWViewController
-            vc.navTitle = "Lower Body"
+            vc.navTitle = "Lower Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
         }
