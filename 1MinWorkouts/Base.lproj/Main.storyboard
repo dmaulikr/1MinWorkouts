@@ -163,7 +163,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esC-Ho-d1q">
                                 <rect key="frame" x="16" y="475" width="568" height="55"/>
-                                <color key="backgroundColor" red="0.3154260814" green="0.9217495322" blue="0.4057345986" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.81960784313725488" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="uBd-6o-4C3"/>
                                 </constraints>
@@ -279,7 +279,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exs-ZO-YOD">
                                 <rect key="frame" x="100" y="525" width="484" height="55"/>
-                                <color key="backgroundColor" red="0.3154260814" green="0.9217495322" blue="0.4057345986" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.17647058823529413" green="0.81960784313725488" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Restart Workout">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -435,7 +435,7 @@
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="Vb1-pA-Sbq"/>
                             <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="eSM-ED-rln"/>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="jP1-53-MbO"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="xug-Wq-RS6"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="xug-Wq-RS6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -954,6 +954,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="cXJ-4s-CSg"/>
+        <segue reference="gPk-jv-ujV"/>
     </inferredMetricsTieBreakers>
 </document>
