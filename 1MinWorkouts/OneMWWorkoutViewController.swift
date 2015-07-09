@@ -191,7 +191,7 @@ class OneMWWorkoutViewController: UIViewController {
         if segue.identifier == "segueToInfo"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "Upper Body + Core"{
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
