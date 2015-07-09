@@ -212,7 +212,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:50 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOQ-8r-u7w">
-                                <rect key="frame" x="169" y="446" width="415" height="21"/>
+                                <rect key="frame" x="164" y="446" width="420" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.40481715139161167" green="0.40262895057327863" blue="0.40700535220994472" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -229,7 +229,7 @@
                             <constraint firstItem="esC-Ho-d1q" firstAttribute="leading" secondItem="LJ2-V2-Y0B" secondAttribute="leading" id="BhG-X8-SWQ"/>
                             <constraint firstItem="Jgm-Yf-lVO" firstAttribute="trailing" secondItem="EOQ-8r-u7w" secondAttribute="trailing" id="IFx-aE-va4"/>
                             <constraint firstItem="esC-Ho-d1q" firstAttribute="trailing" secondItem="AfJ-la-JLE" secondAttribute="trailingMargin" id="MsM-0m-A0M"/>
-                            <constraint firstItem="EOQ-8r-u7w" firstAttribute="leading" secondItem="LJ2-V2-Y0B" secondAttribute="trailing" constant="8" symbolic="YES" id="O7P-ne-LfL"/>
+                            <constraint firstItem="EOQ-8r-u7w" firstAttribute="leading" secondItem="LJ2-V2-Y0B" secondAttribute="trailing" constant="3" id="O7P-ne-LfL"/>
                             <constraint firstItem="Jgm-Yf-lVO" firstAttribute="top" secondItem="60Y-6M-ldK" secondAttribute="bottom" constant="11" id="TSO-ve-U5G"/>
                             <constraint firstItem="EOQ-8r-u7w" firstAttribute="baseline" secondItem="LJ2-V2-Y0B" secondAttribute="firstBaseline" id="Z2H-FC-99v"/>
                             <constraint firstItem="Jgm-Yf-lVO" firstAttribute="top" secondItem="Vpd-dE-5C1" secondAttribute="bottom" constant="8" symbolic="YES" id="e0K-aH-DkT"/>
@@ -987,7 +987,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <image name="workouts-icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RKc-4M-Vs2"/>
+        <segue reference="QRN-hZ-SCW"/>
         <segue reference="gPk-jv-ujV"/>
     </inferredMetricsTieBreakers>
 </document>

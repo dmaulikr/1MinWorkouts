@@ -199,9 +199,9 @@ class OneMWStartViewController: UIViewController {
         
         newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
-            "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow on that’s touching the floor.\n\n" +
+            "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
-            "4. Do not let the hips sag—this is the challenging part of this move. As you get tired, you’ll want to drop the hips, but focus on keeping them stationary. \n\n" +
+            "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //5
         GlobalVars.exerciseUB.append(newExercise)
         
