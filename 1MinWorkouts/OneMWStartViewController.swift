@@ -10,6 +10,24 @@ import UIKit
 
 class OneMWStartViewController: UIViewController {
     
+    @IBOutlet var UBBtnLastWorkoutLabel: UILabel!
+    @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
+    @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
+    
+    func getTodaysDate(){
+        let todaysDate = NSDate()
+        
+        let todaysDateFormatter = NSDateFormatter()
+        todaysDateFormatter.dateStyle = .MediumStyle
+        todaysDateFormatter.timeStyle = .ShortStyle
+        
+        let todaysDateString = todaysDateFormatter.stringFromDate(todaysDate)
+        
+        UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+    }
+    
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
@@ -27,6 +45,12 @@ class OneMWStartViewController: UIViewController {
             workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
             println("notification set for upper body < 30")
         }
+        
+        // get todays date and set it to the Last Workout label and show/hide correct labels
+        getTodaysDate()
+        UBBtnLastWorkoutLabel.hidden = false
+        LBBtnLastWorkoutLabel.hidden = true
+        CoreBtnLastWorkoutLabel.hidden = true
     }
     
     @IBAction func lowerBodyBtn(sender: AnyObject) {
@@ -46,6 +70,12 @@ class OneMWStartViewController: UIViewController {
             workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
             println("notification set for lower body < 30")
         }
+        
+        // get todays date and set it to the Last Workout label and show/hide correct labels
+        getTodaysDate()
+        UBBtnLastWorkoutLabel.hidden = true
+        LBBtnLastWorkoutLabel.hidden = false
+        CoreBtnLastWorkoutLabel.hidden = true
     }
     
     
@@ -115,6 +145,10 @@ class OneMWStartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UBBtnLastWorkoutLabel.hidden = true
+        LBBtnLastWorkoutLabel.hidden = true
+        CoreBtnLastWorkoutLabel.hidden = true
         
         GlobalVars.exerciseIndexCount = 0
        
