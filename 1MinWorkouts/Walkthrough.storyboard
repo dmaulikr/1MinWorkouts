@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uds-Dv-JjF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uds-Dv-JjF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -350,14 +350,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="0id-98-qxp" id="fgz-4d-Nrs">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Day Notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKS-ZR-BG1">
-                                                    <rect key="frame" x="16" y="20" width="568" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Workout Notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKS-ZR-BG1">
+                                                    <rect key="frame" x="16" y="20" width="568" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a notification reminder to start 1Minute Workouts when you begin your work day." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1h-MN-35G">
-                                                    <rect key="frame" x="16" y="57" width="576" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a notification reminder for your first workout." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1h-MN-35G">
+                                                    <rect key="frame" x="8" y="47" width="584" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -366,9 +366,9 @@
                                             <constraints>
                                                 <constraint firstItem="KKS-ZR-BG1" firstAttribute="centerX" secondItem="fgz-4d-Nrs" secondAttribute="centerX" id="67E-PR-ESL"/>
                                                 <constraint firstItem="KKS-ZR-BG1" firstAttribute="top" secondItem="fgz-4d-Nrs" secondAttribute="topMargin" constant="12" id="Bdc-gP-VQI"/>
-                                                <constraint firstItem="m1h-MN-35G" firstAttribute="leading" secondItem="KKS-ZR-BG1" secondAttribute="leading" id="FBS-Z0-Ysr"/>
+                                                <constraint firstItem="m1h-MN-35G" firstAttribute="leading" secondItem="KKS-ZR-BG1" secondAttribute="leading" constant="-8" id="FBS-Z0-Ysr"/>
                                                 <constraint firstItem="KKS-ZR-BG1" firstAttribute="leading" secondItem="fgz-4d-Nrs" secondAttribute="leadingMargin" constant="8" id="IXz-Nk-MsI"/>
-                                                <constraint firstItem="m1h-MN-35G" firstAttribute="top" secondItem="KKS-ZR-BG1" secondAttribute="bottom" constant="8" symbolic="YES" id="RtQ-pe-HAO"/>
+                                                <constraint firstItem="m1h-MN-35G" firstAttribute="top" secondItem="KKS-ZR-BG1" secondAttribute="bottom" id="RtQ-pe-HAO"/>
                                                 <constraint firstItem="m1h-MN-35G" firstAttribute="trailing" secondItem="fgz-4d-Nrs" secondAttribute="trailingMargin" id="cRU-kG-HNJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -378,8 +378,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sst-aD-mRd" id="kwt-CH-vRs">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Day Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO8-4O-tja">
-                                                    <rect key="frame" x="8" y="16" width="164" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Workout Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO8-4O-tja">
+                                                    <rect key="frame" x="8" y="16" width="195" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -482,7 +482,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMO-9m-qOW">
                                                     <rect key="frame" x="8" y="24" width="584" height="55"/>
-                                                    <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.4392156862745098" green="0.70196078431372544" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <state key="normal" title="Save">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

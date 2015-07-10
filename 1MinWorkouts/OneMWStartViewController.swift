@@ -14,6 +14,7 @@ class OneMWStartViewController: UIViewController {
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
     
+    // function that sets todays current date to the selected muscle group
     func getTodaysDate(){
         let todaysDate = NSDate()
         
@@ -79,11 +80,11 @@ class OneMWStartViewController: UIViewController {
     }
     
     
-    // instantiates the tutorial XIB
+    // instantiates the walkthrough XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     
-    //------------------------------------ Notification Stuff ----------------------------------------------------//
+    //------------------------------------ Notification Function ----------------------------------------------------//
     func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
         
         let today = NSDate()
@@ -103,7 +104,7 @@ class OneMWStartViewController: UIViewController {
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = fHour    // sets to current hour
+        dateComp.hour = fHour   // sets to current hour
         dateComp.minute = fMin
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
@@ -121,7 +122,7 @@ class OneMWStartViewController: UIViewController {
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
-    //------------------------------------ /Notification Stuff ----------------------------------------------------//
+    //------------------------------------ /Notification Function ---------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
         println("start pages viewWillAppear")
@@ -302,7 +303,7 @@ class OneMWStartViewController: UIViewController {
             
             setNotifVars()// sets globalvars and prints curren notfication settings
             
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
             
         }else{
             // there is NO value set so this will happen

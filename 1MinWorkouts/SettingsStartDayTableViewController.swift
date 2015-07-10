@@ -271,7 +271,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             if GlobalVars.notificationSettingsWeekday == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -291,7 +291,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             if GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -304,7 +304,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = dateSkipEnd
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -317,7 +317,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -338,7 +338,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             if GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -358,7 +358,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             if GlobalVars.notificationSettingsWeekday == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -370,7 +370,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             }else{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = dateSkipWeek
                 notification.soundName = UILocalNotificationDefaultSoundName
