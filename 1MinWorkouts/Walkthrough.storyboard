@@ -232,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’ll remind you to start 1Minute Workouts every day, when you get to work." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91X-0D-svm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’ll remind you when it's time for your first workout of the day." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91X-0D-svm">
                                 <rect key="frame" x="16" y="77" width="568" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -528,7 +528,7 @@
     <resources>
         <image name="Point 1" width="92" height="93"/>
         <image name="Point 2" width="92" height="93"/>
-        <image name="Start Day Notif" width="519" height="298"/>
+        <image name="Start Day Notif" width="519" height="296"/>
         <image name="Upcoming Workout" width="530" height="629"/>
         <image name="Workout Notif" width="519" height="298"/>
         <image name="checkmark-on" width="37" height="37"/>

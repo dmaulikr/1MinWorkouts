@@ -20,7 +20,7 @@ class OneMWStartViewController: UIViewController {
         
         let todaysDateFormatter = NSDateFormatter()
         todaysDateFormatter.dateStyle = .MediumStyle
-        todaysDateFormatter.timeStyle = .ShortStyle
+        //todaysDateFormatter.timeStyle = .ShortStyle
         
         let todaysDateString = todaysDateFormatter.stringFromDate(todaysDate)
         
@@ -32,20 +32,36 @@ class OneMWStartViewController: UIViewController {
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
-        // sets workout notifications for the day
-        if GlobalVars.workoutNotificationStartMin >= 30{
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for upper body >= 30")
-        }else {
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for upper body < 30")
-        }
+        // clears out all set notifications, just in case
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minute = components.minute
+        
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.hour = hour
+        dateComp.minute = minute
+        
+        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        println("upper body notification set for \(hour + 1):\(minute)")
+        
+//        // sets workout notifications for the day
+//        if GlobalVars.workoutNotificationStartMin >= 30{
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//            
+//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for upper body >= 30")
+//        }else {
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//            
+//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for upper body < 30")
+//        }
         
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
@@ -57,20 +73,36 @@ class OneMWStartViewController: UIViewController {
     @IBAction func lowerBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = true
         
-        // sets workout notifications
-        if GlobalVars.workoutNotificationStartMin >= 30{
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-
-            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for lower body >= 30")
-        }else {
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for lower body < 30")
-        }
+        // clears out all set notifications, just in case
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minute = components.minute
+        
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.hour = hour
+        dateComp.minute = minute
+        
+        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+        println("lower body notification set for \(hour + 1):\(minute)")
+        
+//        // sets workout notifications
+//        if GlobalVars.workoutNotificationStartMin >= 30{
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//
+//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for lower body >= 30")
+//        }else {
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//
+//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for lower body < 30")
+//        }
         
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
@@ -104,7 +136,7 @@ class OneMWStartViewController: UIViewController {
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = fHour   // sets to current hour
+        dateComp.hour = fHour
         dateComp.minute = fMin
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
@@ -317,7 +349,7 @@ class OneMWStartViewController: UIViewController {
 //            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
         }
         
-        println(" start page's viewDidLoad")
+        println("start page's viewDidLoad")
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//

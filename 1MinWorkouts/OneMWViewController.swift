@@ -209,43 +209,48 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    func setNotificationTime(){
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
-        let seconds = components.second
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        let weekday = components.weekday
-    
-                // at 3:00 label shows 16:50AM?
-                if seconds > 0 && minutes < 50{
-                    if GlobalVars.workoutNotificationStartMin >= 30 && hour == GlobalVars.workoutNotificationStartHour{
-                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                        println("hour < 12 < 50 - 1st")
-                    }else if hour < 12 {
-                        nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-                        println("it's the morning - 1st")
-                    }else if hour > 12 && minutes < 50{
-                        nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-                        println("it's afternoon and not too late in the hour - 1st")
-                    }else {
-                        nextWorkoutNotificationLabel.text = "\(hour):50 PM"
-                        println("It's noon - 1st")
-                    }
-                }else
-                    if hour < 12 {
-                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                        println("it's the morning - 2nd")
-                    }else {
-                        nextWorkoutNotificationLabel.text = "\(hour - 11 ):50 PM"
-                        println("it's afternoon - 2nd")
-                }
-    }
+//    func setNotificationTime(){
+//        
+//        let today = NSDate()
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+//        let hour = components.hour
+//        let minutes = components.minute
+//        let seconds = components.second
+//        let month = components.month
+//        let year = components.year
+//        let day = components.day
+//        let weekday = components.weekday
+//    
+//        if hour < 11{
+//            nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutes)AM"
+//            println("Next Workout: \(hour + 1):\(minutes)AM")
+//        }
+//        
+//        if hour == 11{
+//            nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutes)PM"
+//            println("Next Workout: \(hour + 1):\(minutes)PM")
+//        }
+//        
+//        if hour == 12{
+//            nextWorkoutNotificationLabel.text = "1:\(minutes)PM"
+//            println("Next Workout: 1:\(minutes)PM")
+//        }
+//        
+//        if hour > 12{
+//            nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutes)PM"
+//            println("Next Workout: \((hour - 12) + 1):\(minutes)PM")
+//        }
+//        if hour == 23{
+//            nextWorkoutNotificationLabel.text = "12:\(minutes)AM"
+//            println("Next Workout: 12:\(minutes)AM")
+//        }
+//        
+//        if hour == 24{
+//            nextWorkoutNotificationLabel.text = "1:\(minutes)AM"
+//            println("Next Workout: 1:\(minutes)AM")
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -259,10 +264,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        // sets the notification time based on start time and current time
-        setNotificationTime()
-        
+        // assumes thid will be seen by the user on their first workout of the day. should get updated by an hour after they've finished this first workout
+        nextWorkoutNotificationLabel.text = "Right Now!"
     }
     
     override func didReceiveMemoryWarning() {
