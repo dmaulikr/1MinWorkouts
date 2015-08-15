@@ -111,6 +111,12 @@ class OneMWStartViewController: UIViewController {
         CoreBtnLastWorkoutLabel.hidden = true
     }
     
+    @IBAction func allCoreBtn(sender: AnyObject) {
+        getTodaysDate()
+        UBBtnLastWorkoutLabel.hidden = true
+        LBBtnLastWorkoutLabel.hidden = true
+        CoreBtnLastWorkoutLabel.hidden = false
+    }
     
     // instantiates the walkthrough XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
@@ -324,6 +330,78 @@ class OneMWStartViewController: UIViewController {
             "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseLB.append(newExercise)
+        
+        // instantiates the Core array data
+        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.") // 0
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+            "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
+                "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
+                "3. Only your forearm and feet should touch the floor.\n\n" +
+                "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
+            "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //1
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+            "1. Lie down with your back flat to the floor.\n\n" +
+                "2. Bend your knees at a 90-degree angle to your body (It may be easier to rest your feet under a chair to lock them in place). \n\n" +
+                "3. Cross your hands in front of your chest (Make sure there is a fist's worth of space between your chin and chest). \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down.\n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 2
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+            "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
+                "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
+                "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
+                "4. Slowly lower your legs. Bring them down to about an inch off the floor. Don't just let gravity work for you, make sure you're in control. Hold your arms in the same place, but use them for balance and support as you lower your legs. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") //3
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.") // 4
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+            "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
+                "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
+                "3. Only your forearm and feet should touch the floor.\n\n" +
+                "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
+            "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") // 5
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+            "1. Lie down with your back flat to the floor.\n\n" +
+                "2. Bend your knees at a 90-degree angle to your body (It may be easier to rest your feet under a chair to lock them in place). \n\n" +
+                "3. Cross your hands in front of your chest (Make sure there is a fist's worth of space between your chin and chest). \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down.\n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 6
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+            "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
+                "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
+                "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
+                "4. Slowly lower your legs. Bring them down to about an inch off the floor. Don't just let gravity work for you, make sure you're in control. Hold your arms in the same place, but use them for balance and support as you lower your legs. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 7
+        GlobalVars.exerciseCore.append(newExercise)
+        
 
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
@@ -372,11 +450,18 @@ class OneMWStartViewController: UIViewController {
             vc.navTitle = "Upper Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
-        }else {
+        }
+        if segue.identifier == "segueToLBExerciseType"{
             let vc = segue.destinationViewController as! OneMWViewController
             vc.navTitle = "Lower Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
+        }
+        if segue.identifier == "segueToCoreExerciseType"{
+            let vc = segue.destinationViewController as! OneMWViewController
+            vc.navTitle = "All Core"
+            vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+            vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
         }
     }
 

@@ -84,6 +84,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "e"
+        
         var dayOfWeek = dateFormatter.stringFromDate(today)
         
         switch dayOfWeek{
@@ -208,50 +209,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // segue out of this view and back to home
         navigationController?.popToRootViewControllerAnimated(true)
     }
-    
-//    func setNotificationTime(){
-//        
-//        let today = NSDate()
-//        let calendar = NSCalendar.currentCalendar()
-//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-//        let hour = components.hour
-//        let minutes = components.minute
-//        let seconds = components.second
-//        let month = components.month
-//        let year = components.year
-//        let day = components.day
-//        let weekday = components.weekday
-//    
-//        if hour < 11{
-//            nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutes)AM"
-//            println("Next Workout: \(hour + 1):\(minutes)AM")
-//        }
-//        
-//        if hour == 11{
-//            nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutes)PM"
-//            println("Next Workout: \(hour + 1):\(minutes)PM")
-//        }
-//        
-//        if hour == 12{
-//            nextWorkoutNotificationLabel.text = "1:\(minutes)PM"
-//            println("Next Workout: 1:\(minutes)PM")
-//        }
-//        
-//        if hour > 12{
-//            nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutes)PM"
-//            println("Next Workout: \((hour - 12) + 1):\(minutes)PM")
-//        }
-//        if hour == 23{
-//            nextWorkoutNotificationLabel.text = "12:\(minutes)AM"
-//            println("Next Workout: 12:\(minutes)AM")
-//        }
-//        
-//        if hour == 24{
-//            nextWorkoutNotificationLabel.text = "1:\(minutes)AM"
-//            println("Next Workout: 1:\(minutes)AM")
-//        }
-//    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -260,7 +218,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
-        exerciseTypeImage.image = exerciseImage        
+        exerciseTypeImage.image = exerciseImage
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -278,10 +236,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
-        }else{
+        }
+        if navigationItem.title == "Lower Body + Core"{
             var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
+        }
+        if navigationItem.title == "All Core"{
+            var image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
+            exerciseTypeImage.image = image
+            exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }
@@ -299,7 +263,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
-            }else{
+            }
+            if navigationItem.title == "Lower Body + Core"{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
@@ -307,6 +272,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.navTitle = "Lower Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
+                vc.delegate = self
+            }
+            if navigationItem.title == "All Core"{
+                // set up OneMWViewController to show All Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                vc.navTitle = "All Core"
+                vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+                vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
             }
         }
@@ -321,13 +296,22 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
-            }else{
+            }
+            if navigationItem.title == "Lower Body + Core"{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
+            }
+            if navigationItem.title == "All Core"{
+                // set up OneMWViewController to show All Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destinationViewController as! OneMWInfoViewController
+                vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+                vc.exerciseTips = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].tips
             }
         }
     }

@@ -236,6 +236,7 @@
 		ACD1CCDA1A521E5E00CC197E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Good Enough LLC";
 				TargetAttributes = {
