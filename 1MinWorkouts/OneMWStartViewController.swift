@@ -56,22 +56,6 @@ class OneMWStartViewController: UIViewController {
     
     @IBAction func lowerBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = true
-        
-//        // sets workout notifications
-//        if GlobalVars.workoutNotificationStartMin >= 30{
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//
-//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for lower body >= 30")
-//        }else {
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//
-//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for lower body < 30")
-//        }
-        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
         UBBtnLastWorkoutLabel.hidden = true
@@ -80,6 +64,8 @@ class OneMWStartViewController: UIViewController {
     }
     
     @IBAction func allCoreBtn(sender: AnyObject) {
+        GlobalVars.exerciseGroup = true
+        // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
         UBBtnLastWorkoutLabel.hidden = true
         LBBtnLastWorkoutLabel.hidden = true
