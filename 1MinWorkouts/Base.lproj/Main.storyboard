@@ -456,11 +456,11 @@
                         <constraints>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="5Pe-hv-dIb"/>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="BBs-L1-fuo"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="C67-Uz-Ptk"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="YzT-fb-Dw3" secondAttribute="leading" id="COi-LD-2vl"/>
                             <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="QMy-Vg-9Oj"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="VIT-nB-xee"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="1zJ-w1-TFl" secondAttribute="leading" id="Zpu-Zw-NRT"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="g5z-Yg-2WW"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="Ulv-cc-dRf"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="Z2V-j6-1x7"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="fdB-5n-wgs"/>
                             <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="YzT-fb-Dw3" secondAttribute="centerX" id="qNB-ow-th0"/>
                         </constraints>
                     </view>
@@ -1015,6 +1015,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="gPk-jv-ujV"/>
+        <segue reference="cXJ-4s-CSg"/>
     </inferredMetricsTieBreakers>
 </document>
