@@ -99,13 +99,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification every day during the week")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "6":
@@ -120,8 +116,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
-                
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -132,8 +126,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification on Monday")
                 
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
@@ -146,13 +138,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
-                
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "1": // if it's a weekend and weekdays are ON
@@ -166,13 +154,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification tomorrow")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "7":
@@ -186,8 +170,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification tomorrow")
             }else{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -198,8 +180,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification on Sunday")
             }
             
         default:

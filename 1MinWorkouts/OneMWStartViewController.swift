@@ -32,22 +32,6 @@ class OneMWStartViewController: UIViewController {
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
-        // clears out all set notifications, just in case
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minute = components.minute
-        
-        var dateComp:NSDateComponents = NSDateComponents()
-        dateComp.hour = hour
-        dateComp.minute = minute
-        
-        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-        println("upper body notification set for \(hour + 1):\(minute)")
-        
 //        // sets workout notifications for the day
 //        if GlobalVars.workoutNotificationStartMin >= 30{
 //            // clears out all set notifications, just in case
@@ -72,22 +56,6 @@ class OneMWStartViewController: UIViewController {
     
     @IBAction func lowerBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = true
-        
-        // clears out all set notifications, just in case
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minute = components.minute
-        
-        var dateComp:NSDateComponents = NSDateComponents()
-        dateComp.hour = hour
-        dateComp.minute = minute
-        
-        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-        println("lower body notification set for \(hour + 1):\(minute)")
         
 //        // sets workout notifications
 //        if GlobalVars.workoutNotificationStartMin >= 30{
@@ -163,7 +131,6 @@ class OneMWStartViewController: UIViewController {
     //------------------------------------ /Notification Function ---------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
-        println("start pages viewWillAppear")
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
@@ -171,12 +138,10 @@ class OneMWStartViewController: UIViewController {
         
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
             // if there IS a value set this will happen
-            println("The user has oobe defined: \(oobeShown)")
         }else{
             // there is NO value set so this will happen
             vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical  // show disclaimer XIB which leads to walkthrough and initial setup
             presentViewController(vc, animated: true, completion: nil)
-            println("oobeTute is set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
         }
         
@@ -426,8 +391,6 @@ class OneMWStartViewController: UIViewController {
 //            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
 //            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
         }
-        
-        println("start page's viewDidLoad")
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
