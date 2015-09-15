@@ -223,7 +223,7 @@ class OneMWWorkoutViewController: UIViewController {
             }))
             
             let thumbsImage = UIImage(named: "thumbs-up")
-            var imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            let imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
             imageView.image = thumbsImage
             
             alert.view.addSubview(imageView)
