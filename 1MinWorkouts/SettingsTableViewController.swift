@@ -63,7 +63,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -80,10 +80,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             // Get view controllers, build and show the walkthrough
             let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
             let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as! BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as! UIViewController
-            let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as! UIViewController
-            let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as! UIViewController
-            let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as! UIViewController
+            let page_one = stb.instantiateViewControllerWithIdentifier("walk1")
+            let page_two = stb.instantiateViewControllerWithIdentifier("walk2")
+            let page_three = stb.instantiateViewControllerWithIdentifier("walk3")
+            let page_four = stb.instantiateViewControllerWithIdentifier("walk4") 
             
             // Attach the pages to the master
             walkthrough.delegate = self
@@ -96,7 +96,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             
             self.presentViewController(walkthrough, animated: true, completion: nil)
             
-            println("viewWalkthroughCell tapped")
+            print("viewWalkthroughCell tapped")
         }
     }
     

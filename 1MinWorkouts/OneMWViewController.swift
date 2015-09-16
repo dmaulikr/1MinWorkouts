@@ -26,7 +26,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }    
     
     @IBAction func endDayBtn(sender: AnyObject) {
-        var message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
+        let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
         message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.endDay()}))
         
@@ -219,19 +219,19 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     
     func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int, nextWorkout: String) {
         if navigationItem.title == "Upper Body + Core"{
-            var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "Lower Body + Core"{
-            var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "All Core"{
-            var image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout

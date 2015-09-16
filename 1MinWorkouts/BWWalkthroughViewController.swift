@@ -67,14 +67,14 @@ At the moment it's only used to perform custom animations on didScroll.
             // pops back to the root, prior to the disclaimer xib
             navigationController?.popToRootViewControllerAnimated(true)
             
-            println("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
+            print("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
         }else{
             // there was no value set so this will happen
             
             // if start day is not set show start day setup
             performSegueWithIdentifier("startDayNotifSetupSegue", sender: self)
             
-            println("oobeStartDaySetup is set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+            prprintoobeStartDaySetup is set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
         }
         
     }

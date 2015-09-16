@@ -47,13 +47,13 @@ class SettingsStartDayTableViewController: UITableViewController {
                 startTime = "\(GlobalVars.workoutNotificationStartHour):0\(GlobalVars.workoutNotificationStartMin)AM"
             }
 
-            println("startDaySwitch is on, weekday is \(weekday) and weekend is \(weekend)")
+            print("startDaySwitch is on, weekday is \(weekday) and weekend is \(weekend)")
         }else{
             datePickerCell.hidden = true
             monFriCell.hidden = true
             satSunCell.hidden = true
             startTime = "Off"
-            println("startDaySwitch is off")
+            print("startDaySwitch is off")
         }
     }
     
@@ -75,7 +75,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             
             setStartNotification()
             
-            println("startDaySwitch is on")
+            print("startDaySwitch is on")
         }else{
             //save the weekday/end settings as false
             let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
@@ -90,7 +90,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             
             setStartNotification()
             
-            println("startDaySwitch is off, weekday is saved as \(weekday) and weekend is saved as \(weekend)")
+            print("startDaySwitch is off, weekday is saved as \(weekday) and weekend is saved as \(weekend)")
         }
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
@@ -110,20 +110,20 @@ class SettingsStartDayTableViewController: UITableViewController {
         
         if hour < 12{
             startTime = "\(hour):\(min)AM"
-            println("hour is less than 12")
+            print("hour is less than 12")
         }else if hour >= 13{
             startTime = "\(hour - 12):\(min)PM"
-            println("hour is >= 13")
+            print("hour is >= 13")
         }else if hour == 12{
             startTime = "\(hour):\(min)PM"
-            println("hour must be 12")
+            print("hour must be 12")
         }
         
         if min < 10{
             startTime = "\(hour):0\(min)AM"
         }
         
-        println("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
+        print("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
         
     }
     
@@ -178,17 +178,17 @@ class SettingsStartDayTableViewController: UITableViewController {
             if mfCheckmark.image == UIImage(named: "checkmark-on") && ssCheckmark.image == UIImage(named: "checkmark-on"){
                 mfCheckmark.image = UIImage(named: "checkmark-off")
                 weekday = false
-                println("Mon-Fri is set to \(weekday)")
+                print("Mon-Fri is set to \(weekday)")
             }else if mfCheckmark.image == UIImage(named: "checkmark-off") && ssCheckmark.image == UIImage(named: "checkmark-on"){
                 mfCheckmark.image = UIImage(named: "checkmark-on")
                 weekday = true
-                println("Mon-Fri is set to \(weekday)")
+                print("Mon-Fri is set to \(weekday)")
             }else if mfCheckmark.image == UIImage(named: "checkmark-on") && ssCheckmark.image == UIImage(named: "checkmark-off"){
                 mfCheckmark.image = UIImage(named: "checkmark-off")
                 weekday = false
                 ssCheckmark.image = UIImage(named: "checkmark-on")
                 weekend = true
-                println("Mon-Fri is set to \(weekday) and Sat/Sun is set to \(weekend)")
+                print("Mon-Fri is set to \(weekday) and Sat/Sun is set to \(weekend)")
             }
         }
         if indexPath.row == 4 {
@@ -197,17 +197,17 @@ class SettingsStartDayTableViewController: UITableViewController {
             if ssCheckmark.image == UIImage(named: "checkmark-on") && mfCheckmark.image == UIImage(named: "checkmark-on"){
                 ssCheckmark.image = UIImage(named: "checkmark-off")
                 weekend = false
-                println("Sat-Sun is set to \(weekend)")
+                print("Sat-Sun is set to \(weekend)")
             }else if ssCheckmark.image == UIImage(named: "checkmark-off") && mfCheckmark.image == UIImage(named: "checkmark-on"){
                 ssCheckmark.image = UIImage(named: "checkmark-on")
                 weekend = true
-                println("Sat-Sun is set to \(weekend)")
+                print("Sat-Sun is set to \(weekend)")
             }else if ssCheckmark.image == UIImage(named: "checkmark-on") && mfCheckmark.image == UIImage(named: "checkmark-off"){
                 ssCheckmark.image = UIImage(named: "checkmark-off")
                 weekend = false
                 mfCheckmark.image = UIImage(named: "checkmark-on")
                 weekday = true
-                println("Sat-Sun is set to \(weekend) and Mon-Fri is set to \(weekday)")
+                print("Sat-Sun is set to \(weekend) and Mon-Fri is set to \(weekday)")
             }
         }
     }
@@ -218,7 +218,7 @@ class SettingsStartDayTableViewController: UITableViewController {
 //        UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         setNotifVars()
-        println("setStartNotification was run")
+        print("setStartNotification was run")
         
         // need to reset next days start notification
         let today = NSDate()
@@ -279,12 +279,12 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification every day during the week")
+                print("You'll get a notification every day during the week")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 
-                println("Notifications are off so no start notifcations set")
+                print("Notifications are off so no start notifcations set")
             }
             
         case "6":
@@ -299,7 +299,7 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
+                print("You'll get a notification tomorrow (sat)")
                 
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
                 var notification:UILocalNotification = UILocalNotification()
@@ -312,7 +312,7 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification on Monday")
+                print("You'll get a notification on Monday")
                 
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
@@ -325,13 +325,13 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
+                print("You'll get a notification tomorrow (sat)")
                 
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 
-                println("Notifications are off so no start notifcations set")
+                print("Notifications are off so no start notifcations set")
             }
             
         case "1": // if it's a weekend and weekdays are ON
@@ -346,12 +346,12 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow")
+                print("You'll get a notification tomorrow")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                 
-                println("Notifications are off so no start notifcations set")
+                print("Notifications are off so no start notifcations set")
             }
             
         case "7":
@@ -366,7 +366,7 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow")
+                print("You'll get a notification tomorrow")
             }else{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -378,7 +378,7 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification on Sunday")
+                print("You'll get a notification on Sunday")
             }
             
         default:

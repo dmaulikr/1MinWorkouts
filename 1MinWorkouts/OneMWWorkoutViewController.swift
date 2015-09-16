@@ -203,7 +203,7 @@ class OneMWWorkoutViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-            var alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
@@ -248,8 +248,8 @@ class OneMWWorkoutViewController: UIViewController {
     /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount-- // decreases the count down by 1
-        var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
-        var seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
+        let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         
         let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
         getReadyCounterLabel.text = timerOutput
