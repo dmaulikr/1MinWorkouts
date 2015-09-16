@@ -102,11 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.alertAction = "View App"
             notification.fireDate = date
             notification.soundName = UILocalNotificationDefaultSoundName
-            notification.repeatInterval = NSCalendarUnit() // sets when the notification repeats
+            notification.repeatInterval = NSCalendarUnit.allZeros // sets when the notification repeats
             
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             
-            print("snooze pressed")
+            println("snooze pressed")
             
         }
         else if (identifier == "SKIP-WORKOUT_ACTION"){

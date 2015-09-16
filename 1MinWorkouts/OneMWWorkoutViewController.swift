@@ -10,7 +10,7 @@ import UIKit
 import AudioToolbox
 
 protocol OneMWWorkoutViewControllerDelegate{
-    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int)
+    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int,nextWorkout:String)
 }
 
 class OneMWWorkoutViewController: UIViewController {
@@ -20,6 +20,7 @@ class OneMWWorkoutViewController: UIViewController {
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
     var exercisesCount = 0
+    var nextWorkoutTime = ""
     
     var exerciseCountdownTimer = NSTimer()
     //var exerciseSecondsCount = 0
@@ -41,9 +42,13 @@ class OneMWWorkoutViewController: UIViewController {
         // increments the index variable to update to the next exercise
         changeExercise()
         
+        // sets the next workout time
+        changeNextWorkoutTime()        
+        print("next workout time is \(nextWorkoutTime)")
+        
         // passes the incremented variable to the prior screen delegate
         if (delegate != nil) {
-            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
         }
         
         // sets a workout notification an hour from the completion of this workout
@@ -67,6 +72,49 @@ class OneMWWorkoutViewController: UIViewController {
             newCount++
             return GlobalVars.exerciseIndexCount = newCount
         }
+    }
+    
+    func changeNextWorkoutTime(){
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minute = components.minute
+        
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.hour = hour
+        dateComp.minute = minute
+        
+        if hour == 11{ // it means it's 11am changing to 12pm (noon)
+            if minute < 10{
+                return nextWorkoutTime = "\(hour + 1):0\(minute)PM"
+            }
+            return nextWorkoutTime = "\(hour + 1):\(minute)PM"
+        }
+        if hour >= 12 && hour < 23{ // means it's at least 12pm
+            if minute < 10{
+                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)PM"
+            }
+            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)PM"
+        }
+        if hour == 23{
+            if minute < 10{
+                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)AM"
+            }
+            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)AM"
+        }
+        if hour == 24{ // means it's 12am
+            if minute < 10{
+                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
+            }
+            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
+        }else{
+            if minute < 10{
+                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
+            }
+            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
+        }
+        
     }
 
     //------------------------------------ Notification Function ----------------------------------------------------//
@@ -146,7 +194,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             // passes the incremented variable to the prior screen delegate
             if (delegate != nil) {
-                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
             }
             
             // sends an alert when timer is up
@@ -155,16 +203,17 @@ class OneMWWorkoutViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
                 
+                // sets the next workout time
+                self.changeNextWorkoutTime()
+                
                 // passes the incremented variable to the prior screen delegate
                 if (self.delegate != nil) {
-                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
-                    
-                
+                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: self.nextWorkoutTime)
                 }
                 
                 // sets a workout notification an hour from the completion of this workout
@@ -174,7 +223,7 @@ class OneMWWorkoutViewController: UIViewController {
             }))
             
             let thumbsImage = UIImage(named: "thumbs-up")
-            let imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            var imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
             imageView.image = thumbsImage
             
             alert.view.addSubview(imageView)
@@ -199,8 +248,8 @@ class OneMWWorkoutViewController: UIViewController {
     /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount-- // decreases the count down by 1
-        let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
-        let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
+        var seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         
         let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
         getReadyCounterLabel.text = timerOutput
