@@ -136,7 +136,6 @@ class OneMWStartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hides all last workout date labels on start up
         UBBtnLastWorkoutLabel.hidden = true
         LBBtnLastWorkoutLabel.hidden = true
         CoreBtnLastWorkoutLabel.hidden = true
