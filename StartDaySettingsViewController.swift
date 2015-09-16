@@ -21,12 +21,12 @@ class StartDaySettingsViewController: UITableViewController{
             datePickerCell.hidden = false
             monFriCell.hidden = false
             satSunCell.hidden = false
-            print("startDaySwitch is on")
+            println("startDaySwitch is on")
         }else{
             datePickerCell.hidden = true
             monFriCell.hidden = true
             satSunCell.hidden = true
-            print("startDaySwitch is off")
+            println("startDaySwitch is off")
         }
     }
     
@@ -38,30 +38,30 @@ class StartDaySettingsViewController: UITableViewController{
     @IBOutlet var saveButtonCell: UITableViewCell!
     
     @IBAction func saveSettingsButton(sender: AnyObject) {
-        print("saveSettingsButton tapped")
+        println("saveSettingsButton tapped")
         if startDaySwitch.on{
-            print("startDaySwitch is on")
+            println("startDaySwitch is on")
             
             // save the time, weekday/end settings
             let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
             
             appUserSettings.setInteger(hour, forKey: GlobalVars.startDayHour)
-            print("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
+            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
             
             appUserSettings.setInteger(min, forKey: GlobalVars.startDayMin)
-            print("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
+            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
             
             appUserSettings.setBool(weekday, forKey: GlobalVars.notificationWeekday)
-            print("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
+            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
             
             appUserSettings.setBool(weekend, forKey: GlobalVars.notificationWeekend)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
             
             appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
             
             appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)
@@ -70,22 +70,22 @@ class StartDaySettingsViewController: UITableViewController{
             
             self.presentViewController(oneMWStart, animated: true, completion: nil)
         }else{
-            print("startDaySwitch is off")
+            println("startDaySwitch is off")
             
             //save the weekday/end settings as false
             let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
             
             appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekday)
-            print("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
+            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
             
             appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekend)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
             
             appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
             
             appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
+            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)
@@ -101,7 +101,7 @@ class StartDaySettingsViewController: UITableViewController{
         // sets the hour and min vars to whatever was changed on the startDayPIcker
         hour = sender.hour
         min = sender.minute
-        print("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
+        println("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
         
     }
     
@@ -125,14 +125,14 @@ class StartDaySettingsViewController: UITableViewController{
             if mfCheckmark.image == UIImage(named: "checkmark-on"){
                 mfCheckmark.image = UIImage(named: "checkmark-off")
                 weekday = false
-                print("Mon-Fri is set to \(weekday)")
+                println("Mon-Fri is set to \(weekday)")
             }else{
                 mfCheckmark.image = UIImage(named: "checkmark-on")
                 weekday = true
-                print("Mon-Fri is set to \(weekday)")
+                println("Mon-Fri is set to \(weekday)")
             }
             
-            print("Monday-Friday was tapped \(indexPath.row)")
+            println("Monday-Friday was tapped \(indexPath.row)")
         }
         if indexPath.row == 4 {
             satSunCell.selected = false
@@ -140,14 +140,14 @@ class StartDaySettingsViewController: UITableViewController{
             if ssCheckmark.image == UIImage(named: "checkmark-on"){
                 ssCheckmark.image = UIImage(named: "checkmark-off")
                 weekend = false
-                print("Sat-Sun is set to \(weekend)")
+                println("Sat-Sun is set to \(weekend)")
             }else{
                 ssCheckmark.image = UIImage(named: "checkmark-on")
                 weekend = true
-                print("Sat-Sun is set to \(weekend)")
+                println("Sat-Sun is set to \(weekend)")
             }
             
-            print("Saturday and Sunday was tapped \(indexPath.row)")
+            println("Saturday and Sunday was tapped \(indexPath.row)")
         }
     }
 
