@@ -14,7 +14,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     var exerciseTitle = ""
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
-    var nextWorkoutTime = ""
     
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
@@ -200,41 +199,33 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
-        
-        // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
-        nextWorkoutTime = "Right Now!"
-        nextWorkoutNotificationLabel.text = nextWorkoutTime
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
-//        nextWorkoutTime = "Right Now!"
-//        nextWorkoutNotificationLabel.text = nextWorkoutTime
-//    }
+    override func viewWillAppear(animated: Bool) {
+        // assumes thid will be seen by the user on their first workout of the day. should get updated by an hour after they've finished this first workout
+        nextWorkoutNotificationLabel.text = "Right Now!"
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int, nextWorkout: String) {
+    func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int) {
         if navigationItem.title == "Upper Body + Core"{
             var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
-            nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "Lower Body + Core"{
             var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
-            nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "All Core"{
             var image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
-            nextWorkoutNotificationLabel.text = nextWorkout
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }
@@ -251,7 +242,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.navTitle = "Upper Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
-                vc.nextWorkoutTime = "Right Now!"
                 vc.delegate = self
             }
             if navigationItem.title == "Lower Body + Core"{
@@ -262,7 +252,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.navTitle = "Lower Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
-                vc.nextWorkoutTime = "Right Now!"
                 vc.delegate = self
             }
             if navigationItem.title == "All Core"{
@@ -273,7 +262,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.navTitle = "All Core"
                 vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
-                vc.nextWorkoutTime = "Right Now!"
                 vc.delegate = self
             }
         }

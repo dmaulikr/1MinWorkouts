@@ -10,7 +10,7 @@ import UIKit
 import AudioToolbox
 
 protocol OneMWWorkoutViewControllerDelegate{
-    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int,nextWorkout:String)
+    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int)
 }
 
 class OneMWWorkoutViewController: UIViewController {
@@ -20,7 +20,6 @@ class OneMWWorkoutViewController: UIViewController {
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
     var exercisesCount = 0
-    var nextWorkoutTime = ""
     
     var exerciseCountdownTimer = NSTimer()
     //var exerciseSecondsCount = 0
@@ -42,13 +41,9 @@ class OneMWWorkoutViewController: UIViewController {
         // increments the index variable to update to the next exercise
         changeExercise()
         
-        // sets the next workout time
-        changeNextWorkoutTime()        
-        print("next workout time is \(nextWorkoutTime)")
-        
         // passes the incremented variable to the prior screen delegate
         if (delegate != nil) {
-            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
+            delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
         }
         
         // sets a workout notification an hour from the completion of this workout
@@ -72,49 +67,6 @@ class OneMWWorkoutViewController: UIViewController {
             newCount++
             return GlobalVars.exerciseIndexCount = newCount
         }
-    }
-    
-    func changeNextWorkoutTime(){
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minute = components.minute
-        
-        var dateComp:NSDateComponents = NSDateComponents()
-        dateComp.hour = hour
-        dateComp.minute = minute
-        
-        if hour == 11{ // it means it's 11am changing to 12pm (noon)
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)PM"
-            }
-            return nextWorkoutTime = "\(hour + 1):\(minute)PM"
-        }
-        if hour >= 12 && hour < 23{ // means it's at least 12pm
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)PM"
-            }
-            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)PM"
-        }
-        if hour == 23{
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)AM"
-            }
-            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)AM"
-        }
-        if hour == 24{ // means it's 12am
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
-            }
-            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
-        }else{
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
-            }
-            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
-        }
-        
     }
 
     //------------------------------------ Notification Function ----------------------------------------------------//
@@ -194,7 +146,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             // passes the incremented variable to the prior screen delegate
             if (delegate != nil) {
-                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
+                delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
             }
             
             // sends an alert when timer is up
@@ -208,12 +160,11 @@ class OneMWWorkoutViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
                 
-                // sets the next workout time
-                self.changeNextWorkoutTime()
-                
                 // passes the incremented variable to the prior screen delegate
                 if (self.delegate != nil) {
-                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: self.nextWorkoutTime)
+                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
+                    
+                
                 }
                 
                 // sets a workout notification an hour from the completion of this workout
