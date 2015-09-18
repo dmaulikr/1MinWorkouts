@@ -15,8 +15,9 @@ struct GlobalVars {
     static var startTime = ""
     static var exerciseUB = [Exercise]()
     static var exerciseLB = [Exercise]()
+    static var exerciseCore = [Exercise]()
     static var exerciseIndexCount = 0
-    static var appVersion = "Version 0.0.2"
+    static var appVersion = "Version 0.0.5 (beta)"
     
     //static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     static var workoutNotificationStartHour = 8     // will get overriden at app launch

@@ -2,7 +2,7 @@
 //  TutorialViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 3/23/15.
+//  Created by Justin on 3/23/15.
 //  Copyright (c) 2015 Good Enough LLC. All rights reserved.
 //
 

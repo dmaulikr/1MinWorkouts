@@ -40,13 +40,14 @@ class OneMWWorkoutViewController: UIViewController {
         
         // increments the index variable to update to the next exercise
         changeExercise()
-        println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
         
         // passes the incremented variable to the prior screen delegate
         if (delegate != nil) {
             delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
-            println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
         }
+        
+        // sets a workout notification an hour from the completion of this workout
+        setNextWorkoutNotification()
     }
     
     @IBAction func startWorkoutBtn(sender: AnyObject) {
@@ -60,13 +61,70 @@ class OneMWWorkoutViewController: UIViewController {
         
     func changeExercise(){
         if GlobalVars.exerciseIndexCount == 7{
-            println("exercise index started over")
             return GlobalVars.exerciseIndexCount = 0
         }else{
             var newCount = GlobalVars.exerciseIndexCount
             newCount++
             return GlobalVars.exerciseIndexCount = newCount
         }
+    }
+
+    //------------------------------------ Notification Function ----------------------------------------------------//
+    func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minutes = components.minute
+        let month = components.month
+        let year = components.year
+        let day = components.day
+        let weekday = components.weekday
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
+        
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.year = year    // sets to current year
+        dateComp.month = month  // sets to current month
+        dateComp.day = day      // sets to current day
+        dateComp.hour = fHour
+        dateComp.minute = fMin
+        dateComp.second = 0
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        var date:NSDate = calender.dateFromComponents(dateComp)!
+        
+        var notification:UILocalNotification = UILocalNotification()
+        notification.category = fCategory
+        notification.alertBody = fAlertBody
+        notification.alertAction = "View App"
+        notification.fireDate = date
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.repeatInterval = fRepeat // sets when the notification repeats
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    //------------------------------------ /Notification Function ---------------------------------------------------//
+    
+    func setNextWorkoutNotification(){
+        
+        // clears out all set notifications, just in case
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minute = components.minute
+        
+        var dateComp:NSDateComponents = NSDateComponents()
+        dateComp.hour = hour
+        dateComp.minute = minute
+        // sets workout for an hour from current time
+        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
     }
     
     /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
@@ -85,12 +143,10 @@ class OneMWWorkoutViewController: UIViewController {
             
             // increments the index variable to update to the next exercise
             changeExercise()
-            println("incremented exercise index to \(GlobalVars.exerciseIndexCount)")
             
             // passes the incremented variable to the prior screen delegate
             if (delegate != nil) {
                 delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
-                println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
             }
             
             // sends an alert when timer is up
@@ -107,8 +163,13 @@ class OneMWWorkoutViewController: UIViewController {
                 // passes the incremented variable to the prior screen delegate
                 if (self.delegate != nil) {
                     self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount)
-                    println("\(GlobalVars.exerciseIndexCount) was saved to delegate")
+                    
+                
                 }
+                
+                // sets a workout notification an hour from the completion of this workout
+                self.setNextWorkoutNotification()
+                
                 self.dismissViewControllerAnimated(true, completion: nil)
             }))
             
@@ -165,11 +226,54 @@ class OneMWWorkoutViewController: UIViewController {
         
     }
     
+    func setNotificationTime(){
+        
+        let today = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let hour = components.hour
+        let minutes = components.minute
+        let seconds = components.second
+        let month = components.month
+        let year = components.year
+        let day = components.day
+        let weekday = components.weekday
+        
+        var minutesFix = minutes
+        
+        if minutes < 10{
+            var minutesFix = "/(minutes + 10)"
+        }
+        
+        if hour < 11{
+            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)AM"
+        }
+        
+        if hour == 11{
+            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)PM"
+        }
+        
+        if hour == 12{
+            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)PM"
+        }
+        
+        if hour > 12{
+            //nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutesFix)PM"
+        }
+        if hour == 23{
+            //nextWorkoutNotificationLabel.text = "12:\(minutesFix)AM"
+        }
+        
+        if hour == 24{
+            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)AM"
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         exercisesCount = GlobalVars.exerciseUB.count
-        println("exerciseCount is \(exercisesCount)")
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
@@ -198,13 +302,22 @@ class OneMWWorkoutViewController: UIViewController {
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
-            }else{
+            }
+            if navigationItem.title == "Lower Body + Core"{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
+            }
+            if navigationItem.title == "All Core"{
+                // set up OneMWViewController to show Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destinationViewController as! OneMWInfoViewController
+                vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+                vc.exerciseTips = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].tips
             }
         }
 

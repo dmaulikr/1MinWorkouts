@@ -84,6 +84,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "e"
+        
         var dayOfWeek = dateFormatter.stringFromDate(today)
         
         switch dayOfWeek{
@@ -91,27 +92,23 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             if GlobalVars.notificationSettingsWeekday == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification every day during the week")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "6":
             if GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -119,12 +116,10 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
-                
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = dateSkipEnd
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -132,12 +127,10 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification on Monday")
-                
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
@@ -145,48 +138,38 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-                println("You'll get a notification tomorrow (sat)")
-                
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "1": // if it's a weekend and weekdays are ON
             if GlobalVars.notificationSettingsWeekend == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification tomorrow")
             }else{
                 var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                println("Notifications are off so no start notifcations set")
             }
             
         case "7":
             if GlobalVars.notificationSettingsWeekday == true{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
-                notification.alertBody = "Time to start your day!"
+                notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification tomorrow")
             }else{
                 var notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -197,8 +180,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-                println("You'll get a notification on Sunday")
             }
             
         default:
@@ -208,45 +189,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // segue out of this view and back to home
         navigationController?.popToRootViewControllerAnimated(true)
     }
-    
-    func setNotificationTime(){
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
-        let seconds = components.second
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        let weekday = components.weekday
-    
-                // at 3:00 label shows 16:50AM?
-                if seconds > 0 && minutes < 50{
-                    if GlobalVars.workoutNotificationStartMin >= 30 && hour == GlobalVars.workoutNotificationStartHour{
-                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                        println("hour < 12 < 50 - 1st")
-                    }else if hour < 12 {
-                        nextWorkoutNotificationLabel.text = "\(hour):50 AM"
-                        println("it's the morning - 1st")
-                    }else if hour > 12 && minutes < 50{
-                        nextWorkoutNotificationLabel.text = "\(hour - 12):50 PM"
-                        println("it's afternoon and not too late in the hour - 1st")
-                    }else {
-                        nextWorkoutNotificationLabel.text = "\(hour):50 PM"
-                        println("It's noon - 1st")
-                    }
-                }else
-                    if hour < 12 {
-                        nextWorkoutNotificationLabel.text = "\(hour + 1):50 AM"
-                        println("it's the morning - 2nd")
-                    }else {
-                        nextWorkoutNotificationLabel.text = "\(hour - 11 ):50 PM"
-                        println("it's afternoon - 2nd")
-                }
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -255,14 +198,12 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
-        exerciseTypeImage.image = exerciseImage        
+        exerciseTypeImage.image = exerciseImage
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        // sets the notification time based on start time and current time
-        setNotificationTime()
-        
+        // assumes thid will be seen by the user on their first workout of the day. should get updated by an hour after they've finished this first workout
+        nextWorkoutNotificationLabel.text = "Right Now!"
     }
     
     override func didReceiveMemoryWarning() {
@@ -275,10 +216,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
-        }else{
+        }
+        if navigationItem.title == "Lower Body + Core"{
             var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
+        }
+        if navigationItem.title == "All Core"{
+            var image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
+            exerciseTypeImage.image = image
+            exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }
@@ -296,7 +243,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
-            }else{
+            }
+            if navigationItem.title == "Lower Body + Core"{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
@@ -304,6 +252,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.navTitle = "Lower Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
+                vc.delegate = self
+            }
+            if navigationItem.title == "All Core"{
+                // set up OneMWViewController to show All Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                vc.navTitle = "All Core"
+                vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+                vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
                 vc.delegate = self
             }
         }
@@ -318,13 +276,22 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
-            }else{
+            }
+            if navigationItem.title == "Lower Body + Core"{
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destinationViewController as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
+            }
+            if navigationItem.title == "All Core"{
+                // set up OneMWViewController to show All Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destinationViewController as! OneMWInfoViewController
+                vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+                vc.exerciseTips = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].tips
             }
         }
     }

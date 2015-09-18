@@ -14,12 +14,13 @@ class OneMWStartViewController: UIViewController {
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
     
+    // function that sets todays current date to the selected muscle group
     func getTodaysDate(){
         let todaysDate = NSDate()
         
         let todaysDateFormatter = NSDateFormatter()
         todaysDateFormatter.dateStyle = .MediumStyle
-        todaysDateFormatter.timeStyle = .ShortStyle
+        //todaysDateFormatter.timeStyle = .ShortStyle
         
         let todaysDateString = todaysDateFormatter.stringFromDate(todaysDate)
         
@@ -31,20 +32,20 @@ class OneMWStartViewController: UIViewController {
     @IBAction func upperBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
-        // sets workout notifications for the day
-        if GlobalVars.workoutNotificationStartMin >= 30{
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for upper body >= 30")
-        }else {
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for upper body < 30")
-        }
+//        // sets workout notifications for the day
+//        if GlobalVars.workoutNotificationStartMin >= 30{
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//            
+//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for upper body >= 30")
+//        }else {
+//            // clears out all set notifications, just in case
+//            UIApplication.sharedApplication().cancelAllLocalNotifications()
+//            
+//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
+//            println("notification set for upper body < 30")
+//        }
         
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
@@ -55,22 +56,6 @@ class OneMWStartViewController: UIViewController {
     
     @IBAction func lowerBodyBtn(sender: AnyObject) {
         GlobalVars.exerciseGroup = true
-        
-        // sets workout notifications
-        if GlobalVars.workoutNotificationStartMin >= 30{
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-
-            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for lower body >= 30")
-        }else {
-            // clears out all set notifications, just in case
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "Time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-            println("notification set for lower body < 30")
-        }
-        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
         UBBtnLastWorkoutLabel.hidden = true
@@ -78,12 +63,20 @@ class OneMWStartViewController: UIViewController {
         CoreBtnLastWorkoutLabel.hidden = true
     }
     
+    @IBAction func allCoreBtn(sender: AnyObject) {
+        GlobalVars.exerciseGroup = true
+        // get todays date and set it to the Last Workout label and show/hide correct labels
+        getTodaysDate()
+        UBBtnLastWorkoutLabel.hidden = true
+        LBBtnLastWorkoutLabel.hidden = true
+        CoreBtnLastWorkoutLabel.hidden = false
+    }
     
-    // instantiates the tutorial XIB
+    // instantiates the walkthrough XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     
-    //------------------------------------ Notification Stuff ----------------------------------------------------//
+    //------------------------------------ Notification Function ----------------------------------------------------//
     func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
         
         let today = NSDate()
@@ -103,7 +96,7 @@ class OneMWStartViewController: UIViewController {
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = fHour    // sets to current hour
+        dateComp.hour = fHour
         dateComp.minute = fMin
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
@@ -121,10 +114,9 @@ class OneMWStartViewController: UIViewController {
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
-    //------------------------------------ /Notification Stuff ----------------------------------------------------//
+    //------------------------------------ /Notification Function ---------------------------------------------------//
     
     override func viewWillAppear(animated: Bool) {
-        println("start pages viewWillAppear")
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
@@ -132,12 +124,10 @@ class OneMWStartViewController: UIViewController {
         
         if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
             // if there IS a value set this will happen
-            println("The user has oobe defined: \(oobeShown)")
         }else{
             // there is NO value set so this will happen
             vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical  // show disclaimer XIB which leads to walkthrough and initial setup
             presentViewController(vc, animated: true, completion: nil)
-            println("oobeTute is set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
             
         }
         
@@ -199,9 +189,9 @@ class OneMWStartViewController: UIViewController {
         
         newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
-            "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow on that’s touching the floor.\n\n" +
+            "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
-            "4. Do not let the hips sag—this is the challenging part of this move. As you get tired, you’ll want to drop the hips, but focus on keeping them stationary. \n\n" +
+            "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //5
         GlobalVars.exerciseUB.append(newExercise)
         
@@ -291,6 +281,78 @@ class OneMWStartViewController: UIViewController {
             "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseLB.append(newExercise)
+        
+        // instantiates the Core array data
+        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.") // 0
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+            "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
+                "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
+                "3. Only your forearm and feet should touch the floor.\n\n" +
+                "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
+            "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //1
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+            "1. Lie down with your back flat to the floor.\n\n" +
+                "2. Bend your knees at a 90-degree angle to your body (It may be easier to rest your feet under a chair to lock them in place). \n\n" +
+                "3. Cross your hands in front of your chest (Make sure there is a fist's worth of space between your chin and chest). \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down.\n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 2
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+            "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
+                "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
+                "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
+                "4. Slowly lower your legs. Bring them down to about an inch off the floor. Don't just let gravity work for you, make sure you're in control. Hold your arms in the same place, but use them for balance and support as you lower your legs. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") //3
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.") // 4
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+            "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
+                "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
+                "3. Only your forearm and feet should touch the floor.\n\n" +
+                "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
+            "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") // 5
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+            "1. Lie down with your back flat to the floor.\n\n" +
+                "2. Bend your knees at a 90-degree angle to your body (It may be easier to rest your feet under a chair to lock them in place). \n\n" +
+                "3. Cross your hands in front of your chest (Make sure there is a fist's worth of space between your chin and chest). \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down.\n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 6
+        GlobalVars.exerciseCore.append(newExercise)
+        
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+            "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
+                "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
+                "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
+                "4. Slowly lower your legs. Bring them down to about an inch off the floor. Don't just let gravity work for you, make sure you're in control. Hold your arms in the same place, but use them for balance and support as you lower your legs. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 7
+        GlobalVars.exerciseCore.append(newExercise)
+        
 
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
@@ -302,7 +364,7 @@ class OneMWStartViewController: UIViewController {
             
             setNotifVars()// sets globalvars and prints curren notfication settings
             
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time to start your day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
             
         }else{
             // there is NO value set so this will happen
@@ -315,8 +377,6 @@ class OneMWStartViewController: UIViewController {
 //            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
 //            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
         }
-        
-        println(" start page's viewDidLoad")
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
@@ -339,11 +399,18 @@ class OneMWStartViewController: UIViewController {
             vc.navTitle = "Upper Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
-        }else {
+        }
+        if segue.identifier == "segueToLBExerciseType"{
             let vc = segue.destinationViewController as! OneMWViewController
             vc.navTitle = "Lower Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
+        }
+        if segue.identifier == "segueToCoreExerciseType"{
+            let vc = segue.destinationViewController as! OneMWViewController
+            vc.navTitle = "All Core"
+            vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
+            vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
         }
     }
 
