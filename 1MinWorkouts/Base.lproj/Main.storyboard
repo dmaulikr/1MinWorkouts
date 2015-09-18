@@ -455,12 +455,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="5Pe-hv-dIb"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="8Te-BZ-ICg"/>
                             <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="BBs-L1-fuo"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="C67-Uz-Ptk"/>
                             <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="QMy-Vg-9Oj"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="VIT-nB-xee"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="1zJ-w1-TFl" secondAttribute="leading" id="Zpu-Zw-NRT"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="g5z-Yg-2WW"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="YzT-fb-Dw3" secondAttribute="leading" id="Qag-aS-qD0"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="ily-ch-oK8"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="oRQ-2w-w5S"/>
                             <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="YzT-fb-Dw3" secondAttribute="centerX" id="qNB-ow-th0"/>
                         </constraints>
                     </view>
