@@ -77,12 +77,11 @@ class OneMWWorkoutViewController: UIViewController {
     func changeNextWorkoutTime(){
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minute = components.minute
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:NSDateComponents = NSDateComponents()
         dateComp.hour = hour
         dateComp.minute = minute
         
@@ -123,8 +122,7 @@ class OneMWWorkoutViewController: UIViewController {
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
         let month = components.month
@@ -135,7 +133,7 @@ class OneMWWorkoutViewController: UIViewController {
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
@@ -144,10 +142,10 @@ class OneMWWorkoutViewController: UIViewController {
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let date:NSDate = calender.dateFromComponents(dateComp)!
+        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        var date:NSDate = calender.dateFromComponents(dateComp)!
         
-        let notification:UILocalNotification = UILocalNotification()
+        var notification:UILocalNotification = UILocalNotification()
         notification.category = fCategory
         notification.alertBody = fAlertBody
         notification.alertAction = "View App"
@@ -166,15 +164,15 @@ class OneMWWorkoutViewController: UIViewController {
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minute = components.minute
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:NSDateComponents = NSDateComponents()
         dateComp.hour = hour
         dateComp.minute = minute
         // sets workout for an hour from current time
-        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.Hour)
+        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
     }
     
     /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
@@ -205,7 +203,7 @@ class OneMWWorkoutViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
@@ -225,7 +223,7 @@ class OneMWWorkoutViewController: UIViewController {
             }))
             
             let thumbsImage = UIImage(named: "thumbs-up")
-            let imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            var imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
             imageView.image = thumbsImage
             
             alert.view.addSubview(imageView)
@@ -250,8 +248,8 @@ class OneMWWorkoutViewController: UIViewController {
     /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount-- // decreases the count down by 1
-        let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
-        let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
+        var seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         
         let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
         getReadyCounterLabel.text = timerOutput
@@ -281,8 +279,7 @@ class OneMWWorkoutViewController: UIViewController {
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
         let seconds = components.second
