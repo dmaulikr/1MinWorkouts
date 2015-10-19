@@ -35,7 +35,7 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         appUserSettings.setBool(true, forKey: GlobalVars.oobeDisclaimer)
-        println("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
+        print("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
         
         // Get view controllers, build and show the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)

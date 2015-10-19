@@ -96,7 +96,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             
             self.presentViewController(walkthrough, animated: true, completion: nil)
             
-            println("viewWalkthroughCell tapped")
+            print("viewWalkthroughCell tapped")
         }
     }
     

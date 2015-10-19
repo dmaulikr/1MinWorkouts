@@ -51,19 +51,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
         
-        firstCategory.setActions(defaultActions as [AnyObject], forContext: UIUserNotificationActionContext.Default)
+        /* need to figure out how to fix errors in Swift2 in order to use these
+        firstCategory.setActions(defaultActions as [AnyObject] as [AnyObject], forContext: UIUserNotificationActionContext.Default)
         firstCategory.setActions(minimalActions as [AnyObject], forContext: UIUserNotificationActionContext.Minimal)
-        
+        */
         // NSSet of all our categories
         let categories:NSSet = NSSet(objects: firstCategory)
         
-        
+        /* need to figure out how to fix errors in Swift2 in order to use these
         let types:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
         
         let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set<NSObject>)
-                
+
+        
         UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
-                        
+         */
         return true
     }
     
@@ -77,14 +79,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // need to reset next days start notification
             let today = NSDate()
             let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+            let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+            //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
             let hour = components.hour
             let minutes = components.minute
             let month = components.month
             let year = components.year
             let day = components.day
             
-            var dateComp:NSDateComponents = NSDateComponents()
+            let dateComp:NSDateComponents = NSDateComponents()
             dateComp.year = year            // sets to current year
             dateComp.month = month          // sets to current month
             dateComp.day = day              // sets to today
@@ -93,20 +96,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dateComp.second = 0
             dateComp.timeZone = NSTimeZone.systemTimeZone()
             
-            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            var date:NSDate = calender.dateFromComponents(dateComp)!
+            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            let date:NSDate = calender.dateFromComponents(dateComp)!
             
-            var notification:UILocalNotification = UILocalNotification()
+            let notification:UILocalNotification = UILocalNotification()
             notification.category = "WORKOUT-NOW_CATEGORY"
             notification.alertBody = "Time for a 1 Minute Workout!"
             notification.alertAction = "View App"
             notification.fireDate = date
             notification.soundName = UILocalNotificationDefaultSoundName
-            notification.repeatInterval = NSCalendarUnit.allZeros // sets when the notification repeats
+            notification.repeatInterval = NSCalendarUnit() // sets when the notification repeats
             
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             
-            println("snooze pressed")
+            print("snooze pressed")
             
         }
         else if (identifier == "SKIP-WORKOUT_ACTION"){
