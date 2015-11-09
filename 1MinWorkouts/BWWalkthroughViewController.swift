@@ -329,6 +329,12 @@ Probably the Walkthrough is presented by this delegate.
         }else{
             prevButton?.hidden = false
         }
+        
+        if currentPage == 3{
+            getStrated.hidden = false
+        }else {
+            getStrated.hidden = true
+        }
     }
     
     // MARK: - Scrollview Delegate -

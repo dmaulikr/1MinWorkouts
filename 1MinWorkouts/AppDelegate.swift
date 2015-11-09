@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Actions
-        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        let firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         firstAction.identifier = "SNOOZE_ACTION"
         firstAction.title = "5 Min Snooze"
         firstAction.activationMode = UIUserNotificationActivationMode.Background
         firstAction.destructive = false
         firstAction.authenticationRequired = false
         
-        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        let secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         secondAction.identifier = "SKIP-WORKOUT_ACTION"
         secondAction.title = "Skip Workout"
         secondAction.activationMode = UIUserNotificationActivationMode.Background
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Category
-        var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
         let defaultActions:NSArray = [firstAction, secondAction]

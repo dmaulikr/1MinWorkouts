@@ -125,17 +125,17 @@ class OneMWWorkoutViewController: UIViewController {
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
+        _ = components.hour
+        _ = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
-        let weekday = components.weekday
+        _ = components.weekday
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        var dateComp:NSDateComponents = NSDateComponents()
+        let dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
@@ -171,7 +171,7 @@ class OneMWWorkoutViewController: UIViewController {
         let hour = components.hour
         let minute = components.minute
         
-        var dateComp:NSDateComponents = NSDateComponents()
+        let dateComp:NSDateComponents = NSDateComponents()
         dateComp.hour = hour
         dateComp.minute = minute
         // sets workout for an hour from current time
@@ -226,7 +226,7 @@ class OneMWWorkoutViewController: UIViewController {
             }))
             
             let thumbsImage = UIImage(named: "thumbs-up")
-            var imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            let imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
             imageView.image = thumbsImage
             
             alert.view.addSubview(imageView)
@@ -286,16 +286,16 @@ class OneMWWorkoutViewController: UIViewController {
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
-        let seconds = components.second
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        let weekday = components.weekday
+        _ = components.second
+        _ = components.month
+        _ = components.year
+        _ = components.day
+        _ = components.weekday
         
-        var minutesFix = minutes
+        _ = minutes
         
         if minutes < 10{
-            var minutesFix = "/(minutes + 10)"
+            _ = "/(minutes + 10)"
         }
         
         if hour < 11{
