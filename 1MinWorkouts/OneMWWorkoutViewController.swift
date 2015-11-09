@@ -125,12 +125,12 @@ class OneMWWorkoutViewController: UIViewController {
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        _ = components.hour
-        _ = components.minute
+        let hour = components.hour
+        let minute = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
-        _ = components.weekday
+        let weekday = components.weekday
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
@@ -286,16 +286,16 @@ class OneMWWorkoutViewController: UIViewController {
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
-        _ = components.second
-        _ = components.month
-        _ = components.year
-        _ = components.day
-        _ = components.weekday
+        let seconds = components.second
+        let month = components.month
+        let year = components.year
+        let day = components.day
+        let weekday = components.weekday
         
-        _ = minutes
+        var minutesFix = minutes
         
         if minutes < 10{
-            _ = "/(minutes + 10)"
+            var minutesFix = "/(minutes + 10)"
         }
         
         if hour < 11{
