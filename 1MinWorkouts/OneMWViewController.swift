@@ -205,6 +205,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
         nextWorkoutTime = "Right Now!"
         nextWorkoutNotificationLabel.text = nextWorkoutTime
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
     //    override func viewWillAppear(animated: Bool) {
