@@ -69,7 +69,7 @@ class OneMWWorkoutViewController: UIViewController {
             return GlobalVars.exerciseIndexCount = 0
         }else{
             var newCount = GlobalVars.exerciseIndexCount
-            newCount++
+            newCount += 1
             return GlobalVars.exerciseIndexCount = newCount
         }
     }
@@ -180,7 +180,7 @@ class OneMWWorkoutViewController: UIViewController {
     
     /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
     func exerciseTimerRun(){
-        GlobalVars.exerciseSecondsCount-- // decreases the count down by 1
+        GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
         var seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         
@@ -250,7 +250,7 @@ class OneMWWorkoutViewController: UIViewController {
     
     /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
     func exerciseTimerGetReady(){
-        GlobalVars.exerciseSecondsCount-- // decreases the count down by 1
+        GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
         let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         

@@ -341,7 +341,7 @@ Probably the Walkthrough is presented by this delegate.
     
     func scrollViewDidScroll(sv: UIScrollView) {
         
-        for var i=0; i < controllers.count; i++ {
+        for i in 0 ..< controllers.count {
             
             if let vc = controllers[i] as? BWWalkthroughPage{
                 
