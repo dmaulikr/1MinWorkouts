@@ -119,7 +119,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
@@ -130,7 +130,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
@@ -141,13 +141,13 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else{
-                var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
             
         case "1": // if it's a weekend and weekdays are ON
             if GlobalVars.notificationSettingsWeekend == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
@@ -157,13 +157,13 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }else{
-                var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
             
         case "7":
             if GlobalVars.notificationSettingsWeekday == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
@@ -173,7 +173,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }else{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time to start your day!"
                 notification.alertAction = "View App"
