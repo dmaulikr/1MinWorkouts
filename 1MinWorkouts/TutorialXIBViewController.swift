@@ -15,7 +15,7 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     
     @IBAction func agreeToDisclaimerButton(sender: AnyObject) {
         
-        var alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, I Agree", style: .Default, handler: {

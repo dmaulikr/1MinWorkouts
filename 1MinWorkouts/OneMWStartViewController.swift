@@ -93,7 +93,7 @@ class OneMWStartViewController: UIViewController {
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        var dateComp:NSDateComponents = NSDateComponents()
+        let dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
@@ -102,10 +102,10 @@ class OneMWStartViewController: UIViewController {
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        var date:NSDate = calender.dateFromComponents(dateComp)!
+        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date:NSDate = calender.dateFromComponents(dateComp)!
         
-        var notification:UILocalNotification = UILocalNotification()
+        let notification:UILocalNotification = UILocalNotification()
         notification.category = fCategory
         notification.alertBody = fAlertBody
         notification.alertAction = "View App"
