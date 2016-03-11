@@ -81,7 +81,8 @@ class OneMWStartViewController: UIViewController {
         
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
         let month = components.month
@@ -92,7 +93,7 @@ class OneMWStartViewController: UIViewController {
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        var dateComp:NSDateComponents = NSDateComponents()
+        let dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
@@ -101,10 +102,10 @@ class OneMWStartViewController: UIViewController {
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        var date:NSDate = calender.dateFromComponents(dateComp)!
+        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date:NSDate = calender.dateFromComponents(dateComp)!
         
-        var notification:UILocalNotification = UILocalNotification()
+        let notification:UILocalNotification = UILocalNotification()
         notification.category = fCategory
         notification.alertBody = fAlertBody
         notification.alertAction = "View App"
@@ -161,24 +162,25 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 1
         GlobalVars.exerciseUB.append(newExercise)
         
+        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
+            "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
+                "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
+                "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
+                "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
+                "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
+                "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
+            "Do as many as you can, takeing breaks as needed.") // 2
+        GlobalVars.exerciseUB.append(newExercise)
+        
         newExercise = Exercise(name: "Curls", filename: "curls", tips:
             "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
             "2. Stand up straight with your feet hip width apart. \n\n" +
             "3. Place the band under your feet and hold the handles down by your sides (make sure each side is even). \n\n" +
             "4. Curl your arms up toward your shoulders (exhale and make sure to keep your elbows tucked in at your sides - don't arch your back). \n\n" +
             "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.") // 2
+            "Do as many as you can in a minute, but take breaks as needed.") // 3
         GlobalVars.exerciseUB.append(newExercise)
-        
-        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
-            "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
-            "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
-            "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
-            "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
-            "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
-            "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
-            "Do as many as you can, takeing breaks as needed.") // 3
-        GlobalVars.exerciseUB.append(newExercise)
+    
 
         // 2nd set
         newExercise = Exercise(name: "Wide Push-Ups", filename: "push-ups-wide", tips:
@@ -196,25 +198,25 @@ class OneMWStartViewController: UIViewController {
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //5
         GlobalVars.exerciseUB.append(newExercise)
         
+        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
+            "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
+                "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
+                "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
+                "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
+                "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
+                "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
+            "Do as many as you can, takeing breaks as needed.")  // 6
+        GlobalVars.exerciseUB.append(newExercise)
+        
         newExercise = Exercise(name: "Curls", filename: "curls", tips:
             "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
             "2. Stand up straight with your feet hip width apart. \n\n" +
             "3. Place the band under your feet and hold the handles down by your sides (make sure each side is even). \n\n" +
             "4. Curl your arms up toward your shoulders (exhale and make sure to keep your elbows tucked in at your sides - don't arch your back). \n\n" +
             "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.") // 6
+            "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseUB.append(newExercise)
-        
-        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
-            "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
-            "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
-            "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
-            "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
-            "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
-            "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
-            "Do as many as you can, takeing breaks as needed.")  // 7
-        GlobalVars.exerciseUB.append(newExercise)
-        
+       
         
         // instantiates the Lower Body array data
         newExercise = Exercise(name: "Squats", filename: "squats", tips:
@@ -365,7 +367,7 @@ class OneMWStartViewController: UIViewController {
             
             setNotifVars()// sets globalvars and prints curren notfication settings
             
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendarUnit.CalendarUnitDay)
+            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendarUnit.Day)
             
         }else{
             // there is NO value set so this will happen

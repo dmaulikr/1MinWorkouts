@@ -15,7 +15,7 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     
     @IBAction func agreeToDisclaimerButton(sender: AnyObject) {
         
-        var alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, I Agree", style: .Default, handler: {
@@ -35,7 +35,7 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
         
         appUserSettings.setBool(true, forKey: GlobalVars.oobeDisclaimer)
-        println("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
+        print("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
         
         // Get view controllers, build and show the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)

@@ -26,7 +26,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }    
     
     @IBAction func endDayBtn(sender: AnyObject) {
-        var message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
+        let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
         message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.endDay()}))
         
@@ -44,14 +44,15 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // need to reset next days start notification
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
         
-        var dateComp:NSDateComponents = NSDateComponents()
+        let dateComp:NSDateComponents = NSDateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day + 1      // sets to tomorrow
@@ -60,7 +61,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         dateComp.second = 0
         dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        var dateCompSkipEnd:NSDateComponents = NSDateComponents()
+        let dateCompSkipEnd:NSDateComponents = NSDateComponents()
         dateCompSkipEnd.year = year    // sets to current year
         dateCompSkipEnd.month = month  // sets to current month
         dateCompSkipEnd.day = day + 3      // sets to tomorrow
@@ -69,7 +70,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         dateCompSkipEnd.second = 0
         dateCompSkipEnd.timeZone = NSTimeZone.systemTimeZone()
         
-        var dateCompSkipWeek:NSDateComponents = NSDateComponents()
+        let dateCompSkipWeek:NSDateComponents = NSDateComponents()
         dateCompSkipWeek.year = year    // sets to current year
         dateCompSkipWeek.month = month  // sets to current month
         dateCompSkipWeek.day = day + 6      // sets to tomorrow
@@ -78,107 +79,107 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         dateCompSkipWeek.second = 0
         dateCompSkipWeek.timeZone = NSTimeZone.systemTimeZone()
         
-        var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        var date:NSDate = calender.dateFromComponents(dateComp)!
-        var dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
-        var dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
+        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let date:NSDate = calender.dateFromComponents(dateComp)!
+        let dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
+        let dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
         
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "e"
         
-        var dayOfWeek = dateFormatter.stringFromDate(today)
+        let dayOfWeek = dateFormatter.stringFromDate(today)
         
         switch dayOfWeek{
         case "2"..."5": // if it's a weekday and weekdays are ON
             if GlobalVars.notificationSettingsWeekday == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }else{
-                var message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+                let message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
             
         case "6":
             if GlobalVars.notificationSettingsWeekend == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = dateSkipEnd
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
             }else{
-                var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
             
         case "1": // if it's a weekend and weekdays are ON
             if GlobalVars.notificationSettingsWeekend == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }else{
-                var message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
                 message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
             
         case "7":
             if GlobalVars.notificationSettingsWeekday == true{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }else{
-                var notification:UILocalNotification = UILocalNotification()
+                let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time to start your day!"
                 notification.alertAction = "View App"
                 notification.fireDate = dateSkipWeek
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.CalendarUnitDay // sets when the notification repeats
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
@@ -204,6 +205,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
         nextWorkoutTime = "Right Now!"
         nextWorkoutNotificationLabel.text = nextWorkoutTime
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
     //    override func viewWillAppear(animated: Bool) {
@@ -219,19 +223,19 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     
     func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int, nextWorkout: String) {
         if navigationItem.title == "Upper Body + Core"{
-            var image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "Lower Body + Core"{
-            var image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
         }
         if navigationItem.title == "All Core"{
-            var image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
+            let image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout

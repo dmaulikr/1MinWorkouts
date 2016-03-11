@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Actions
-        var firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        let firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         firstAction.identifier = "SNOOZE_ACTION"
         firstAction.title = "5 Min Snooze"
         firstAction.activationMode = UIUserNotificationActivationMode.Background
         firstAction.destructive = false
         firstAction.authenticationRequired = false
         
-        var secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        let secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         secondAction.identifier = "SKIP-WORKOUT_ACTION"
         secondAction.title = "Skip Workout"
         secondAction.activationMode = UIUserNotificationActivationMode.Background
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // Notification Category
-        var firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
         let defaultActions:NSArray = [firstAction, secondAction]
@@ -51,19 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
         
-        firstCategory.setActions(defaultActions as [AnyObject], forContext: UIUserNotificationActionContext.Default)
+        /* need to figure out how to fix errors in Swift2 in order to use these
+        firstCategory.setActions(defaultActions as [AnyObject] as [AnyObject], forContext: UIUserNotificationActionContext.Default)
         firstCategory.setActions(minimalActions as [AnyObject], forContext: UIUserNotificationActionContext.Minimal)
-        
+        */
         // NSSet of all our categories
         let categories:NSSet = NSSet(objects: firstCategory)
         
+//        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
-        let types:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        
-        let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set<NSObject>)
-                
-        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
-                        
         return true
     }
     
@@ -77,14 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // need to reset next days start notification
             let today = NSDate()
             let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+            let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+            //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
             let hour = components.hour
             let minutes = components.minute
             let month = components.month
             let year = components.year
             let day = components.day
             
-            var dateComp:NSDateComponents = NSDateComponents()
+            let dateComp:NSDateComponents = NSDateComponents()
             dateComp.year = year            // sets to current year
             dateComp.month = month          // sets to current month
             dateComp.day = day              // sets to today
@@ -93,20 +91,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dateComp.second = 0
             dateComp.timeZone = NSTimeZone.systemTimeZone()
             
-            var calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            var date:NSDate = calender.dateFromComponents(dateComp)!
+            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            let date:NSDate = calender.dateFromComponents(dateComp)!
             
-            var notification:UILocalNotification = UILocalNotification()
+            let notification:UILocalNotification = UILocalNotification()
             notification.category = "WORKOUT-NOW_CATEGORY"
             notification.alertBody = "Time for a 1 Minute Workout!"
             notification.alertAction = "View App"
             notification.fireDate = date
             notification.soundName = UILocalNotificationDefaultSoundName
-            notification.repeatInterval = NSCalendarUnit.allZeros // sets when the notification repeats
+            notification.repeatInterval = NSCalendarUnit() // sets when the notification repeats
             
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
             
-            println("snooze pressed")
+            print("snooze pressed")
             
         }
         else if (identifier == "SKIP-WORKOUT_ACTION"){
@@ -116,16 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         completionHandler()
     }
-    
-//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        // Do something serious in a real app.
-//        println("Received Local Notification:")
-//        
-//        var message:UIAlertController = UIAlertController(title: "Workout Time", message: "It's time for a 1 Minute Workout", preferredStyle: UIAlertControllerStyle.Alert)
-//        message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-//        
-//        self.window?.rootViewController?.presentViewController(message, animated: true, completion: nil)
-//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -140,40 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//        
-//        let today = NSDate()
-//        let calendar = NSCalendar.currentCalendar()
-//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-//        let hour = components.hour
-//        let minutes = components.minute
-//        let seconds = components.second
-//        let month = components.month
-//        let year = components.year
-//        let day = components.day
-//        let weekday = components.weekday
-//        
-//        // sets the label for when next workout notification will be sent
-//        if seconds > 0 && minutes < 50{
-//            if hour < 12 {
-//                GlobalVars.workoutNotificationLabel = "\(hour):50 AM"
-//                println("hour < 12 < 50")
-//            }else if hour > 12 && minutes < 50{
-//                GlobalVars.workoutNotificationLabel = "\(hour - 12):50 PM"
-//                println("else hour > 12 < 50")
-//            }else {
-//                GlobalVars.workoutNotificationLabel = "\(hour):50 PM"
-//                println("else 12")
-//            }
-//        }else
-//            if hour < 12 {
-//                GlobalVars.workoutNotificationLabel = "\(hour + 1):50 AM"
-//                println("hour < 12 and > 50")
-//            }else {
-//                GlobalVars.workoutNotificationLabel = "\(hour - 11 ):50 PM"
-//                println("else hour > 12 and > 50")
-//        }
-//
-//        
+      
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
