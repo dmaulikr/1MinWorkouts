@@ -31,6 +31,7 @@ class OneMWWorkoutViewController: UIViewController {
     @IBOutlet var getReadyView: UIVisualEffectView!
     @IBOutlet var workoutCountdownLabel: UILabel! // label that counts down from 60 for the workout
     @IBOutlet var exerciseTypeTitle: UILabel!
+    @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var closeWorkoutBtnLabel: UIButton!
     
@@ -336,6 +337,27 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.hidden = false
         
         setExerciseTimerGetReady(5, timerLabel: "5")
+        
+        //hide switch sides sub-title by default
+        switchSidesSubTitle.hidden = true
+        
+        //show switch sides sub-title for UB
+        if navigationItem.title == "Upper Body + Core" && GlobalVars.exerciseIndexCount == 5{
+            switchSidesSubTitle.hidden = false
+            switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+        }else
+        //show switch sides sub-title for LB
+        if navigationItem.title == "Lower Body + Core" && GlobalVars.exerciseIndexCount == 2 || GlobalVars.exerciseIndexCount == 6{
+            switchSidesSubTitle.hidden = false
+            switchSidesSubTitle.text = "Alternate Sides"
+        }else
+        //show switch sides sub-title for Core
+        if navigationItem.title == "Core" && GlobalVars.exerciseIndexCount == 1 || GlobalVars.exerciseIndexCount == 5{
+            switchSidesSubTitle.hidden = false
+            switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+        }else{
+            switchSidesSubTitle.hidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {
