@@ -152,14 +152,13 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 0
         GlobalVars.exerciseUB.append(newExercise)
                 
-        newExercise = Exercise(name: "Plank", filename: "plank", tips:
-            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
-            "2. Bend your elbows and rest your weight on your forearms.\n\n" +
-            "3. Keep your elbows under your shoulders.\n\n" +
-            "4. Pull your belly button towards your spine.\n\n" +
-            "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
-            "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
-            "Hold this position for as long as you can, but take breaks as needed.") // 1
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+            "1. Lie down with your back flat to the floor.\n\n" +
+                "2. Bend your knees at a 90-degree angle to your body (It may be easier to rest your feet under a chair to lock them in place). \n\n" +
+                "3. Cross your hands in front of your chest (Make sure there is a fist's worth of space between your chin and chest). \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down.\n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.") // 1
         GlobalVars.exerciseUB.append(newExercise)
         
         newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
@@ -386,7 +385,7 @@ class OneMWStartViewController: UIViewController {
     
 //    func snoozeWorkout(notification:NSNotification){
 //        
-//        println("5 min snooze hit")
+//        print("5 min snooze hit")
 //    }
     //------------------------------------ /Notification Functions ----------------------------------------------------//
     
