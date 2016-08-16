@@ -264,6 +264,8 @@ class OneMWWorkoutViewController: UIViewController {
             
             getReadyView.hidden = true
             setExerciseTimer(60, timerLabel: "60")
+            
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
         }
     }
     
