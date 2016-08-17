@@ -214,6 +214,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
+    
     //    override func viewWillAppear(animated: Bool) {
     //        // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
     //        nextWorkoutTime = "Right Now!"
@@ -233,7 +234,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             nextWorkoutNotificationLabel.text = nextWorkout
             
             //add switch sub-title to needed exercises
-            if GlobalVars.exerciseIndexCount == 5{
+            if exerciseTypeTitle.text == "Side Plank"{
                 switchSidesSubTitle.hidden = false
                 switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
             }else{
@@ -247,7 +248,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             nextWorkoutNotificationLabel.text = nextWorkout
             
             //add switch sub-title to needed exercises
-            if GlobalVars.exerciseIndexCount == 2 || GlobalVars.exerciseIndexCount == 6{
+            if exerciseTypeTitle.text == "Lunges"{
                 switchSidesSubTitle.hidden = false
                 switchSidesSubTitle.text = "Alternate Sides"
             }else{
@@ -261,12 +262,13 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             nextWorkoutNotificationLabel.text = nextWorkout
             
             //add switch sub-title to needed exercises
-            if GlobalVars.exerciseIndexCount == 1 || GlobalVars.exerciseIndexCount == 5{
+            if exerciseTypeTitle.text == "Side Plank"{
                 switchSidesSubTitle.hidden = false
                 switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
             }else{
                 switchSidesSubTitle.hidden = true
             }
+
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }

@@ -357,23 +357,18 @@ class OneMWWorkoutViewController: UIViewController {
         //hide switch sides sub-title by default
         switchSidesSubTitle.hidden = true
         
-        //show switch sides sub-title for UB
-        if navigationItem.title == "Upper Body + Core" && GlobalVars.exerciseIndexCount == 5{
+        //show switch sides sub-title for Side Plank
+        if exerciseTitle == "Side Plank"{
             switchSidesSubTitle.hidden = false
             switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
         }else
-        //show switch sides sub-title for LB
-        if navigationItem.title == "Lower Body + Core" && GlobalVars.exerciseIndexCount == 2 || GlobalVars.exerciseIndexCount == 6{
+        //show switch sides sub-title for Lunges
+        if exerciseTitle == "Lunges"{
             switchSidesSubTitle.hidden = false
             switchSidesSubTitle.text = "Alternate Sides"
-        }else
-        //show switch sides sub-title for Core
-        if navigationItem.title == "Core" && GlobalVars.exerciseIndexCount == 1 || GlobalVars.exerciseIndexCount == 5{
-            switchSidesSubTitle.hidden = false
-            switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
         }else{
             switchSidesSubTitle.hidden = true
-        }
+        }        
     }
     
     override func didReceiveMemoryWarning() {
