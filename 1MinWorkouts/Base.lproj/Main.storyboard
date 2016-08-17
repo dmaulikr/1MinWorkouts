@@ -436,6 +436,7 @@
                         <outlet property="exerciseTypeImage" destination="XoL-WH-DTC" id="rnp-Fw-o15"/>
                         <outlet property="exerciseTypeTitle" destination="zic-3T-s3M" id="jDN-6a-IWT"/>
                         <outlet property="getReadyCounterLabel" destination="mFf-yr-JH1" id="lGi-5X-VTw"/>
+                        <outlet property="getReadyLabel" destination="g0H-K0-asW" id="KXN-dI-oTL"/>
                         <outlet property="getReadyView" destination="EkR-tR-wwf" id="I1l-Eq-iKa"/>
                         <outlet property="startWorkoutBtn" destination="4IE-hH-b1Z" id="KBw-Ts-Q0s"/>
                         <outlet property="switchSidesSubTitle" destination="LWO-5E-Til" id="gDK-tN-4s5"/>
@@ -477,7 +478,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-fb-Dw3">
                                 <rect key="frame" x="20" y="68" width="560" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1045,6 +1046,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="gPk-jv-ujV"/>
+        <segue reference="cXJ-4s-CSg"/>
     </inferredMetricsTieBreakers>
 </document>

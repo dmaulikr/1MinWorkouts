@@ -27,6 +27,7 @@ class OneMWWorkoutViewController: UIViewController {
     var totalTime = 0
     
     @IBOutlet var startWorkoutBtn: UILabel!
+    @IBOutlet var getReadyLabel: UILabel! // label for the actual get ready message
     @IBOutlet var getReadyCounterLabel: UILabel! // label that counts down from 5 to the workout
     @IBOutlet var getReadyView: UIVisualEffectView!
     @IBOutlet var workoutCountdownLabel: UILabel! // label that counts down from 60 for the workout
@@ -188,6 +189,14 @@ class OneMWWorkoutViewController: UIViewController {
         let timerOutput = String(format:"%.2d", seconds) // defines the output that is placed on the label
         workoutCountdownLabel.text = timerOutput
         
+        // what happens when the timer has 10 seconds left
+        if (GlobalVars.exerciseSecondsCount == 9) {
+            for _ in 1...2 {
+                AudioServicesPlaySystemSound(1521) // plays haptic no vibration twice when there's 10 secs left in workout
+                sleep(1)
+            }
+        }
+        
         // what happens when the timer ends
         if (GlobalVars.exerciseSecondsCount == 0) {
             exerciseCountdownTimer.invalidate() // stops the countdown
@@ -212,7 +221,7 @@ class OneMWWorkoutViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 (action: UIAlertAction!) in
                 
-                // sets the next workout time.
+                // sets the next workout time
                 self.changeNextWorkoutTime()
                 
                 // passes the incremented variable to the prior screen delegate
@@ -263,7 +272,7 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             getReadyView.hidden = true
-            setExerciseTimer(60, timerLabel: "60")
+            setExerciseTimer(59, timerLabel: "60") // set to 59 secs because you lose a second with 10 sec reminder pulse
             
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
         }
@@ -329,6 +338,7 @@ class OneMWWorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // sets the initial view up and points page vars at right vars
         exercisesCount = GlobalVars.exerciseUB.count
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
@@ -338,7 +348,11 @@ class OneMWWorkoutViewController: UIViewController {
         getReadyView.hidden = false
         workoutCountdownLabel.hidden = false
         
+        // sets the get ready to workout countdown to 5 seconds
         setExerciseTimerGetReady(5, timerLabel: "5")
+        
+        // sets the get ready to workout label for the initial workout start message
+        getReadyLabel.text = "Get ready to workout!"
         
         //hide switch sides sub-title by default
         switchSidesSubTitle.hidden = true
