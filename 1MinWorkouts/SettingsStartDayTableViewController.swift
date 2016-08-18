@@ -145,15 +145,15 @@ class SettingsStartDayTableViewController: UITableViewController {
         components.hour = GlobalVars.workoutNotificationStartHour
         components.minute = GlobalVars.workoutNotificationStartMin
         startDayPicker.setDate(calendar.dateFromComponents(components)!, animated: true)
-        
-        // sets the look of the weekend checkmark to off, which matches the starting var value
+                // sets the look of the weekend checkmark to off, which matches the starting var value
         if GlobalVars.notificationSettingsWeekday == true{
-            mfCheckmark.image = UIImage(named: "checkmark-on")
+            mfCheckmark.image = UIImage(named: "checkmark-on") 
         }else{
             mfCheckmark.image = UIImage(named: "checkmark-off")
         }
         
         if GlobalVars.notificationSettingsWeekend == true{
+
             ssCheckmark.image = UIImage(named: "checkmark-on")
         }else{
             ssCheckmark.image = UIImage(named: "checkmark-off")

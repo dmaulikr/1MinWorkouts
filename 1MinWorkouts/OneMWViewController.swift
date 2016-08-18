@@ -17,6 +17,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     var nextWorkoutTime = ""
     
     @IBOutlet var exerciseTypeTitle: UILabel!
+    @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
@@ -195,6 +196,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hides switch sides sub-title by default
+        switchSidesSubTitle.hidden = true
+        
         //my modal transition style
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         
@@ -208,7 +212,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+
     }
+    
     
     //    override func viewWillAppear(animated: Bool) {
     //        // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
@@ -227,18 +233,43 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseUB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
+            
+            //add switch sub-title to needed exercises
+            if exerciseTypeTitle.text == "Side Plank"{
+                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+            }else{
+                switchSidesSubTitle.hidden = true
+            }
         }
         if navigationItem.title == "Lower Body + Core"{
             let image = UIImage(named: GlobalVars.exerciseLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseLB[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
+            
+            //add switch sub-title to needed exercises
+            if exerciseTypeTitle.text == "Lunges"{
+                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.text = "Alternate Sides"
+            }else{
+                switchSidesSubTitle.hidden = true
+            }
         }
         if navigationItem.title == "All Core"{
             let image = UIImage(named: GlobalVars.exerciseCore[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.exerciseCore[indexCount].name
             nextWorkoutNotificationLabel.text = nextWorkout
+            
+            //add switch sub-title to needed exercises
+            if exerciseTypeTitle.text == "Side Plank"{
+                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+            }else{
+                switchSidesSubTitle.hidden = true
+            }
+
         }
         controller.navigationController?.popViewControllerAnimated(true)
     }

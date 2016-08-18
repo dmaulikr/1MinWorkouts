@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class WorkoutsViewController: UIViewController {
 
+    var alertTone = UInt32(1481)//1359 double vibrate
+    
+    @IBAction func findTonesBtn(sender: AnyObject) {
+        
+        for _ in 1...100 {
+            alertTone += 1
+            AudioServicesPlaySystemSound(alertTone) // plays haptic no vibration twice when there's 10 secs left in workout
+            sleep(2)
+            print("\(alertTone)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
