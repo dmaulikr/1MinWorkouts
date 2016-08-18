@@ -485,14 +485,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="YzT-fb-Dw3" secondAttribute="centerX" id="5bD-gV-ah2"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="NNF-pa-jhN"/>
-                            <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="V0D-jS-l2m"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="WFE-VN-uON"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="YzT-fb-Dw3" secondAttribute="leading" id="jvj-Pq-0ZW"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="nA5-sj-Aag"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="v83-qB-adw"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="wlM-gP-j5y"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="12y-Wo-Ntk"/>
+                            <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="YzT-fb-Dw3" secondAttribute="centerX" id="F7p-21-SlV"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="IlP-de-n01"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="YzT-fb-Dw3" secondAttribute="leading" id="OBV-5k-8EN"/>
+                            <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="P2h-mu-pQu"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="Va4-9R-xng"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="d4B-yx-0Ou"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="hTa-2r-kSH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -609,6 +609,13 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-fK-SLf">
+                                <rect key="frame" x="263" y="185" width="75" height="30"/>
+                                <state key="normal" title="Find Tones"/>
+                                <connections>
+                                    <action selector="findTonesBtn:" destination="CjT-54-hLU" eventType="touchUpInside" id="sJx-Bb-su8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1046,6 +1053,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="cXJ-4s-CSg"/>
+        <segue reference="gPk-jv-ujV"/>
     </inferredMetricsTieBreakers>
 </document>

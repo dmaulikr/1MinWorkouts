@@ -212,6 +212,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+
     }
     
     

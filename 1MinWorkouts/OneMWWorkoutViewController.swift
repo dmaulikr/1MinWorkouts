@@ -192,11 +192,8 @@ class OneMWWorkoutViewController: UIViewController {
         // what happens when the timer has 10 seconds left
         if exerciseTitle == "Side Plank"{
             // no 10 second reminder on side planks because you switch sides at 30 secs
-        }else  if (GlobalVars.exerciseSecondsCount == 9) {
-            for _ in 1...2 {
-                AudioServicesPlaySystemSound(1521) // plays haptic no vibration twice when there's 10 secs left in workout
-                sleep(1)
-            }
+        }else  if (GlobalVars.exerciseSecondsCount == 10) {
+            AudioServicesPlaySystemSound(1360) // plays double vibrate when there's 10 secs left in workout
         }
         
         // what happens when the timer ends
@@ -274,7 +271,7 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             getReadyView.hidden = true
-            setExerciseTimer(59, timerLabel: "60") // set to 59 secs because you lose a second with 10 sec reminder pulse
+            setExerciseTimer(60, timerLabel: "60")
             
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
         }
