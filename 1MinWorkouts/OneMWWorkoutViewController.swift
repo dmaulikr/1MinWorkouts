@@ -190,7 +190,9 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.text = timerOutput
         
         // what happens when the timer has 10 seconds left
-        if (GlobalVars.exerciseSecondsCount == 9) {
+        if exerciseTitle == "Side Plank"{
+            // no 10 second reminder on side planks because you switch sides at 30 secs
+        }else  if (GlobalVars.exerciseSecondsCount == 9) {
             for _ in 1...2 {
                 AudioServicesPlaySystemSound(1521) // plays haptic no vibration twice when there's 10 secs left in workout
                 sleep(1)

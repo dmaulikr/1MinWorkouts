@@ -485,14 +485,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="8Te-BZ-ICg"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="S50-0O-Rke"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="Sn3-JH-Agf"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="1zJ-w1-TFl" secondAttribute="leading" id="bCs-Sb-yDt"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="centerX" secondItem="Do1-hl-ICq" secondAttribute="centerX" id="hv3-Hg-FQe"/>
-                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="30" id="oRQ-2w-w5S"/>
-                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="sya-YA-vnV"/>
-                            <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="xdR-tB-Ilq"/>
+                            <constraint firstItem="Do1-hl-ICq" firstAttribute="centerX" secondItem="YzT-fb-Dw3" secondAttribute="centerX" id="5bD-gV-ah2"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="eeO-qA-Azn" secondAttribute="leadingMargin" id="NNF-pa-jhN"/>
+                            <constraint firstItem="O2X-vf-HTX" firstAttribute="top" secondItem="YzT-fb-Dw3" secondAttribute="bottom" constant="8" symbolic="YES" id="V0D-jS-l2m"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="trailing" secondItem="eeO-qA-Azn" secondAttribute="trailingMargin" id="WFE-VN-uON"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="leading" secondItem="YzT-fb-Dw3" secondAttribute="leading" id="jvj-Pq-0ZW"/>
+                            <constraint firstItem="YzT-fb-Dw3" firstAttribute="top" secondItem="1zJ-w1-TFl" secondAttribute="bottom" constant="8" symbolic="YES" id="nA5-sj-Aag"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="o8Q-G4-Dw6" secondAttribute="bottom" constant="10" id="v83-qB-adw"/>
+                            <constraint firstItem="1zJ-w1-TFl" firstAttribute="top" secondItem="Do1-hl-ICq" secondAttribute="top" id="wlM-gP-j5y"/>
                         </constraints>
                     </view>
                     <connections>
