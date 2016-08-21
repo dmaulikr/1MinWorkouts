@@ -190,7 +190,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 4
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -297,7 +297,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 0
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -332,7 +332,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 4
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +

@@ -29,7 +29,7 @@ class OneMWWorkoutViewController: UIViewController {
     @IBOutlet var startWorkoutBtn: UILabel!
     @IBOutlet var getReadyLabel: UILabel! // label for the actual get ready message
     @IBOutlet var getReadyCounterLabel: UILabel! // label that counts down from 5 to the workout
-    @IBOutlet var getReadyView: UIVisualEffectView!
+    @IBOutlet var getReadyView: UIVisualEffectView! // whole view container for get ready count down
     @IBOutlet var workoutCountdownLabel: UILabel! // label that counts down from 60 for the workout
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var switchSidesSubTitle: UILabel!
@@ -180,7 +180,7 @@ class OneMWWorkoutViewController: UIViewController {
         workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.Hour)
     }
     
-    /////////////////////// method that does the counting down for the 60 seconds timer ///////////////////////////////
+    //----------------------------------------- 60 seconds workout timer -----------------------------------------//
     func exerciseTimerRun(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
@@ -190,10 +190,23 @@ class OneMWWorkoutViewController: UIViewController {
         workoutCountdownLabel.text = timerOutput
         
         // what happens when the timer has 10 seconds left
-        if exerciseTitle == "Side Plank"{
-            // no 10 second reminder on side planks because you switch sides at 30 secs
-        }else  if (GlobalVars.exerciseSecondsCount == 10) {
-            AudioServicesPlaySystemSound(1360) // plays double vibrate when there's 10 secs left in workout
+        if exerciseTitle != "Side Plank"{ // if Side Plank doesn't do the 10 sec reminder vibrate since you switch at 30 sec
+            if (GlobalVars.exerciseSecondsCount == 10) {
+                AudioServicesPlaySystemSound(1360) // plays double vibrate when there's 10 secs left in workout
+            }
+        }
+        
+        // shows switch sides countdown for Side Plank
+        if exerciseTitle == "Side Plank" && GlobalVars.exerciseSecondsCount == 30{
+            exerciseImage = UIImage(named: "side-plank-left") // sets the new side plank image to the var
+            exerciseTypeImage.image = exerciseImage // switches the side plank image
+            exerciseCountdownTimer.invalidate() // stops all timers
+            AudioServicesPlaySystemSound(1360) // plays double vibrate
+            getReadyView.hidden = false // shows the get ready view
+            getReadyCounterLabel.hidden = false // shows the get ready count down label
+            getReadyLabel.text = "Switch Sides" // changes the get rady note
+            setExerciseTimerGetReady(5, timerLabel: "5") // sets the geat ready time/countdown
+            switchSidesSubTitle.hidden = true // hides the switch sides sub-title label
         }
         
         // what happens when the timer ends
@@ -201,7 +214,7 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             
-            // increments the index variable to update to the next exercise
+            // increments the index index variable to update to the next exercise
             changeExercise()
             
             // passes the incremented variable to the prior screen delegate
@@ -257,23 +270,33 @@ class OneMWWorkoutViewController: UIViewController {
         exerciseCountdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("exerciseTimerRun"), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
-    /////////////////////// method that does the counting down for the 5 seconds get ready timer ///////////////////////////////
+    //----------------------------------------- 5 seconds countdown get ready timer -----------------------------------------//
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
         let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
-        
         let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
         getReadyCounterLabel.text = timerOutput
         
         // what happens when the timer ends
         if (GlobalVars.exerciseSecondsCount == 0) {
-            exerciseCountdownTimer.invalidate() // stops the countdown
+            // sets workout timer to 30 seconds remaining after switch sides view for Side Plank
+            if switchSidesSubTitle.hidden == true && exerciseTitle == "Side Plank"{
+                exerciseCountdownTimer.invalidate() // stops all timers
+                workoutCountdownLabel.text = "30"
+                setExerciseTimer(30, timerLabel: "30")
+                getReadyLabel.text = "Get ready to workout!"
+                getReadyView.hidden = true
+                print("switched sides timer reset was triggered")
+            }else {// regular 5 sec countdown get ready 
+                exerciseCountdownTimer.invalidate() // stops the countdown
             
-            getReadyView.hidden = true
-            setExerciseTimer(60, timerLabel: "60")
+                getReadyView.hidden = true
+                setExerciseTimer(60, timerLabel: "60")
             
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
+                print("get ready triggered else")
+            }
         }
     }
     
@@ -308,46 +331,46 @@ class OneMWWorkoutViewController: UIViewController {
         if minutes < 10{
             var minutesFix = "/(minutes + 10)"
         }
-        
-        if hour < 11{
-            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)AM"
-        }
-        
-        if hour == 11{
-            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)PM"
-        }
-        
-        if hour == 12{
-            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)PM"
-        }
-        
-        if hour > 12{
-            //nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutesFix)PM"
-        }
-        if hour == 23{
-            //nextWorkoutNotificationLabel.text = "12:\(minutesFix)AM"
-        }
-        
-        if hour == 24{
-            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)AM"
-        }
+//        
+//        if hour < 11{
+//            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)AM"
+//        }
+//        
+//        if hour == 11{
+//            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)PM"
+//        }
+//        
+//        if hour == 12{
+//            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)PM"
+//        }
+//        
+//        if hour > 12{
+//            //nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutesFix)PM"
+//        }
+//        if hour == 23{
+//            //nextWorkoutNotificationLabel.text = "12:\(minutesFix)AM"
+//        }
+//        
+//        if hour == 24{
+//            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)AM"
+//        }
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // sets the initial view up and points page vars at right vars
+        // sets up the initial view and points page vars at right vars
         exercisesCount = GlobalVars.exerciseUB.count
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
         
         startWorkoutBtn.hidden = true
+        
+        // sets the get ready to workout countdown view
         getReadyView.hidden = false
         workoutCountdownLabel.hidden = false
-        
-        // sets the get ready to workout countdown to 5 seconds
         setExerciseTimerGetReady(5, timerLabel: "5")
         
         // sets the get ready to workout label for the initial workout start message
@@ -367,7 +390,7 @@ class OneMWWorkoutViewController: UIViewController {
             switchSidesSubTitle.text = "Alternate Sides"
         }else{
             switchSidesSubTitle.hidden = true
-        }        
+        }
     }
     
     override func didReceiveMemoryWarning() {
