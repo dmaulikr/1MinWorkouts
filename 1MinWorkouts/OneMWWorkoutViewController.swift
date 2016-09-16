@@ -57,13 +57,19 @@ class OneMWWorkoutViewController: UIViewController {
         setNextWorkoutNotification()
     }
     
-    @IBAction func startWorkoutBtn(sender: AnyObject) {
-        startWorkoutBtn.hidden = true
+    @IBAction func startWorkoutBtn(sender: AnyObject) {// restart button
         getReadyView.hidden = false
         workoutCountdownLabel.hidden = false
         
         exerciseCountdownTimer.invalidate()
         setExerciseTimerGetReady(5, timerLabel: "5")
+        
+        // resets side planks back to starting view when restart button is hit
+        if exerciseTitle == "Side Plank"{
+            exerciseImage = UIImage(named: "side-plank-right") // sets the  side plank image back to starting image
+            exerciseTypeImage.image = exerciseImage // switches the side plank image back
+            switchSidesSubTitle.hidden = false // hides the switch sides sub-title label
+        }
     }
         
     func changeExercise(){
