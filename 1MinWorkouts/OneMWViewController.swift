@@ -39,76 +39,82 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // clears out all set notifications
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        // reset workout counter to 0
+        // reset workout counter index to 0
         GlobalVars.exerciseIndexCount = 0
         
-        // need to reset next days start notification
+        // resets next days start notification
         let today = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
+        //let hour = components.hour
+        //let minutes = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
         
-        let dateComp:NSDateComponents = NSDateComponents()
-        dateComp.year = year    // sets to current year
-        dateComp.month = month  // sets to current month
-        dateComp.day = day + 1      // sets to tomorrow
-        dateComp.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateComp.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateComp.second = 0
-        dateComp.timeZone = NSTimeZone.systemTimeZone()
+//        // builds a date for notifications
+//        let dateComp:NSDateComponents = NSDateComponents()
+//        dateComp.year = year    // sets to current year
+//        dateComp.month = month  // sets to current month
+//        //dateComp.day = day + 1  // sets to tomorrow
+//        dateComp.day = day  // sets to today
+//        dateComp.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
+//        dateComp.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
+//        dateComp.second = 0
+//        dateComp.timeZone = NSTimeZone.systemTimeZone()
         
-        let dateCompSkipEnd:NSDateComponents = NSDateComponents()
-        dateCompSkipEnd.year = year    // sets to current year
-        dateCompSkipEnd.month = month  // sets to current month
-        dateCompSkipEnd.day = day + 3      // sets to tomorrow
-        dateCompSkipEnd.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateCompSkipEnd.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateCompSkipEnd.second = 0
-        dateCompSkipEnd.timeZone = NSTimeZone.systemTimeZone()
+//        // builds a date for after the weekend notification, if it's Friday
+//        let dateCompSkipEnd:NSDateComponents = NSDateComponents()
+//        dateCompSkipEnd.year = year    // sets to current year
+//        dateCompSkipEnd.month = month  // sets to current month
+//        dateCompSkipEnd.day = day + 3  // sets to 3 days from today
+//        dateCompSkipEnd.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
+//        dateCompSkipEnd.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
+//        dateCompSkipEnd.second = 0
+//        dateCompSkipEnd.timeZone = NSTimeZone.systemTimeZone()
+//        
+//        // builds a date for when the weekend is over, skips the entire week
+//        let dateCompSkipWeek:NSDateComponents = NSDateComponents()
+//        dateCompSkipWeek.year = year    // sets to current year
+//        dateCompSkipWeek.month = month  // sets to current month
+//        dateCompSkipWeek.day = day + 6  // sets to 6 days from today
+//        dateCompSkipWeek.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
+//        dateCompSkipWeek.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
+//        dateCompSkipWeek.second = 0
+//        dateCompSkipWeek.timeZone = NSTimeZone.systemTimeZone()
         
-        let dateCompSkipWeek:NSDateComponents = NSDateComponents()
-        dateCompSkipWeek.year = year    // sets to current year
-        dateCompSkipWeek.month = month  // sets to current month
-        dateCompSkipWeek.day = day + 6      // sets to tomorrow
-        dateCompSkipWeek.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateCompSkipWeek.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateCompSkipWeek.second = 0
-        dateCompSkipWeek.timeZone = NSTimeZone.systemTimeZone()
-        
-        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let date:NSDate = calender.dateFromComponents(dateComp)!
-        let dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
-        let dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
+//        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+//        let date:NSDate = calender.dateFromComponents(dateComp)!
+//        let dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
+//        let dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "e"
+        dateFormatter.dateFormat = "e" // sets the day of the week to a single digit (Sat = 0, Sun = 1, Mon = 2 etc.)
         
-        let dayOfWeek = dateFormatter.stringFromDate(today)
+        let dayOfWeek = dateFormatter.stringFromDate(today) // sets the day of week to be used as a variable
         
-        switch dayOfWeek{
-        case "2"..."5": // if it's a weekday and weekdays are ON
-            if GlobalVars.notificationSettingsWeekday == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            }else{
-                let message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            }
+        // check setting for weekdays only and set first workout notifications
+        if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
             
-        case "6":
-            if GlobalVars.notificationSettingsWeekend == true{
+            if dayOfWeek == "2" || dayOfWeek == "3" || dayOfWeek == "4" || dayOfWeek == "5" || dayOfWeek == "6"{
+            for _ in 1...7{ // create 7 notifications
+                
+                var notifFireDate = 1 // creates a fire date for tomorrow
+                notifFireDate += 1 // increments the fire date after each for loop pass
+                
+                // builds a date for notifications
+                let dateComp2:NSDateComponents = NSDateComponents()
+                dateComp2.year = year    // sets to current year
+                dateComp2.month = month  // sets to current month
+                dateComp2.day = (day + notifFireDate)  // sets the day to fire the notification
+                dateComp2.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
+                dateComp2.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
+                dateComp2.second = 0
+                dateComp2.timeZone = NSTimeZone.systemTimeZone()
+                
+                let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                let date:NSDate = calender.dateFromComponents(dateComp2)!
+                
                 let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
                 notification.alertBody = "Time for your first workout of the day!"
@@ -119,75 +125,142 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
                 
-            }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = dateSkipEnd
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-            }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                
-            }else{
-                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+                print("\notifFireDate" + "weekday notification set")
             }
-            
-        case "1": // if it's a weekend and weekdays are ON
-            if GlobalVars.notificationSettingsWeekend == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            }else{
-                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             }
-            
-        case "7":
-            if GlobalVars.notificationSettingsWeekday == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            }else{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time to start your day!"
-                notification.alertAction = "View App"
-                notification.fireDate = dateSkipWeek
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
-                
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            }
-            
-        default:
-            break
         }
+        
+        // check setting for weekends only and set first workout notifications
+        if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+            
+            for _ in 1...7{ // create 7 notifications
+                
+                var notifFireDate = 1 // creates a fire date for tomorrow
+                notifFireDate += 1 // increments the fire date after each for loop pass
+                
+                // builds a date for notifications
+                let dateComp2:NSDateComponents = NSDateComponents()
+                dateComp2.year = year    // sets to current year
+                dateComp2.month = month  // sets to current month
+                dateComp2.day = (day + notifFireDate)  // sets the day to fire the notification
+                dateComp2.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
+                dateComp2.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
+                dateComp2.second = 0
+                dateComp2.timeZone = NSTimeZone.systemTimeZone()
+                
+                let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                let date:NSDate = calender.dateFromComponents(dateComp2)!
+                
+                let notification:UILocalNotification = UILocalNotification()
+                notification.category = ""
+                notification.alertBody = "Time for your first workout of the day!"
+                notification.alertAction = "View App"
+                notification.fireDate = date
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+                
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
+        }
+        
+//        switch dayOfWeek{
+//        case "2"..."5": // if it's a weekday and weekdays are ON
+//            if GlobalVars.notificationSettingsWeekday == true{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = date
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//            }else{
+//                let message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+//                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+//            }
+//            
+//        case "6":
+//            if GlobalVars.notificationSettingsWeekend == true{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = date
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                
+//            }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = dateSkipEnd
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                
+//            }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = date
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//                
+//            }else{
+//                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+//                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+//            }
+//            
+//        case "1": // if it's a weekend and weekdays are ON
+//            if GlobalVars.notificationSettingsWeekend == true{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = date
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//            }else{
+//                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.Alert)
+//                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+//            }
+//            
+//        case "7":
+//            if GlobalVars.notificationSettingsWeekday == true{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time for your first workout of the day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = date
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//            }else{
+//                let notification:UILocalNotification = UILocalNotification()
+//                notification.category = ""
+//                notification.alertBody = "Time to start your day!"
+//                notification.alertAction = "View App"
+//                notification.fireDate = dateSkipWeek
+//                notification.soundName = UILocalNotificationDefaultSoundName
+//                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+//                
+//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//            }
+//            
+//        default:
+//            break
+//        }
         
         // segue out of this view and back to home
         navigationController?.popToRootViewControllerAnimated(true)
