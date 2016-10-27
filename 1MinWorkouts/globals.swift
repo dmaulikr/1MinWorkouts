@@ -41,11 +41,11 @@ struct GlobalVars {
 }
 
 func setNotifVars(){
-    let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-    GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
-    GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
-    GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
-    GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
+    let appUserSettings = UserDefaults.standard // instantiates a user default holder
+    GlobalVars.workoutNotificationStartHour = appUserSettings.integer(forKey: "startDayHour") as Int!
+    GlobalVars.workoutNotificationStartMin = appUserSettings.integer(forKey: "startDayMin") as Int!
+    GlobalVars.notificationSettingsWeekday = appUserSettings.bool(forKey: "notificationWeekday") as Bool!
+    GlobalVars.notificationSettingsWeekend = appUserSettings.bool(forKey: "notificationWeekend") as Bool!
     print("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
 }
 

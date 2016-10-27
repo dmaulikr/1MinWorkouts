@@ -10,7 +10,7 @@ import UIKit
 import AudioToolbox
 
 protocol OneMWWorkoutViewControllerDelegate{
-    func myVCDidFinish(controller:OneMWWorkoutViewController,indexCount:Int,nextWorkout:String)
+    func myVCDidFinish(_ controller:OneMWWorkoutViewController,indexCount:Int,nextWorkout:String)
 }
 
 class OneMWWorkoutViewController: UIViewController {
@@ -22,7 +22,7 @@ class OneMWWorkoutViewController: UIViewController {
     var exercisesCount = 0
     var nextWorkoutTime = ""
     
-    var exerciseCountdownTimer = NSTimer()
+    var exerciseCountdownTimer = Timer()
     //var exerciseSecondsCount = 0
     var totalTime = 0
     
@@ -36,8 +36,8 @@ class OneMWWorkoutViewController: UIViewController {
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var closeWorkoutBtnLabel: UIButton!
     
-    @IBAction func closeWorkoutBtn(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeWorkoutBtn(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
         
         exerciseCountdownTimer.invalidate()
         
@@ -57,9 +57,9 @@ class OneMWWorkoutViewController: UIViewController {
         setNextWorkoutNotification()
     }
     
-    @IBAction func startWorkoutBtn(sender: AnyObject) {// restart button
-        getReadyView.hidden = false
-        workoutCountdownLabel.hidden = false
+    @IBAction func startWorkoutBtn(_ sender: AnyObject) {// restart button
+        getReadyView.isHidden = false
+        workoutCountdownLabel.isHidden = false
         
         exerciseCountdownTimer.invalidate()
         setExerciseTimerGetReady(5, timerLabel: "5")
@@ -68,7 +68,7 @@ class OneMWWorkoutViewController: UIViewController {
         if exerciseTitle == "Side Plank"{
             exerciseImage = UIImage(named: "side-plank-right") // sets the  side plank image back to starting image
             exerciseTypeImage.image = exerciseImage // switches the side plank image back
-            switchSidesSubTitle.hidden = false // hides the switch sides sub-title label
+            switchSidesSubTitle.isHidden = false // hides the switch sides sub-title label
         }
     }
         
@@ -83,55 +83,55 @@ class OneMWWorkoutViewController: UIViewController {
     }
 
     func changeNextWorkoutTime(){
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minute = components.minute
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:DateComponents = DateComponents()
         dateComp.hour = hour
         dateComp.minute = minute
         
         if hour == 11{ // it means it's 11am changing to 12pm (noon)
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)PM"
+            if minute! < 10{
+                return nextWorkoutTime = "\(hour! + 1):0\(minute)PM"
             }
-            return nextWorkoutTime = "\(hour + 1):\(minute)PM"
+            return nextWorkoutTime = "\(hour! + 1):\(minute)PM"
         }
-        if hour >= 12 && hour < 23{ // means it's at least 12pm
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)PM"
+        if hour! >= 12 && hour! < 23{ // means it's at least 12pm
+            if minute! < 10{
+                return nextWorkoutTime = "\(hour! + 1 - 12):0\(minute)PM"
             }
-            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)PM"
+            return nextWorkoutTime = "\(hour! + 1 - 12):\(minute)PM"
         }
         if hour == 23{
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1 - 12):0\(minute)AM"
+            if minute! < 10{
+                return nextWorkoutTime = "\(hour! + 1 - 12):0\(minute)AM"
             }
-            return nextWorkoutTime = "\(hour + 1 - 12):\(minute)AM"
+            return nextWorkoutTime = "\(hour! + 1 - 12):\(minute)AM"
         }
         if hour == 24{ // means it's 12am
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
+            if minute! < 10{
+                return nextWorkoutTime = "\(hour! + 1):0\(minute)AM"
             }
-            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
+            return nextWorkoutTime = "\(hour! + 1):\(minute)AM"
         }else{
-            if minute < 10{
-                return nextWorkoutTime = "\(hour + 1):0\(minute)AM"
+            if minute! < 10{
+                return nextWorkoutTime = "\(hour! + 1):0\(minute)AM"
             }
-            return nextWorkoutTime = "\(hour + 1):\(minute)AM"
+            return nextWorkoutTime = "\(hour! + 1):\(minute)AM"
         }
         
     }
     
     //------------------------------------ Notification Function ----------------------------------------------------//
-    func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
+    func workoutNotification(_ fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendar.Unit){
         
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minute = components.minute
@@ -143,17 +143,17 @@ class OneMWWorkoutViewController: UIViewController {
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:DateComponents = DateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
         dateComp.hour = fHour
         dateComp.minute = fMin
         dateComp.second = 0
-        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        (dateComp as NSDateComponents).timeZone = TimeZone.current
         
-        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let date:NSDate = calender.dateFromComponents(dateComp)!
+        let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        let date:Date = calender.date(from: dateComp)!
         
         let notification:UILocalNotification = UILocalNotification()
         notification.category = fCategory
@@ -163,27 +163,27 @@ class OneMWWorkoutViewController: UIViewController {
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.repeatInterval = fRepeat // sets when the notification repeats
         
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     //------------------------------------ /Notification Function ---------------------------------------------------//
     
     func setNextWorkoutNotification(){
         
         // clears out all set notifications, just in case
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
         
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minute = components.minute
         
-        let dateComp:NSDateComponents = NSDateComponents()
+        var dateComp:DateComponents = DateComponents()
         dateComp.hour = hour
         dateComp.minute = minute
         // sets workout for an hour from current time
-        workoutNotification(hour + 1, fMin: minute, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.Hour)
+        workoutNotification(hour! + 1, fMin: minute!, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendar.Unit.hour)
     }
     
     //----------------------------------------- 60 seconds workout timer -----------------------------------------//
@@ -208,11 +208,11 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseTypeImage.image = exerciseImage // switches the side plank image
             exerciseCountdownTimer.invalidate() // stops all timers
             AudioServicesPlaySystemSound(1360) // plays double vibrate
-            getReadyView.hidden = false // shows the get ready view
-            getReadyCounterLabel.hidden = false // shows the get ready count down label
+            getReadyView.isHidden = false // shows the get ready view
+            getReadyCounterLabel.isHidden = false // shows the get ready count down label
             getReadyLabel.text = "Switch Sides" // changes the get rady note
             setExerciseTimerGetReady(5, timerLabel: "5") // sets the geat ready time/countdown
-            switchSidesSubTitle.hidden = true // hides the switch sides sub-title label
+            switchSidesSubTitle.isHidden = true // hides the switch sides sub-title label
         }
         
         // what happens when the timer ends
@@ -234,9 +234,9 @@ class OneMWWorkoutViewController: UIViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
             
-            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
                 (action: UIAlertAction!) in
                 
                 // sets the next workout time
@@ -250,30 +250,30 @@ class OneMWWorkoutViewController: UIViewController {
                 // sets a workout notification an hour from the completion of this workout
                 self.setNextWorkoutNotification()
                 
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }))
             
             let thumbsImage = UIImage(named: "thumbs-up")
-            let imageView = UIImageView(frame: CGRectMake(117, 47, 40, 40))
+            let imageView = UIImageView(frame: CGRect(x: 117, y: 47, width: 40, height: 40))
             imageView.image = thumbsImage
             
             alert.view.addSubview(imageView)
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
         }
     }
     
     // method that defines the actual timer for minute exercise timer
-    func setExerciseTimer(timerTime : Int, timerLabel : String){
+    func setExerciseTimer(_ timerTime : Int, timerLabel : String){
         
         totalTime = timerTime // sets the timer to starting time desired
         
         workoutCountdownLabel.text = timerLabel // sets timer label to starting time desired
         
         GlobalVars.exerciseSecondsCount = totalTime; // sets timer to an hour
-        exerciseCountdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("exerciseTimerRun"), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
+        exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(OneMWWorkoutViewController.exerciseTimerRun), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
     //----------------------------------------- 5 seconds countdown get ready timer -----------------------------------------//
@@ -287,17 +287,17 @@ class OneMWWorkoutViewController: UIViewController {
         // what happens when the timer ends
         if (GlobalVars.exerciseSecondsCount == 0) {
             // sets workout timer to 30 seconds remaining after switch sides view for Side Plank
-            if switchSidesSubTitle.hidden == true && exerciseTitle == "Side Plank"{
+            if switchSidesSubTitle.isHidden == true && exerciseTitle == "Side Plank"{
                 exerciseCountdownTimer.invalidate() // stops all timers
                 workoutCountdownLabel.text = "30"
                 setExerciseTimer(30, timerLabel: "30")
                 getReadyLabel.text = "Get ready to workout!"
-                getReadyView.hidden = true
+                getReadyView.isHidden = true
                 print("switched sides timer reset was triggered")
             }else {// regular 5 sec countdown get ready 
                 exerciseCountdownTimer.invalidate() // stops the countdown
             
-                getReadyView.hidden = true
+                getReadyView.isHidden = true
                 setExerciseTimer(60, timerLabel: "60")
             
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
@@ -307,22 +307,22 @@ class OneMWWorkoutViewController: UIViewController {
     }
     
     // method that defines the actual timer for hour exercise timer
-    func setExerciseTimerGetReady(timerTime : Int, timerLabel : String){
+    func setExerciseTimerGetReady(_ timerTime : Int, timerLabel : String){
         
         totalTime = timerTime // sets the timer to starting time desired
         
         getReadyCounterLabel.text = timerLabel // sets timer label to starting time desired
         
         GlobalVars.exerciseSecondsCount = totalTime; // sets timer to an hour
-        exerciseCountdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("exerciseTimerGetReady"), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
+        exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(OneMWWorkoutViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
         
     }
     
     func setNotificationTime(){
         
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
         //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
         let hour = components.hour
         let minutes = components.minute
@@ -334,7 +334,7 @@ class OneMWWorkoutViewController: UIViewController {
         
         var minutesFix = minutes
         
-        if minutes < 10{
+        if minutes! < 10{
             var minutesFix = "/(minutes + 10)"
         }
 //        
@@ -372,30 +372,30 @@ class OneMWWorkoutViewController: UIViewController {
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
         
-        startWorkoutBtn.hidden = true
+        startWorkoutBtn.isHidden = true
         
         // sets the get ready to workout countdown view
-        getReadyView.hidden = false
-        workoutCountdownLabel.hidden = false
+        getReadyView.isHidden = false
+        workoutCountdownLabel.isHidden = false
         setExerciseTimerGetReady(5, timerLabel: "5")
         
         // sets the get ready to workout label for the initial workout start message
         getReadyLabel.text = "Get ready to workout!"
         
         //hide switch sides sub-title by default
-        switchSidesSubTitle.hidden = true
+        switchSidesSubTitle.isHidden = true
         
         //show switch sides sub-title for Side Plank
         if exerciseTitle == "Side Plank"{
-            switchSidesSubTitle.hidden = false
+            switchSidesSubTitle.isHidden = false
             switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
         }else
         //show switch sides sub-title for Lunges
         if exerciseTitle == "Lunges"{
-            switchSidesSubTitle.hidden = false
+            switchSidesSubTitle.isHidden = false
             switchSidesSubTitle.text = "Alternate Sides"
         }else{
-            switchSidesSubTitle.hidden = true
+            switchSidesSubTitle.isHidden = true
         }
     }
     
@@ -405,7 +405,7 @@ class OneMWWorkoutViewController: UIViewController {
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToInfo"{
             
             // false = UB objects (default start)  true = LB objects
@@ -413,7 +413,7 @@ class OneMWWorkoutViewController: UIViewController {
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
             }
@@ -421,7 +421,7 @@ class OneMWWorkoutViewController: UIViewController {
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
             }
@@ -429,7 +429,7 @@ class OneMWWorkoutViewController: UIViewController {
                 // set up OneMWViewController to show Core stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].tips
             }

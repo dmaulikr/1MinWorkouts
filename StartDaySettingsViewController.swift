@@ -16,16 +16,16 @@ class StartDaySettingsViewController: UITableViewController{
     var weekend = false
     
     @IBOutlet var startDaySwitch: UISwitch!
-    @IBAction func startDaySwitch(sender: AnyObject) {
-        if startDaySwitch.on{
-            datePickerCell.hidden = false
-            monFriCell.hidden = false
-            satSunCell.hidden = false
+    @IBAction func startDaySwitch(_ sender: AnyObject) {
+        if startDaySwitch.isOn{
+            datePickerCell.isHidden = false
+            monFriCell.isHidden = false
+            satSunCell.isHidden = false
             print("startDaySwitch is on")
         }else{
-            datePickerCell.hidden = true
-            monFriCell.hidden = true
-            satSunCell.hidden = true
+            datePickerCell.isHidden = true
+            monFriCell.isHidden = true
+            satSunCell.isHidden = true
             print("startDaySwitch is off")
         }
     }
@@ -37,63 +37,63 @@ class StartDaySettingsViewController: UITableViewController{
     @IBOutlet var ssCheckmark: UIImageView!
     @IBOutlet var saveButtonCell: UITableViewCell!
     
-    @IBAction func saveSettingsButton(sender: AnyObject) {
+    @IBAction func saveSettingsButton(_ sender: AnyObject) {
         print("saveSettingsButton tapped")
-        if startDaySwitch.on{
+        if startDaySwitch.isOn{
             print("startDaySwitch is on")
             
             // save the time, weekday/end settings
-            let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+            let appUserSettings = UserDefaults.standard // instantiates a user default holder
             
-            appUserSettings.setInteger(hour, forKey: GlobalVars.startDayHour)
-            print("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
+            appUserSettings.set(hour, forKey: GlobalVars.startDayHour)
+            print("startDayHour was set to \(appUserSettings.value(forKey: GlobalVars.startDayHour))")
             
-            appUserSettings.setInteger(min, forKey: GlobalVars.startDayMin)
-            print("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
+            appUserSettings.set(min, forKey: GlobalVars.startDayMin)
+            print("startDayMin was set to \(appUserSettings.value(forKey: GlobalVars.startDayMin))")
             
-            appUserSettings.setBool(weekday, forKey: GlobalVars.notificationWeekday)
-            print("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
+            appUserSettings.set(weekday, forKey: GlobalVars.notificationWeekday)
+            print("notificationWeekday was set to \(appUserSettings.value(forKey: GlobalVars.notificationWeekday))")
             
-            appUserSettings.setBool(weekend, forKey: GlobalVars.notificationWeekend)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
+            appUserSettings.set(weekend, forKey: GlobalVars.notificationWeekend)
+            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.notificationWeekend))")
             
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeStartDaySetup))")
+            appUserSettings.set(true, forKey: GlobalVars.oobeStartDaySetup)
+            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup))")
             
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
-            print("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.oobeTute))")
+            appUserSettings.set(true, forKey: GlobalVars.oobeTute)
+            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.oobeTute))")
             
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)
-            let oneMWStart = stb.instantiateViewControllerWithIdentifier("TabControllerMain") as! MyTabBarController
+            let oneMWStart = stb.instantiateViewController(withIdentifier: "TabControllerMain") as! MyTabBarController
 
             
-            self.presentViewController(oneMWStart, animated: true, completion: nil)
+            self.present(oneMWStart, animated: true, completion: nil)
         }else{
             print("startDaySwitch is off")
             
             //save the weekday/end settings as false
-            let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+            let appUserSettings = UserDefaults.standard // instantiates a user default holder
             
-            appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekday)
+            appUserSettings.set(false, forKey: GlobalVars.notificationWeekday)
             
-            appUserSettings.setBool(false, forKey: GlobalVars.notificationWeekend)
+            appUserSettings.set(false, forKey: GlobalVars.notificationWeekend)
             
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeStartDaySetup)
+            appUserSettings.set(true, forKey: GlobalVars.oobeStartDaySetup)
             
-            appUserSettings.setBool(true, forKey: GlobalVars.oobeTute)
+            appUserSettings.set(true, forKey: GlobalVars.oobeTute)
             
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)
-            let oneMWStart = stb.instantiateViewControllerWithIdentifier("TabControllerMain") as! MyTabBarController
+            let oneMWStart = stb.instantiateViewController(withIdentifier: "TabControllerMain") as! MyTabBarController
             
-            self.presentViewController(oneMWStart, animated: true, completion: nil)
+            self.present(oneMWStart, animated: true, completion: nil)
         }
     }
     
     @IBOutlet var startDayPicker: UIDatePicker!
     
-    @IBAction func startDayPIcker(sender: AnyObject) {
+    @IBAction func startDayPIcker(_ sender: AnyObject) {
         // sets the hour and min vars to whatever was changed on the startDayPIcker
         hour = sender.hour
         min = sender.minute
@@ -112,10 +112,10 @@ class StartDaySettingsViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
         
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 3 {
-            monFriCell.selected = false
+        if (indexPath as NSIndexPath).row == 3 {
+            monFriCell.isSelected = false
             
             if mfCheckmark.image == UIImage(named: "checkmark-on"){
                 mfCheckmark.image = UIImage(named: "checkmark-off")
@@ -125,8 +125,8 @@ class StartDaySettingsViewController: UITableViewController{
                 weekday = true
             }
         }
-        if indexPath.row == 4 {
-            satSunCell.selected = false
+        if (indexPath as NSIndexPath).row == 4 {
+            satSunCell.isSelected = false
             
             if ssCheckmark.image == UIImage(named: "checkmark-on"){
                 ssCheckmark.image = UIImage(named: "checkmark-off")

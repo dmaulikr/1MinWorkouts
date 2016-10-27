@@ -15,10 +15,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     @IBOutlet var aboutDetailLabel: UILabel!
     @IBOutlet var viewWalkthroughCell: UITableViewCell!
     
-    @IBAction func sendFeedbackBtn(sender: AnyObject) {
+    @IBAction func sendFeedbackBtn(_ sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
             self.showSendMailErrorAlert()
         }
@@ -63,8 +63,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController!, didFinishWith result: MFMailComposeResult, error: Error!) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,18 +72,18 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 1 {
-            viewWalkthroughCell.selected = false
+        if (indexPath as NSIndexPath).row == 1 {
+            viewWalkthroughCell.isSelected = false
             
             // Get view controllers, build and show the walkthrough
             let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-            let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as! BWWalkthroughViewController
-            let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as! UIViewController
-            let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as! UIViewController
-            let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as! UIViewController
-            let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as! UIViewController
+            let walkthrough = stb.instantiateViewController(withIdentifier: "walk0") as! BWWalkthroughViewController
+            let page_one = stb.instantiateViewController(withIdentifier: "walk1") 
+            let page_two = stb.instantiateViewController(withIdentifier: "walk2") 
+            let page_three = stb.instantiateViewController(withIdentifier: "walk3") 
+            let page_four = stb.instantiateViewController(withIdentifier: "walk4") 
             
             // Attach the pages to the master
             walkthrough.delegate = self
@@ -94,20 +94,20 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             
             //walkthrough.closeButton?.setTitle("Done", forState: UIControlState.Normal)
             
-            self.presentViewController(walkthrough, animated: true, completion: nil)
+            self.present(walkthrough, animated: true, completion: nil)
             
             print("viewWalkthroughCell tapped")
         }
     }
     
-    func myVCDidFinish(controller: SettingsStartDayTableViewController, text: String) {
+    func myVCDidFinish(_ controller: SettingsStartDayTableViewController, text: String) {
         startDayDetailLabel.text = text
-        controller.navigationController?.popViewControllerAnimated(true)
+        controller.navigationController?.popViewController(animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if segue.identifier == "startDaySettingsSegue"{
-            let vc = segue.destinationViewController as! SettingsStartDayTableViewController
+            let vc = segue.destination as! SettingsStartDayTableViewController
             vc.startTime = startDayDetailLabel.text!
             vc.delegate = self
         }

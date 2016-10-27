@@ -13,8 +13,8 @@ class OneMWInfoViewController: UIViewController {
     var exerciseTitle = ""
     var exerciseTips = ""
     
-    @IBAction func closeInfoBtn(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeInfoBtn(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet var exerciseTypeTitle: UILabel!

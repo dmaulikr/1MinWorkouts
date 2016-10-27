@@ -13,7 +13,7 @@ class WorkoutsViewController: UIViewController {
 
     var alertTone = UInt32(1481)//1359 double vibrate
     
-    @IBAction func findTonesBtn(sender: AnyObject) {
+    @IBAction func findTonesBtn(_ sender: AnyObject) {
         
         for _ in 1...100 {
             alertTone += 1

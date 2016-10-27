@@ -13,18 +13,18 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     @IBOutlet var disclaimerView: UIView!
     @IBOutlet var disclaimerText: UITextView!
     
-    @IBAction func agreeToDisclaimerButton(sender: AnyObject) {
+    @IBAction func agreeToDisclaimerButton(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Are You Sure?", message: "Having read the disclaimer in its entirity, you're sure you agree to it?", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes, I Agree", style: .Default, handler: {
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes, I Agree", style: .default, handler: {
             (action: UIAlertAction!) in
             
             self.setDisclaimerAgreed()
         }))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
     }
     
@@ -32,18 +32,18 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
     func setDisclaimerAgreed(){
         
         // set oobeDisclaimer to true (agreed on)
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        let appUserSettings = UserDefaults.standard // instantiates a user default holder
         
-        appUserSettings.setBool(true, forKey: GlobalVars.oobeDisclaimer)
-        print("oobeDisclaimer was set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
+        appUserSettings.set(true, forKey: GlobalVars.oobeDisclaimer)
+        print("oobeDisclaimer was set to \(appUserSettings.value(forKey: GlobalVars.oobeDisclaimer))")
         
         // Get view controllers, build and show the walkthrough
         let stb = UIStoryboard(name: "Walkthrough", bundle: nil)
-        let walkthrough = stb.instantiateViewControllerWithIdentifier("walk0") as! BWWalkthroughViewController
-        let page_one = stb.instantiateViewControllerWithIdentifier("walk1") as! UIViewController
-        let page_two = stb.instantiateViewControllerWithIdentifier("walk2") as! UIViewController
-        let page_three = stb.instantiateViewControllerWithIdentifier("walk3") as! UIViewController
-        let page_four = stb.instantiateViewControllerWithIdentifier("walk4") as! UIViewController
+        let walkthrough = stb.instantiateViewController(withIdentifier: "walk0") as! BWWalkthroughViewController
+        let page_one = stb.instantiateViewController(withIdentifier: "walk1") 
+        let page_two = stb.instantiateViewController(withIdentifier: "walk2") 
+        let page_three = stb.instantiateViewController(withIdentifier: "walk3") 
+        let page_four = stb.instantiateViewController(withIdentifier: "walk4") 
         
         // Attach the pages to the master
         walkthrough.delegate = self
@@ -52,10 +52,10 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         walkthrough.addViewController(page_three)
         walkthrough.addViewController(page_four)
         
-        self.presentViewController(walkthrough, animated: true, completion: nil)
+        self.present(walkthrough, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
 //        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
 //        

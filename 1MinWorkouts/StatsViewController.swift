@@ -11,10 +11,10 @@ import MessageUI
 
 class StatsViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
-    @IBAction func sendFeedbackBtn(sender: AnyObject) {
+    @IBAction func sendFeedbackBtn(_ sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
             self.showSendMailErrorAlert()
         }
@@ -48,8 +48,8 @@ class StatsViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     /*

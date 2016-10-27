@@ -22,30 +22,30 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
     
-    @IBAction func workoutNowBtn(sender: AnyObject) {
+    @IBAction func workoutNowBtn(_ sender: AnyObject) {
         
     }    
     
-    @IBAction func endDayBtn(sender: AnyObject) {
-        let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.Alert)
-        message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.endDay()}))
+    @IBAction func endDayBtn(_ sender: AnyObject) {
+        let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.alert)
+        message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.endDay()}))
         
-        self.presentViewController(message, animated: true, completion: nil)        
+        self.present(message, animated: true, completion: nil)        
     }
     
     func endDay(){
         
         // clears out all set notifications
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
         
         // reset workout counter index to 0
         GlobalVars.exerciseIndexCount = 0
         
         // resets next days start notification
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
         //let hour = components.hour
         //let minutes = components.minute
         let month = components.month
@@ -88,10 +88,10 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
 //        let dateSkipEnd:NSDate = calender.dateFromComponents(dateCompSkipEnd)!
 //        let dateSkipWeek:NSDate = calender.dateFromComponents(dateCompSkipWeek)!
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "e" // sets the day of the week to a single digit (Sat = 0, Sun = 1, Mon = 2 etc.)
         
-        let dayOfWeek = dateFormatter.stringFromDate(today) // sets the day of week to be used as a variable
+        let dayOfWeek = dateFormatter.string(from: today) // sets the day of week to be used as a variable
         
         // check setting for weekdays only and set first workout notifications
         if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
@@ -103,17 +103,17 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notifFireDate += 1 // increments the fire date after each for loop pass
                 
                 // builds a date for notifications
-                let dateComp2:NSDateComponents = NSDateComponents()
+                var dateComp2:DateComponents = DateComponents()
                 dateComp2.year = year    // sets to current year
                 dateComp2.month = month  // sets to current month
-                dateComp2.day = (day + notifFireDate)  // sets the day to fire the notification
+                dateComp2.day = (day! + notifFireDate)  // sets the day to fire the notification
                 dateComp2.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
                 dateComp2.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
                 dateComp2.second = 0
-                dateComp2.timeZone = NSTimeZone.systemTimeZone()
+                (dateComp2 as NSDateComponents).timeZone = TimeZone.current
                 
-                let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-                let date:NSDate = calender.dateFromComponents(dateComp2)!
+                let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                let date:Date = calender.date(from: dateComp2)!
                 
                 let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -121,9 +121,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
                 
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                UIApplication.shared.scheduleLocalNotification(notification)
                 
                 print("\notifFireDate" + "weekday notification set")
             }
@@ -139,17 +139,17 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notifFireDate += 1 // increments the fire date after each for loop pass
                 
                 // builds a date for notifications
-                let dateComp2:NSDateComponents = NSDateComponents()
+                var dateComp2:DateComponents = DateComponents()
                 dateComp2.year = year    // sets to current year
                 dateComp2.month = month  // sets to current month
-                dateComp2.day = (day + notifFireDate)  // sets the day to fire the notification
+                dateComp2.day = (day! + notifFireDate)  // sets the day to fire the notification
                 dateComp2.hour = GlobalVars.workoutNotificationStartHour     // sets to workout start hour
                 dateComp2.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
                 dateComp2.second = 0
-                dateComp2.timeZone = NSTimeZone.systemTimeZone()
+                (dateComp2 as NSDateComponents).timeZone = TimeZone.current
                 
-                let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-                let date:NSDate = calender.dateFromComponents(dateComp2)!
+                let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                let date:Date = calender.date(from: dateComp2)!
                 
                 let notification:UILocalNotification = UILocalNotification()
                 notification.category = ""
@@ -157,9 +157,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 notification.alertAction = "View App"
                 notification.fireDate = date
                 notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendarUnit.Day // sets when the notification repeats
+                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
                 
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                UIApplication.shared.scheduleLocalNotification(notification)
             }
         }
         
@@ -263,17 +263,17 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
 //        }
         
         // segue out of this view and back to home
-        navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //hides switch sides sub-title by default
-        switchSidesSubTitle.hidden = true
+        switchSidesSubTitle.isHidden = true
         
         //my modal transition style
-        modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
@@ -283,8 +283,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         nextWorkoutTime = "Right Now!"
         nextWorkoutNotificationLabel.text = nextWorkoutTime
         
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let settings = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
 
     }
     
@@ -300,7 +300,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // Dispose of any resources that can be recreated.
     }
     
-    func myVCDidFinish(controller: OneMWWorkoutViewController, indexCount: Int, nextWorkout: String) {
+    func myVCDidFinish(_ controller: OneMWWorkoutViewController, indexCount: Int, nextWorkout: String) {
         if navigationItem.title == "Upper Body + Core"{
             let image = UIImage(named: GlobalVars.exerciseUB[indexCount].filename)
             exerciseTypeImage.image = image
@@ -309,10 +309,10 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             
             //add switch sub-title to needed exercises
             if exerciseTypeTitle.text == "Side Plank"{
-                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.isHidden = false
                 switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
             }else{
-                switchSidesSubTitle.hidden = true
+                switchSidesSubTitle.isHidden = true
             }
         }
         if navigationItem.title == "Lower Body + Core"{
@@ -323,10 +323,10 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             
             //add switch sub-title to needed exercises
             if exerciseTypeTitle.text == "Lunges"{
-                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.isHidden = false
                 switchSidesSubTitle.text = "Alternate Sides"
             }else{
-                switchSidesSubTitle.hidden = true
+                switchSidesSubTitle.isHidden = true
             }
         }
         if navigationItem.title == "All Core"{
@@ -337,17 +337,17 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             
             //add switch sub-title to needed exercises
             if exerciseTypeTitle.text == "Side Plank"{
-                switchSidesSubTitle.hidden = false
+                switchSidesSubTitle.isHidden = false
                 switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
             }else{
-                switchSidesSubTitle.hidden = true
+                switchSidesSubTitle.isHidden = true
             }
 
         }
-        controller.navigationController?.popViewControllerAnimated(true)
+        controller.navigationController?.popViewController(animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToExerciseNow"{
             
             // false = UB objects (default start)  true = LB objects
@@ -355,7 +355,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                let vc = segue.destination as! OneMWWorkoutViewController
                 vc.navTitle = "Upper Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
@@ -366,7 +366,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                let vc = segue.destination as! OneMWWorkoutViewController
                 vc.navTitle = "Lower Body + Core"
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
@@ -377,7 +377,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show All Core stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWWorkoutViewController
+                let vc = segue.destination as! OneMWWorkoutViewController
                 vc.navTitle = "All Core"
                 vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
@@ -393,7 +393,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].tips
             }
@@ -401,7 +401,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].tips
             }
@@ -409,7 +409,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 // set up OneMWViewController to show All Core stuff
                 GlobalVars.exerciseGroup = false
                 
-                let vc = segue.destinationViewController as! OneMWInfoViewController
+                let vc = segue.destination as! OneMWInfoViewController
                 vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
                 vc.exerciseTips = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].tips
             }

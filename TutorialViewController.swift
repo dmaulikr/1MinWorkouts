@@ -10,7 +10,7 @@ import UIKit
 
 class TutorialViewController: UIViewController {
 
-    @IBAction func closeTutorial(sender: AnyObject) {
+    @IBAction func closeTutorial(_ sender: AnyObject) {
     }
     
     override func viewDidLoad() {
