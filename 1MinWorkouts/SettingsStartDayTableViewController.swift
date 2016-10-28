@@ -225,9 +225,8 @@ class SettingsStartDayTableViewController: UITableViewController {
         let today = Date()
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
+//        let hour = components.hour
+//        let minutes = components.minute
         let month = components.month
         let year = components.year
         let day = components.day

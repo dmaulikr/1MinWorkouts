@@ -85,10 +85,8 @@ class OneMWWorkoutViewController: UIViewController {
     func changeNextWorkoutTime(){
         let date = Date()
         let calendar = Calendar.current
-        
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        print("hours = \(hour):\(minute)")
         
         if hour == 11{ // it means it's 11am changing to 12pm (noon)
             if minute < 10{
@@ -128,13 +126,12 @@ class OneMWWorkoutViewController: UIViewController {
         let today = Date()
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minute = components.minute
+//        let hour = components.hour
+//        let minute = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
-        let weekday = components.weekday
+//        let weekday = components.weekday
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
@@ -314,26 +311,27 @@ class OneMWWorkoutViewController: UIViewController {
         
     }
     
-    func setNotificationTime(){
-        
-        let today = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
-        let seconds = components.second
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        let weekday = components.weekday
-        
-        var minutesFix = minutes
-        
-        if minutes! < 10{
-            var minutesFix = "/(minutes + 10)"
-        }
+    // this fucntion doesn't appear to be used delete if anything strange is noticed while testing beta 0.0.9
+//    func setNotificationTime(){
 //        
+//        let today = Date()
+//        let calendar = Calendar.current
+//        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
+//        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
+//        let hour = components.hour
+//        let minutes = components.minute
+//        let seconds = components.second
+//        let month = components.month
+//        let year = components.year
+//        let day = components.day
+//        let weekday = components.weekday
+//        
+//        var minutesFix = minutes
+//        
+//        if minutes! < 10{
+//            var minutesFix = "/(minutes + 10)"
+//        }
+//
 //        if hour < 11{
 //            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)AM"
 //        }
@@ -356,7 +354,7 @@ class OneMWWorkoutViewController: UIViewController {
 //        if hour == 24{
 //            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)AM"
 //        }
-    }
+//    }
 
     
     override func viewDidLoad() {
