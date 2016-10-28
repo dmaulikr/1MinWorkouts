@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
 
-        let defaultActions:NSArray = [firstAction, secondAction]
-        let minimalActions:NSArray = [firstAction, secondAction]
+//        let defaultActions:NSArray = [firstAction, secondAction]
+//        let minimalActions:NSArray = [firstAction, secondAction]
         
 //        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
 //        let minimalActions:NSArray = [firstAction, secondAction]
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firstCategory.setActions(minimalActions as [AnyObject], forContext: UIUserNotificationActionContext.Minimal)
         */
         // NSSet of all our categories
-        let categories:NSSet = NSSet(objects: firstCategory)
+//        let categories:NSSet = NSSet(objects: firstCategory)
         
 //        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
 //        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
