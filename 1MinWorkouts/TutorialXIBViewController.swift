@@ -80,7 +80,7 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         disclaimerText.text =
             "Always consult a qualified medical professional before beginning any nutritional program or exercise program. Never disregard professional medical advice or delay in seeking it because of something you have read in “1MinWorkouts.” Any content or information provided by “1MinWorkouts” is for informational and educational purposes only and any use thereof is solely at your own risk. “1MinWorkouts” Company bears no responsibility thereof. \n\n" +
             "The information contained herein is not intended to be a substitute for professional medical advice, diagnosis or treatment in any manner. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding any medical condition. All information contained in “1MinWorkouts”. including but not limited to text, graphics, images, information, third party information and/or advice, food, recipes, exercises, diets, psychology, websites, links, including but not limited to any content by employees, consultants or writers and contributors, and or any other material contained herein are for informational and educational purposes only. \n\n" +
-            "By agreeing and entering the “1MinWorkouts” app the reader and/or viewer does hereby acknowledge that it is your sole responsibility to review this Disclaimer and any other disclaimer or waiver."
+            "By agreeing and entering the “1MinWorkouts” app the reader and/or viewer does hereby acknowledge that it is your sole responsibility to review this Disclaimer and any other disclaimer or waiver. \n\n"
         
     }
     
