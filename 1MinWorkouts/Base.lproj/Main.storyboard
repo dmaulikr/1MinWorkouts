@@ -79,19 +79,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-fF-bIB">
-                                <rect key="frame" x="18" y="409" width="339" height="17"/>
+                                <rect key="frame" x="15" y="409" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQO-GO-OZn">
-                                <rect key="frame" x="20" y="592" width="339" height="17"/>
+                                <rect key="frame" x="15" y="592" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGO-Mr-9EF">
-                                <rect key="frame" x="18" y="224" width="339" height="17"/>
+                                <rect key="frame" x="15" y="224" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705882352935" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -112,13 +112,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7yG-fF-bIB" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" constant="-2" id="1Gg-b4-O8D"/>
-                            <constraint firstItem="7yG-fF-bIB" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="2" id="4Vd-vf-9N4"/>
-                            <constraint firstItem="nQO-GO-OZn" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="4" id="4qB-Hy-yKa"/>
-                            <constraint firstItem="bGO-Mr-9EF" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="2" id="540-p9-On6"/>
+                            <constraint firstItem="7yG-fF-bIB" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" constant="-5" id="1Gg-b4-O8D"/>
+                            <constraint firstItem="7yG-fF-bIB" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="-1" id="4Vd-vf-9N4"/>
+                            <constraint firstItem="nQO-GO-OZn" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="-1" id="4qB-Hy-yKa"/>
+                            <constraint firstItem="bGO-Mr-9EF" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leadingMargin" constant="-1" id="540-p9-On6"/>
                             <constraint firstItem="Jx5-1v-zb7" firstAttribute="bottom" secondItem="Clm-Yt-Kh0" secondAttribute="top" id="6bu-vO-qTe"/>
                             <constraint firstItem="Clm-Yt-Kh0" firstAttribute="top" secondItem="nQO-GO-OZn" secondAttribute="bottom" constant="9" id="ChV-cT-jVq"/>
-                            <constraint firstItem="bGO-Mr-9EF" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" constant="-2" id="DgR-Ps-Ewz"/>
+                            <constraint firstItem="bGO-Mr-9EF" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" constant="-5" id="DgR-Ps-Ewz"/>
                             <constraint firstItem="Jx5-1v-zb7" firstAttribute="top" secondItem="7yG-fF-bIB" secondAttribute="bottom" constant="7" id="KOF-gq-LEN"/>
                             <constraint firstAttribute="trailing" secondItem="ANF-MS-xwv" secondAttribute="trailing" id="LXP-Fl-T8b"/>
                             <constraint firstItem="ygI-gM-6DI" firstAttribute="height" secondItem="ANF-MS-xwv" secondAttribute="height" constant="1" id="Nn4-v1-Ksu"/>
@@ -132,7 +132,7 @@
                             <constraint firstItem="ygI-gM-6DI" firstAttribute="top" secondItem="oyR-tE-8by" secondAttribute="bottom" id="uXG-EC-1V4"/>
                             <constraint firstItem="ANF-MS-xwv" firstAttribute="trailing" secondItem="ygI-gM-6DI" secondAttribute="trailing" id="vMz-EM-1Nb"/>
                             <constraint firstItem="Jx5-1v-zb7" firstAttribute="leading" secondItem="hDI-6Q-OQc" secondAttribute="leading" id="yBN-Pz-Ugc"/>
-                            <constraint firstItem="nQO-GO-OZn" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" id="zvZ-qX-DfF"/>
+                            <constraint firstItem="nQO-GO-OZn" firstAttribute="trailing" secondItem="hDI-6Q-OQc" secondAttribute="trailingMargin" constant="-5" id="zvZ-qX-DfF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="1Minute Workouts" id="TDq-2N-0Jx"/>
@@ -440,14 +440,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-fb-Dw3">
-                                <rect key="frame" x="20" y="68" width="339" height="579"/>
+                                <rect key="frame" x="20" y="48" width="339" height="599"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zJ-w1-TFl">
-                                <rect key="frame" x="20" y="28" width="37" height="30"/>
+                                <rect key="frame" x="20" y="8" width="37" height="30"/>
                                 <color key="tintColor" red="0.32909396290779114" green="0.62022286653518677" blue="0.80595898628234863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -457,7 +457,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Type Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Do1-hl-ICq">
-                                <rect key="frame" x="87" y="29" width="200" height="29"/>
+                                <rect key="frame" x="87" y="9" width="200" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.32909396290779114" green="0.62022286653518677" blue="0.80595898628234863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1036,6 +1036,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="cXJ-4s-CSg"/>
+        <segue reference="gPk-jv-ujV"/>
     </inferredMetricsTieBreakers>
 </document>

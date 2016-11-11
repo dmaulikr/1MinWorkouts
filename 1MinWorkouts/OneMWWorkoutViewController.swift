@@ -120,63 +120,35 @@ class OneMWWorkoutViewController: UIViewController {
         
     }
     
-    //------------------------------------ Notification Function ----------------------------------------------------//
-    func workoutNotification(_ fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendar.Unit){
+    func setNextWorkoutNotification(){
         
+        // gets the current time and adds an hour
         let today = Date()
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-//        let hour = components.hour
-//        let minute = components.minute
+        let hour = components.hour
+        let minute = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
-//        let weekday = components.weekday
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
         
         var dateComp:DateComponents = DateComponents()
         dateComp.year = year    // sets to current year
         dateComp.month = month  // sets to current month
         dateComp.day = day      // sets to current day
-        dateComp.hour = fHour
-        dateComp.minute = fMin
+        dateComp.hour = hour! + 1
+        dateComp.minute = minute
         dateComp.second = 0
         (dateComp as NSDateComponents).timeZone = TimeZone.current
-        
         let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         let date:Date = calender.date(from: dateComp)!
         
-        let notification:UILocalNotification = UILocalNotification()
-        notification.category = fCategory
-        notification.alertBody = fAlertBody
-        notification.alertAction = "View App"
-        notification.fireDate = date
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.repeatInterval = fRepeat // sets when the notification repeats
+        // sends the notification fire date to AppDelegate
+        let selectedDate = date
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        delegate?.scheduleNotificationNextWorkout(at: selectedDate)
         
-        UIApplication.shared.scheduleLocalNotification(notification)
-    }
-    //------------------------------------ /Notification Function ---------------------------------------------------//
-    
-    func setNextWorkoutNotification(){
-        
-        // clears out all set notifications, just in case
-        UIApplication.shared.cancelAllLocalNotifications()
-        
-        let today = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minute = components.minute
-        
-        var dateComp:DateComponents = DateComponents()
-        dateComp.hour = hour
-        dateComp.minute = minute
-        // sets workout for an hour from current time
-        workoutNotification(hour! + 1, fMin: minute!, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendar.Unit.hour)
+        print("notification fired on \(selectedDate)")
     }
     
     //----------------------------------------- 60 seconds workout timer -----------------------------------------//

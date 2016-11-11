@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol SettingsStartDayTableViewControllerDelegate{
     func myVCDidFinish(_ controller:SettingsStartDayTableViewController,text:String)
@@ -73,7 +74,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             appUserSettings.set(true, forKey: GlobalVars.oobeStartDaySetup)
             appUserSettings.set(true, forKey: GlobalVars.oobeTute)
             
-            setStartNotification()
+            setStartNotifications()
             
             print("startDaySwitch is on")
         }else{
@@ -88,7 +89,7 @@ class SettingsStartDayTableViewController: UITableViewController {
             weekday = false
             weekend = false
             
-            setStartNotification()
+            setStartNotifications()
             
             print("startDaySwitch is off, weekday is saved as \(weekday) and weekend is saved as \(weekend)")
         }
@@ -213,178 +214,469 @@ class SettingsStartDayTableViewController: UITableViewController {
         }
     }
     
-    func setStartNotification(){
-        
-        // clears out all set notifications
-//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+    func setStartNotifications(){
         
         setNotifVars()
-        print("setStartNotification was run")
         
-        // need to reset next days start notification
+        // resets next days start notification
         let today = Date()
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-//        let hour = components.hour
-//        let minutes = components.minute
+        let hour = components.hour
+        let minute = components.minute
         let month = components.month
         let year = components.year
         let day = components.day
         
-        var dateComp:DateComponents = DateComponents()
-        dateComp.year = year    // sets to current year
-        dateComp.month = month  // sets to current month
-        dateComp.day = day      // sets to today
-        dateComp.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateComp.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateComp.second = 0
-        (dateComp as NSDateComponents).timeZone = TimeZone.current
-        
-        var dateCompSkipEnd:DateComponents = DateComponents()
-        dateCompSkipEnd.year = year    // sets to current year
-        dateCompSkipEnd.month = month  // sets to current month
-        dateCompSkipEnd.day = day! + 3      // sets to tomorrow
-        dateCompSkipEnd.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateCompSkipEnd.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateCompSkipEnd.second = 0
-        (dateCompSkipEnd as NSDateComponents).timeZone = TimeZone.current
-        
-        var dateCompSkipWeek:DateComponents = DateComponents()
-        dateCompSkipWeek.year = year    // sets to current year
-        dateCompSkipWeek.month = month  // sets to current month
-        dateCompSkipWeek.day = day! + 6      // sets to tomorrow
-        dateCompSkipWeek.hour = GlobalVars.workoutNotificationStartHour     // sets to current hour
-        dateCompSkipWeek.minute = GlobalVars.workoutNotificationStartMin    // sets to users work start time
-        dateCompSkipWeek.second = 0
-        (dateCompSkipWeek as NSDateComponents).timeZone = TimeZone.current
-        
-        let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let date:Date = calender.date(from: dateComp)!
-        let dateSkipEnd:Date = calender.date(from: dateCompSkipEnd)!
-        let dateSkipWeek:Date = calender.date(from: dateCompSkipWeek)!
-        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "e"
-        let dayOfWeek = dateFormatter.string(from: today)
+        dateFormatter.dateFormat = "e" // sets the day of the week to a single digit // Sunday = 1 // Monday = 2 // Tuesday = 3 // Wednesday = 4 // Thrusday = 5 // Friday = 6 // Saturday = 7
+        let dayOfWeek = dateFormatter.string(from: today) // sets the day of week to be used as a variable
+        
+        func notificationStart(dayCountStart: Int, maxLoop: Int, findSatSkipCount: Int, skipWeekendCount: Int){
+            var addDay = dayCountStart
+            for _ in 1...maxLoop { // iterates based on var maxLoop setting
+                addDay += 1  // sets the notification date to next day and then increments the added day by one for each iteration of the Loop
+                
+                if addDay == findSatSkipCount{ // checks to find when Saturday is within the 7 iterations
+                    addDay = skipWeekendCount  // skips the weekend and adds two more notifications for 7 total set
+                }
+                
+                let center = UNUserNotificationCenter.current()
+                
+                let content = UNMutableNotificationContent()
+                content.body = "It's time for your first workout of the day!"
+                content.sound = UNNotificationSound.default()
+                
+                var dateComponents = DateComponents()
+                dateComponents.year = year
+                dateComponents.month = month
+                dateComponents.day = day! + addDay
+                dateComponents.hour = GlobalVars.workoutNotificationStartHour
+                dateComponents.minute = GlobalVars.workoutNotificationStartMin
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                center.add(request)
+                
+                print("notification set for \(dateComponents.month!)/\(dateComponents.day!)/\(dateComponents.year!) - \(dateComponents.hour!):\(dateComponents.minute!)")
+            }
+        }
         
         switch dayOfWeek{
-        case "2"..."5": // if it's a weekday and weekdays are ON
-            if GlobalVars.notificationSettingsWeekday == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+        case "1": // Sunday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{// checks when the settings is being made so we can set a notofication for today or tomorrow
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 6, skipWeekendCount: 8)
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                print("You'll get a notification every day during the week")
+                    notificationStart(dayCountStart: 5, maxLoop: 4, findSatSkipCount: 8, skipWeekendCount: 13)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
             }else{
-                let message:UIAlertController = UIAlertController(title: "Weekday Notifications OFF", message: "You don't have Start Notifications on for week days. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 6, skipWeekendCount: 8)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 4, findSatSkipCount: 5, skipWeekendCount: 6)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
+            }
+        case "2": // Monday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                print("Notifications are off so no start notifcations set")
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 5, skipWeekendCount: 7)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 4, maxLoop: 4, findSatSkipCount: 7, skipWeekendCount: 12)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
+            }else{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 5, skipWeekendCount: 7)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 4, maxLoop: 4, findSatSkipCount: 7, skipWeekendCount: 12)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
             }
             
-        case "6":
-            if GlobalVars.notificationSettingsWeekend == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+        case "3": // Tuesday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 4, skipWeekendCount: 6)
                 
-                print("You'll get a notification tomorrow (sat)")
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
                 
-            }else if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = dateSkipEnd
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+                    notificationStart(dayCountStart: 3, maxLoop: 4, findSatSkipCount: 6, skipWeekendCount: 11)
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
                 
-                print("You'll get a notification on Monday")
-                
-            }else if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
-                
-                UIApplication.shared.scheduleLocalNotification(notification)
-                
-                print("You'll get a notification tomorrow (sat)")
-                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
             }else{
-                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-                
-                print("Notifications are off so no start notifcations set")
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 4, skipWeekendCount: 6)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 3, maxLoop: 4, findSatSkipCount: 6, skipWeekendCount: 11)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
             }
             
-        case "1": // if it's a weekend and weekdays are ON
-            if GlobalVars.notificationSettingsWeekend == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+            
+        case "4": // Wednesday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 3, skipWeekendCount: 5)
                 
-                print("You'll get a notification tomorrow")
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 2, maxLoop: 4, findSatSkipCount: 5, skipWeekendCount: 10)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
             }else{
-                let message:UIAlertController = UIAlertController(title: "Weekend Notifications OFF", message: "You don't have Start Notifications on for weekends. \n \n" + "To change this goto the in app Settings.", preferredStyle: UIAlertControllerStyle.alert)
-                message.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-                
-                print("Notifications are off so no start notifcations set")
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 3, skipWeekendCount: 5)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 2, maxLoop: 4, findSatSkipCount: 5, skipWeekendCount: 10)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
             }
             
-        case "7":
-            if GlobalVars.notificationSettingsWeekday == true{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = date
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+        case "5": // Thrusday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 2, skipWeekendCount: 4)
                 
-                print("You'll get a notification tomorrow")
-            }else{
-                let notification:UILocalNotification = UILocalNotification()
-                notification.category = ""
-                notification.alertBody = "Time for your first workout of the day!"
-                notification.alertAction = "View App"
-                notification.fireDate = dateSkipWeek
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.repeatInterval = NSCalendar.Unit.day // sets when the notification repeats
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 
-                UIApplication.shared.scheduleLocalNotification(notification)
+                    notificationStart(dayCountStart: 1, maxLoop: 4, findSatSkipCount: 4, skipWeekendCount: 9)
                 
-                print("You'll get a notification on Sunday")
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
+             }else{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 2, skipWeekendCount: 4)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 1, maxLoop: 4, findSatSkipCount: 4, skipWeekendCount: 9)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
             }
+            
+        case "6": // Friday            
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 2, maxLoop: 7, findSatSkipCount: 8, skipWeekendCount: 10)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 4, findSatSkipCount: 3, skipWeekendCount: 8)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
+            }else{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 1, skipWeekendCount: 3)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 0, maxLoop: 4, findSatSkipCount: 3, skipWeekendCount: 8)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
+            }
+            
+            
+        case "7": // Saturday
+            if hour! > GlobalVars.workoutNotificationStartHour && minute! > GlobalVars.workoutNotificationStartMin{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 1, maxLoop: 7, findSatSkipCount: 7, skipWeekendCount: 9)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 3, findSatSkipCount: 2, skipWeekendCount: 7)
+                
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                
+                    notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                
+                }
+                print("greater than current time - \(hour!):\(minute!)")
+            }else{
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: 1, maxLoop: 7, findSatSkipCount: 7, skipWeekendCount: 9)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 3, findSatSkipCount: 2, skipWeekendCount: 7)
+                    
+                }
+                if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
+                    
+                    // clears out all set notifications
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    
+                    notificationStart(dayCountStart: -1, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
+                    
+                }
+                print("less than current time - \(hour!):\(minute!)")
+            }
+            
             
         default:
             break
         }
     }
+    
+//func setStartNotifications(){
+//    // clears out all set notifications
+//    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//    
+//    setNotifVars()
+//    print("setStartNotification was run")
+//   
+//    let center = UNUserNotificationCenter.current()
+//    
+//    let content = UNMutableNotificationContent()
+//    content.body = "It's time for your first workout of the day!"
+//    content.sound = UNNotificationSound.default()
+//    
+//    var dateComponents = DateComponents()
+//    dateComponents.hour = GlobalVars.workoutNotificationStartHour
+//    dateComponents.minute = GlobalVars.workoutNotificationStartMin
+//    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//    
+//    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//    center.add(request)
+//    
+//    print("notification set for \(dateComponents.hour!):\(dateComponents.minute!)")
+//    }
     
 }
