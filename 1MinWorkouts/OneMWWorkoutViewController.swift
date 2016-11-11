@@ -59,7 +59,7 @@ class OneMWWorkoutViewController: UIViewController {
     
     @IBAction func startWorkoutBtn(_ sender: AnyObject) {// restart button
         getReadyView.isHidden = false
-        workoutCountdownLabel.isHidden = false
+        workoutCountdownLabel.isHidden = true
         
         exerciseCountdownTimer.invalidate()
         setExerciseTimerGetReady(5, timerLabel: "5")
@@ -258,11 +258,13 @@ class OneMWWorkoutViewController: UIViewController {
                 setExerciseTimer(30, timerLabel: "30")
                 getReadyLabel.text = "Get ready to workout!"
                 getReadyView.isHidden = true
+                workoutCountdownLabel.isHidden = false
                 print("switched sides timer reset was triggered")
             }else {// regular 5 sec countdown get ready 
                 exerciseCountdownTimer.invalidate() // stops the countdown
             
                 getReadyView.isHidden = true
+                workoutCountdownLabel.isHidden = false
                 setExerciseTimer(60, timerLabel: "60")
             
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
@@ -342,7 +344,7 @@ class OneMWWorkoutViewController: UIViewController {
         
         // sets the get ready to workout countdown view
         getReadyView.isHidden = false
-        workoutCountdownLabel.isHidden = false
+        workoutCountdownLabel.isHidden = true
         setExerciseTimerGetReady(5, timerLabel: "5")
         
         // sets the get ready to workout label for the initial workout start message
