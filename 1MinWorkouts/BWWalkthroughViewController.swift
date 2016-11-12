@@ -82,7 +82,7 @@ import UIKit
             self.dismiss(animated: true, completion: nil)
             
             // pops back to the root, prior to the disclaimer xib
-            navigationController?.popToRootViewController(animated: true)
+//            navigationController?.popToRootViewController(animated: true)
             
             print("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
         }else{
@@ -224,7 +224,7 @@ import UIKit
             self.dismiss(animated: true, completion: nil)
             
             // pops back to the root, prior to the disclaimer xib
-            navigationController?.popToRootViewController(animated: true)
+//            navigationController?.popToRootViewController(animated: true)
             
             print("The user has oobeStartDaySetup defined: \(oobeStartDaySetup)")
         }else{
@@ -315,6 +315,7 @@ import UIKit
         
         if currentPage == controllers.count - 1{
             nextButton?.isHidden = true
+            getStrated.isHidden = false
         }else{
             nextButton?.isHidden = false
         }

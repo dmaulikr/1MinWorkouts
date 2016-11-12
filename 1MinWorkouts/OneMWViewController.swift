@@ -213,7 +213,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         }
         
         // segue out of this view and back to home
-        navigationController?.popToRootViewController(animated: true)
+        // navigationController?.popToRootViewController(animated: true)
     }
 
     override func viewDidLoad() {
@@ -294,7 +294,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             }
 
         }
-        controller.navigationController?.popViewController(animated: true)
+//        controller.navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
