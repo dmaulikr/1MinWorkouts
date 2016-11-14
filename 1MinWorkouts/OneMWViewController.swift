@@ -213,7 +213,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         }
         
         // segue out of this view and back to home
-        navigationController?.popToRootViewController(animated: true)
+        navigationController!.popToRootViewController(animated: true)
     }
 
     override func viewDidLoad() {

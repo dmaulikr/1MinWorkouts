@@ -183,6 +183,7 @@ class OneMWWorkoutViewController: UIViewController {
         // what happens when the timer ends
         if (GlobalVars.exerciseSecondsCount == 0) {
             exerciseCountdownTimer.invalidate() // stops the countdown
+            workoutCountdownLabel.isHidden = true
             
             
             // increments the index index variable to update to the next exercise
