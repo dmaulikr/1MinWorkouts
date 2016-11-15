@@ -77,43 +77,43 @@ class OneMWStartViewController: UIViewController {
     
     
     //------------------------------------ Notification Function ----------------------------------------------------//
-    func workoutNotification(_ fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendar.Unit){
-        
-        let today = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-//        let hour = components.hour
-//        let minutes = components.minute
-        let month = components.month
-        let year = components.year
-        let day = components.day
-//        let weekday = components.weekday
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
-        
-        var dateComp:DateComponents = DateComponents()
-        dateComp.year = year    // sets to current year
-        dateComp.month = month  // sets to current month
-        dateComp.day = day      // sets to current day
-        dateComp.hour = fHour
-        dateComp.minute = fMin
-        dateComp.second = 0
-        (dateComp as NSDateComponents).timeZone = TimeZone.current
-        
-        let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let date:Date = calender.date(from: dateComp)!
-        
-        let notification:UILocalNotification = UILocalNotification()
-        notification.category = fCategory
-        notification.alertBody = fAlertBody
-        notification.alertAction = "View App"
-        notification.fireDate = date
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.repeatInterval = fRepeat // sets when the notification repeats
-        
-        UIApplication.shared.scheduleLocalNotification(notification)
-    }
+//    func workoutNotification(_ fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendar.Unit){
+//        
+//        let today = Date()
+//        let calendar = Calendar.current
+//        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
+////        let hour = components.hour
+////        let minutes = components.minute
+//        let month = components.month
+//        let year = components.year
+//        let day = components.day
+////        let weekday = components.weekday
+//        
+//        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
+//        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
+//        
+//        var dateComp:DateComponents = DateComponents()
+//        dateComp.year = year    // sets to current year
+//        dateComp.month = month  // sets to current month
+//        dateComp.day = day      // sets to current day
+//        dateComp.hour = fHour
+//        dateComp.minute = fMin
+//        dateComp.second = 0
+//        (dateComp as NSDateComponents).timeZone = TimeZone.current
+//        
+//        let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+//        let date:Date = calender.date(from: dateComp)!
+//        
+//        let notification:UILocalNotification = UILocalNotification()
+//        notification.category = fCategory
+//        notification.alertBody = fAlertBody
+//        notification.alertAction = "View App"
+//        notification.fireDate = date
+//        notification.soundName = UILocalNotificationDefaultSoundName
+//        notification.repeatInterval = fRepeat // sets when the notification repeats
+//        
+//        UIApplication.shared.scheduleLocalNotification(notification)
+//    }
     //------------------------------------ /Notification Function ---------------------------------------------------//
     
     override func viewWillAppear(_ animated: Bool) {
@@ -358,28 +358,28 @@ class OneMWStartViewController: UIViewController {
         
 
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        let appUserSettings = UserDefaults.standard // instantiates a user default holder
-        // sets start 1MW App notification
-        if let startNotifSet: AnyObject = appUserSettings.value(forKey: "startDayHour") as AnyObject?{
-            // if there IS a value set this will happen
-            var startHour = appUserSettings.integer(forKey: GlobalVars.startDayHour)
-            var startMin = appUserSettings.integer(forKey: GlobalVars.startDayMin)
-            
-            setNotifVars()// sets globalvars and prints curren notfication settings
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendar.Unit.day)
-            
-        }else{
-            // there is NO value set so this will happen
-//            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
-//            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
-//            appUserSettings.setValue(30, forKey: GlobalVars.startDayMin)
-//            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
-//            appUserSettings.setValue(true, forKey: GlobalVars.notificationWeekday)
-//            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
-//            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
-//            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
-        }
+//        let appUserSettings = UserDefaults.standard // instantiates a user default holder
+//        // sets start 1MW App notification
+//        if let startNotifSet: AnyObject = appUserSettings.value(forKey: "startDayHour") as AnyObject?{
+//            // if there IS a value set this will happen
+//            var startHour = appUserSettings.integer(forKey: GlobalVars.startDayHour)
+//            var startMin = appUserSettings.integer(forKey: GlobalVars.startDayMin)
+//            
+//            setNotifVars()// sets globalvars and prints curren notfication settings
+//            
+//           // workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendar.Unit.day)
+//            
+//        }else{
+//            // there is NO value set so this will happen
+////            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
+////            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
+////            appUserSettings.setValue(30, forKey: GlobalVars.startDayMin)
+////            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
+////            appUserSettings.setValue(true, forKey: GlobalVars.notificationWeekday)
+////            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
+////            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
+////            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
+//        }
     }
     
     //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
