@@ -40,6 +40,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         // reset workout counter index to 0
         GlobalVars.exerciseIndexCount = 0
         
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() //  removes/clears all pending notification request
+        
         // resets next days start notification
         let today = Date()
         let calendar = Calendar.current

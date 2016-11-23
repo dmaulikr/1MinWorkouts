@@ -10,6 +10,8 @@ import UIKit
 
 class OneMWStartViewController: UIViewController {
     
+    let lastWorkoutLabelSettings = UserDefaults.standard // instantiates a user default holder for the next workout labels
+    
     @IBOutlet var UBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
@@ -23,10 +25,16 @@ class OneMWStartViewController: UIViewController {
         //todaysDateFormatter.timeStyle = .ShortStyle
         
         let todaysDateString = todaysDateFormatter.string(from: todaysDate)
+        lastWorkoutLabelSettings.set("Last Workout:  \(todaysDateString)", forKey: "lastWorkoutDate") // sets the userDefaults to lastWorkoutDate
         
-        UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
-        LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
-        CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        UBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        LBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        CoreBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        
+//        UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+//        LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+//        CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        
     }
     
     @IBAction func upperBodyBtn(_ sender: AnyObject) {
@@ -49,27 +57,78 @@ class OneMWStartViewController: UIViewController {
         
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-        UBBtnLastWorkoutLabel.isHidden = false
-        LBBtnLastWorkoutLabel.isHidden = true
-        CoreBtnLastWorkoutLabel.isHidden = true
+//        UBBtnLastWorkoutLabel.isHidden = false
+//        LBBtnLastWorkoutLabel.isHidden = true
+//        CoreBtnLastWorkoutLabel.isHidden = true
+        
+        lastWorkoutLabelSettings.set(false, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("UBLabel is: \(GlobalVars.UBLabel)")
+
     }
     
     @IBAction func lowerBodyBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = true
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-        UBBtnLastWorkoutLabel.isHidden = true
-        LBBtnLastWorkoutLabel.isHidden = false
-        CoreBtnLastWorkoutLabel.isHidden = true
+//        UBBtnLastWorkoutLabel.isHidden = true
+//        LBBtnLastWorkoutLabel.isHidden = false
+//        CoreBtnLastWorkoutLabel.isHidden = true
+        
+        lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(false, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("LBLabel is: \(GlobalVars.LBLabel)")
+
     }
     
     @IBAction func allCoreBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = true
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-        UBBtnLastWorkoutLabel.isHidden = true
-        LBBtnLastWorkoutLabel.isHidden = true
-        CoreBtnLastWorkoutLabel.isHidden = false
+//        UBBtnLastWorkoutLabel.isHidden = true
+//        LBBtnLastWorkoutLabel.isHidden = true
+//        CoreBtnLastWorkoutLabel.isHidden = false
+        
+        lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(false, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("AClabel is: \(GlobalVars.ACLabel)")
+
     }
     
     // instantiates the walkthrough XIB
@@ -136,10 +195,20 @@ class OneMWStartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hides all last workout date labels on start up
-        UBBtnLastWorkoutLabel.isHidden = true
-        LBBtnLastWorkoutLabel.isHidden = true
-        CoreBtnLastWorkoutLabel.isHidden = true
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        GlobalVars.lastWorkoutDate = lastWorkoutLabelSettings.string(forKey: "lastWorkoutDate")!
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        UBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        LBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        CoreBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        print("UBLabel is: \(GlobalVars.UBLabel)")
         
         GlobalVars.exerciseIndexCount = 0
        
@@ -416,6 +485,5 @@ class OneMWStartViewController: UIViewController {
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
         }
     }
-
 
 }

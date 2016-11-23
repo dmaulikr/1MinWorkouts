@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Upcoming Workout" translatesAutoresizingMaskIntoConstraints="NO" id="4PG-Ql-G4S">
-                                <rect key="frame" x="36" y="202" width="306" height="363"/>
+                                <rect key="frame" x="36" y="304" width="306" height="363"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="306" id="G34-XI-K93"/>
                                     <constraint firstAttribute="width" secondItem="4PG-Ql-G4S" secondAttribute="height" multiplier="290:363" constant="16" id="Hzx-zu-MiA"/>
@@ -115,11 +115,11 @@
                         <constraints>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="trailing" secondItem="i4B-9Z-B6b" secondAttribute="trailing" id="3uu-8w-Y3D"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="top" secondItem="4m2-5e-uF5" secondAttribute="bottom" constant="51" id="IRX-cL-hV6"/>
-                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="bottom" secondItem="Atn-1L-Qvg" secondAttribute="top" constant="-102" id="REs-7Z-mzz"/>
+                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="bottom" secondItem="Atn-1L-Qvg" secondAttribute="top" id="REs-7Z-mzz"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="top" secondItem="4m2-5e-uF5" secondAttribute="bottom" constant="71" id="XIY-Pk-RpQ"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="leading" secondItem="i4B-9Z-B6b" secondAttribute="leading" id="XMf-D5-EWY"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="leading" secondItem="GHs-tO-uRf" secondAttribute="leadingMargin" constant="4" id="aQe-Uw-dsR"/>
-                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="top" secondItem="i4B-9Z-B6b" secondAttribute="bottom" constant="30" id="e5y-Dq-QQQ"/>
+                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="top" secondItem="i4B-9Z-B6b" secondAttribute="bottom" constant="132" id="e5y-Dq-QQQ"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="trailing" secondItem="GHs-tO-uRf" secondAttribute="trailingMargin" id="jyF-PU-HT8"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="centerX" secondItem="4PG-Ql-G4S" secondAttribute="centerX" id="xru-oM-sOS"/>
                         </constraints>

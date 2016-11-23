@@ -15,7 +15,7 @@
         <!--1Minute Workouts-->
         <scene sceneID="QpU-rj-b8w">
             <objects>
-                <navigationController restorationIdentifier="oneMWTabControl" storyboardIdentifier="oneMWTabControl" title="1Minute Workouts" id="Qcy-wR-NVu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="oneMWTabControl" title="1Minute Workouts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qcy-wR-NVu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="1MW's" image="1MW-icon" id="JSI-gL-rPz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YEY-8d-fAX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -91,19 +91,19 @@
                                     <segue destination="jm9-jA-Q8X" kind="show" identifier="segueToLBExerciseType" id="QRN-hZ-SCW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-fF-bIB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="LBLastWorkoutLabel" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yG-fF-bIB">
                                 <rect key="frame" x="15" y="409" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQO-GO-OZn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="CoreLastWorkoutLabel" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQO-GO-OZn">
                                 <rect key="frame" x="15" y="592" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Workout: June 30, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGO-Mr-9EF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="UBLastWorkoutLabel" text="Start Here!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGO-Mr-9EF">
                                 <rect key="frame" x="15" y="224" width="339" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.51764705882352935" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,7 +149,7 @@
         <!--Upcoming Workouts-->
         <scene sceneID="QcE-Jt-igv">
             <objects>
-                <viewController storyboardIdentifier="oneMWTabControl-counter" title="Upcoming Workouts" id="jm9-jA-Q8X" customClass="OneMWViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oneMWTabControl-counter" title="Upcoming Workouts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jm9-jA-Q8X" customClass="OneMWViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KWF-4z-w6b"/>
                         <viewControllerLayoutGuide type="bottom" id="vvb-97-72H"/>
@@ -265,7 +265,7 @@
         <!--exerciseNow-->
         <scene sceneID="gvU-F6-W5z">
             <objects>
-                <viewController storyboardIdentifier="exerciseNow" title="exerciseNow" id="JFD-yd-la9" customClass="OneMWWorkoutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="exerciseNow" title="exerciseNow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JFD-yd-la9" customClass="OneMWWorkoutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kda-lb-sh6"/>
                         <viewControllerLayoutGuide type="bottom" id="j2w-ry-z1L"/>
@@ -430,7 +430,7 @@
         <!--OneMW Info View Controller-->
         <scene sceneID="N6k-el-qyW">
             <objects>
-                <viewController storyboardIdentifier="exerciseInfo" id="7cb-go-cxL" customClass="OneMWInfoViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="exerciseInfo" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7cb-go-cxL" customClass="OneMWInfoViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o8Q-G4-Dw6"/>
                         <viewControllerLayoutGuide type="bottom" id="O2X-vf-HTX"/>
@@ -440,14 +440,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-fb-Dw3">
-                                <rect key="frame" x="20" y="48" width="339" height="599"/>
+                                <rect key="frame" x="20" y="68" width="339" height="579"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zJ-w1-TFl">
-                                <rect key="frame" x="20" y="8" width="37" height="30"/>
+                                <rect key="frame" x="20" y="28" width="37" height="30"/>
                                 <color key="tintColor" red="0.32909396290779114" green="0.62022286653518677" blue="0.80595898628234863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -457,7 +457,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Type Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Do1-hl-ICq">
-                                <rect key="frame" x="87" y="9" width="200" height="29"/>
+                                <rect key="frame" x="87" y="29" width="200" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.32909396290779114" green="0.62022286653518677" blue="0.80595898628234863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -487,7 +487,7 @@
         <!--Stats-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="StatsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oneMWTabControl-stats" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rJ-Kc-sve" customClass="StatsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -551,7 +551,7 @@
         <!--Workouts-->
         <scene sceneID="Tdz-6Z-j2f">
             <objects>
-                <viewController id="CjT-54-hLU" customClass="WorkoutsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oneMWTabControl-workouts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CjT-54-hLU" customClass="WorkoutsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f1F-Xl-ZJG"/>
                         <viewControllerLayoutGuide type="bottom" id="0Um-iA-82D"/>
@@ -609,7 +609,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <!--Settings-->
         <scene sceneID="47s-qt-BE7">
             <objects>
-                <tableViewController id="VqK-ba-yCs" customClass="SettingsTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="oneMWTabControl-settings-info" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VqK-ba-yCs" customClass="SettingsTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="LQ7-dG-qqp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -722,7 +722,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <!--My Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="TabControllerMain" id="49e-Tb-3d3" customClass="MyTabBarController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabControllerMain" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" customClass="MyTabBarController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -742,7 +742,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <!--Settings-->
         <scene sceneID="vxx-yp-dS8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IHw-Ow-rJG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="oneMWTabControl-settings" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IHw-Ow-rJG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings-icon" id="P8l-gC-qnR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGt-hJ-YBf">
@@ -765,7 +765,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <!--Start Day Notification-->
         <scene sceneID="h3x-55-jTd">
             <objects>
-                <tableViewController title="Start Day Notification" id="NlD-Ap-qbm" customClass="SettingsStartDayTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="oneMWTabControl-settings-first-workout" title="Start Day Notification" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NlD-Ap-qbm" customClass="SettingsStartDayTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="YZY-1E-tQL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -955,7 +955,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
         <!--About-->
         <scene sceneID="U4x-RO-Qok">
             <objects>
-                <viewController title="About" id="OGU-2s-bBM" customClass="AboutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oneMWTabControl-settings-about" title="About" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OGU-2s-bBM" customClass="AboutViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1T0-DS-uuQ"/>
                         <viewControllerLayoutGuide type="bottom" id="zga-zf-wgN"/>
@@ -1036,6 +1036,6 @@ After that you'll be able to do an in-app purchase so you can build your own wor
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RKc-4M-Vs2"/>
-        <segue reference="gPk-jv-ujV"/>
+        <segue reference="cXJ-4s-CSg"/>
     </inferredMetricsTieBreakers>
 </document>

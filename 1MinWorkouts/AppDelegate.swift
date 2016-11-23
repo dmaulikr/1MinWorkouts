@@ -46,6 +46,16 @@ import UserNotifications
             }
         }
     }
+    
+    // allows the app to save state
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    // allows the app to retore state
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
 }
 
 

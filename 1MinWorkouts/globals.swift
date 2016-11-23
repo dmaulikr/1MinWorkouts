@@ -38,6 +38,12 @@ struct GlobalVars {
     static let startDayMin = "startDayMin"
     static let notificationWeekday = "notificationWeekday"
     static let notificationWeekend = "notificationWeekend"
+    
+    // Last Workout Label Keys
+    static var UBLabel = true
+    static var LBLabel = true
+    static var ACLabel = true
+    static var lastWorkoutDate = "Start Here!"
 }
 
 func setNotifVars(){
