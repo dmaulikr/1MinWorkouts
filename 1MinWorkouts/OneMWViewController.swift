@@ -12,6 +12,8 @@ import UserNotifications
 
 class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate {
     
+    let whyNotificationsSettings = UserDefaults.standard // instantiates a user default holder for why notifications alert
+    
     var exerciseTitle = ""
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
@@ -235,15 +237,38 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         nextWorkoutTime = "Right Now!"
         nextWorkoutNotificationLabel.text = nextWorkoutTime
         
-//        let settings = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
-//        UIApplication.shared.registerUserNotificationSettings(settings)
+        // Checks to see if why notification alert has been shown already
+//        whyNotificationsSettings.set(true, forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafaults and then set that to GlobalVars
+        GlobalVars.whyNotificationsAlert = whyNotificationsSettings.bool(forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafault to GlobalVars
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
-            if !accepted {
-                print("Notification access denied.")
-            }
-        }
-        
+        if GlobalVars.whyNotificationsAlert == false{
+            // create the alert
+            let alert = UIAlertController(title: "Please Allow Notifications", message: "\n\n\nTo get the most out of 1MinuteWorkouts please ALLOW notifications on the next screen.\n\nThis will allow us to notify you when you have a workout to do.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                (action: UIAlertAction!) in
+                
+                self.whyNotificationsSettings.set(true, forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafaults and then set that to GlobalVars
+                GlobalVars.whyNotificationsAlert = self.whyNotificationsSettings.bool(forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafault to GlobalVars
+                print("whyNotificationsAlert is: \(GlobalVars.whyNotificationsAlert)")
+                
+                // asks user if they will allow notifications
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
+                    if !accepted {
+                        print("Notification access denied.")
+                    }
+                }
+            }))
+            
+            let thumbsImage = UIImage(named: "thumbs-up")
+            let imageView = UIImageView(frame: CGRect(x: 117, y: 47, width: 40, height: 40))
+            imageView.image = thumbsImage
+            
+            alert.view.addSubview(imageView)
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)        }
 
     }
     

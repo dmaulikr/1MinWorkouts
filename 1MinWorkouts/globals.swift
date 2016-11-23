@@ -44,6 +44,8 @@ struct GlobalVars {
     static var LBLabel = true
     static var ACLabel = true
     static var lastWorkoutDate = "Start Here!"
+    
+    static var whyNotificationsAlert = false // starts as true to show the alert
 }
 
 func setNotifVars(){
