@@ -60,17 +60,19 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         func notificationStart(dayCountStart: Int, maxLoop: Int, findSatSkipCount: Int, skipWeekendCount: Int){
             var addDay = dayCountStart
+            var notifContent = "It's time for your first workout of the day!"
             for _ in 1...maxLoop { // iterates based on var maxLoop setting
                 addDay += 1  // sets the notification date to next day and then increments the added day by one for each iteration of the Loop
                 
                 if addDay == findSatSkipCount{ // checks to find when Saturday is within the 7 iterations
                     addDay = skipWeekendCount  // skips the weekend and adds two more notifications for 7 total set
+                    notifContent = "It's been several days since your last workout. Might be a good time to start up again before you get to saggy 😁"
                 }
                 
                 let center = UNUserNotificationCenter.current()
                 
                 let content = UNMutableNotificationContent()
-                content.body = "It's time for your first workout of the day!"
+                content.body = notifContent
                 content.sound = UNNotificationSound.default()
                 
                 var dateComponents = DateComponents()

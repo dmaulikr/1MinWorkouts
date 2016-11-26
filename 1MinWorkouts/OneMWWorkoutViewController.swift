@@ -163,7 +163,7 @@ class OneMWWorkoutViewController: UIViewController {
         // what happens when the timer has 10 seconds left
         if exerciseTitle != "Side Plank"{ // if Side Plank doesn't do the 10 sec reminder vibrate since you switch at 30 sec
             if (GlobalVars.exerciseSecondsCount == 10) {
-                AudioServicesPlaySystemSound(1360) // plays double vibrate when there's 10 secs left in workout
+                AudioServicesPlaySystemSound(1361) // was 1360, plays double vibrate when there's 10 secs left in workout
             }
         }
         
@@ -227,7 +227,8 @@ class OneMWWorkoutViewController: UIViewController {
             
             self.present(alert, animated: true, completion: nil)
             
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
+            //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
+            AudioServicesPlaySystemSound(1120) // plays vibrate and tone
         }
     }
     
@@ -268,7 +269,8 @@ class OneMWWorkoutViewController: UIViewController {
                 workoutCountdownLabel.isHidden = false
                 setExerciseTimer(60, timerLabel: "60")
             
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when 5 sec countdown is done
+                //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate and message tone when 5 sec countdown is done
+                AudioServicesPlaySystemSound(1120) // plays vibrate and tone 1008-start/stop 1110 (nice option, maybe too simple)
                 print("get ready triggered else")
             }
         }
