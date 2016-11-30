@@ -105,7 +105,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     
     func myVCDidFinish(_ controller: SettingsStartDayTableViewController, text: String) {
         startDayDetailLabel.text = text
-       // controller.navigationController?.popViewController(animated: true)
+       controller.navigationController!.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {

@@ -54,6 +54,6 @@ func setNotifVars(){
     GlobalVars.workoutNotificationStartMin = appUserSettings.integer(forKey: "startDayMin") as Int!
     GlobalVars.notificationSettingsWeekday = appUserSettings.bool(forKey: "notificationWeekday") as Bool!
     GlobalVars.notificationSettingsWeekend = appUserSettings.bool(forKey: "notificationWeekend") as Bool!
-    print("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
+    print("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
 }
 

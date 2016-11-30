@@ -127,7 +127,9 @@ class SettingsStartDayTableViewController: UITableViewController {
         print("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
         
     }
-    
+//    override func viewWillDisappear(_ animated: Bool) {        
+//        setStartNotifications()
+//    }
     override func viewWillAppear(_ animated: Bool) {
         
         if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == false{
@@ -260,6 +262,7 @@ class SettingsStartDayTableViewController: UITableViewController {
                 
                 print("notification set for \(dateComponents.month!)/\(dateComponents.day!)/\(dateComponents.year!) - \(dateComponents.hour!):\(dateComponents.minute!)")
             }
+            navigationController!.popToRootViewController(animated: true)
         }
         
         switch dayOfWeek{
@@ -654,29 +657,5 @@ class SettingsStartDayTableViewController: UITableViewController {
             break
         }
     }
-    
-//func setStartNotifications(){
-//    // clears out all set notifications
-//    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-//    
-//    setNotifVars()
-//    print("setStartNotification was run")
-//   
-//    let center = UNUserNotificationCenter.current()
-//    
-//    let content = UNMutableNotificationContent()
-//    content.body = "It's time for your first workout of the day!"
-//    content.sound = UNNotificationSound.default()
-//    
-//    var dateComponents = DateComponents()
-//    dateComponents.hour = GlobalVars.workoutNotificationStartHour
-//    dateComponents.minute = GlobalVars.workoutNotificationStartMin
-//    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-//    
-//    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-//    center.add(request)
-//    
-//    print("notification set for \(dateComponents.hour!):\(dateComponents.minute!)")
-//    }
     
 }
