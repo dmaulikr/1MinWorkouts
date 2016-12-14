@@ -2,7 +2,7 @@
 //  SettingsStartDayTableViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 5/1/15.
+//  Created by Justin on 5/1/15.
 //  Copyright (c) 2015 Good Enough LLC. All rights reserved.
 //
 
@@ -127,9 +127,7 @@ class SettingsStartDayTableViewController: UITableViewController {
         print("startDayPicker was touched. The Hour is \(sender.hour)" + " The Min is \(sender.minute)")
         
     }
-//    override func viewWillDisappear(_ animated: Bool) {        
-//        setStartNotifications()
-//    }
+
     override func viewWillAppear(_ animated: Bool) {
         
         if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == false{

@@ -240,7 +240,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         nextWorkoutNotificationLabel.text = nextWorkoutTime
         
         // Checks to see if why notification alert has been shown already
-//        whyNotificationsSettings.set(true, forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafaults and then set that to GlobalVars
         GlobalVars.whyNotificationsAlert = whyNotificationsSettings.bool(forKey: "whyNotificationsAlert") // sets the whyNotificationsAlert userDeafault to GlobalVars
         
         if GlobalVars.whyNotificationsAlert == false{
@@ -323,7 +322,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             }
 
         }
-//        controller.navigationController?.popViewController(animated: true)
+        controller.navigationController!.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -25,41 +25,23 @@ class OneMWStartViewController: UIViewController {
         //todaysDateFormatter.timeStyle = .ShortStyle
         
         let todaysDateString = todaysDateFormatter.string(from: todaysDate)
-        lastWorkoutLabelSettings.set("Last Workout:  \(todaysDateString)", forKey: "lastWorkoutDate") // sets the userDefaults to lastWorkoutDate
+//        print("Last Workout: \(GlobalVars.lastWorkoutDate)")
+        print("todays date \(todaysDateString)")
         
-        UBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
-        LBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
-        CoreBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
-        
-//        UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
-//        LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
-//        CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        GlobalVars.lastWorkoutDate = todaysDateString
+        lastWorkoutLabelSettings.set("Last Workout: \(todaysDateString)", forKey: "lastWorkoutDate") // sets the userDefaults to lastWorkoutDate
+        print("Last Workout Date getTodaysDate: \(GlobalVars.lastWorkoutDate)")
         
     }
     
     @IBAction func upperBodyBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
-//        // sets workout notifications for the day
-//        if GlobalVars.workoutNotificationStartMin >= 30{
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//            
-//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for upper body >= 30")
-//        }else {
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//            
-//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for upper body < 30")
-//        }
-        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-//        UBBtnLastWorkoutLabel.isHidden = false
-//        LBBtnLastWorkoutLabel.isHidden = true
-//        CoreBtnLastWorkoutLabel.isHidden = true
         
         lastWorkoutLabelSettings.set(false, forKey: "UBlabel")
         lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
@@ -81,11 +63,9 @@ class OneMWStartViewController: UIViewController {
     
     @IBAction func lowerBodyBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = true
+        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-//        UBBtnLastWorkoutLabel.isHidden = true
-//        LBBtnLastWorkoutLabel.isHidden = false
-//        CoreBtnLastWorkoutLabel.isHidden = true
         
         lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
         lastWorkoutLabelSettings.set(false, forKey: "LBlabel")
@@ -107,11 +87,9 @@ class OneMWStartViewController: UIViewController {
     
     @IBAction func allCoreBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = true
+        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-//        UBBtnLastWorkoutLabel.isHidden = true
-//        LBBtnLastWorkoutLabel.isHidden = true
-//        CoreBtnLastWorkoutLabel.isHidden = false
         
         lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
         lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
@@ -133,47 +111,6 @@ class OneMWStartViewController: UIViewController {
     
     // instantiates the walkthrough XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
-    
-    
-    //------------------------------------ Notification Function ----------------------------------------------------//
-//    func workoutNotification(_ fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendar.Unit){
-//        
-//        let today = Date()
-//        let calendar = Calendar.current
-//        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-////        let hour = components.hour
-////        let minutes = components.minute
-//        let month = components.month
-//        let year = components.year
-//        let day = components.day
-////        let weekday = components.weekday
-//        
-//        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
-//        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
-//        
-//        var dateComp:DateComponents = DateComponents()
-//        dateComp.year = year    // sets to current year
-//        dateComp.month = month  // sets to current month
-//        dateComp.day = day      // sets to current day
-//        dateComp.hour = fHour
-//        dateComp.minute = fMin
-//        dateComp.second = 0
-//        (dateComp as NSDateComponents).timeZone = TimeZone.current
-//        
-//        let calender:Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-//        let date:Date = calender.date(from: dateComp)!
-//        
-//        let notification:UILocalNotification = UILocalNotification()
-//        notification.category = fCategory
-//        notification.alertBody = fAlertBody
-//        notification.alertAction = "View App"
-//        notification.fireDate = date
-//        notification.soundName = UILocalNotificationDefaultSoundName
-//        notification.repeatInterval = fRepeat // sets when the notification repeats
-//        
-//        UIApplication.shared.scheduleLocalNotification(notification)
-//    }
-    //------------------------------------ /Notification Function ---------------------------------------------------//
     
     override func viewWillAppear(_ animated: Bool) {
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
@@ -208,7 +145,8 @@ class OneMWStartViewController: UIViewController {
         UBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
         LBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
         CoreBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
-        print("UBLabel is: \(GlobalVars.UBLabel)")
+        //print("UBLabel is: \(GlobalVars.UBLabel)")
+        //print("Last Workout Date: \(GlobalVars.lastWorkoutDate)")
         
         GlobalVars.exerciseIndexCount = 0
        
@@ -425,39 +363,19 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseCore.append(newExercise)
         
-
-        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-//        let appUserSettings = UserDefaults.standard // instantiates a user default holder
-//        // sets start 1MW App notification
-//        if let startNotifSet: AnyObject = appUserSettings.value(forKey: "startDayHour") as AnyObject?{
-//            // if there IS a value set this will happen
-//            var startHour = appUserSettings.integer(forKey: GlobalVars.startDayHour)
-//            var startMin = appUserSettings.integer(forKey: GlobalVars.startDayMin)
-//            
-//            setNotifVars()// sets globalvars and prints curren notfication settings
-//            
-//           // workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendar.Unit.day)
-//            
-//        }else{
-//            // there is NO value set so this will happen
-////            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
-////            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
-////            appUserSettings.setValue(30, forKey: GlobalVars.startDayMin)
-////            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
-////            appUserSettings.setValue(true, forKey: GlobalVars.notificationWeekday)
-////            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
-////            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
-////            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
-//        }
     }
     
-    //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        
+        //super.encodeRestorableState(with: coder)
+    }
     
-//    func snoozeWorkout(notification:NSNotification){
-//        
-//        print("5 min snooze hit")
-//    }
-    //------------------------------------ /Notification Functions ----------------------------------------------------//
+    override func decodeRestorableState(with coder: NSCoder) {
+
+        
+        //super.decodeRestorableStateWithCoder(coder)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

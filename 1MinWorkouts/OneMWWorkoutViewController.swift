@@ -287,53 +287,7 @@ class OneMWWorkoutViewController: UIViewController {
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(OneMWWorkoutViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
         
     }
-    
-    // this fucntion doesn't appear to be used delete if anything strange is noticed while testing beta 0.0.9
-//    func setNotificationTime(){
-//        
-//        let today = Date()
-//        let calendar = Calendar.current
-//        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-//        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-//        let hour = components.hour
-//        let minutes = components.minute
-//        let seconds = components.second
-//        let month = components.month
-//        let year = components.year
-//        let day = components.day
-//        let weekday = components.weekday
-//        
-//        var minutesFix = minutes
-//        
-//        if minutes! < 10{
-//            var minutesFix = "/(minutes + 10)"
-//        }
-//
-//        if hour < 11{
-//            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)AM"
-//        }
-//        
-//        if hour == 11{
-//            //nextWorkoutNotificationLabel.text = "\(hour + 1):\(minutesFix)PM"
-//        }
-//        
-//        if hour == 12{
-//            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)PM"
-//        }
-//        
-//        if hour > 12{
-//            //nextWorkoutNotificationLabel.text = "\((hour - 12) + 1):\(minutesFix)PM"
-//        }
-//        if hour == 23{
-//            //nextWorkoutNotificationLabel.text = "12:\(minutesFix)AM"
-//        }
-//        
-//        if hour == 24{
-//            //nextWorkoutNotificationLabel.text = "1:\(minutesFix)AM"
-//        }
-//    }
-
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         

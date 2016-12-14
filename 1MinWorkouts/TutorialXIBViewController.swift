@@ -2,7 +2,7 @@
 //  TutorialXIBViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 3/23/15.
+//  Created by Justin on 3/23/15.
 //  Copyright (c) 2015 Good Enough LLC. All rights reserved.
 //
 
@@ -54,24 +54,6 @@ class TutorialXIBViewController: UIViewController, BWWalkthroughViewControllerDe
         
         self.present(walkthrough, animated: true, completion: nil)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-//        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-//        
-//        // check to see if oobeDisclaimer has a settings
-//        if let disclaimerShown = appUserSettings.stringForKey(GlobalVars.oobeDisclaimer){
-//            disclaimerView.hidden = true // hides the disclaimer
-//            //tutorialView.hidden = false // shows tutorial
-//            println("disclaimer is set to: \(disclaimerShown)")
-//            
-//        }else{
-//            disclaimerView.hidden = false // shows the disclaimer
-//            println("oobeDisclaimer is set to \(appUserSettings.valueForKey(GlobalVars.oobeDisclaimer))")
-//        }
-        
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
