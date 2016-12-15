@@ -17,7 +17,7 @@ struct GlobalVars {
     static var exerciseLB = [Exercise]()
     static var exerciseCore = [Exercise]()
     static var exerciseIndexCount = 0
-    static var appVersion = "Version 0.0.8c (beta)"
+    static var appVersion = "Version 0.0.9 (beta)"
     
     //static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     static var workoutNotificationStartHour = 8     // will get overriden at app launch
@@ -38,14 +38,22 @@ struct GlobalVars {
     static let startDayMin = "startDayMin"
     static let notificationWeekday = "notificationWeekday"
     static let notificationWeekend = "notificationWeekend"
+    
+    // Last Workout Label Keys
+    static var UBLabel = true
+    static var LBLabel = true
+    static var ACLabel = true
+    static var lastWorkoutDate = "Start Here!"
+    
+    static var whyNotificationsAlert = false // starts as true to show the alert
 }
 
 func setNotifVars(){
-    let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-    GlobalVars.workoutNotificationStartHour = appUserSettings.integerForKey("startDayHour") as Int!
-    GlobalVars.workoutNotificationStartMin = appUserSettings.integerForKey("startDayMin") as Int!
-    GlobalVars.notificationSettingsWeekday = appUserSettings.boolForKey("notificationWeekday") as Bool!
-    GlobalVars.notificationSettingsWeekend = appUserSettings.boolForKey("notificationWeekend") as Bool!
-    print("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour) | \(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
+    let appUserSettings = UserDefaults.standard // instantiates a user default holder
+    GlobalVars.workoutNotificationStartHour = appUserSettings.integer(forKey: "startDayHour") as Int!
+    GlobalVars.workoutNotificationStartMin = appUserSettings.integer(forKey: "startDayMin") as Int!
+    GlobalVars.notificationSettingsWeekday = appUserSettings.bool(forKey: "notificationWeekday") as Bool!
+    GlobalVars.notificationSettingsWeekend = appUserSettings.bool(forKey: "notificationWeekend") as Bool!
+    print("sets GlobalVars to: \(GlobalVars.workoutNotificationStartHour):\(GlobalVars.workoutNotificationStartMin) | \(GlobalVars.notificationSettingsWeekday) | \(GlobalVars.notificationSettingsWeekend)")
 }
 

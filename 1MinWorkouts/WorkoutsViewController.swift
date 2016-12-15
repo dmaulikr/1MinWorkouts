@@ -11,13 +11,13 @@ import AudioToolbox
 
 class WorkoutsViewController: UIViewController {
 
-    var alertTone = UInt32(1481)//1359 double vibrate
+    var alertTone = UInt32(1100)// double vibrate (got to 1301)
     
-    @IBAction func findTonesBtn(sender: AnyObject) {
+    @IBAction func findTonesBtn(_ sender: AnyObject) {
         
         for _ in 1...100 {
             alertTone += 1
-            AudioServicesPlaySystemSound(alertTone) // plays haptic no vibration twice when there's 10 secs left in workout
+            AudioServicesPlaySystemSound(alertTone) // plays tones
             sleep(2)
             print("\(alertTone)")
         }
@@ -43,6 +43,6 @@ class WorkoutsViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    1109 1119  */
 
 }

@@ -10,125 +10,120 @@ import UIKit
 
 class OneMWStartViewController: UIViewController {
     
+    let lastWorkoutLabelSettings = UserDefaults.standard // instantiates a user default holder for the next workout labels
+    
     @IBOutlet var UBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
     
     // function that sets todays current date to the selected muscle group
     func getTodaysDate(){
-        let todaysDate = NSDate()
+        let todaysDate = Date()
         
-        let todaysDateFormatter = NSDateFormatter()
-        todaysDateFormatter.dateStyle = .MediumStyle
+        let todaysDateFormatter = DateFormatter()
+        todaysDateFormatter.dateStyle = .medium
         //todaysDateFormatter.timeStyle = .ShortStyle
         
-        let todaysDateString = todaysDateFormatter.stringFromDate(todaysDate)
+        let todaysDateString = todaysDateFormatter.string(from: todaysDate)
+//        print("Last Workout: \(GlobalVars.lastWorkoutDate)")
+        print("todays date \(todaysDateString)")
         
         UBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
         LBBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
         CoreBtnLastWorkoutLabel.text = "Last Workout: \(todaysDateString)"
+        GlobalVars.lastWorkoutDate = todaysDateString
+        lastWorkoutLabelSettings.set("Last Workout: \(todaysDateString)", forKey: "lastWorkoutDate") // sets the userDefaults to lastWorkoutDate
+        print("Last Workout Date getTodaysDate: \(GlobalVars.lastWorkoutDate)")
+        
     }
     
-    @IBAction func upperBodyBtn(sender: AnyObject) {
+    @IBAction func upperBodyBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = false
         
-//        // sets workout notifications for the day
-//        if GlobalVars.workoutNotificationStartMin >= 30{
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//            
-//            workoutNotification(GlobalVars.workoutNotificationStartHour + 1, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory ,fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for upper body >= 30")
-//        }else {
-//            // clears out all set notifications, just in case
-//            UIApplication.sharedApplication().cancelAllLocalNotifications()
-//            
-//            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: 50, fCategory: GlobalVars.workoutNotificationCategory, fAlertBody: "It's time for a 1 Minute Workout!", fRepeat: NSCalendarUnit.CalendarUnitHour)
-//            println("notification set for upper body < 30")
-//        }
+        // get todays date and set it to the Last Workout label and show/hide correct labels
+        getTodaysDate()
+        
+        lastWorkoutLabelSettings.set(false, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("UBLabel is: \(GlobalVars.UBLabel)")
+
+    }
+    
+    @IBAction func lowerBodyBtn(_ sender: AnyObject) {
+        GlobalVars.exerciseGroup = true
         
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-        UBBtnLastWorkoutLabel.hidden = false
-        LBBtnLastWorkoutLabel.hidden = true
-        CoreBtnLastWorkoutLabel.hidden = true
+        
+        lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(false, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("LBLabel is: \(GlobalVars.LBLabel)")
+
     }
     
-    @IBAction func lowerBodyBtn(sender: AnyObject) {
+    @IBAction func allCoreBtn(_ sender: AnyObject) {
         GlobalVars.exerciseGroup = true
+        
         // get todays date and set it to the Last Workout label and show/hide correct labels
         getTodaysDate()
-        UBBtnLastWorkoutLabel.hidden = true
-        LBBtnLastWorkoutLabel.hidden = false
-        CoreBtnLastWorkoutLabel.hidden = true
-    }
-    
-    @IBAction func allCoreBtn(sender: AnyObject) {
-        GlobalVars.exerciseGroup = true
-        // get todays date and set it to the Last Workout label and show/hide correct labels
-        getTodaysDate()
-        UBBtnLastWorkoutLabel.hidden = true
-        LBBtnLastWorkoutLabel.hidden = true
-        CoreBtnLastWorkoutLabel.hidden = false
+        
+        lastWorkoutLabelSettings.set(true, forKey: "UBlabel")
+        lastWorkoutLabelSettings.set(true, forKey: "LBlabel")
+        lastWorkoutLabelSettings.set(false, forKey: "AClabel")
+        
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        
+        print("AClabel is: \(GlobalVars.ACLabel)")
+
     }
     
     // instantiates the walkthrough XIB
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
-    
-    //------------------------------------ Notification Function ----------------------------------------------------//
-    func workoutNotification(fHour: Int, fMin: Int, fCategory: String ,fAlertBody: String, fRepeat: NSCalendarUnit){
-        
-        let today = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-        //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-        let hour = components.hour
-        let minutes = components.minute
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        let weekday = components.weekday
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"snoozeWorkout:", name: "snoozePressed", object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector:"skippedWorkout:", name: "skipWorkout", object: nil)
-        
-        let dateComp:NSDateComponents = NSDateComponents()
-        dateComp.year = year    // sets to current year
-        dateComp.month = month  // sets to current month
-        dateComp.day = day      // sets to current day
-        dateComp.hour = fHour
-        dateComp.minute = fMin
-        dateComp.second = 0
-        dateComp.timeZone = NSTimeZone.systemTimeZone()
-        
-        let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let date:NSDate = calender.dateFromComponents(dateComp)!
-        
-        let notification:UILocalNotification = UILocalNotification()
-        notification.category = fCategory
-        notification.alertBody = fAlertBody
-        notification.alertAction = "View App"
-        notification.fireDate = date
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.repeatInterval = fRepeat // sets when the notification repeats
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
-    //------------------------------------ /Notification Function ---------------------------------------------------//
-    
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
+        let appUserSettings = UserDefaults.standard // instantiates a user default holder
         
-        if let oobeShown = appUserSettings.stringForKey(GlobalVars.oobeTute){
+        if let oobeShown = appUserSettings.string(forKey: GlobalVars.oobeTute){
             // if there IS a value set this will happen
         }else{
             // there is NO value set so this will happen
-            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical  // show disclaimer XIB which leads to walkthrough and initial setup
-            presentViewController(vc, animated: true, completion: nil)
+            vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical  // show disclaimer XIB which leads to walkthrough and initial setup
+            present(vc, animated: true, completion: nil)
             
         }
         
@@ -137,10 +132,21 @@ class OneMWStartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hides all last workout date labels on start up
-        UBBtnLastWorkoutLabel.hidden = true
-        LBBtnLastWorkoutLabel.hidden = true
-        CoreBtnLastWorkoutLabel.hidden = true
+        // stores userDefault label settings in GlobalVars
+        GlobalVars.UBLabel = lastWorkoutLabelSettings.bool(forKey: "UBlabel")
+        GlobalVars.LBLabel = lastWorkoutLabelSettings.bool(forKey: "LBlabel")
+        GlobalVars.ACLabel = lastWorkoutLabelSettings.bool(forKey: "AClabel")
+        GlobalVars.lastWorkoutDate = lastWorkoutLabelSettings.string(forKey: "lastWorkoutDate")!
+        
+        // hides all last workout date labels on start up based on userDefault settings
+        UBBtnLastWorkoutLabel.isHidden = GlobalVars.UBLabel
+        LBBtnLastWorkoutLabel.isHidden = GlobalVars.LBLabel
+        CoreBtnLastWorkoutLabel.isHidden = GlobalVars.ACLabel
+        UBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        LBBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        CoreBtnLastWorkoutLabel.text = GlobalVars.lastWorkoutDate
+        //print("UBLabel is: \(GlobalVars.UBLabel)")
+        //print("Last Workout Date: \(GlobalVars.lastWorkoutDate)")
         
         GlobalVars.exerciseIndexCount = 0
        
@@ -190,7 +196,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 4
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -297,7 +303,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 0
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -332,7 +338,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 4
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -357,66 +363,45 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.exerciseCore.append(newExercise)
         
-
-        // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
-        let appUserSettings = NSUserDefaults.standardUserDefaults() // instantiates a user default holder
-        // sets start 1MW App notification
-        if let startNotifSet: AnyObject = appUserSettings.valueForKey("startDayHour"){
-            // if there IS a value set this will happen
-            var startHour = appUserSettings.integerForKey(GlobalVars.startDayHour)
-            var startMin = appUserSettings.integerForKey(GlobalVars.startDayMin)
-            
-            setNotifVars()// sets globalvars and prints curren notfication settings
-            
-            workoutNotification(GlobalVars.workoutNotificationStartHour, fMin: GlobalVars.workoutNotificationStartMin, fCategory: "", fAlertBody: "Time for your first workout of the day!", fRepeat: NSCalendarUnit.Day)
-            
-        }else{
-            // there is NO value set so this will happen
-//            appUserSettings.setValue(8, forKey: GlobalVars.startDayHour)
-//            println("startDayHour was set to \(appUserSettings.valueForKey(GlobalVars.startDayHour))")
-//            appUserSettings.setValue(30, forKey: GlobalVars.startDayMin)
-//            println("startDayMin was set to \(appUserSettings.valueForKey(GlobalVars.startDayMin))")
-//            appUserSettings.setValue(true, forKey: GlobalVars.notificationWeekday)
-//            println("notificationWeekday was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekday))")
-//            appUserSettings.setValue(false, forKey: GlobalVars.notificationWeekend)
-//            println("notificationWeekend was set to \(appUserSettings.valueForKey(GlobalVars.notificationWeekend))")
-        }
     }
     
-    //------------------------------------ Notification Functions when button action tapped----------------------------------------------------//
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        
+        //super.encodeRestorableState(with: coder)
+    }
     
-//    func snoozeWorkout(notification:NSNotification){
-//        
-//        print("5 min snooze hit")
-//    }
-    //------------------------------------ /Notification Functions ----------------------------------------------------//
+    override func decodeRestorableState(with coder: NSCoder) {
+
+        
+        //super.decodeRestorableStateWithCoder(coder)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segueToUBExerciseType"{
-            let vc = segue.destinationViewController as! OneMWViewController
+            let vc = segue.destination as! OneMWViewController
             vc.navTitle = "Upper Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseUB[GlobalVars.exerciseIndexCount].filename)
         }
         if segue.identifier == "segueToLBExerciseType"{
-            let vc = segue.destinationViewController as! OneMWViewController
+            let vc = segue.destination as! OneMWViewController
             vc.navTitle = "Lower Body + Core"
             vc.exerciseTitle = GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseLB[GlobalVars.exerciseIndexCount].filename)
         }
         if segue.identifier == "segueToCoreExerciseType"{
-            let vc = segue.destinationViewController as! OneMWViewController
+            let vc = segue.destination as! OneMWViewController
             vc.navTitle = "All Core"
             vc.exerciseTitle = GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].name
             vc.exerciseImage = UIImage(named: GlobalVars.exerciseCore[GlobalVars.exerciseIndexCount].filename)
         }
     }
-
 
 }

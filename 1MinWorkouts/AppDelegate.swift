@@ -7,147 +7,69 @@
 //
 
 import UIKit
+import UserNotifications
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+@UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
 
-    var window: UIWindow?  
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(red:0.51, green:0.74, blue:0.87, alpha:1)], forState:.Selected)
-        
-        
-        // Notification Actions
-        let firstAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        firstAction.identifier = "SNOOZE_ACTION"
-        firstAction.title = "5 Min Snooze"
-        firstAction.activationMode = UIUserNotificationActivationMode.Background
-        firstAction.destructive = false
-        firstAction.authenticationRequired = false
-        
-        let secondAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        secondAction.identifier = "SKIP-WORKOUT_ACTION"
-        secondAction.title = "Skip Workout"
-        secondAction.activationMode = UIUserNotificationActivationMode.Background
-        secondAction.destructive = false
-        secondAction.authenticationRequired = false
-        
-//        var thirdAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-//        thirdAction.identifier = "THIRD_ACTION"
-//        thirdAction.title = "Third Action"
-//        thirdAction.activationMode = UIUserNotificationActivationMode.Background
-//        thirdAction.destructive = false
-//        thirdAction.authenticationRequired = false
-        
-        
-        // Notification Category
-        let firstCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-        firstCategory.identifier = "WORKOUT-NOW_CATEGORY"
-
-        let defaultActions:NSArray = [firstAction, secondAction]
-        let minimalActions:NSArray = [firstAction, secondAction]
-        
-//        let defaultActions:NSArray = [firstAction, secondAction, thirdAction]
-//        let minimalActions:NSArray = [firstAction, secondAction]
-        
-        /* need to figure out how to fix errors in Swift2 in order to use these
-        firstCategory.setActions(defaultActions as [AnyObject] as [AnyObject], forContext: UIUserNotificationActionContext.Default)
-        firstCategory.setActions(minimalActions as [AnyObject], forContext: UIUserNotificationActionContext.Minimal)
-        */
-        // NSSet of all our categories
-        let categories:NSSet = NSSet(objects: firstCategory)
-        
-//        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil)
-//        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        let actionOne = UNNotificationAction(identifier: "snoozeNotif", title: "5 Min Snooze", options: [])
+        let actionTwo = UNNotificationAction(identifier: "skip", title: "Skip Workout", options: [])
+        let category = UNNotificationCategory(identifier: "myCategory", actions: [actionOne, actionTwo], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
         
         return true
     }
     
-    // To know what notification actions were tapped   
-    func application(application: UIApplication, handleActionWithIdentifier identifier:String?, forLocalNotification notification:UILocalNotification, completionHandler: (() -> Void)){
+    // creates a notification for next hourly workout
+    func scheduleNotificationNextWorkout(at date: Date) {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents(in: .current, from: date)
+        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
         
-        if (identifier == "SNOOZE_ACTION"){
-            
-            NSNotificationCenter.defaultCenter().postNotificationName("snoozePressed", object: nil)
-            
-            // need to reset next days start notification
-            let today = NSDate()
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: today)
-            //let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: today)
-            let hour = components.hour
-            let minutes = components.minute
-            let month = components.month
-            let year = components.year
-            let day = components.day
-            
-            let dateComp:NSDateComponents = NSDateComponents()
-            dateComp.year = year            // sets to current year
-            dateComp.month = month          // sets to current month
-            dateComp.day = day              // sets to today
-            dateComp.hour = hour            // sets to current hour
-            dateComp.minute = minutes + 5   // sets to users work start time
-            dateComp.second = 0
-            dateComp.timeZone = NSTimeZone.systemTimeZone()
-            
-            let calender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            let date:NSDate = calender.dateFromComponents(dateComp)!
-            
-            let notification:UILocalNotification = UILocalNotification()
-            notification.category = "WORKOUT-NOW_CATEGORY"
-            notification.alertBody = "Time for a 1 Minute Workout!"
-            notification.alertAction = "View App"
-            notification.fireDate = date
-            notification.soundName = UILocalNotificationDefaultSoundName
-            notification.repeatInterval = NSCalendarUnit() // sets when the notification repeats
-            
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            
-            print("snooze pressed")
-            
+        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: true) // repeats every hour
+        
+        let content = UNMutableNotificationContent()
+        //        content.title = "It's Time For a 1MinuteWorkout!"
+        content.body = "It's time for a 1MinuteWorkout!"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "myCategory"
+        
+        let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() //  removes/clears all pending notification request
+        UNUserNotificationCenter.current().add(request) {(error) in
+            if let error = error {
+                print("Uh oh! We had an error: \(error)")
+            }
         }
-        else if (identifier == "SKIP-WORKOUT_ACTION"){
-            NSNotificationCenter.defaultCenter().postNotificationName("skipWorkout", object: nil)
-            
+    }
+    
+    // allows the app to save state
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    // allows the app to retore state
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+}
+
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        if response.actionIdentifier == "snoozeNotif" {
+            let newDate = Date(timeInterval: 300, since: Date()) // sets the reminder notifcation to occur in (300)5 mins from original notification time
+            scheduleNotificationNextWorkout(at: newDate)
+            print("the new notif is in \(newDate)")
+        }else if response.actionIdentifier == "skip" {
+            let newDate = Date(timeInterval: 3600, since: Date()) // sets the reminder notifcation to occur in an (3600)hour from original notification time
+            scheduleNotificationNextWorkout(at: newDate)
+            print("the new notif is in \(newDate)")
         }
-        
-        completionHandler()
     }
-    
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-      
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool{
-        // should allow app to perserve state
-        return true
-    }
-    
-    func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool{
-        // should allow app to perserve state
-        return true
-    }
-
-
 }
