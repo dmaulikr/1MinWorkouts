@@ -168,6 +168,15 @@ class OneMWStartViewController: UIViewController {
             "") // 1 - seems to be a bug in rendering this note that gets fixed if I have this empty line at the end.
         GlobalVars.exerciseUB.append(newExercise)
         
+        newExercise = Exercise(name: "Curls", filename: "curls", tips:
+            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
+                "2. Stand up straight with your feet hip width apart. \n\n" +
+                "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
+                "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
+                "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.\n\n") // 2
+        GlobalVars.exerciseUB.append(newExercise)
+        
         newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
             "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
@@ -175,16 +184,7 @@ class OneMWStartViewController: UIViewController {
             "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
             "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
             "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
-            "Do as many as you can, takeing breaks as needed.") // 2
-        GlobalVars.exerciseUB.append(newExercise)
-        
-        newExercise = Exercise(name: "Curls", filename: "curls", tips:
-            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
-            "2. Stand up straight with your feet hip width apart. \n\n" +
-            "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
-            "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
-            "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.\n\n") // 3
+            "Do as many as you can, takeing breaks as needed.") // 3
         GlobalVars.exerciseUB.append(newExercise)
     
 
@@ -204,6 +204,16 @@ class OneMWStartViewController: UIViewController {
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //5
         GlobalVars.exerciseUB.append(newExercise)
         
+        newExercise = Exercise(name: "Curls", filename: "curls", tips:
+            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
+                "2. Stand up straight with your feet hip width apart. \n\n" +
+                "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
+                "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
+                "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.\n\n") // 6
+        GlobalVars.exerciseUB.append(newExercise)
+        
+        
         newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
             "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
@@ -211,18 +221,8 @@ class OneMWStartViewController: UIViewController {
             "4. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the chairs seat. \n\n" +
             "5. Once you reach the bottom of the movement, press down into the chair to straighten your elbows, returning to the starting position. This completes one rep. \n\n" +
             "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
-            "Do as many as you can, takeing breaks as needed.")  // 6
+            "Do as many as you can, takeing breaks as needed.")  // 7
         GlobalVars.exerciseUB.append(newExercise)
-        
-        newExercise = Exercise(name: "Curls", filename: "curls", tips:
-            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
-                "2. Stand up straight with your feet hip width apart. \n\n" +
-                "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
-                "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
-                "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
-            "Do as many as you can in a minute, but take breaks as needed.\n\n") // 7
-        GlobalVars.exerciseUB.append(newExercise)
-       
         
         // instantiates the Lower Body array data
         newExercise = Exercise(name: "Squats", filename: "squats", tips:
