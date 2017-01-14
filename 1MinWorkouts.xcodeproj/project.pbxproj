@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AC12930E1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */; };
 		AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930F1AF4196600830EA5 /* AboutViewController.swift */; };
+		AC1DB1771E285EED000ACEDC /* WorkoutsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */; };
+		AC1DB17A1E295D63000ACEDC /* WorkoutsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */; };
+		AC1DB17B1E295D63000ACEDC /* WorkoutsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */; };
 		AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2645141A85434100E5B081 /* MyTabBarController.swift */; };
 		AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */; };
 		ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF201D1A5CBA01007DB43A /* Exercise.swift */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStartDayTableViewController.swift; sourceTree = "<group>"; };
 		AC12930F1AF4196600830EA5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ../AboutViewController.swift; sourceTree = "<group>"; };
+		AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewController.swift; sourceTree = "<group>"; };
+		AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewCell.swift; sourceTree = "<group>"; };
+		AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutsTableViewCell.xib; sourceTree = "<group>"; };
 		AC2645141A85434100E5B081 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartDaySettingsViewController.swift; path = ../StartDaySettingsViewController.swift; sourceTree = "<group>"; };
 		AC4131CA1A994EF400224BE7 /* 1MinWorkouts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = 1MinWorkouts.entitlements; sourceTree = "<group>"; };
@@ -93,6 +99,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC1DB1731E2858B3000ACEDC /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
+				AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */,
+				AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */,
+				AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */,
+			);
+			name = Workouts;
+			sourceTree = "<group>";
+		};
 		AC8D7D161ACDA62D00BEAA04 /* OOBE */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,9 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				AC4131CA1A994EF400224BE7 /* 1MinWorkouts.entitlements */,
-				ACD1CD841A5CB54A00CC197E /* OneMWVCs */,
+				ACD1CD841A5CB54A00CC197E /* OneMinuteWorkouts */,
 				ACD1CD741A52310000CC197E /* StatsViewController.swift */,
-				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
+				AC1DB1731E2858B3000ACEDC /* Workouts */,
 				ACCF20231A6729A1007DB43A /* Settings */,
 				ACD1CCED1A521E5E00CC197E /* Main.storyboard */,
 				ACD1CCE71A521E5E00CC197E /* AppDelegate.swift */,
@@ -180,7 +197,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ACD1CD841A5CB54A00CC197E /* OneMWVCs */ = {
+		ACD1CD841A5CB54A00CC197E /* OneMinuteWorkouts */ = {
 			isa = PBXGroup;
 			children = (
 				ACD1CD7A1A545EEB00CC197E /* OneMWStartViewController.swift */,
@@ -189,7 +206,7 @@
 				ACD1CD801A5CB51D00CC197E /* OneMWInfoViewController.swift */,
 				ACCF201D1A5CBA01007DB43A /* Exercise.swift */,
 			);
-			name = OneMWVCs;
+			name = OneMinuteWorkouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +306,7 @@
 				ACE0F2751ACA33CB003E4F5E /* Walkthrough.storyboard in Resources */,
 				ACD1CCF41A521E5E00CC197E /* LaunchScreen.xib in Resources */,
 				ACD1CCF11A521E5E00CC197E /* Images.xcassets in Resources */,
+				AC1DB17B1E295D63000ACEDC /* WorkoutsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +335,7 @@
 				AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */,
 				ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */,
 				ACD1CD7B1A545EEB00CC197E /* OneMWStartViewController.swift in Sources */,
+				AC1DB1771E285EED000ACEDC /* WorkoutsTableViewController.swift in Sources */,
 				ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */,
 				AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */,
 				ACD1CD831A5CB53900CC197E /* OneMWWorkoutViewController.swift in Sources */,
@@ -324,6 +343,7 @@
 				ACE0F2731ACA2AF0003E4F5E /* BWWalkthroughViewController.swift in Sources */,
 				ACD1CCE81A521E5E00CC197E /* AppDelegate.swift in Sources */,
 				ACD1CD7F1A5C687B00CC197E /* globals.swift in Sources */,
+				AC1DB17A1E295D63000ACEDC /* WorkoutsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

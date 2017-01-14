@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -548,64 +548,6 @@
             </objects>
             <point key="canvasLocation" x="743.20000000000005" y="358.4707646176912"/>
         </scene>
-        <!--Workouts-->
-        <scene sceneID="Tdz-6Z-j2f">
-            <objects>
-                <viewController storyboardIdentifier="oneMWTabControl-workouts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CjT-54-hLU" customClass="WorkoutsViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="f1F-Xl-ZJG"/>
-                        <viewControllerLayoutGuide type="bottom" id="0Um-iA-82D"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3nw-vk-Opw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workouts page hasn't been built yet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTV-ED-0Rw">
-                                <rect key="frame" x="20" y="20" width="339" height="133"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="fbr-yr-RoG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxg-Px-aQD">
-                                <rect key="frame" x="20" y="161" width="339" height="441"/>
-                                <string key="text">This page will allow you to complete your recommended 30 minutes a day of activity.
-
-You'll have some workout options by default that will allow you to get additional 20 minutes of strength training in and then 20 minutes of cardio in. Each of these would be done on alternating days and will be built using exercises in the 1 MinuteWorkouts tab.
-
-After that you'll be able to do an in-app purchase so you can build your own workouts.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-fK-SLf">
-                                <rect key="frame" x="152" y="181" width="75" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Find Tones"/>
-                                <connections>
-                                    <action selector="findTonesBtn:" destination="CjT-54-hLU" eventType="touchUpInside" id="sJx-Bb-su8"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="dxg-Px-aQD" firstAttribute="trailing" secondItem="kTV-ED-0Rw" secondAttribute="trailing" id="1by-nU-NQK"/>
-                            <constraint firstItem="dxg-Px-aQD" firstAttribute="top" secondItem="kTV-ED-0Rw" secondAttribute="bottom" constant="8" symbolic="YES" id="AAn-TR-eHf"/>
-                            <constraint firstItem="kTV-ED-0Rw" firstAttribute="leading" secondItem="3nw-vk-Opw" secondAttribute="leadingMargin" constant="4" id="Nxf-b1-cjN"/>
-                            <constraint firstItem="dxg-Px-aQD" firstAttribute="leading" secondItem="kTV-ED-0Rw" secondAttribute="leading" id="OJh-rh-piJ"/>
-                            <constraint firstItem="kTV-ED-0Rw" firstAttribute="trailing" secondItem="3nw-vk-Opw" secondAttribute="trailingMargin" id="aKg-24-1GY"/>
-                            <constraint firstItem="kTV-ED-0Rw" firstAttribute="top" secondItem="f1F-Xl-ZJG" secondAttribute="bottom" id="rwO-2f-IMJ"/>
-                            <constraint firstItem="0Um-iA-82D" firstAttribute="top" secondItem="dxg-Px-aQD" secondAttribute="bottom" constant="16" id="tvh-np-WVZ"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Workouts" image="workouts-icon" id="6tA-xa-rRc"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jbn-By-MQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="743.20000000000005" y="1036.7316341829087"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="47s-qt-BE7">
             <objects>
@@ -615,7 +557,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="egq-5j-1p0">
-                            <rect key="frame" x="0.0" y="241" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="177" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32909396290779114" green="0.62022286653518677" blue="0.80595898628234863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -634,18 +576,18 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l9K-W8-UCo" id="x7S-Tu-FW5">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="First Workout Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7cG-bh-bTZ">
-                                                    <rect key="frame" x="15" y="12" width="185" height="20"/>
+                                                    <rect key="frame" x="15" y="12" width="184.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gac-PB-5Ca">
-                                                    <rect key="frame" x="298" y="12" width="42" height="20"/>
+                                                    <rect key="frame" x="298.5" y="12" width="41.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -661,11 +603,11 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SA7-tN-9aN" id="iIf-dG-vwz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="View Walkthrough" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C44-mj-PBW">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -678,18 +620,18 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Nc-BN-GpW" id="tk6-uw-nDt">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kXD-8D-VK0">
-                                                    <rect key="frame" x="15" y="12" width="44" height="20"/>
+                                                    <rect key="frame" x="15" y="12" width="44" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F7t-pi-WOJ">
-                                                    <rect key="frame" x="298" y="12" width="42" height="20"/>
+                                                    <rect key="frame" x="298.5" y="12" width="41.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -717,7 +659,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GyF-rP-5po" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1478" y="1713"/>
+            <point key="canvasLocation" x="1478" y="2095"/>
         </scene>
         <!--My Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -730,8 +672,8 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                     </tabBar>
                     <connections>
                         <segue destination="Qcy-wR-NVu" kind="relationship" relationship="viewControllers" id="7Y4-XC-S1x"/>
+                        <segue destination="LCe-eN-oCC" kind="relationship" relationship="viewControllers" id="TCP-BQ-qbU"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="CjT-54-hLU" kind="relationship" relationship="viewControllers" id="McB-0p-B7I"/>
                         <segue destination="IHw-Ow-rJG" kind="relationship" relationship="viewControllers" id="qBY-mW-OWs"/>
                     </connections>
                 </tabBarController>
@@ -760,7 +702,47 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dy-Gt-qA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="744" y="1713"/>
+            <point key="canvasLocation" x="742" y="2095"/>
+        </scene>
+        <!--Workouts-->
+        <scene sceneID="AK2-6L-5gm">
+            <objects>
+                <tableViewController storyboardIdentifier="WorkoutsTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IEE-k9-wIC" customClass="WorkoutsTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qAe-jN-8wo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90000000000000002" green="0.90000000000000002" blue="0.90000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                        <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
+                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="IEE-k9-wIC" id="0uu-It-9yK"/>
+                            <outlet property="delegate" destination="IEE-k9-wIC" id="VFE-Nf-I5n"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Workouts" id="8xn-nI-M9p"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yy-Qf-UCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="1084"/>
+        </scene>
+        <!--Workouts-->
+        <scene sceneID="mym-yF-WER">
+            <objects>
+                <navigationController id="LCe-eN-oCC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Workouts" image="workouts-icon" id="QE2-Hg-Xw3"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eG7-QQ-n6Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="IEE-k9-wIC" kind="relationship" relationship="rootViewController" id="RnO-tS-vQk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQt-RG-vJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="743" y="1084"/>
         </scene>
         <!--Start Day Notification-->
         <scene sceneID="h3x-55-jTd">
@@ -777,7 +759,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="yYo-1i-WVW" id="XI0-ud-Jg4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your first workout reminder to an hour after you usually start your day. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-CY-HYB">
@@ -799,7 +781,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="66" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wyt-g6-xVo" id="HLn-50-VrP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Workout Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrP-yD-UT7">
@@ -829,7 +811,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="118" width="375" height="222"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPN-y9-MXZ" id="8GH-xn-Ip6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojr-Zx-aqR">
@@ -855,7 +837,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="340" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="duX-sC-zw5" id="v67-D3-1Yz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday - Friday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9F-lb-Ha7">
@@ -887,7 +869,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="392" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D5c-Zl-diQ" id="Ddr-by-Fqv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday and Sunday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw7-ED-XXn">
@@ -917,7 +899,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                                         <rect key="frame" x="0.0" y="444" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="yMb-GY-CJc" id="qeG-Cp-mAa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -948,7 +930,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EmN-a1-bKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2253.5999999999999" y="1445.1274362818592"/>
+            <point key="canvasLocation" x="2254" y="1827"/>
         </scene>
         <!--About-->
         <scene sceneID="U4x-RO-Qok">
@@ -1017,7 +999,7 @@ After that you'll be able to do an in-app purchase so you can build your own wor
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fbm-XH-5l3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2253.5999999999999" y="2122.4887556221893"/>
+            <point key="canvasLocation" x="2254" y="2504"/>
         </scene>
     </scenes>
     <resources>
