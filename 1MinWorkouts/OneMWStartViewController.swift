@@ -151,14 +151,14 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseIndexCount = 0
        
         // instantiates the Upper Body array data        
-        var newExercise = Exercise(name: "Push-Ups", filename: "push-ups", tips:
+        var newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
             "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
             "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 0
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "", tips:
             "1. Lie down with your back flat to the floor. \n\n" +
                 "2. Bend your knees at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place. \n\n" +
                 "3. Cross your hands in front of your chest. Make sure there is a fist's worth of space between your chin and chest. \n\n" +
@@ -168,7 +168,7 @@ class OneMWStartViewController: UIViewController {
             "") // 1 - seems to be a bug in rendering this note that gets fixed if I have this empty line at the end.
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Curls", filename: "curls", tips:
+        newExercise = Exercise(name: "Curls", filename: "curls", meterFilename: "", tips:
             "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
                 "2. Stand up straight with your feet hip width apart. \n\n" +
                 "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
@@ -177,7 +177,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.\n\n") // 2
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
+        newExercise = Exercise(name: "Tricep Dips", filename: "dips", meterFilename: "", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
             "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
             "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
@@ -189,14 +189,14 @@ class OneMWStartViewController: UIViewController {
     
 
         // 2nd set
-        newExercise = Exercise(name: "Wide Push-Ups", filename: "push-ups-wide", tips:
+        newExercise = Exercise(name: "Wide Push-Ups", filename: "push-ups-wide", meterFilename: "", tips:
             "1. Lie on the floor face down and place your hands about a shoulder and half width apart (your elbows should be at 90 degree angles and parallel with the floor when in the down position) while holding your torso up at arms length. \n\n" +
             "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
             "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 4
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", meterFilename: "", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -204,7 +204,7 @@ class OneMWStartViewController: UIViewController {
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //5
         GlobalVars.exerciseUB.append(newExercise)
         
-        newExercise = Exercise(name: "Curls", filename: "curls", tips:
+        newExercise = Exercise(name: "Curls", filename: "curls", meterFilename: "", tips:
             "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
                 "2. Stand up straight with your feet hip width apart. \n\n" +
                 "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
@@ -214,7 +214,7 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseUB.append(newExercise)
         
         
-        newExercise = Exercise(name: "Tricep Dips", filename: "dips", tips:
+        newExercise = Exercise(name: "Tricep Dips", filename: "dips", meterFilename: "", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
             "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
             "3. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. \n\n" +
@@ -225,7 +225,7 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseUB.append(newExercise)
         
         // instantiates the Lower Body array data
-        newExercise = Exercise(name: "Squats", filename: "squats", tips:
+        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
             "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
             "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -233,7 +233,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, takeing breaks as needed.") // 0
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+        newExercise = Exercise(name: "Plank", filename: "plank", meterFilename: "", tips:
             "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
                 "2. Bend your elbows and rest your weight on your forearms.\n\n" +
                 "3. Keep your elbows under your shoulders.\n\n" +
@@ -243,7 +243,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 1
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Lunges", filename: "lunges", tips:
+        newExercise = Exercise(name: "Lunges", filename: "lunges", meterFilename: "", tips:
             "1. Stand up straight with your feet about a shoulder width apart. Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. \n\n" +
             "2. Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
             "3. As you step forward, lower your hips and bend your knees until they both form 90 degree angles while inhaling. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
@@ -252,7 +252,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 2
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
+        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", meterFilename: "", tips:
             "1. Stand with your feet shoulder width apart. You can hold the back of a chair for balance if needed. \n\n" +
             "2. Lift your heels until you're standing on your tip toes while exhaling. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
             "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
@@ -260,7 +260,7 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseLB.append(newExercise)
         
         // 2nd set
-        newExercise = Exercise(name: "Squats", filename: "squats", tips:
+        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
             "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
             "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -268,7 +268,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, takeing breaks as needed.") // 4
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", meterFilename: "", tips:
             "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
             "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
             "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
@@ -276,7 +276,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") //5
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Lunges", filename: "lunges", tips:
+        newExercise = Exercise(name: "Lunges", filename: "lunges", meterFilename: "", tips:
             "1. Stand up straight with your feet about a shoulder width apart. Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. \n\n" +
             "2. Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
             "3. As you step forward, lower your hips and bend your knees until they both form 90 degree angles while inhaling. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
@@ -285,7 +285,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") // 6
         GlobalVars.exerciseLB.append(newExercise)
         
-        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", tips:
+        newExercise = Exercise(name: "Calf Raises", filename: "calf-raises", meterFilename: "", tips:
             "1. Stand with your feet shoulder width apart. You can hold the back of a chair for balance if needed. \n\n" +
             "2. Lift your heels until you're standing on your tip toes while exhaling. Distribute most of your weight onto the balls of your feet, and keep your legs straight. \n\n" +
             "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
@@ -293,7 +293,7 @@ class OneMWStartViewController: UIViewController {
         GlobalVars.exerciseLB.append(newExercise)
         
         // instantiates the Core array data
-        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+        newExercise = Exercise(name: "Plank", filename: "plank", meterFilename: "", tips:
             "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
             "2. Bend your elbows and rest your weight on your forearms.\n\n" +
             "3. Keep your elbows under your shoulders.\n\n" +
@@ -303,7 +303,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 0
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", meterFilename: "", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -311,7 +311,7 @@ class OneMWStartViewController: UIViewController {
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //1
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "", tips:
             "1. Lie down with your back flat to the floor.\n\n" +
                 "2. Bend your knees at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place.\n\n" +
                 "3. Cross your hands in front of your chest. Make sure there is a fist's worth of space between your chin and chest.\n\n" +
@@ -320,7 +320,7 @@ class OneMWStartViewController: UIViewController {
                 "Do as many as you can in a minute, but take breaks as needed.\n\n") // 2
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", meterFilename: "", tips:
             "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
             "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
             "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +
@@ -328,7 +328,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.") //3
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Plank", filename: "plank", tips:
+        newExercise = Exercise(name: "Plank", filename: "plank", meterFilename: "", tips:
             "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
             "2. Bend your elbows and rest your weight on your forearms.\n\n" +
             "3. Keep your elbows under your shoulders.\n\n" +
@@ -338,7 +338,7 @@ class OneMWStartViewController: UIViewController {
             "Hold this position for as long as you can, but take breaks as needed.") // 4
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", tips:
+        newExercise = Exercise(name: "Side Plank", filename: "side-plank-right", meterFilename: "", tips:
             "1. Lie on your side with your legs straight and your body in a straight line (shoulders and hips stacked one on top of the other; don’t lean forward or backwards).\n\n" +
             "2. Prop your body up so your hips are off the floor. Rest your weight on the elbow that’s touching the floor.\n\n" +
             "3. Only your forearm and feet should touch the floor.\n\n" +
@@ -346,7 +346,7 @@ class OneMWStartViewController: UIViewController {
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") // 5
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Crunches", filename: "sit-ups", tips:
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "", tips:
             "1. Lie down with your back flat to the floor.\n\n" +
                 "2. Bend your knees at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place.\n\n" +
                 "3. Cross your hands in front of your chest. Make sure there is a fist's worth of space between your chin and chest.\n\n" +
@@ -355,7 +355,7 @@ class OneMWStartViewController: UIViewController {
             "Do as many as you can in a minute, but take breaks as needed.\n\n") // 6
         GlobalVars.exerciseCore.append(newExercise)
         
-        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", tips:
+        newExercise = Exercise(name: "Leg Lifts", filename: "lower-abs", meterFilename: "", tips:
             "1. Lie flat on your back with your legs stretched out in front of you. Your legs should just be a toe's width apart. Make sure to keep your hands down flat on the ground near your sides, with your palms down. \n\n" +
             "2. Bend your knees and raise your legs. Your calves should be parallel to the ground, while your thighs are perpendicular. You should keep your toes pointed while you do this, drawing your abdominal muscles toward your spine. \n\n" +
             "3. Continue curling your knees towards your chest. Raise your legs as slowly as possible while exhaling. \n\n" +

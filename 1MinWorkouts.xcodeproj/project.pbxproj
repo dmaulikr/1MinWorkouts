@@ -14,6 +14,8 @@
 		AC1DB17B1E295D63000ACEDC /* WorkoutsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */; };
 		AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2645141A85434100E5B081 /* MyTabBarController.swift */; };
 		AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */; };
+		AC6C90AD1E2DA3E9007BF264 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6C90AC1E2DA3E9007BF264 /* ExercisesViewController.swift */; };
+		AC6C90AF1E2DA41B007BF264 /* WorkoutsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6C90AE1E2DA41B007BF264 /* WorkoutsInfoViewController.swift */; };
 		ACCF201E1A5CBA01007DB43A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF201D1A5CBA01007DB43A /* Exercise.swift */; };
 		ACCF20271A6742E3007DB43A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */; };
 		ACD1CCE81A521E5E00CC197E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD1CCE71A521E5E00CC197E /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 		AC2645141A85434100E5B081 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		AC3555121AD33DA500998E0F /* StartDaySettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartDaySettingsViewController.swift; path = ../StartDaySettingsViewController.swift; sourceTree = "<group>"; };
 		AC4131CA1A994EF400224BE7 /* 1MinWorkouts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = 1MinWorkouts.entitlements; sourceTree = "<group>"; };
+		AC6C90AC1E2DA3E9007BF264 /* ExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
+		AC6C90AE1E2DA41B007BF264 /* WorkoutsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsInfoViewController.swift; sourceTree = "<group>"; };
 		ACCF201D1A5CBA01007DB43A /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		ACCF20261A6742E3007DB43A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		ACD1CCE21A521E5E00CC197E /* 1MinWorkouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1MinWorkouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,8 +106,10 @@
 		AC1DB1731E2858B3000ACEDC /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
-				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
 				AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */,
+				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
+				AC6C90AC1E2DA3E9007BF264 /* ExercisesViewController.swift */,
+				AC6C90AE1E2DA41B007BF264 /* WorkoutsInfoViewController.swift */,
 				AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */,
 				AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */,
 			);
@@ -326,6 +332,8 @@
 			files = (
 				ACD1CD771A52310B00CC197E /* WorkoutsViewController.swift in Sources */,
 				ACD1CD811A5CB51D00CC197E /* OneMWInfoViewController.swift in Sources */,
+				AC6C90AF1E2DA41B007BF264 /* WorkoutsInfoViewController.swift in Sources */,
+				AC6C90AD1E2DA3E9007BF264 /* ExercisesViewController.swift in Sources */,
 				AC12930E1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift in Sources */,
 				ACE0F26E1AC0D934003E4F5E /* TutorialXIBViewController.swift in Sources */,
 				ACD1CD731A5230EB00CC197E /* OneMWViewController.swift in Sources */,

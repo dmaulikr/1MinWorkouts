@@ -25,9 +25,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
     
-    @IBAction func workoutNowBtn(_ sender: AnyObject) {
-        
-    }    
+//    @IBAction func workoutNowBtn(_ sender: AnyObject) {
+//        
+//    }    
     
     @IBAction func endDayBtn(_ sender: AnyObject) {
         let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.alert)

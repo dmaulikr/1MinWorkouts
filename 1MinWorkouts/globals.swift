@@ -13,10 +13,20 @@ struct GlobalVars {
     static var exerciseSecondsCount = 0
     static var settingsSet = ""
     static var startTime = ""
+    
+    // sets the arrays for the 1MW exercise info
     static var exerciseUB = [Exercise]()
     static var exerciseLB = [Exercise]()
     static var exerciseCore = [Exercise]()
     static var exerciseIndexCount = 0
+    
+    // sets the arrays for the Workouts exercise info
+    static var workoutsUB = [Exercise]()
+    static var workoutsLB = [Exercise]()
+    static var workouts7M = [Exercise]()
+    static var workouts7T = [Exercise]()
+    static var workoutsIndexCount = 0 // used for Workouts start page table
+    
     static var appVersion = "Version 0.1.0 (beta)"
     
     //static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
