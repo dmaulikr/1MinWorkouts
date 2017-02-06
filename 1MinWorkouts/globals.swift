@@ -26,6 +26,7 @@ struct GlobalVars {
     static var workouts7M = [Exercise]()
     static var workouts7T = [Exercise]()
     static var workoutsIndexCount = 0 // used for Workouts start page table
+    static var nextExerciseSecondsCount = 0
     
     static var appVersion = "Version 0.1.0 (beta)"
     

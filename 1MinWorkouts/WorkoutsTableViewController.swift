@@ -20,7 +20,7 @@ class WorkoutsTableViewController: UITableViewController {
     
     // creates an array to hold the content for each of the table cells
     var arrayOfCellData = [cellData]()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +41,7 @@ class WorkoutsTableViewController: UITableViewController {
         GlobalVars.workoutsIndexCount = 0
         
         // instantiates the Upper Body array data
-        var newExercise = Exercise(name: "Jump No Rope", filename: "push-ups", meterFilename: "workout progress - step1_7",  tips:
+        var newExercise = Exercise(name: "Jump No Rope", filename: "Placeholder Image", meterFilename: "workout progress - step1_7",  tips:
             "1. Stand with your feet about a foot apart with your hands at your sides, but slightly out as if you were holding the handles of a jump rope in each. \n\n" +
                 "2. Jump straight up while simultaneously making a small circle with each hand at your side as if you were trying to flip a jump rope over your head and under your feet. \n\n" +
                 "3. Repeat this for as long as you can in a minute, but take breaks as needed.") // 0
@@ -101,7 +101,7 @@ class WorkoutsTableViewController: UITableViewController {
         GlobalVars.workoutsUB.append(newExercise)
         
         // instantiates the Lower Body array data -------------------------------------------------------------------------//
-        newExercise = Exercise(name: "Jump No Rope", filename: "push-ups", meterFilename: "workout progress - step1_7", tips:
+        newExercise = Exercise(name: "Jump No Rope", filename: "Placeholder Image", meterFilename: "workout progress - step1_7", tips:
             "1. Stand with your feet about a foot apart with your hands at your sides, but slightly out as if you were holding the handles of a jump rope in each. \n\n" +
                 "2. Jump straight up while simultaneously making a small circle with each hand at your side as if you were trying to flip a jump rope over your head and under your feet. \n\n" +
             "3. Repeat this for as long as you can in a minute, but take breaks as needed.") // 0
@@ -157,13 +157,13 @@ class WorkoutsTableViewController: UITableViewController {
         
         
         // instantiates the 7 Min Workout array data -------------------------------------------------------------------------//
-        newExercise = Exercise(name: "Jump No Rope", filename: "push-ups", meterFilename: "workout progress - step1_12", tips:
+        newExercise = Exercise(name: "Jump No Rope", filename: "Placeholder Image", meterFilename: "workout progress - step1_12", tips:
             "1. Stand with your feet about a foot apart with your hands at your sides, but slightly out as if you were holding the handles of a jump rope in each. \n\n" +
                 "2. Jump straight up while simultaneously making a small circle with each hand at your side as if you were trying to flip a jump rope over your head and under your feet. \n\n" +
             "3. Repeat this for as long as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Wall Sit", filename: "squats", meterFilename: "workout progress - step2_12", tips:
+        newExercise = Exercise(name: "Wall Sit", filename: "Placeholder Image", meterFilename: "workout progress - step2_12", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
                 "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
                 "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -188,7 +188,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Hold this position for as long as you can, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Chair Step Ups", filename: "squats", meterFilename: "workout progress - step5_12", tips:
+        newExercise = Exercise(name: "Chair Step Ups", filename: "Placeholder Image", meterFilename: "workout progress - step5_12", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
                 "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
                 "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -224,7 +224,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Hold this position for as long as you can, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "High Knees/Run In Place", filename: "squats", meterFilename: "workout progress - step9_12", tips:
+        newExercise = Exercise(name: "High Knees/Run In Place", filename: "Placeholder Image", meterFilename: "workout progress - step9_12", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
                 "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
                 "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -241,7 +241,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Rotation Push-Ups", filename: "push-ups", meterFilename: "workout progress - step11_12", tips:
+        newExercise = Exercise(name: "Rotation Push-Ups", filename: "Placeholder Image", meterFilename: "workout progress - step11_12", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
                 "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
                 "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
@@ -265,7 +265,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, takeing breaks as needed.")
         GlobalVars.workouts7T.append(newExercise)
         
-        newExercise = Exercise(name: "Jump No Rope", filename: "push-ups", meterFilename: "workout progress - step2_6", tips:
+        newExercise = Exercise(name: "Jump No Rope", filename: "Placeholder Image", meterFilename: "workout progress - step2_6", tips:
             "1. Stand with your feet about a foot apart with your hands at your sides, but slightly out as if you were holding the handles of a jump rope in each. \n\n" +
                 "2. Jump straight up while simultaneously making a small circle with each hand at your side as if you were trying to flip a jump rope over your head and under your feet. \n\n" +
             "3. Repeat this for as long as you can in a minute, but take breaks as needed.")
@@ -288,7 +288,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, takeing breaks as needed.")
         GlobalVars.workouts7T.append(newExercise)
         
-        newExercise = Exercise(name: "Jump No Rope", filename: "push-ups", meterFilename: "workout progress - step5_6", tips:
+        newExercise = Exercise(name: "Jump No Rope", filename: "Placeholder Image", meterFilename: "workout progress - step5_6", tips:
             "1. Stand with your feet about a foot apart with your hands at your sides, but slightly out as if you were holding the handles of a jump rope in each. \n\n" +
                 "2. Jump straight up while simultaneously making a small circle with each hand at your side as if you were trying to flip a jump rope over your head and under your feet. \n\n" +
             "3. Repeat this for as long as you can in a minute, but take breaks as needed.")

@@ -36,6 +36,10 @@ class ExercisesViewController: UIViewController {
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var workoutMeterImage: UIImageView!
     
+    @IBOutlet var nextWorkoutView: UIVisualEffectView! // whole view container for get next workout count down
+    @IBOutlet var nextWorkoutCountdownLabel: UILabel! // label that counts down for next workout
+
+    
     @IBAction func cancelWorkout(_ sender: Any) {
         // closes the current view and goes back to starting view
         self.dismiss(animated: true, completion: nil)
@@ -122,47 +126,60 @@ class ExercisesViewController: UIViewController {
         // what happens when the timer ends
         if (GlobalVars.exerciseSecondsCount == 0) {
             exerciseCountdownTimer.invalidate() // stops the countdown
-            workoutCountdownLabel.isHidden = true
-            workoutMeterImage.isHidden = true
             
-            
-            // increments the index index variable to update to the next exercise
-            changeExercise()
-            
-            // passes the incremented variable to the prior screen delegate
-            if (delegate != nil) {
-                delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
-            }
-            
-            // sends an alert when timer is up
-//            func gotoWorkoutVC(){
-//                let vc = ExercisesViewController(nibName: "ExercisesViewController", bundle: nil)
-//                navigationController?.pushViewController(vc, animated: true)
-//            }
-            
-            let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nNext workout in:\n\n\n", preferredStyle: UIAlertControllerStyle.alert)
-            
-            alert.addAction(UIAlertAction(title: "Cancel Workout", style: .default, handler: {
-                (action: UIAlertAction!) in
+            // sends alert when workout is finished-------------------------------------------------------------------//
+            if GlobalVars.workoutsIndexCount == 7 || GlobalVars.workoutsIndexCount == 6 || GlobalVars.workoutsIndexCount == 12{
                 
+                let alert = UIAlertController(title: "You've Finished Your Workout", message: "\n\n\nNice Job!", preferredStyle: UIAlertControllerStyle.alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                    (action: UIAlertAction!) in
+                    
+                    // Resets the index variable to update to the next exercise back to the start
+                    GlobalVars.workoutsIndexCount = 0
+                    
+                    // passes the incremented variable to the prior screen delegate
+                    if (self.delegate != nil) {
+                        self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
+                    }
+                    
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                
+                let thumbsImage = UIImage(named: "thumbs-up")
+                let imageView = UIImageView(frame: CGRect(x: 117, y: 47, width: 40, height: 40))
+                imageView.image = thumbsImage
+                
+                alert.view.addSubview(imageView)
+                
+                self.present(alert, animated: true, completion: nil)
+                // sends alert when workout is finished-------------------------------------------------------------------//
+            }else{
+                // increments the index index variable to update to the next exercise
+                changeExercise()
+            
+                // passes the incremented variable to the prior screen delegate
+                if (delegate != nil) {
+                    delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
+                }
+            
+                // sends an alert when timer is up
+                func gotoWorkoutVC(){
+                    let vc = ExercisesViewController(nibName: "ExercisesViewController", bundle: nil)
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            
                 // passes the incremented variable to the prior screen delegate
                 if (self.delegate != nil) {
                     self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
                 }
-                
+            
                 self.dismiss(animated: true, completion: nil)
-            }))
-            
-            let thumbsImage = UIImage(named: "thumbs-up")
-            let imageView = UIImageView(frame: CGRect(x: 117, y: 47, width: 40, height: 40))
-            imageView.image = thumbsImage
-            
-            alert.view.addSubview(imageView)
-            
-            self.present(alert, animated: true, completion: nil)
+            }
             
             //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
             AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+ 
         }
     }
     
@@ -201,8 +218,11 @@ class ExercisesViewController: UIViewController {
                 
                 getReadyView.isHidden = true
                 workoutCountdownLabel.isHidden = false
-//                setExerciseTimer(60, timerLabel: "60")
-                setExerciseTimer(11, timerLabel: "11")
+                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "7 Minute Workout"{
+                    self.setExerciseTimer(30, timerLabel: "30")
+                }else if self.navTitle == "7 Minute Tabata"{
+                    self.setExerciseTimer(20, timerLabel: "20")
+                }
                 
                 //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate and message tone when 5 sec countdown is done
                 AudioServicesPlaySystemSound(1120) // plays vibrate and tone 1008-start/stop 1110 (nice option, maybe too simple)
@@ -221,6 +241,17 @@ class ExercisesViewController: UIViewController {
         GlobalVars.exerciseSecondsCount = totalTime; // sets timer to an hour
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
         
+    }
+    
+    // method that defines the actual timer for hour exercise timer
+    func setNextWorkoutTimer(_ timerTime : Int, timerLabel : String){
+        
+        totalTime = timerTime // sets the timer to starting time desired
+        
+        nextWorkoutCountdownLabel.text = timerLabel // sets timer label to starting time desired
+        
+        GlobalVars.exerciseSecondsCount = totalTime; // sets timer to an hour
+        exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
     override func viewDidLoad() {

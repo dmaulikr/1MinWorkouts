@@ -16,11 +16,16 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
     var meterImage = UIImage(named: "")
+    var exerciseCountdownTimer = Timer()
+    var totalTime = 0
     
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
+    
+    @IBOutlet var nextWorkoutView: UIVisualEffectView!
+    @IBOutlet var nextWorkoutCountdownLabel: UILabel!
     
 //    var alertTone = UInt32(1100)// double vibrate (got to 1301)
 
@@ -33,6 +38,37 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
 //            print("\(alertTone)")
 //        }
 //    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // defines when to show the next exercise wait timer after the first workout has been done
+        if GlobalVars.workoutsIndexCount != 0{
+            nextWorkoutView.isHidden = false
+        
+            UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
+                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 150
+            }) { (value:Bool) in
+                //Sets the next exercise wait timer after the animation loads
+                
+                self.exerciseCountdownTimer.invalidate() // stops the countdown
+                
+                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
+                    self.setExerciseTimer(25, timerLabel: "25")// 5 secs less due to 5 sec get ready
+                }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
+                    self.setExerciseTimer(5, timerLabel: "5")// 5 secs less due to 5 sec get ready
+                }
+            }
+        }else{
+            nextWorkoutView.isHidden = true
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if GlobalVars.workoutsIndexCount != 0{
+            nextWorkoutView.center.y = nextWorkoutView.center.y + 150
+        }else {
+            nextWorkoutView.center.y = nextWorkoutView.center.y
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +87,40 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
         
+    }
+    
+    //----------------------------------------- next exercise wait timer -----------------------------------------//
+    func exerciseTimerGetReady(){
+        GlobalVars.nextExerciseSecondsCount -= 1 // decreases the count down by 1
+        let minutes = (GlobalVars.nextExerciseSecondsCount / 60) // converts the seconds into minute format
+        let seconds = (GlobalVars.nextExerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
+        nextWorkoutCountdownLabel.text = timerOutput
+        
+        // what happens when the timer ends
+        if (GlobalVars.nextExerciseSecondsCount == 0) {
+            
+            exerciseCountdownTimer.invalidate() // stops the countdown
+            
+            setExerciseTimer(0, timerLabel: "0")
+            
+            AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+            
+            // segues to the next workout
+            performSegue(withIdentifier: "segueToExercises", sender: self)
+            
+        }
+    }
+    
+    // method that defines the timer for next workout timer
+    func setExerciseTimer(_ timerTime : Int, timerLabel : String){
+        
+        totalTime = timerTime // sets the timer to starting time desired
+        
+        nextWorkoutCountdownLabel.text = timerLabel // sets timer label to starting time desired
+        
+        GlobalVars.nextExerciseSecondsCount = totalTime; // sets timer to an hour
+        exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
 
     override func didReceiveMemoryWarning() {
@@ -203,12 +273,21 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
             }
         }
     }
+    
 
-//    override func viewWillDisappear(_ animated: Bool) {
-//        //resets the arrays index to starting point
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        exerciseCountdownTimer.invalidate() // stops the countdown
+        
+        // checks to see if it's disappearing to go to the list view and not the next view
+        if (self.isMovingFromParentViewController){
+            GlobalVars.workoutsIndexCount = 0
+        }
+        
+        //resets the arrays index to starting point
 //        GlobalVars.workoutsIndexCount = 0
 //        
 //        print("the indexCount = \(GlobalVars.workoutsIndexCount)")
-//    }
+    }
 
 }
