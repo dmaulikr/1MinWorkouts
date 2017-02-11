@@ -56,7 +56,8 @@ class ExercisesViewController: UIViewController {
         }
     }
     
-    @IBAction func startWorkoutBtn(_ sender: AnyObject) {// restart button
+    // restart button
+    @IBAction func startWorkoutBtn(_ sender: AnyObject) {
         getReadyView.isHidden = false
         workoutCountdownLabel.isHidden = true
         
@@ -94,7 +95,7 @@ class ExercisesViewController: UIViewController {
         return GlobalVars.workoutsIndexCount = newCount
     }
     
-    //----------------------------------------- 60 seconds workout timer -----------------------------------------//
+    //----------------------------------------- Main workout timer -----------------------------------------//
     func exerciseTimerRun(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
@@ -128,9 +129,12 @@ class ExercisesViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             // sends alert when workout is finished-------------------------------------------------------------------//
-            if GlobalVars.workoutsIndexCount == 7 || GlobalVars.workoutsIndexCount == 6 || GlobalVars.workoutsIndexCount == 12{
+            if navTitle == "7 Minute Tabata" && GlobalVars.workoutsIndexCount == 5 ||
+                navTitle == "Upper Body" && GlobalVars.workoutsIndexCount == 6 ||
+                navTitle == "Lower Body" && GlobalVars.workoutsIndexCount == 6 ||
+                navTitle == "7 Minute Workout" && GlobalVars.workoutsIndexCount == 11{
                 
-                let alert = UIAlertController(title: "You've Finished Your Workout", message: "\n\n\nNice Job!", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "You're Finished With Your Workout", message: "\n\n\nNice Job!", preferredStyle: UIAlertControllerStyle.alert)
                 
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
                     (action: UIAlertAction!) in
@@ -147,7 +151,7 @@ class ExercisesViewController: UIViewController {
                 }))
                 
                 let thumbsImage = UIImage(named: "thumbs-up")
-                let imageView = UIImageView(frame: CGRect(x: 117, y: 47, width: 40, height: 40))
+                let imageView = UIImageView(frame: CGRect(x: 117, y: 67, width: 40, height: 40))
                 imageView.image = thumbsImage
                 
                 alert.view.addSubview(imageView)
@@ -163,17 +167,11 @@ class ExercisesViewController: UIViewController {
                     delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
                 }
             
-                // sends an alert when timer is up
                 func gotoWorkoutVC(){
                     let vc = ExercisesViewController(nibName: "ExercisesViewController", bundle: nil)
                     navigationController?.pushViewController(vc, animated: true)
                 }
-            
-                // passes the incremented variable to the prior screen delegate
-                if (self.delegate != nil) {
-                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.workoutsIndexCount)
-                }
-            
+                
                 self.dismiss(animated: true, completion: nil)
             }
             
@@ -194,7 +192,7 @@ class ExercisesViewController: UIViewController {
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerRun), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
-    //----------------------------------------- 5 seconds countdown get ready timer -----------------------------------------//
+    //----------------------------------------- get ready timer -----------------------------------------//
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
@@ -223,15 +221,20 @@ class ExercisesViewController: UIViewController {
                 }else if self.navTitle == "7 Minute Tabata"{
                     self.setExerciseTimer(20, timerLabel: "20")
                 }
+                // for testing
+//                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "7 Minute Workout"{
+//                    self.setExerciseTimer(03, timerLabel: "03")// should be 30
+//                }else if self.navTitle == "7 Minute Tabata"{
+//                    self.setExerciseTimer(02, timerLabel: "02") // should be 20
+//                }
                 
-                //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate and message tone when 5 sec countdown is done
                 AudioServicesPlaySystemSound(1120) // plays vibrate and tone 1008-start/stop 1110 (nice option, maybe too simple)
                 print("get ready triggered else")
             }
         }
     }
     
-    // method that defines the actual timer for hour exercise timer
+    // method that defines the actual timer for get ready exercise timer
     func setExerciseTimerGetReady(_ timerTime : Int, timerLabel : String){
         
         totalTime = timerTime // sets the timer to starting time desired
@@ -243,7 +246,7 @@ class ExercisesViewController: UIViewController {
         
     }
     
-    // method that defines the actual timer for hour exercise timer
+    // method that defines the actual timer for next workout exercise timer
     func setNextWorkoutTimer(_ timerTime : Int, timerLabel : String){
         
         totalTime = timerTime // sets the timer to starting time desired
@@ -258,7 +261,7 @@ class ExercisesViewController: UIViewController {
         super.viewDidLoad()
 
         // sets up the initial view and points page vars at right vars
-        exercisesCount = GlobalVars.exerciseUB.count
+        //exercisesCount = GlobalVars.exerciseUB.count
         navigationItem.title = navTitle
         exerciseTypeTitle.text = exerciseTitle
         exerciseTypeImage.image = exerciseImage
@@ -277,7 +280,7 @@ class ExercisesViewController: UIViewController {
         //hide switch sides sub-title by default
         switchSidesSubTitle.isHidden = true
         
-        //show switch sides sub-title for Side Plank
+        //show switch sides sub-title for relevant exercises
         if exerciseTitle == "Side Plank"{
             switchSidesSubTitle.isHidden = false
             switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
@@ -297,7 +300,6 @@ class ExercisesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToWrokoutInfo"{
             

@@ -1079,7 +1079,7 @@
                                 <color key="textColor" red="0.3930584016" green="0.3930584016" blue="0.3930584016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workout progress - step1_7" translatesAutoresizingMaskIntoConstraints="NO" id="5PP-KY-tDL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workout-progress-Step2_12" translatesAutoresizingMaskIntoConstraints="NO" id="5PP-KY-tDL">
                                 <rect key="frame" x="20" y="477" width="338" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.54260529670000002" green="0.79715795810000001" blue="0.91000000000000003" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1339,7 +1339,7 @@
         <image name="stats-icon" width="30" height="30"/>
         <image name="stopwatch_icon_start" width="175" height="198"/>
         <image name="thumbs-up" width="93" height="93"/>
-        <image name="workout progress - step1_7" width="346" height="17"/>
+        <image name="workout-progress-Step2_12" width="346" height="17"/>
         <image name="workouts-icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

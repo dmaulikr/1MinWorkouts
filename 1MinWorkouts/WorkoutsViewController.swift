@@ -27,6 +27,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
     
+    //---------------- use this to play through stock iOS tones --------------//
 //    var alertTone = UInt32(1100)// double vibrate (got to 1301)
 
 //    @IBAction func findTonesBtn(_ sender: AnyObject) {
@@ -38,6 +39,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
 //            print("\(alertTone)")
 //        }
 //    }
+    //---------------- use this to play through stock iOS tones --------------//
     
     override func viewWillAppear(_ animated: Bool) {
         // defines when to show the next exercise wait timer after the first workout has been done
@@ -52,10 +54,16 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 self.exerciseCountdownTimer.invalidate() // stops the countdown
                 
                 if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
-                    self.setExerciseTimer(25, timerLabel: "25")// 5 secs less due to 5 sec get ready
+                    self.setExerciseTimer(30, timerLabel: "30")
                 }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
-                    self.setExerciseTimer(5, timerLabel: "5")// 5 secs less due to 5 sec get ready
+                    self.setExerciseTimer(10, timerLabel: "10")
                 }
+                // for testing
+//                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
+//                    self.setExerciseTimer(02, timerLabel: "02")// 5 secs less due to 5 sec get ready
+//                }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
+//                    self.setExerciseTimer(2, timerLabel: "2")// 5 secs less due to 5 sec get ready
+//                }
             }
         }else{
             nextWorkoutView.isHidden = true
@@ -98,7 +106,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         nextWorkoutCountdownLabel.text = timerOutput
         
         // what happens when the timer ends
-        if (GlobalVars.nextExerciseSecondsCount == 0) {
+        if (GlobalVars.nextExerciseSecondsCount == 5) {
             
             exerciseCountdownTimer.invalidate() // stops the countdown
             
@@ -169,10 +177,10 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 switchSidesSubTitle.isHidden = true
             }
         }
-        if navigationItem.title == "7 Minute Workout"{
-            let image = UIImage(named: GlobalVars.workouts7M[indexCount].filename)
+        if navigationItem.title == "7 Minute Tabata"{
+            let image = UIImage(named: GlobalVars.workouts7T[indexCount].filename)
             exerciseTypeImage.image = image
-            exerciseTypeTitle.text = GlobalVars.workouts7M[indexCount].name
+            exerciseTypeTitle.text = GlobalVars.workouts7T[indexCount].name
             
             //add switch sub-title to needed exercises
             if exerciseTypeTitle.text == "Side Plank"{
@@ -220,7 +228,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.navTitle = "7 Minute Workout"
                 vc.exerciseTitle = GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].filename)
-                vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
+                vc.meterImage = UIImage(named: GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
             }
             if navigationItem.title == "7 Minute Tabata"{
@@ -231,7 +239,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.navTitle = "7 Minute Tabata"
                 vc.exerciseTitle = GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].filename)
-                vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
+                vc.meterImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
             }
         }
