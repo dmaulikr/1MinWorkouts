@@ -71,10 +71,18 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     }
     
     override func viewDidLayoutSubviews() {
+        // checks to make sure the next workout counter view is only shown when needed
         if GlobalVars.workoutsIndexCount != 0{
             nextWorkoutView.center.y = nextWorkoutView.center.y + 150
         }else {
             nextWorkoutView.center.y = nextWorkoutView.center.y
+        }
+        
+        // makes sure the next workout countdown value is set prior to showing it
+        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
+            self.nextWorkoutCountdownLabel.text = "30"
+        }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
+            self.nextWorkoutCountdownLabel.text = "10"
         }
     }
     
