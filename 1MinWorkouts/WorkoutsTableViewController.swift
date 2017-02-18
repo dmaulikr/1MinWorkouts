@@ -41,7 +41,7 @@ class WorkoutsTableViewController: UITableViewController {
         GlobalVars.workoutsIndexCount = 0
         
         // instantiates the Upper Body array data
-        var newExercise = Exercise(name: "Jumping Jacks", filename: "Placeholder Image", meterFilename: "workout-progress-Step1_7",  tips:
+        var newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7",  tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
@@ -103,7 +103,7 @@ class WorkoutsTableViewController: UITableViewController {
         GlobalVars.workoutsUB.append(newExercise)
         
         // instantiates the Lower Body array data -------------------------------------------------------------------------//
-        newExercise = Exercise(name: "Jumping Jacks", filename: "Placeholder Image", meterFilename: "workout-progress-Step1_7", tips:
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
@@ -161,7 +161,7 @@ class WorkoutsTableViewController: UITableViewController {
         
         
         // instantiates the 7 Min Workout array data -------------------------------------------------------------------------//
-        newExercise = Exercise(name: "Jumping Jacks", filename: "Placeholder Image", meterFilename: "workout-progress-Step1_12", tips:
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_12", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
@@ -169,12 +169,12 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Wall Sit", filename: "Placeholder Image", meterFilename: "workout-progress-Step2_12", tips:
-            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
-                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
-                "3. Straighten your legs back to the starting position while you exhale \n\n" +
-                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
-            "Do as many as you can in a minute, takeing breaks as needed.")
+        newExercise = Exercise(name: "Wall Sit", filename: "wall_sit", meterFilename: "workout-progress-Step2_12", tips:
+            "1. Start by standing about 2 feet away from a wall with your back against the wall. \n\n" +
+                "2. Slide your back down the wall until your hips and knees bend at a 90 degrees angle. \n\n" +
+                "3. Keep the shoulders, upper back and the back of the head against the wall. \n\n" +
+                "4. Both feet should be flat on the ground with the weight evenly distributed. \n\n" +
+            "5. Hold for the required amount of time.")
         GlobalVars.workouts7M.append(newExercise)
         
         newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "workout-progress-Step3_12", tips:
@@ -194,7 +194,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Hold this position for as long as you can, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Chair Step Ups", filename: "Placeholder Image", meterFilename: "workout-progress-Step5_12", tips:
+        newExercise = Exercise(name: "Chair Step Ups", filename: "chair-step-ups", meterFilename: "workout-progress-Step5_12", tips:
             "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
                 "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
                 "3. Straighten your legs back to the starting position while you exhale \n\n" +
@@ -230,12 +230,11 @@ class WorkoutsTableViewController: UITableViewController {
             "Hold this position for as long as you can, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "High Knees/Run In Place", filename: "Placeholder Image", meterFilename: "workout-progress-Step9_12", tips:
-            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
-                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
-                "3. Straighten your legs back to the starting position while you exhale \n\n" +
-                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
-            "Do as many as you can in a minute, takeing breaks as needed.")
+        newExercise = Exercise(name: "High Knees/Run In Place", filename: "high-knees", meterFilename: "workout-progress- Step9_12", tips:
+            "1. Stand in place with your feet hip-width apart. /n/n" +
+            "2. Drive your right knee toward your chest and quickly place it back on the ground. /n/n" +
+            "3. Follow immediately by driving your left knee toward your chest. /n/n" +
+            "Continue to alternate knees as quickly as you can. Take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
         newExercise = Exercise(name: "Lunges", filename: "lunges", meterFilename: "workout-progress-Step10_12", tips:
@@ -247,10 +246,10 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
-        newExercise = Exercise(name: "Rotation Push-Ups", filename: "Placeholder Image", meterFilename: "workout-progress-Step11_12", tips:
+        newExercise = Exercise(name: "Rotation Push-Ups", filename: "push-ups-rotation", meterFilename: "workout-progress-Step11_12", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
                 "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
-                "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
+                "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling. At the top of the push-up, rotate your upper body and extend your right arm upwards. Return to starting position and repeat. Alternate sides as you go. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
@@ -271,7 +270,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, takeing breaks as needed.")
         GlobalVars.workouts7T.append(newExercise) // 0
         
-        newExercise = Exercise(name: "Jumping Jacks", filename: "Placeholder Image", meterFilename: "workout-progress-Step2_6", tips:
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step2_6", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
@@ -296,7 +295,7 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, takeing breaks as needed.")
         GlobalVars.workouts7T.append(newExercise) // 3
         
-        newExercise = Exercise(name: "Jumping Jacks", filename: "Placeholder Image", meterFilename: "workout-progress-Step5_6", tips:
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step5_6", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +

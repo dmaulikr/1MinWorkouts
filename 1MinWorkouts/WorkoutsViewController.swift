@@ -43,30 +43,32 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         // defines when to show the next exercise wait timer after the first workout has been done
-        if GlobalVars.workoutsIndexCount != 0{
+        if GlobalVars.workoutsIndexCount != 0 && nextWorkoutView.isHidden == false{
+            let currentTimerCount = nextWorkoutCountdownLabel
+            let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
+            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
+            print("------------ viewWillAppear reset time")
+        }else if GlobalVars.workoutsIndexCount != 0{
             nextWorkoutView.isHidden = false
         
             UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
-                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 150
+                    self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 150
+                    print("------------ viewWillAppear animate")
             }) { (value:Bool) in
+                // stops the countdown
+                self.exerciseCountdownTimer.invalidate()
+                
                 //Sets the next exercise wait timer after the animation loads
-                
-                self.exerciseCountdownTimer.invalidate() // stops the countdown
-                
                 if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
                     self.setExerciseTimer(30, timerLabel: "30")
                 }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
                     self.setExerciseTimer(10, timerLabel: "10")
                 }
-                // for testing
-//                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
-//                    self.setExerciseTimer(02, timerLabel: "02")// 5 secs less due to 5 sec get ready
-//                }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
-//                    self.setExerciseTimer(2, timerLabel: "2")// 5 secs less due to 5 sec get ready
-//                }
             }
         }else{
+            // hides the next workout view
             nextWorkoutView.isHidden = true
+            print("------------ viewWillAppear hide view")
         }
     }
     
@@ -118,7 +120,9 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
             
             exerciseCountdownTimer.invalidate() // stops the countdown
             
-            setExerciseTimer(0, timerLabel: "0")
+            //setExerciseTimer(0, timerLabel: "0")
+            
+            nextWorkoutView.isHidden = true
             
             AudioServicesPlaySystemSound(1120) // plays vibrate and tone
             
@@ -150,14 +154,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
             let image = UIImage(named: GlobalVars.workoutsUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workoutsUB[indexCount].name
-                        
-            //add switch sub-title to needed exercises
-            if exerciseTypeTitle.text == "Side Plank"{
-                switchSidesSubTitle.isHidden = false
-                switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
-            }else{
-                switchSidesSubTitle.isHidden = true
-            }
+            switchSidesSubTitle.isHidden = true
         }
         if navigationItem.title == "Lower Body"{
             let image = UIImage(named: GlobalVars.workoutsLB[indexCount].filename)
@@ -177,10 +174,16 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workouts7M[indexCount].name
             
+            
             //add switch sub-title to needed exercises
             if exerciseTypeTitle.text == "Side Plank"{
                 switchSidesSubTitle.isHidden = false
-                switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+                switchSidesSubTitle.text = "Switch Sides @ 15 Secs"
+            }else if exerciseTypeTitle.text == "Chair Step Ups" ||
+                exerciseTypeTitle.text == "High Knees/Run In Place" ||
+                exerciseTypeTitle.text == "Rotation Push-Ups"{
+                switchSidesSubTitle.isHidden = false
+                switchSidesSubTitle.text = "Alternate Sides"
             }else{
                 switchSidesSubTitle.isHidden = true
             }
@@ -189,14 +192,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
             let image = UIImage(named: GlobalVars.workouts7T[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workouts7T[indexCount].name
-            
-            //add switch sub-title to needed exercises
-            if exerciseTypeTitle.text == "Side Plank"{
-                switchSidesSubTitle.isHidden = false
-                switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
-            }else{
-                switchSidesSubTitle.isHidden = true
-            }
+            switchSidesSubTitle.isHidden = true
         }
         controller.navigationController!.popViewController(animated: true)
     }

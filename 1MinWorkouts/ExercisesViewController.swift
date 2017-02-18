@@ -112,7 +112,7 @@ class ExercisesViewController: UIViewController {
         }
         
         // shows switch sides countdown for Side Plank
-        if exerciseTitle == "Side Plank" && GlobalVars.exerciseSecondsCount == 30{
+        if exerciseTitle == "Side Plank" && GlobalVars.exerciseSecondsCount == 15{
             exerciseImage = UIImage(named: "side-plank-left") // sets the new side plank image to the var
             exerciseTypeImage.image = exerciseImage // switches the side plank image
             exerciseCountdownTimer.invalidate() // stops all timers
@@ -205,8 +205,8 @@ class ExercisesViewController: UIViewController {
             // sets workout timer to 30 seconds remaining after switch sides view for Side Plank
             if switchSidesSubTitle.isHidden == true && exerciseTitle == "Side Plank"{
                 exerciseCountdownTimer.invalidate() // stops all timers
-                workoutCountdownLabel.text = "30"
-                setExerciseTimer(30, timerLabel: "30")
+                workoutCountdownLabel.text = "15"
+                setExerciseTimer(15, timerLabel: "15")
                 getReadyLabel.text = "Get ready to workout!"
                 getReadyView.isHidden = true
                 workoutCountdownLabel.isHidden = false
@@ -283,10 +283,12 @@ class ExercisesViewController: UIViewController {
         //show switch sides sub-title for relevant exercises
         if exerciseTitle == "Side Plank"{
             switchSidesSubTitle.isHidden = false
-            switchSidesSubTitle.text = "Switch Sides @ 30 Secs"
+            switchSidesSubTitle.text = "Switch Sides @ 15 Secs"
         }else
             //show switch sides sub-title for Lunges
-            if exerciseTitle == "Lunges"{
+            if exerciseTypeTitle.text == "Chair Step Ups" ||
+                exerciseTypeTitle.text == "High Knees/Run In Place" ||
+                exerciseTypeTitle.text == "Rotation Push-Ups"{
                 switchSidesSubTitle.isHidden = false
                 switchSidesSubTitle.text = "Alternate Sides"
             }else{
