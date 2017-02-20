@@ -27,11 +27,12 @@ import UserNotifications
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents(in: .current, from: date)
         let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
+//        let newComponents = DateComponents(hour: components.hour, minute: components.minute)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: true) // repeats every hour
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true) // interval trigger to show a notification every hour
         
         let content = UNMutableNotificationContent()
-        //        content.title = "It's Time For a 1MinuteWorkout!"
         content.body = "It's time for a 1MinuteWorkout!"
         content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "myCategory"
