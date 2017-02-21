@@ -262,53 +262,128 @@ class WorkoutsTableViewController: UITableViewController {
         GlobalVars.workouts7M.append(newExercise)
     
         // instantiates the 7 Min Tabata array data -------------------------------------------------------------------------//
-        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "workout-progress-Step1_6", tips:
-            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
-                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
-                "3. Straighten your legs back to the starting position while you exhale \n\n" +
-                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
-            "Do as many as you can in a minute, takeing breaks as needed.")
-        GlobalVars.workouts7T.append(newExercise) // 0
         
-        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step2_6", tips:
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_14", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
                 "4. Jump straigt up again, but this time put your feet back together and bring your arms down to your sides following the same arcing path you made when raising them. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.")
+        GlobalVars.workouts7T.append(newExercise) // 0
+        
+        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "workout-progress-Step2_14", tips:
+            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
+                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
+                "3. Straighten your legs back to the starting position while you exhale \n\n" +
+                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
+            "Do as many as you can in a minute, takeing breaks as needed.")
         GlobalVars.workouts7T.append(newExercise) // 1
         
-        newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "workout-progress-Step3_6", tips:
+        newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "workout-progress-Step3_14", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
                 "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
                 "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
             "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7T.append(newExercise) // 2
         
-        // round2
-        
-        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "workout-progress-Step5_6", tips:
-            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
-                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
-                "3. Straighten your legs back to the starting position while you exhale \n\n" +
-                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
-            "Do as many as you can in a minute, takeing breaks as needed.")
+        newExercise = Exercise(name: "Lunges", filename: "lunges", meterFilename: "workout-progress-Step4_14", tips:
+            "1. Stand up straight with your feet about a shoulder width apart. Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. \n\n" +
+                "2. Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
+                "3. As you step forward, lower your hips and bend your knees until they both form 90 degree angles while inhaling. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
+                "4. Pause at the bottom of the lunge for a second then push off the heel of your front foot to return to the starting position while exhaling. \n\n" +
+                "Alternate legs as you go. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.")
         GlobalVars.workouts7T.append(newExercise) // 3
         
-        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step5_6", tips:
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "workout-progress-Step5_14", tips:
+            "1. Lie down with your back flat to the floor. \n\n" +
+                "2. Bend your knees at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place. \n\n" +
+                "3. Cross your hands in front of your chest. Make sure there is a fist's worth of space between your chin and chest. \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down. \n\n" +
+                "Do as many as you can in a minute, but take breaks as needed. \n\n" +
+            "")
+        GlobalVars.workouts7T.append(newExercise) // 4
+        
+        newExercise = Exercise(name: "Plank", filename: "plank", meterFilename: "workout-progress-Step6_14", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.")
+        GlobalVars.workouts7T.append(newExercise) //5
+        
+        newExercise = Exercise(name: "Curls", filename: "curls", meterFilename: "workout-progress-Step7_14", tips:
+            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
+                "2. Stand up straight with your feet hip width apart. \n\n" +
+                "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
+                "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
+                "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.\n\n")
+        GlobalVars.workouts7T.append(newExercise) //6
+        
+        newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step8_14", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
                 "3. Land with your legs apart and arms over your head. \n\n" +
                 "4. Jump straigt up again, but this time put your feet back together and bring your arms down to your sides following the same arcing path you made when raising them. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.")
-        GlobalVars.workouts7T.append(newExercise) // 4
+        GlobalVars.workouts7T.append(newExercise) // 7
         
-        newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "workout-progress-Step6_6", tips:
+        newExercise = Exercise(name: "Squats", filename: "squats", meterFilename: "workout-progress-Step9_14", tips:
+            "1. Stand with your spine in a straight line, and have your feet a little wider than hip-width apart. \n\n" +
+                "2. Bend at the knees to lower your hips toward the ground and move them backwards, as though you're going to sit in a chair. Your shins should be perpendicular to the floor and your spine should stay straight. Keep your arms out in front of you for balance as needed while you inhale. \n\n" +
+                "3. Straighten your legs back to the starting position while you exhale \n\n" +
+                "If you can't do a full squat by bringing your hips close to the floor, do a half squat or squat down as far as you can until you improve and can go lower. \n\n" +
+            "Do as many as you can in a minute, takeing breaks as needed.")
+        GlobalVars.workouts7T.append(newExercise) // 8
+        
+        newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "workout-progress-Step10_14", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
                 "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
                 "3. Press your upper body back up to the starting position, focussing on squeezing your chest while exhaling.\n\n" +
             "Do as many as you can in a minute, but take breaks as needed.")
-        GlobalVars.workouts7T.append(newExercise) // 5
+        GlobalVars.workouts7T.append(newExercise) // 9
+        
+        newExercise = Exercise(name: "Lunges", filename: "lunges", meterFilename: "workout-progress-Step11_14", tips:
+            "1. Stand up straight with your feet about a shoulder width apart. Put your hands on your hips, keep your back as straight as possible, relax your shoulders and keep your eyes facing directly ahead. \n\n" +
+                "2. Take a large step forward with one leg. The length of your step will depend on your height, but it will usually be somewhere between 2 or 3 feet (0.6 or 0.9 m). \n\n" +
+                "3. As you step forward, lower your hips and bend your knees until they both form 90 degree angles while inhaling. Your front knee should not extend over your toes and your back knee should not touch the ground. \n\n" +
+                "4. Pause at the bottom of the lunge for a second then push off the heel of your front foot to return to the starting position while exhaling. \n\n" +
+                "Alternate legs as you go. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.")
+        GlobalVars.workouts7T.append(newExercise) // 10
+        
+        newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "workout-progress-Step12_14", tips:
+            "1. Lie down with your back flat to the floor. \n\n" +
+                "2. Bend your knees at a 90-degree angle to your body. It may be easier to rest your feet under a chair to lock them in place. \n\n" +
+                "3. Cross your hands in front of your chest. Make sure there is a fist's worth of space between your chin and chest. \n\n" +
+                "4. Draw your belly button in to the base of your spine while you sit up. Your shoulder blades should just lift off the floor. \n\n" +
+                "Exhale as you sit up. Inhale as you lie down. \n\n" +
+                "Do as many as you can in a minute, but take breaks as needed. \n\n" +
+            "")
+        GlobalVars.workouts7T.append(newExercise) // 11
+        
+        newExercise = Exercise(name: "Plank", filename: "plank", meterFilename: "workout-progress-Step13_14", tips:
+            "1. Lie on your stomach, flat on the floor. Push up onto your forearms.\n\n" +
+                "2. Bend your elbows and rest your weight on your forearms.\n\n" +
+                "3. Keep your elbows under your shoulders.\n\n" +
+                "4. Pull your belly button towards your spine.\n\n" +
+                "5. Your body should form a flat line. Don’t let your hips sag, and don’t push your butt up—keep your body in a straight line.\n\n" +
+                "6. You can do this plank on your hands instead of your elbows if you prefer (if you feel any pain or stiffness in your wrists, balance your weight on your elbows instead).\n\n" +
+            "Hold this position for as long as you can, but take breaks as needed.")
+        GlobalVars.workouts7T.append(newExercise) // 12
+        
+        newExercise = Exercise(name: "Curls", filename: "curls", meterFilename: "workout-progress-Step14_14", tips:
+            "1. Choose a resistance band that allows you to do at least 15 repetitions in one set. \n\n" +
+                "2. Stand up straight with your feet hip width apart. \n\n" +
+                "3. Place the band under your feet and hold the handles down by your sides. Make sure each side is even. \n\n" +
+                "4. Curl your arms up toward your shoulders. Exhale and make sure to keep your elbows tucked in at your sides - don't arch your back. \n\n" +
+                "5. Return to the starting position in a slow and controlled manner while you inhale. \n\n" +
+            "Do as many as you can in a minute, but take breaks as needed.\n\n")
+        GlobalVars.workouts7T.append(newExercise) // 13
     }
 
     override func didReceiveMemoryWarning() {

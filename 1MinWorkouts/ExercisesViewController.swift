@@ -129,7 +129,7 @@ class ExercisesViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             // sends alert when workout is finished-------------------------------------------------------------------//
-            if navTitle == "7 Minute Tabata" && GlobalVars.workoutsIndexCount == 5 ||
+            if navTitle == "7 Minute Tabata" && GlobalVars.workoutsIndexCount == 13 ||
                 navTitle == "Upper Body" && GlobalVars.workoutsIndexCount == 6 ||
                 navTitle == "Lower Body" && GlobalVars.workoutsIndexCount == 6 ||
                 navTitle == "7 Minute Workout" && GlobalVars.workoutsIndexCount == 11{

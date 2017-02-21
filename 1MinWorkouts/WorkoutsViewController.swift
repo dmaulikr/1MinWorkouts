@@ -23,6 +23,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
+    @IBOutlet var exercisesListInfoBtn: UIButton!
     
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
@@ -245,6 +246,94 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.exerciseImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].filename)
                 vc.meterImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
+            }
+        }
+        
+        if segue.identifier == "segueToExercisesList"{
+            
+            // false = UB objects (default start)  true = LB objects
+            if navigationItem.title == "Upper Body"{
+                // set up WorkoutsViewController to show Upper Body stuff
+                GlobalVars.exerciseGroup = true
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = "Upper Body Workout Exercises"
+                vc.exerciseTips =
+                    "Exercise for 30 seconds with 30 second rest \n \n" +
+                    "1. Jumping Jacks\n" +
+                    "2. Push-Ups\n" +
+                    "3. Curls \n" +
+                    "4. Tricep Dips \n" +
+                    "5. Wide Push-Ups \n" +
+                    "6. Curls \n" +
+                    "7. Tricep Dips \n" +
+                    "   Done!"
+            }
+            if navigationItem.title == "Lower Body"{
+                // set up WorkoutsViewController to show Lower Body stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = "Lower Body Workout Exercises"
+                vc.exerciseTips =
+                    "Exercise for 30 seconds with 30 second rest \n \n" +
+                    "1. Jumping Jacks \n" +
+                    "2. Squats \n" +
+                    "3. Lunges \n" +
+                    "4. Calf Raises \n" +
+                    "5. Squats \n" +
+                    "6. Lunges \n" +
+                    "7. Calf Raises \n" +
+                "   Done!"
+
+            }
+            if navigationItem.title == "7 Minute Workout"{
+                // set up WorkoutsViewController to show 7 Min Workouts stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = "7 Minute Workout Exercises"
+                vc.exerciseTips =
+                    "Exercise for 30 seconds with 10 second rest \n \n" +
+                    "1. Jumping Jacks \n" +
+                    "2. Wall Sit \n" +
+                    "3. Push-Ups \n" +
+                    "4. Plank \n" +
+                    "5. Chair Step Ups \n" +
+                    "6. Squats \n" +
+                    "7. Tricep Dips \n" +
+                    "8. Plank \n" +
+                    "9. High Knees/Run In Place \n" +
+                    "10. Lunges \n" +
+                    "11. Push-Ups with Rotation \n" +
+                    "12. Side Plank \n" +
+                    "   Done!"
+
+            }
+            if navigationItem.title == "7 Minute Tabata"{
+                // set up WorkoutsViewController to show 7 Min Tabata stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = "7 Minute Tabata Workout Exercises"
+                vc.exerciseTips =
+                    "Exercise for 20 seconds with 10 second rest \n \n" +
+                    "1. Jumping Jacks \n" +
+                    "2. Squats \n" +
+                    "3. Push-Ups \n" +
+                    "4. Lunges \n" +
+                    "5. Crunches \n" +
+                    "6. Plank \n" +
+                    "7. Curls \n" +
+                    "8. Jumping Jacks \n" +
+                    "9. Squats \n" +
+                    "10. Push-Ups \n" +
+                    "11. Lunges \n" +
+                    "12. Crunches \n" +
+                    "13. Plank \n" +
+                    "14. Curls \n" +
+                "   Done!"
+
             }
         }
         
