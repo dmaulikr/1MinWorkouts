@@ -259,7 +259,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "Upper Body Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds with 30 second rest \n \n" +
+                    "Exercise for 30 seconds \n" +
+                    "Rest for 30 seconds \n \n" +
                     "1. Jumping Jacks\n" +
                     "2. Push-Ups\n" +
                     "3. Curls \n" +
@@ -276,7 +277,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "Lower Body Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds with 30 second rest \n \n" +
+                    "Exercise for 30 seconds \n" +
+                    "Rest for 30 seconds \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Squats \n" +
                     "3. Lunges \n" +
@@ -294,7 +296,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "7 Minute Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds with 10 second rest \n \n" +
+                    "Exercise for 30 seconds \n" +
+                    "Rest for 10 seconds \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Wall Sit \n" +
                     "3. Push-Ups \n" +
@@ -317,7 +320,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "7 Minute Tabata Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 20 seconds with 10 second rest \n \n" +
+                    "Exercise for 20 seconds \n" +
+                    "Rest for 10 seconds  \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Squats \n" +
                     "3. Push-Ups \n" +
