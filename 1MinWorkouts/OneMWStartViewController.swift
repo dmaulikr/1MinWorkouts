@@ -127,6 +127,17 @@ class OneMWStartViewController: UIViewController {
             
         }
         
+        if UBBtnLastWorkoutLabel.isHidden == false{
+            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Lower Body + Core")
+            UIApplication.shared.shortcutItems = [shortcut]
+        }else if LBBtnLastWorkoutLabel.isHidden == false{
+            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout:\nAll Core")
+            UIApplication.shared.shortcutItems = [shortcut]
+        }else if CoreBtnLastWorkoutLabel.isHidden == false{
+            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Upper Body + Core")
+            UIApplication.shared.shortcutItems = [shortcut]
+        }
+        print("1mw start viewWillAppear")
     }
     
     override func viewDidLoad() {

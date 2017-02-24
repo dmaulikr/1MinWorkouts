@@ -222,6 +222,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         navigationController!.popToRootViewController(animated: true)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // adds 3D touch stuff to the app icon
+        let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout:", localizedSubtitle: "\(exerciseTypeTitle.text!) @ \(nextWorkoutNotificationLabel.text!)", icon: nil, userInfo: nil)
+        
+        UIApplication.shared.shortcutItems = [shortcut]
+        
+        print("workout now screen viewWillAppear")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -322,6 +332,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             }
 
         }
+        
         controller.navigationController!.popViewController(animated: true)
     }
     
@@ -362,6 +373,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                 vc.nextWorkoutTime = "Right Now!"
                 vc.delegate = self
             }
+            
         }
         
         if segue.identifier == "segueToExerciseInfo"{
