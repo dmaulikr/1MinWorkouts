@@ -127,16 +127,25 @@ class OneMWStartViewController: UIViewController {
             
         }
         
-        if UBBtnLastWorkoutLabel.isHidden == false{
-            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Lower Body + Core")
-            UIApplication.shared.shortcutItems = [shortcut]
-        }else if LBBtnLastWorkoutLabel.isHidden == false{
-            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout:\nAll Core")
-            UIApplication.shared.shortcutItems = [shortcut]
-        }else if CoreBtnLastWorkoutLabel.isHidden == false{
-            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Upper Body + Core")
-            UIApplication.shared.shortcutItems = [shortcut]
-        }
+//        if UBBtnLastWorkoutLabel.isHidden == false{
+//            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Lower Body + Core")
+//            UIApplication.shared.shortcutItems = [shortcut]
+//            print("1mw start viewWillAppear UB on")
+//        }else if LBBtnLastWorkoutLabel.isHidden == false{
+//            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout:\nAll Core")
+//            UIApplication.shared.shortcutItems = [shortcut]
+//            print("1mw start viewWillAppear LB on")
+//        }else if CoreBtnLastWorkoutLabel.isHidden == false{
+//            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout: Upper Body + Core")
+//            UIApplication.shared.shortcutItems = [shortcut]
+//            print("1mw start viewWillAppear core on")
+//        }else {
+//            let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Sart With: Upper Body + Core")
+//            UIApplication.shared.shortcutItems = [shortcut]
+//            print("1mw start viewWillAppear all off")
+//        }
+        let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Select a workout")
+        UIApplication.shared.shortcutItems = [shortcut]
         print("1mw start viewWillAppear")
     }
     
@@ -160,7 +169,7 @@ class OneMWStartViewController: UIViewController {
         //print("Last Workout Date: \(GlobalVars.lastWorkoutDate)")
         
         GlobalVars.exerciseIndexCount = 0
-       
+        
         // instantiates the Upper Body array data        
         var newExercise = Exercise(name: "Push-Ups", filename: "push-ups", meterFilename: "", tips:
             "1. Lie on the floor face down and place your hands just about about shoulder width apart while holding your torso up at arms length. \n\n" +
