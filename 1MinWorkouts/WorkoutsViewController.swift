@@ -60,7 +60,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 self.exerciseCountdownTimer.invalidate()
                 
                 //Sets the next exercise wait timer after the animation loads
-                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
+                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
                     self.setExerciseTimer(30, timerLabel: "30")
                 }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
                     self.setExerciseTimer(10, timerLabel: "10")
@@ -82,7 +82,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         }
         
         // makes sure the next workout countdown value is set prior to showing it
-        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body"{
+        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
             self.nextWorkoutCountdownLabel.text = "30"
         }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
             self.nextWorkoutCountdownLabel.text = "10"
@@ -170,6 +170,20 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 switchSidesSubTitle.isHidden = true
             }
         }
+        if navigationItem.title == "Core"{
+            let image = UIImage(named: GlobalVars.workouts7M[indexCount].filename)
+            exerciseTypeImage.image = image
+            exerciseTypeTitle.text = GlobalVars.workouts7M[indexCount].name
+            
+            
+            //add switch sub-title to needed exercises
+            if exerciseTypeTitle.text == "Side Plank"{
+                switchSidesSubTitle.isHidden = false
+                switchSidesSubTitle.text = "Switch Sides @ 15 Secs"
+            }else{
+                switchSidesSubTitle.isHidden = true
+            }
+        }
         if navigationItem.title == "7 Minute Workout"{
             let image = UIImage(named: GlobalVars.workouts7M[indexCount].filename)
             exerciseTypeImage.image = image
@@ -223,6 +237,17 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].filename)
                 vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
+                vc.delegate = self
+            }
+            if navigationItem.title == "Core"{
+                // set up WorkoutsViewController to show Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! ExercisesViewController
+                vc.navTitle = "Core"
+                vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
+                vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
+                vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
             }
             if navigationItem.title == "7 Minute Workout"{
@@ -288,6 +313,25 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "7. Calf Raises \n" +
                 "   Done!"
 
+            }
+            if navigationItem.title == "Core"{
+                // set up WorkoutsViewController to show Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = "Corey Workout Exercises"
+                vc.exerciseTips =
+                    "Exercise for 30 seconds \n" +
+                    "Rest for 30 seconds \n \n" +
+                    "1. Crunches \n" +
+                    "2. Side Plank \n" +
+                    "3. Leg Lifts \n" +
+                    "4. Plank \n" +
+                    "5. Crunches \n" +
+                    "6. Side Plank \n" +
+                    "7. Leg Lifts \n" +
+                "   Done!"
+                
             }
             if navigationItem.title == "7 Minute Workout"{
                 // set up WorkoutsViewController to show 7 Min Workouts stuff
@@ -360,6 +404,15 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseTips = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].tips
             }
+            if navigationItem.title == "Core"{
+                // set up WorkoutsViewController to show Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
+                vc.exerciseTips = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].tips
+            }
+
             if navigationItem.title == "7 Minute Workout"{
                 // set up WorkoutsViewController to show 7 Min Workouts stuff
                 GlobalVars.exerciseGroup = false

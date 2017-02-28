@@ -23,12 +23,13 @@ struct GlobalVars {
     // sets the arrays for the Workouts exercise info
     static var workoutsUB = [Exercise]()
     static var workoutsLB = [Exercise]()
+    static var workoutsCore = [Exercise]()
     static var workouts7M = [Exercise]()
     static var workouts7T = [Exercise]()
     static var workoutsIndexCount = 0 // used for Workouts start page table
     static var nextExerciseSecondsCount = 0
     
-    static var appVersion = "Version 0.1.1 (beta)"
+    static var appVersion = "Version 0.1.2 (beta)"
     
     //static var appUserSettings: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     static var workoutNotificationStartHour = 8     // will get overriden at app launch
