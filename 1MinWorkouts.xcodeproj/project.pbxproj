@@ -142,6 +142,8 @@
 		ACD1CCD91A521E5E00CC197E = {
 			isa = PBXGroup;
 			children = (
+				ACD1CCED1A521E5E00CC197E /* Main.storyboard */,
+				ACD1CCF21A521E5E00CC197E /* LaunchScreen.xib */,
 				ACE0F26A1AC0D642003E4F5E /* TutorialViewController.swift */,
 				ACD1CCE41A521E5E00CC197E /* 1MinWorkouts */,
 				ACD1CCFC1A521E5E00CC197E /* 1MinWorkoutsTests */,
@@ -166,13 +168,11 @@
 				ACD1CD741A52310000CC197E /* StatsViewController.swift */,
 				AC1DB1731E2858B3000ACEDC /* Workouts */,
 				ACCF20231A6729A1007DB43A /* Settings */,
-				ACD1CCED1A521E5E00CC197E /* Main.storyboard */,
 				ACD1CCE71A521E5E00CC197E /* AppDelegate.swift */,
 				AC2645141A85434100E5B081 /* MyTabBarController.swift */,
 				ACD1CD7E1A5C687B00CC197E /* globals.swift */,
 				AC8D7D161ACDA62D00BEAA04 /* OOBE */,
 				ACD1CCF01A521E5E00CC197E /* Images.xcassets */,
-				ACD1CCF21A521E5E00CC197E /* LaunchScreen.xib */,
 				ACD1CCE51A521E5E00CC197E /* Supporting Files */,
 			);
 			path = 1MinWorkouts;
@@ -380,6 +380,7 @@
 				ACD1CCEE1A521E5E00CC197E /* Base */,
 			);
 			name = Main.storyboard;
+			path = 1MinWorkouts;
 			sourceTree = "<group>";
 		};
 		ACD1CCF21A521E5E00CC197E /* LaunchScreen.xib */ = {
@@ -388,6 +389,7 @@
 				ACD1CCF31A521E5E00CC197E /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = 1MinWorkouts;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

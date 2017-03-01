@@ -24,13 +24,15 @@ import UserNotifications
     
     // creates a notification for next hourly workout
     func scheduleNotificationNextWorkout(at date: Date) {
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents(in: .current, from: date)
-        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
+//        let calendar = Calendar(identifier: .gregorian)
+//        let components = calendar.dateComponents(in: .current, from: date)
+//        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
 //        let newComponents = DateComponents(hour: components.hour, minute: components.minute)
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: true) // repeats every hour
-        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true) // interval trigger to show a notification every hour
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: true) // repeats every hour
+        
+        // interval trigger to show a notification every hour after one's been sent and not acted upon
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
         
         let content = UNMutableNotificationContent()
         content.body = "It's time for a 1MinuteWorkout!"

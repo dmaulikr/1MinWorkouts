@@ -129,9 +129,10 @@ class ExercisesViewController: UIViewController {
             exerciseCountdownTimer.invalidate() // stops the countdown
             
             // sends alert when workout is finished-------------------------------------------------------------------//
-            if navTitle == "7 Minute Tabata" && GlobalVars.workoutsIndexCount == 5 ||
+            if navTitle == "7 Minute Tabata" && GlobalVars.workoutsIndexCount == 13 ||
                 navTitle == "Upper Body" && GlobalVars.workoutsIndexCount == 6 ||
                 navTitle == "Lower Body" && GlobalVars.workoutsIndexCount == 6 ||
+                navTitle == "Core" && GlobalVars.workoutsIndexCount == 6 ||
                 navTitle == "7 Minute Workout" && GlobalVars.workoutsIndexCount == 11{
                 
                 let alert = UIAlertController(title: "You're Finished With Your Workout", message: "\n\n\nNice Job!", preferredStyle: UIAlertControllerStyle.alert)
@@ -216,7 +217,7 @@ class ExercisesViewController: UIViewController {
                 
                 getReadyView.isHidden = true
                 workoutCountdownLabel.isHidden = false
-                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "7 Minute Workout"{
+                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core" || self.navTitle == "7 Minute Workout"{
                     self.setExerciseTimer(30, timerLabel: "30")
                 }else if self.navTitle == "7 Minute Tabata"{
                     self.setExerciseTimer(20, timerLabel: "20")
@@ -321,6 +322,14 @@ class ExercisesViewController: UIViewController {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseTips = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].tips
+            }
+            if navigationItem.title == "Core"{
+                // set up WorkoutsViewController to show Core stuff
+                GlobalVars.exerciseGroup = false
+                
+                let vc = segue.destination as! WorkoutsInfoViewController
+                vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
+                vc.exerciseTips = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].tips
             }
             if navigationItem.title == "7 Minute Workout"{
                 // set up WorkoutsViewController to show Core stuff
