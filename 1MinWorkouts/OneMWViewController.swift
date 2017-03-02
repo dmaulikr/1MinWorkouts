@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import AudioToolbox
 
 
 class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate {
@@ -18,15 +19,50 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
     var nextWorkoutTime = ""
+    var exerciseCountdownTimer = Timer()
+    var totalTime = 0
     
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
+    @IBOutlet var nextWorkoutView: UIVisualEffectView!
+    @IBOutlet var nextWorkoutCountdownLabel: UILabel!
     
-    @IBAction func workoutNowBtn(_ sender: AnyObject) {
+    @IBOutlet var unlinkedBtn: UIButton!
+    @IBOutlet var linkedBtn: UIButton!
+    
+    @IBOutlet var nextWorkoutBreakTimeSelector: UISegmentedControl!
+    @IBAction func nextWorkoutBreakTimeSelector(_ sender: Any) {
+        switch nextWorkoutBreakTimeSelector.selectedSegmentIndex
+        {
+        case 0:
+            print("First Segment Selected")
+        case 1:
+            print("Second Segment Selected")
+        case 2:
+            print("Third Segment Selected")
+        default:
+            break
+        }
+    }
+    @IBAction func unlinkedBtn(_ sender: Any) {
+        unlinkedBtn.isHidden = true
+        linkedBtn.isHidden = false
+    }
+    @IBAction func linkedBtn(_ sender: Any) {
+        unlinkedBtn.isHidden = false
+        linkedBtn.isHidden = true
+
+    }
+    @IBAction func cancelLinkedWorkoutsBtn(_ sender: Any) {
+        unlinkedBtn.isHidden = false
+        linkedBtn.isHidden = true
+        exerciseCountdownTimer.invalidate()
+    }
         
+    @IBAction func workoutNowBtn(_ sender: AnyObject) {
     }    
     
     @IBAction func endDayBtn(_ sender: AnyObject) {
@@ -229,11 +265,97 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         
         UIApplication.shared.shortcutItems = [shortcut]
         
-        print("workout now screen viewWillAppear")
+        // defines when to show the next exercise wait timer after the first workout has been done
+        if GlobalVars.workoutsIndexCount != 0 && nextWorkoutView.isHidden == false{
+            let currentTimerCount = nextWorkoutCountdownLabel
+            let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
+            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
+            print("------------ viewWillAppear reset time")
+        }else if GlobalVars.workoutsIndexCount != 0{
+            nextWorkoutView.isHidden = false
+            
+            UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
+                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 150
+                print("------------ viewWillAppear animate")
+            }) { (value:Bool) in
+                // stops the countdown
+                self.exerciseCountdownTimer.invalidate()
+                
+                //Sets the next exercise wait timer after the animation loads
+                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
+                    self.setExerciseTimer(30, timerLabel: "30")
+                }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
+                    self.setExerciseTimer(10, timerLabel: "10")
+                }
+            }
+        }else{
+            // hides the next workout view
+            nextWorkoutView.isHidden = true
+            print("------------ viewWillAppear hide view")
+        }
+    }
+    
+    //----------------------------------------- next exercise wait timer -----------------------------------------//
+    func exerciseTimerGetReady(){
+        GlobalVars.nextExerciseSecondsCount -= 1 // decreases the count down by 1
+        let minutes = (GlobalVars.nextExerciseSecondsCount / 60) // converts the seconds into minute format
+        let seconds = (GlobalVars.nextExerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
+        nextWorkoutCountdownLabel.text = timerOutput
+        
+        // what happens when the timer ends
+        if (GlobalVars.nextExerciseSecondsCount == 5) {
+            
+            exerciseCountdownTimer.invalidate() // stops the countdown
+            
+            //setExerciseTimer(0, timerLabel: "0")
+            
+            nextWorkoutView.isHidden = true
+            
+            AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+            
+            // segues to the next workout
+            performSegue(withIdentifier: "segueToExercises", sender: self)
+            
+        }
+    }
+    
+    // method that defines the timer for next workout timer
+    func setExerciseTimer(_ timerTime : Int, timerLabel : String){
+        
+        totalTime = timerTime // sets the timer to starting time desired
+        
+        nextWorkoutCountdownLabel.text = timerLabel // sets timer label to starting time desired
+        
+        GlobalVars.nextExerciseSecondsCount = totalTime; // sets timer to an hour
+        exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // checks to make sure the next workout counter view is only shown when needed
+        if GlobalVars.workoutsIndexCount != 0{
+            nextWorkoutView.center.y = nextWorkoutView.center.y + 150
+        }else {
+            nextWorkoutView.center.y = nextWorkoutView.center.y
+        }
+        
+        // makes sure the next workout countdown value is set prior to showing it
+        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
+            self.nextWorkoutCountdownLabel.text = "30"
+        }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
+            self.nextWorkoutCountdownLabel.text = "10"
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // defined the border color of the Unlinked button
+        unlinkedBtn.layer.borderWidth = 1
+        unlinkedBtn.layer.borderColor = UIColor(red:0.43, green:0.70, blue:0.85, alpha:1.00).cgColor
+        
+        // hides the linked button to start
+        linkedBtn.isHidden = true
         
         //hides switch sides sub-title by default
         switchSidesSubTitle.isHidden = true
