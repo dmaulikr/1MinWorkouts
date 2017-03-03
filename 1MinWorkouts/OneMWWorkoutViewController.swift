@@ -197,6 +197,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             if nextWorkoutTimeSettings.bool(forKey: "linkedWorkouts") == true{
                 dismiss(animated: true, completion: nil)
+                AudioServicesPlaySystemSound(1120) // plays vibrate and tone
             }else{
             // sends an alert when timer is up
 //            func gotoWorkoutVC(){
