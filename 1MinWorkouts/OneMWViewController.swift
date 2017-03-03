@@ -21,6 +21,8 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     var nextWorkoutTime = ""
     var exerciseCountdownTimer = Timer()
     var totalTime = 0
+    var nextWorkoutTimeSettings = UserDefaults.standard
+    var waitTimer = 60
     
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var switchSidesSubTitle: UILabel!
@@ -38,11 +40,29 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         switch nextWorkoutBreakTimeSelector.selectedSegmentIndex
         {
         case 0:
-            print("First Segment Selected")
+            exerciseCountdownTimer.invalidate()
+            nextWorkoutTimeSettings.set(30, forKey: "nextWorkoutBreakTimeSelector")
+            waitTimer = nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector")
+            let waitTimerString = String(waitTimer)
+            setExerciseTimer(waitTimer, timerLabel: "\(waitTimerString)")
+            
+            print("First Segment Selected and setting is \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
         case 1:
-            print("Second Segment Selected")
+            exerciseCountdownTimer.invalidate()
+            nextWorkoutTimeSettings.set(60, forKey: "nextWorkoutBreakTimeSelector")
+            waitTimer = nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector")
+            let waitTimerString = String(waitTimer)
+            setExerciseTimer(waitTimer, timerLabel: "\(waitTimerString)")
+
+            print("Second Segment Selected and setting is \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
         case 2:
-            print("Third Segment Selected")
+            exerciseCountdownTimer.invalidate()
+            nextWorkoutTimeSettings.set(90, forKey: "nextWorkoutBreakTimeSelector")
+            waitTimer = nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector")
+            let waitTimerString = String(waitTimer)
+            setExerciseTimer(waitTimer, timerLabel: "\(waitTimerString)")
+
+            print("Third Segment Selected and setting is \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
         default:
             break
         }
@@ -50,18 +70,33 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBAction func unlinkedBtn(_ sender: Any) {
         unlinkedBtn.isHidden = true
         linkedBtn.isHidden = false
+        nextWorkoutTimeSettings.set(true, forKey: "linkedWorkouts")
     }
     @IBAction func linkedBtn(_ sender: Any) {
         unlinkedBtn.isHidden = false
         linkedBtn.isHidden = true
-
+        nextWorkoutTimeSettings.set(false, forKey: "linkedWorkouts")
     }
     @IBAction func cancelLinkedWorkoutsBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.5, animations: {self.nextWorkoutView.alpha = 0.0}, completion: { (value:Bool) in
+            // stops the countdown
+            self.exerciseCountdownTimer.invalidate()
+            self.nextWorkoutView.isHidden = true
+            self.nextWorkoutView.alpha = 1.0
+        })
+//        UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseOut, animations: {
+//            self.nextWorkoutView.center.y = self.nextWorkoutView.center.y + 198
+//        }) { (value:Bool) in
+//            // stops the countdown
+//            self.exerciseCountdownTimer.invalidate()
+//            self.nextWorkoutView.isHidden = true
+//        }
+        self.exerciseCountdownTimer.invalidate()
         unlinkedBtn.isHidden = false
         linkedBtn.isHidden = true
-        exerciseCountdownTimer.invalidate()
+        nextWorkoutTimeSettings.set(false, forKey: "linkedWorkouts")
     }
-        
+    
     @IBAction func workoutNowBtn(_ sender: AnyObject) {
     }    
     
@@ -74,6 +109,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
     
     func endDay(){
+        
+        // stops any countdowns
+        exerciseCountdownTimer.invalidate()
         
         // reset workout counter index to 0
         GlobalVars.exerciseIndexCount = 0
@@ -259,6 +297,12 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if (nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") != nil){
+            waitTimer = nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") as! Int
+            nextWorkoutCountdownLabel.text = "\(waitTimer)"
+        }else{
+            print("viewWillAppear not set")
+        }
         
         // adds 3D touch stuff to the app icon
         let shortcut = UIApplicationShortcutItem(type: "", localizedTitle: "Next workout:", localizedSubtitle: "\(exerciseTypeTitle.text!) @ \(nextWorkoutNotificationLabel.text!)", icon: nil, userInfo: nil)
@@ -266,27 +310,23 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         UIApplication.shared.shortcutItems = [shortcut]
         
         // defines when to show the next exercise wait timer after the first workout has been done
-        if GlobalVars.workoutsIndexCount != 0 && nextWorkoutView.isHidden == false{
+        if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false && nextWorkoutView.isHidden == false{
             let currentTimerCount = nextWorkoutCountdownLabel
             let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
             setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
             print("------------ viewWillAppear reset time")
-        }else if GlobalVars.workoutsIndexCount != 0{
+        }else if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false{
             nextWorkoutView.isHidden = false
             
             UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
-                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 150
+                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 198
                 print("------------ viewWillAppear animate")
             }) { (value:Bool) in
                 // stops the countdown
                 self.exerciseCountdownTimer.invalidate()
-                
-                //Sets the next exercise wait timer after the animation loads
-                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
-                    self.setExerciseTimer(30, timerLabel: "30")
-                }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
-                    self.setExerciseTimer(10, timerLabel: "10")
-                }
+                // sets the linked workout default wait timer
+                let waitTimerString = String(self.waitTimer)
+                self.setExerciseTimer(self.waitTimer, timerLabel: "\(waitTimerString)")
             }
         }else{
             // hides the next workout view
@@ -298,8 +338,9 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     //----------------------------------------- next exercise wait timer -----------------------------------------//
     func exerciseTimerGetReady(){
         GlobalVars.nextExerciseSecondsCount -= 1 // decreases the count down by 1
-        let minutes = (GlobalVars.nextExerciseSecondsCount / 60) // converts the seconds into minute format
-        let seconds = (GlobalVars.nextExerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+//        let minutes = (GlobalVars.nextExerciseSecondsCount / 60) // converts the seconds into minute format
+//        let seconds = (GlobalVars.nextExerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        let seconds = (GlobalVars.nextExerciseSecondsCount) // converts the seconds back to seconds
         let timerOutput = String(format:"%.d", seconds) // defines the output that is placed on the label
         nextWorkoutCountdownLabel.text = timerOutput
         
@@ -315,7 +356,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             AudioServicesPlaySystemSound(1120) // plays vibrate and tone
             
             // segues to the next workout
-            performSegue(withIdentifier: "segueToExercises", sender: self)
+            performSegue(withIdentifier: "segueToExerciseNow", sender: self)
             
         }
     }
@@ -331,24 +372,47 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
-    override func viewDidLayoutSubviews() {
-        // checks to make sure the next workout counter view is only shown when needed
-        if GlobalVars.workoutsIndexCount != 0{
-            nextWorkoutView.center.y = nextWorkoutView.center.y + 150
-        }else {
-            nextWorkoutView.center.y = nextWorkoutView.center.y
-        }
-        
-        // makes sure the next workout countdown value is set prior to showing it
-        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
-            self.nextWorkoutCountdownLabel.text = "30"
-        }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
-            self.nextWorkoutCountdownLabel.text = "10"
-        }
-    }
+//    override func viewDidLayoutSubviews() {
+//        // checks to make sure the next workout counter view is only shown when needed
+//        if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false{
+//            nextWorkoutView.center.y = nextWorkoutView.center.y - 198
+//        }else {
+//            nextWorkoutView.center.y = nextWorkoutView.center.y
+//        }
+//        
+//        // makes sure the next workout countdown value is set prior to showing it
+//        self.nextWorkoutCountdownLabel.text = "30"
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // sets the linked workouts settings to off by default
+        nextWorkoutTimeSettings.set(false, forKey: "linkedWorkouts")
+        
+        //checks to see which chained workout wait time is set
+        if (nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") != nil) {
+            if nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector") == 30{                nextWorkoutBreakTimeSelector.selectedSegmentIndex = 0
+                waitTimer = 30
+                
+                print("First Segment set to \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
+            }else if nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector") == 60{                nextWorkoutBreakTimeSelector.selectedSegmentIndex = 1
+                waitTimer = 60
+                
+                print("Second Segment set to \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
+            }else if nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector") == 90{                nextWorkoutBreakTimeSelector.selectedSegmentIndex = 2
+                waitTimer = 90
+                
+                print("Third Segment set to \(nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector"))")
+            }else{
+                //Nothing stored in NSUserDefaults yet. Set a value.
+                nextWorkoutTimeSettings.set(60, forKey: "nextWorkoutBreakTimeSelector")
+                waitTimer = nextWorkoutTimeSettings.integer(forKey: "nextWorkoutBreakTimeSelector")
+                waitTimer = 60
+                
+                print("***** no settings")
+            }
+        }
         
         // defined the border color of the Unlinked button
         unlinkedBtn.layer.borderWidth = 1
