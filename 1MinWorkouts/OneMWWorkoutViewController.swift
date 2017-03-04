@@ -196,8 +196,25 @@ class OneMWWorkoutViewController: UIViewController {
             }
             
             if nextWorkoutTimeSettings.bool(forKey: "linkedWorkouts") == true{
+                // closes out of the current view and goes back to previous view
                 dismiss(animated: true, completion: nil)
-                AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+                
+                // plays vibrate and tone
+                AudioServicesPlaySystemSound(1120)
+                
+                // sets the next workout time
+                changeNextWorkoutTime()
+                
+                // passes the incremented variable to the prior screen delegate
+                if (delegate != nil) {
+                    delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
+                }
+                
+                // sets a workout notification an hour from the completion of this workout
+                setNextWorkoutNotification()
+                
+                print("next workout time is \(nextWorkoutTime)")
+                
             }else{
             // sends an alert when timer is up
 //            func gotoWorkoutVC(){
@@ -214,9 +231,9 @@ class OneMWWorkoutViewController: UIViewController {
                 self.changeNextWorkoutTime()
                 
                 // passes the incremented variable to the prior screen delegate
-//                if (self.delegate != nil) {
-//                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: self.nextWorkoutTime)
-//                }
+                if (self.delegate != nil) {
+                    self.delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: self.nextWorkoutTime)
+                }
                 
                 // sets a workout notification an hour from the completion of this workout
                 self.setNextWorkoutNotification()
