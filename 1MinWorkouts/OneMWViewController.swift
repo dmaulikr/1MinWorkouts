@@ -28,9 +28,11 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
+    @IBOutlet var nextWorkoutIsLabel: UILabel!
     @IBOutlet var nextWorkoutNotificationLabel: UILabel!
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
+    @IBOutlet var workoutNowBtn: UIButton!
     
     @IBOutlet var unlinkedBtn: UIButton!
     @IBOutlet var linkedBtn: UIButton!
@@ -83,14 +85,15 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             self.exerciseCountdownTimer.invalidate()
             self.nextWorkoutView.isHidden = true
             self.nextWorkoutView.alpha = 1.0
+            
+            // shows the tab bar when Next Workout Counter view is up and reset position of labels and buttons
+            self.tabBarController?.tabBar.isHidden = false
+            self.nextWorkoutIsLabel.center.y = self.nextWorkoutIsLabel.center.y - 50
+            self.nextWorkoutNotificationLabel.center.y = self.nextWorkoutNotificationLabel.center.y - 50
+            self.workoutNowBtn.center.y = self.workoutNowBtn.center.y - 50
+            self.unlinkedBtn.center.y = self.unlinkedBtn.center.y - 50
+            
         })
-//        UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseOut, animations: {
-//            self.nextWorkoutView.center.y = self.nextWorkoutView.center.y + 198
-//        }) { (value:Bool) in
-//            // stops the countdown
-//            self.exerciseCountdownTimer.invalidate()
-//            self.nextWorkoutView.isHidden = true
-//        }
         self.exerciseCountdownTimer.invalidate()
         unlinkedBtn.isHidden = false
         linkedBtn.isHidden = true
@@ -316,10 +319,14 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
             print("------------ viewWillAppear reset time")
         }else if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false{
+            
             nextWorkoutView.isHidden = false
             
+            // hides the tab bar when Next Workout Counter view is up
+            self.tabBarController?.tabBar.isHidden = true
+            
             UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
-                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 198
+                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 190 //-198
                 print("------------ viewWillAppear animate")
             }) { (value:Bool) in
                 // stops the countdown
@@ -331,6 +338,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         }else{
             // hides the next workout view
             nextWorkoutView.isHidden = true
+            
             print("------------ viewWillAppear hide view")
         }
     }
