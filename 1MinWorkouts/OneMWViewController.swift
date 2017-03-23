@@ -300,6 +300,16 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
+        //disables 1MW tab
+        if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
+            tabBarItem.isEnabled = false
+        }
+        
+        //hides the Back button when doing 1MW's
+        navigationItem.hidesBackButton = true
+
+        
         if (nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") != nil){
             waitTimer = nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") as! Int
             nextWorkoutCountdownLabel.text = "\(waitTimer)"
@@ -440,6 +450,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         exerciseTypeImage.image = exerciseImage
         
         // assumes this will be seen by the user on their first workout of the day. Should get updated with current time + 1 (e.g. next workout in an hour from now)
+        
         nextWorkoutTime = "Right Now!"
         nextWorkoutNotificationLabel.text = nextWorkoutTime
         

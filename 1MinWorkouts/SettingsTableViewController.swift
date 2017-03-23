@@ -24,6 +24,15 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //enables 1MW tab so user can get back if doing 1MW workouts
+        if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
+            tabBarItem.isEnabled = true
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -20,9 +20,19 @@ class WorkoutsTableViewController: UITableViewController {
     
     // creates an array to hold the content for each of the table cells
     var arrayOfCellData = [cellData]()
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        //enables 1MW tab so user can get back if doing 1MW workouts
+        if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
+            tabBarItem.isEnabled = true
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // sets the navbar background color and font color
         navigationController?.navigationBar.barTintColor = UIColor(red:0.53, green:0.73, blue:0.85, alpha:1.00)
