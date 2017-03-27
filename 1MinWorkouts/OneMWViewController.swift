@@ -92,7 +92,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             self.nextWorkoutNotificationLabel.center.y = self.nextWorkoutNotificationLabel.center.y - 50
             self.workoutNowBtn.center.y = self.workoutNowBtn.center.y - 50
             self.unlinkedBtn.center.y = self.unlinkedBtn.center.y - 50
-            
+            self.linkedBtn.center.y = self.linkedBtn.center.y - 50
         })
         self.exerciseCountdownTimer.invalidate()
         unlinkedBtn.isHidden = false
