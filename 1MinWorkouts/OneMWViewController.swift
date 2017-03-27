@@ -335,7 +335,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false && nextWorkoutView.isHidden == false{
             let currentTimerCount = nextWorkoutCountdownLabel
             let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
-            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
+            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(String(describing: currentTimerCount))")
             print("------------ viewWillAppear reset time")
         }else if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false{
             

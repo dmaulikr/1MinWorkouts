@@ -47,7 +47,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         if GlobalVars.workoutsIndexCount != 0 && nextWorkoutView.isHidden == false{
             let currentTimerCount = nextWorkoutCountdownLabel
             let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
-            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
+            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(String(describing: currentTimerCount))")
             print("------------ viewWillAppear reset time")
         }else if GlobalVars.workoutsIndexCount != 0{
             nextWorkoutView.isHidden = false

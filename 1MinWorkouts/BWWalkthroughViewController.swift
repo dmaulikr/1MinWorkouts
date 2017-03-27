@@ -91,7 +91,7 @@ import UIKit
             // if start day is not set show start day setup
             performSegue(withIdentifier: "startDayNotifSetupSegue", sender: self)
             
-            print("oobeStartDaySetup is set to \(appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup))")
+            print("oobeStartDaySetup is set to \(String(describing: appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup)))")
         }
         
     }
@@ -233,7 +233,7 @@ import UIKit
             // if start day is not set show start day setup
             performSegue(withIdentifier: "startDayNotifSetupSegue", sender: self)
             
-            print("oobeStartDaySetup is set to \(appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup))")
+            print("oobeStartDaySetup is set to \(String(describing: appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup)))")
         }
     }
     
