@@ -33,6 +33,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
     @IBOutlet var workoutNowBtn: UIButton!
+    @IBOutlet var workoutControls: UIView!
     
     @IBOutlet var unlinkedBtn: UIButton!
     @IBOutlet var linkedBtn: UIButton!
@@ -72,11 +73,24 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBAction func unlinkedBtn(_ sender: Any) {
         unlinkedBtn.isHidden = true
         linkedBtn.isHidden = false
+        
+        // hides the tab bar control
+        self.tabBarController?.tabBar.isHidden = true
+        
+        // moves the workout controls down
+        UIView.animate(withDuration: 0.2, animations: {self.workoutControls.center.y = self.workoutControls.center.y + 50})
+        
         nextWorkoutTimeSettings.set(true, forKey: "linkedWorkouts")
     }
     @IBAction func linkedBtn(_ sender: Any) {
         unlinkedBtn.isHidden = false
         linkedBtn.isHidden = true
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {self.workoutControls.center.y = self.workoutControls.center.y - 50}) { (value:Bool) in
+            // shows the tab bar control again
+            self.tabBarController?.tabBar.isHidden = false
+        }
+        
         nextWorkoutTimeSettings.set(false, forKey: "linkedWorkouts")
     }
     @IBAction func cancelLinkedWorkoutsBtn(_ sender: Any) {
@@ -88,11 +102,6 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             
             // shows the tab bar when Next Workout Counter view is up and reset position of labels and buttons
             self.tabBarController?.tabBar.isHidden = false
-            self.nextWorkoutIsLabel.center.y = self.nextWorkoutIsLabel.center.y - 50
-            self.nextWorkoutNotificationLabel.center.y = self.nextWorkoutNotificationLabel.center.y - 50
-            self.workoutNowBtn.center.y = self.workoutNowBtn.center.y - 50
-            self.unlinkedBtn.center.y = self.unlinkedBtn.center.y - 50
-            self.linkedBtn.center.y = self.linkedBtn.center.y - 50
         })
         self.exerciseCountdownTimer.invalidate()
         unlinkedBtn.isHidden = false
