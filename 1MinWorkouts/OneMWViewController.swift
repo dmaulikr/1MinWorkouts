@@ -310,14 +310,15 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
 
     override func viewWillAppear(_ animated: Bool) {
         
-        //disables 1MW tab
-        if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
-            tabBarItem.isEnabled = false
+        if nextWorkoutNotificationLabel.text != "Right Now!"{
+            //disables 1MW tab
+            if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
+                tabBarItem.isEnabled = false
+            }
+            
+            //hides the Back button when doing 1MW's
+            navigationItem.hidesBackButton = true
         }
-        
-        //hides the Back button when doing 1MW's
-        navigationItem.hidesBackButton = true
-
         
         if (nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") != nil){
             waitTimer = nextWorkoutTimeSettings.object(forKey: "nextWorkoutBreakTimeSelector") as! Int
