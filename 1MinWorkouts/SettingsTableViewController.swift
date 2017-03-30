@@ -11,9 +11,13 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate, SettingsStartDayTableViewControllerDelegate {
 
+    let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
+    
     @IBOutlet var startDayDetailLabel: UILabel!
     @IBOutlet var aboutDetailLabel: UILabel!
     @IBOutlet var viewWalkthroughCell: UITableViewCell!
+    @IBOutlet var ShowTipsCell: UITableViewCell!
+    @IBOutlet var TipIcon: UIImageView!
     
     @IBAction func sendFeedbackBtn(_ sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
@@ -31,6 +35,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             tabBarItem.isEnabled = true
         }
 
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        TipIcon.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -55,6 +63,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
         aboutDetailLabel.text = GlobalVars.appVersion        
     }
 
+    //-------------------- setups the Feedback email info ----------------------------------------------------//
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
@@ -109,6 +118,34 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
             self.present(walkthrough, animated: true, completion: nil)
             
             print("viewWalkthroughCell tapped")
+        }
+        
+        if (indexPath as NSIndexPath).row == 2{
+            
+            ShowTipsCell.isSelected = false
+            
+            if TipIcon.isHidden == true{
+                TipIcon.isHidden = false
+                
+                // 1MW start screens tip to not shown
+                shownTipsSettings.set(false, forKey: "1MWStarterTip")
+                
+                // 1MW workout screen linked tip to not shown
+                shownTipsSettings.set(false, forKey: "1MWLinkTip")
+                
+                // 1MW workout screen End Day tip to not shown
+                shownTipsSettings.set(false, forKey: "1MWEndDayTip")
+            }else{
+                TipIcon.isHidden = true
+                // 1MW start screens tip to not shown
+                shownTipsSettings.set(true, forKey: "1MWStarterTip")
+                
+                // 1MW workout screen linked tip to not shown
+                shownTipsSettings.set(true, forKey: "1MWLinkTip")
+                
+                // 1MW workout screen End Day tip to not shown
+                shownTipsSettings.set(true, forKey: "1MWEndDayTip")
+            }
         }
     }
     

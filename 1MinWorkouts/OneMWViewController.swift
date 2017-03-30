@@ -14,6 +14,7 @@ import AudioToolbox
 class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate {
     
     let whyNotificationsSettings = UserDefaults.standard // instantiates a user default holder for why notifications alert
+    let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
     
     var exerciseTitle = ""
     var exerciseImage = UIImage(named: "")
@@ -34,6 +35,24 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
     @IBOutlet var workoutNowBtn: UIButton!
     @IBOutlet var workoutControls: UIView!
+    @IBOutlet var TipLInkButtonView: UIView!
+    @IBAction func CloseLinkTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipLInkButtonView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "1MWLinkTip")
+        
+        // checks to see if End Day Tip has been shown yet
+        let tipEndDayViewed = shownTipsSettings.bool(forKey: "1MWEndDayTip")
+        if tipEndDayViewed == false{
+            UIView.animate(withDuration: 0.5, animations: {self.TipEndDayButtonView.alpha = 1.0})
+        }else{
+            TipEndDayButtonView.alpha = 0.0
+        }
+    }
+    @IBOutlet var TipEndDayButtonView: UIView!
+    @IBAction func CloseEndDayTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipEndDayButtonView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "1MWEndDayTip")
+    }
     
     @IBOutlet var unlinkedBtn: UIButton!
     @IBOutlet var linkedBtn: UIButton!
@@ -309,6 +328,18 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        TipLInkButtonView.alpha = 0.0
+        // checks to see if Linked Tip has been shown yet
+        let tipLinkedViewed = shownTipsSettings.bool(forKey: "1MWLinkTip")
+        if tipLinkedViewed == false{
+            UIView.animate(withDuration: 1.0, animations: {self.TipLInkButtonView.alpha = 1.0})
+        }else{
+            TipLInkButtonView.alpha = 0.0
+        }
+        
+        // hides the End Day tip at first
+        TipEndDayButtonView.alpha = 0.0
+        
         
         if nextWorkoutNotificationLabel.text != "Right Now!"{
             //disables 1MW tab

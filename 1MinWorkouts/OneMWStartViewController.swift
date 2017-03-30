@@ -12,10 +12,16 @@ import UserNotifications
 class OneMWStartViewController: UIViewController {
     
     let lastWorkoutLabelSettings = UserDefaults.standard // instantiates a user default holder for the next workout labels
+    let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
     
     @IBOutlet var UBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
+    @IBOutlet var TipStarterView: UIView!
+    @IBAction func closeTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipStarterView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "1MWStarterTip")
+    }
     
     
     // function that sets todays current date to the selected muscle group
@@ -115,6 +121,15 @@ class OneMWStartViewController: UIViewController {
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+        TipStarterView.alpha = 0.0
+        // checks to see if Tip has been shown yet
+        let tipViewed = shownTipsSettings.bool(forKey: "1MWStarterTip")
+        if tipViewed == false{
+            UIView.animate(withDuration: 1.0, animations: {self.TipStarterView.alpha = 1.0})
+            //TipStarterView.isHidden = false
+        }else{
+            TipStarterView.alpha = 0.0
+        }
         
         //enables 1MW tab so user can get back if doing 1MW workouts
         if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
