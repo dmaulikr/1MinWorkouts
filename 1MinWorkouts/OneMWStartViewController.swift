@@ -125,7 +125,7 @@ class OneMWStartViewController: UIViewController {
         // checks to see if Tip has been shown yet
         let tipViewed = shownTipsSettings.bool(forKey: "1MWStarterTip")
         if tipViewed == false{
-            UIView.animate(withDuration: 1.0, animations: {self.TipStarterView.alpha = 1.0})
+            UIView.animate(withDuration: 0.5, animations: {self.TipStarterView.alpha = 1.0})
             //TipStarterView.isHidden = false
         }else{
             TipStarterView.alpha = 0.0

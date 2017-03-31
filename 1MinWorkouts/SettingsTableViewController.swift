@@ -135,6 +135,18 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
                 
                 // 1MW workout screen End Day tip to not shown
                 shownTipsSettings.set(false, forKey: "1MWEndDayTip")
+                
+                // Workouts screen Start tip to not shown
+                shownTipsSettings.set(false, forKey: "WorkoutsStarterTip")
+                
+                // Workouts screen Workouts List tip to not shown
+                shownTipsSettings.set(false, forKey: "WorkoutListTip")
+                
+                // Workouts screen Tabata tip to not shown
+                shownTipsSettings.set(false, forKey: "TabataTip")
+                
+                // Stats screen Start tip to not shown
+                shownTipsSettings.set(false, forKey: "StatsStarterTip")
             }else{
                 TipIcon.isHidden = true
                 // 1MW start screens tip to not shown
@@ -145,6 +157,18 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
                 
                 // 1MW workout screen End Day tip to not shown
                 shownTipsSettings.set(true, forKey: "1MWEndDayTip")
+                
+                // Workouts screen Start tip to not shown
+                shownTipsSettings.set(true, forKey: "WorkoutsStarterTip")
+                
+                // Workouts screen Workouts List tip to not shown
+                shownTipsSettings.set(true, forKey: "WorkoutListTip")
+                
+                // Workouts screen Tabata tip to not shown
+                shownTipsSettings.set(true, forKey: "TabataTip")
+                
+                // Stats screen Start tip to not shown
+                shownTipsSettings.set(true, forKey: "StatsStarterTip")
             }
         }
     }

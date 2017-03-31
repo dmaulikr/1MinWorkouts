@@ -766,6 +766,34 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibb-8k-6or">
+                                <rect key="frame" x="16" y="140" width="343" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aei-g3-19G">
+                                        <rect key="frame" x="310" y="8" width="26" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Close-btn"/>
+                                        <connections>
+                                            <action selector="CloseTipBtn:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="QDq-6e-3NA"/>
+                                            <action selector="CloseWorkoutsTipBtn:" destination="yNN-CG-BSi" eventType="touchUpInside" id="lun-HH-uRA"/>
+                                            <action selector="closeTipBtn:" destination="zMj-6f-bLn" eventType="touchUpInside" id="PJp-ps-vyZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stay on tarck of your daily 1MinuteWorkout activity goals by checking your statistics here." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ice-HU-ESu">
+                                        <rect key="frame" x="8" y="61" width="324" height="117"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tip-icon" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-Cr-tk6">
+                                        <rect key="frame" x="141" y="8" width="58" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.33000000000000002" green="0.33000000000000002" blue="0.33000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -781,6 +809,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stats" image="stats-icon" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="TipStatsView" destination="ibb-8k-6or" id="A81-aN-eox"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -858,7 +889,7 @@
                                         <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Nc-BN-GpW" id="tk6-uw-nDt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Show Tips on next screen views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kXD-8D-VK0">
@@ -966,29 +997,70 @@
             <point key="canvasLocation" x="742" y="2095"/>
         </scene>
         <!--Workouts-->
-        <scene sceneID="AK2-6L-5gm">
+        <scene sceneID="9jP-oy-avx">
             <objects>
-                <tableViewController storyboardIdentifier="WorkoutsTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IEE-k9-wIC" customClass="WorkoutsTableViewController" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qAe-jN-8wo">
+                <viewController storyboardIdentifier="Workouts_table" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yNN-CG-BSi" customClass="WorkoutsViewController_table" customModule="_MinWorkouts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y6f-5j-uJf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Chm-QY-IOS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UD7-8g-ud7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.90000000000000002" green="0.90000000000000002" blue="0.90000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                        <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-1" maxY="0.0"/>
-                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="IEE-k9-wIC" id="0uu-It-9yK"/>
-                            <outlet property="delegate" destination="IEE-k9-wIC" id="VFE-Nf-I5n"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Workouts" id="8xn-nI-M9p"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LTR-Ch-3Pd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yNN-CG-BSi" id="Yyi-FP-FB8"/>
+                                    <outlet property="delegate" destination="yNN-CG-BSi" id="v5j-zS-8DG"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gtz-Ee-KUF">
+                                <rect key="frame" x="16" y="140" width="343" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-rc-QpG">
+                                        <rect key="frame" x="310" y="8" width="26" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Close-btn"/>
+                                        <connections>
+                                            <action selector="CloseWorkoutsTipBtn:" destination="yNN-CG-BSi" eventType="touchUpInside" id="3ae-da-qrl"/>
+                                            <action selector="closeTipBtn:" destination="zMj-6f-bLn" eventType="touchUpInside" id="Vfg-Bm-Qfc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rf-TX-UG8">
+                                        <rect key="frame" x="8" y="61" width="324" height="117"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">Select one of these workout sets to supplement your daily 1MinuteWorkouts to reach your daily activity goal.
+
+Each workout is 7 minutes.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tip-icon" translatesAutoresizingMaskIntoConstraints="NO" id="YAm-9D-8rd">
+                                        <rect key="frame" x="141" y="8" width="58" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.33000000000000002" green="0.33000000000000002" blue="0.33000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Workouts" id="PPQ-vd-upk"/>
                     <connections>
-                        <segue destination="Z4i-R6-jau" kind="show" identifier="segueToWorkouts" id="L3W-1v-Y5t"/>
+                        <outlet property="TipWorkoutsView" destination="Gtz-Ee-KUF" id="T0U-K0-5Bp"/>
+                        <outlet property="workoutsTableView" destination="LTR-Ch-3Pd" id="09w-f2-IZg"/>
+                        <segue destination="Z4i-R6-jau" kind="show" identifier="segueToWorkouts" id="c2B-6H-0oE"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9yy-Qf-UCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZp-yf-4OI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1502" y="1084"/>
+            <point key="canvasLocation" x="1478" y="1084"/>
         </scene>
         <!--Workouts-->
         <scene sceneID="mym-yF-WER">
@@ -1004,7 +1076,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="IEE-k9-wIC" kind="relationship" relationship="rootViewController" id="RnO-tS-vQk"/>
+                        <segue destination="yNN-CG-BSi" kind="relationship" relationship="rootViewController" id="pIi-hf-w4q"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQt-RG-vJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1511,6 +1583,68 @@
                                     <constraint firstAttribute="height" constant="422" id="kpx-8c-Rdc"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vze-Ml-Nso">
+                                <rect key="frame" x="0.0" y="123" width="375" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tip-icon" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-a3-d8T">
+                                        <rect key="frame" x="166" y="8" width="58" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLg-u4-Wvx">
+                                        <rect key="frame" x="329" y="8" width="38" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Close-btn"/>
+                                        <connections>
+                                            <action selector="CloseEndDayTipBtn:" destination="jm9-jA-Q8X" eventType="touchUpInside" id="xhH-XK-Ige"/>
+                                            <action selector="CloseWorkoutListTipBtn:" destination="Z4i-R6-jau" eventType="touchUpInside" id="Vfg-WP-yZR"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tip-up-pointer" translatesAutoresizingMaskIntoConstraints="NO" id="eE7-qt-n55">
+                                        <rect key="frame" x="7" y="-22" width="42" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="If you’re unsure what exercises a Workout contains tap here. It’s also helpful in case some exercises require equipment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2x-tx-bUz">
+                                        <rect key="frame" x="8" y="68" width="359" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.32549020649999999" green="0.32549020649999999" blue="0.32549020649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xe2-a7-g3g">
+                                <rect key="frame" x="16" y="140" width="343" height="290"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLd-Md-o60">
+                                        <rect key="frame" x="310" y="8" width="26" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Close-btn"/>
+                                        <connections>
+                                            <action selector="CloseTabataTipBtn:" destination="Z4i-R6-jau" eventType="touchUpInside" id="xME-UL-zET"/>
+                                            <action selector="CloseWorkoutsTipBtn:" destination="yNN-CG-BSi" eventType="touchUpInside" id="tZD-Po-BQj"/>
+                                            <action selector="closeTipBtn:" destination="zMj-6f-bLn" eventType="touchUpInside" id="GyY-hq-6dQ"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tip-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vkr-Nz-VFI">
+                                        <rect key="frame" x="141" y="8" width="58" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDP-ay-WVE">
+                                        <rect key="frame" x="8" y="69" width="324" height="209"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">The 7 Minute Tabata workout is based on the Tabata workout concept from Izumi Tabata, which entails very short high-intensity spurts of exercise followed by short bouts of rest.
+
+During each 20-second exercise, perform as many repetitions as you can at a fast pace and always keep moving. Catch your breath during the break.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.33000000000000002" green="0.33000000000000002" blue="0.33000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mif-Tm-T5w">
                                 <rect key="frame" x="16" y="548" width="343" height="55"/>
                                 <color key="backgroundColor" red="0.17372377219999999" green="0.79987227920000004" blue="0.24060437079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1591,6 +1725,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Workout Name" id="pk4-tp-x7C"/>
                     <connections>
+                        <outlet property="TipTabataView" destination="Xe2-a7-g3g" id="d2u-JV-ibZ"/>
+                        <outlet property="TipWorkoutListView" destination="vze-Ml-Nso" id="s8N-WR-FOu"/>
                         <outlet property="exerciseTypeImage" destination="GzB-Re-K7q" id="FPj-tZ-9c4"/>
                         <outlet property="exerciseTypeInfoBtn" destination="FTD-SK-hso" id="Alj-m7-1qN"/>
                         <outlet property="exerciseTypeTitle" destination="KRg-ba-saL" id="ulr-Jv-C4e"/>
@@ -1602,7 +1738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0TV-sY-7US" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="1084"/>
+            <point key="canvasLocation" x="2197.5999999999999" y="1083.5082458770617"/>
         </scene>
     </scenes>
     <resources>

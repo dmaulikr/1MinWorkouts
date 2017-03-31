@@ -329,12 +329,14 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
 
     override func viewWillAppear(_ animated: Bool) {
         TipLInkButtonView.alpha = 0.0
-        // checks to see if Linked Tip has been shown yet
-        let tipLinkedViewed = shownTipsSettings.bool(forKey: "1MWLinkTip")
-        if tipLinkedViewed == false{
-            UIView.animate(withDuration: 1.0, animations: {self.TipLInkButtonView.alpha = 1.0})
-        }else{
-            TipLInkButtonView.alpha = 0.0
+        if GlobalVars.whyNotificationsAlert == true{
+            // checks to see if Linked Tip has been shown yet
+            let tipLinkedViewed = shownTipsSettings.bool(forKey: "1MWLinkTip")
+            if tipLinkedViewed == false{
+                UIView.animate(withDuration: 1.0, animations: {self.TipLInkButtonView.alpha = 1.0})
+            }else{
+                TipLInkButtonView.alpha = 0.0
+            }
         }
         
         // hides the End Day tip at first
@@ -515,6 +517,13 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
                     if !accepted {
                         print("Notification access denied.")
                     }
+                }
+                // checks to see if Linked Tip has been shown yet
+                let tipLinkedViewed = self.shownTipsSettings.bool(forKey: "1MWLinkTip")
+                if tipLinkedViewed == false{
+                    UIView.animate(withDuration: 1.0, animations: {self.TipLInkButtonView.alpha = 1.0})
+                }else{
+                    self.TipLInkButtonView.alpha = 0.0
                 }
             }))
             
