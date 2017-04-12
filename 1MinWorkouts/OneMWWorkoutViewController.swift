@@ -21,6 +21,7 @@ class OneMWWorkoutViewController: UIViewController {
     var navTitle = ""
     var exercisesCount = 0
     var nextWorkoutTime = ""
+    var nextWorkoutTimeSettings = UserDefaults.standard
     
     var exerciseCountdownTimer = Timer()
     //var exerciseSecondsCount = 0
@@ -154,8 +155,8 @@ class OneMWWorkoutViewController: UIViewController {
     //----------------------------------------- 60 seconds workout timer -----------------------------------------//
     func exerciseTimerRun(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
-        var minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
-        var seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
+        let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
+        let seconds = (GlobalVars.exerciseSecondsCount - (minutes * 60)) // converts the seconds back to seconds
         
         let timerOutput = String(format:"%.2d", seconds) // defines the output that is placed on the label
         workoutCountdownLabel.text = timerOutput
@@ -194,11 +195,32 @@ class OneMWWorkoutViewController: UIViewController {
                 delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
             }
             
+            if nextWorkoutTimeSettings.bool(forKey: "linkedWorkouts") == true{
+                // closes out of the current view and goes back to previous view
+                dismiss(animated: true, completion: nil)
+                
+                // plays vibrate and tone
+                AudioServicesPlaySystemSound(1120)
+                
+                // sets the next workout time
+                changeNextWorkoutTime()
+                
+                // passes the incremented variable to the prior screen delegate
+                if (delegate != nil) {
+                    delegate!.myVCDidFinish(self, indexCount: GlobalVars.exerciseIndexCount, nextWorkout: nextWorkoutTime)
+                }
+                
+                // sets a workout notification an hour from the completion of this workout
+                setNextWorkoutNotification()
+                
+                print("next workout time is \(nextWorkoutTime)")
+                
+            }else{
             // sends an alert when timer is up
-            func gotoWorkoutVC(){
-                let vc = OneMWWorkoutViewController(nibName: "OneMWWorkoutViewController", bundle: nil)
-                navigationController?.pushViewController(vc, animated: true)
-            }
+//            func gotoWorkoutVC(){
+//                let vc = OneMWWorkoutViewController(nibName: "OneMWWorkoutViewController", bundle: nil)
+//                navigationController?.pushViewController(vc, animated: true)
+//            }
             
             let alert = UIAlertController(title: "Nice Job!", message: "\n\n\nTake an hour break!", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -229,6 +251,7 @@ class OneMWWorkoutViewController: UIViewController {
             
             //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
             AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+            }
         }
     }
     

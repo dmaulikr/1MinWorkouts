@@ -12,6 +12,8 @@ import AudioToolbox
 
 class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
 
+    let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
+    
     var exerciseTitle = ""
     var exerciseImage = UIImage(named: "")
     var navTitle = ""
@@ -24,6 +26,24 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var exerciseTypeInfoBtn: UIButton!
     @IBOutlet var exercisesListInfoBtn: UIButton!
+    @IBOutlet var TipWorkoutListView: UIView!
+    @IBAction func CloseWorkoutListTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipWorkoutListView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "WorkoutListTip")
+    }
+    @IBOutlet var TipTabataView: UIView!
+    @IBAction func CloseTabataTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipTabataView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "TabataTip")
+        
+        // checks to see if Linked Tip has been shown yet
+        let tipWorkoutListViewed = shownTipsSettings.bool(forKey: "WorkoutListTip")
+        if tipWorkoutListViewed == false{
+            UIView.animate(withDuration: 1.0, animations: {self.TipWorkoutListView.alpha = 1.0})
+        }else{
+            TipWorkoutListView.alpha = 0.0
+        }
+    }
     
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
@@ -43,11 +63,33 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     //---------------- use this to play through stock iOS tones --------------//
     
     override func viewWillAppear(_ animated: Bool) {
+        TipTabataView.alpha = 0.0
+        TipWorkoutListView.alpha = 0.0
+        
+        if navigationItem.title != "7 Minute Tabata"{
+            // checks to see if Linked Tip has been shown yet
+            let tipWorkoutListViewed = shownTipsSettings.bool(forKey: "WorkoutListTip")
+            if tipWorkoutListViewed == false{
+                UIView.animate(withDuration: 1.0, animations: {self.TipWorkoutListView.alpha = 1.0})
+            }else{
+                TipWorkoutListView.alpha = 0.0
+            }
+        }else{
+            TipTabataView.alpha = 0.0
+            // checks to see if Linked Tip has been shown yet
+            let tipWorkoutListViewed = shownTipsSettings.bool(forKey: "TabataTip")
+            if tipWorkoutListViewed == false{
+                UIView.animate(withDuration: 1.0, animations: {self.TipTabataView.alpha = 1.0})
+            }else{
+                TipTabataView.alpha = 0.0
+            }
+        }
+        
         // defines when to show the next exercise wait timer after the first workout has been done
         if GlobalVars.workoutsIndexCount != 0 && nextWorkoutView.isHidden == false{
             let currentTimerCount = nextWorkoutCountdownLabel
             let currentTimerCountInt:Int? = Int((currentTimerCount?.text)!)
-            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(currentTimerCount)")
+            setExerciseTimer(currentTimerCountInt!, timerLabel: "\(String(describing: currentTimerCount))")
             print("------------ viewWillAppear reset time")
         }else if GlobalVars.workoutsIndexCount != 0{
             nextWorkoutView.isHidden = false

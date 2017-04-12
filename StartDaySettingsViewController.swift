@@ -46,22 +46,22 @@ class StartDaySettingsViewController: UITableViewController{
             let appUserSettings = UserDefaults.standard // instantiates a user default holder
             
             appUserSettings.set(hour, forKey: GlobalVars.startDayHour)
-            print("startDayHour was set to \(appUserSettings.value(forKey: GlobalVars.startDayHour))")
+            print("startDayHour was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.startDayHour)))")
             
             appUserSettings.set(min, forKey: GlobalVars.startDayMin)
-            print("startDayMin was set to \(appUserSettings.value(forKey: GlobalVars.startDayMin))")
+            print("startDayMin was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.startDayMin)))")
             
             appUserSettings.set(weekday, forKey: GlobalVars.notificationWeekday)
-            print("notificationWeekday was set to \(appUserSettings.value(forKey: GlobalVars.notificationWeekday))")
+            print("notificationWeekday was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.notificationWeekday)))")
             
             appUserSettings.set(weekend, forKey: GlobalVars.notificationWeekend)
-            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.notificationWeekend))")
+            print("notificationWeekend was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.notificationWeekend)))")
             
             appUserSettings.set(true, forKey: GlobalVars.oobeStartDaySetup)
-            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup))")
+            print("notificationWeekend was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.oobeStartDaySetup)))")
             
             appUserSettings.set(true, forKey: GlobalVars.oobeTute)
-            print("notificationWeekend was set to \(appUserSettings.value(forKey: GlobalVars.oobeTute))")
+            print("notificationWeekend was set to \(String(describing: appUserSettings.value(forKey: GlobalVars.oobeTute)))")
             
             // pops back to the root, prior to the disclaimer xib
             let stb = UIStoryboard(name: "Main", bundle: nil)

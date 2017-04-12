@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uds-Dv-JjF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uds-Dv-JjF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to 1MinuteWorkouts!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-sz-w39">
-                                <rect key="frame" x="20" y="71" width="339" height="26.5"/>
+                                <rect key="frame" x="20" y="71" width="339" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -104,23 +104,36 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="1MW Start Page" translatesAutoresizingMaskIntoConstraints="NO" id="4PG-Ql-G4S">
-                                <rect key="frame" x="76" y="242" width="226" height="425"/>
+                                <rect key="frame" x="116" y="228" width="147" height="349"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="226" id="G34-XI-K93"/>
-                                    <constraint firstAttribute="width" secondItem="4PG-Ql-G4S" secondAttribute="height" multiplier="290:363" constant="-113.07438016528926" id="Hzx-zu-MiA"/>
+                                    <constraint firstAttribute="width" constant="147" id="G34-XI-K93"/>
+                                    <constraint firstAttribute="width" secondItem="4PG-Ql-G4S" secondAttribute="height" multiplier="290:363" constant="-131.81542699724514" id="Hzx-zu-MiA"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSC-lN-gQJ">
+                                <rect key="frame" x="18" y="602" width="343" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ov1-6s-CRH"/>
+                                </constraints>
+                                <string key="text">Always contact your physician before starting any new exercise program to make sure you're healthy enough for the activity level.</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="trailing" secondItem="i4B-9Z-B6b" secondAttribute="trailing" id="3uu-8w-Y3D"/>
+                            <constraint firstItem="Atn-1L-Qvg" firstAttribute="top" secondItem="gSC-lN-gQJ" secondAttribute="bottom" constant="20" id="ACI-sb-CZj"/>
+                            <constraint firstItem="gSC-lN-gQJ" firstAttribute="centerX" secondItem="4PG-Ql-G4S" secondAttribute="centerX" id="BcJ-Su-5Dx"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="top" secondItem="4m2-5e-uF5" secondAttribute="bottom" constant="51" id="IRX-cL-hV6"/>
-                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="bottom" secondItem="Atn-1L-Qvg" secondAttribute="top" id="REs-7Z-mzz"/>
+                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="bottom" secondItem="Atn-1L-Qvg" secondAttribute="top" constant="-90" id="REs-7Z-mzz"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="top" secondItem="4m2-5e-uF5" secondAttribute="bottom" constant="85" id="XIY-Pk-RpQ"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="leading" secondItem="i4B-9Z-B6b" secondAttribute="leading" id="XMf-D5-EWY"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="leading" secondItem="GHs-tO-uRf" secondAttribute="leadingMargin" constant="4" id="aQe-Uw-dsR"/>
-                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="top" secondItem="i4B-9Z-B6b" secondAttribute="bottom" constant="34" id="e5y-Dq-QQQ"/>
+                            <constraint firstItem="4PG-Ql-G4S" firstAttribute="top" secondItem="i4B-9Z-B6b" secondAttribute="bottom" constant="20" id="e5y-Dq-QQQ"/>
                             <constraint firstItem="9ka-sz-w39" firstAttribute="trailing" secondItem="GHs-tO-uRf" secondAttribute="trailingMargin" id="jyF-PU-HT8"/>
+                            <constraint firstItem="gSC-lN-gQJ" firstAttribute="leading" secondItem="GHs-tO-uRf" secondAttribute="leadingMargin" constant="2" id="viR-xA-1oD"/>
                             <constraint firstItem="i4B-9Z-B6b" firstAttribute="centerX" secondItem="4PG-Ql-G4S" secondAttribute="centerX" constant="0.5" id="xru-oM-sOS"/>
                         </constraints>
                     </view>
@@ -150,13 +163,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Up, Off Your Butt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GA-9m-RmT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Up Off Your Butt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GA-9m-RmT">
                                 <rect key="frame" x="16" y="68" width="340" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1MinuteWorkouts helps do this by providing you with a workout to do every hour." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-2f-TLu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1MinuteWorkouts helps do this by providing a workout for you to do every hour." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-2f-TLu">
                                 <rect key="frame" x="16" y="187" width="343" height="81"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="mos-qj-yQs"/>
@@ -166,27 +179,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="workout-screens" translatesAutoresizingMaskIntoConstraints="NO" id="fO2-kR-Lva">
-                                <rect key="frame" x="15" y="317" width="343" height="271"/>
+                                <rect key="frame" x="16" y="297" width="343" height="271"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fO2-kR-Lva" secondAttribute="height" multiplier="290:363" constant="126.49862258953169" id="86r-xb-V5Y"/>
                                     <constraint firstAttribute="width" constant="343" id="Uvd-Ql-cgg"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DK0-GS-J76">
+                                <rect key="frame" x="15" y="602" width="343" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Yfa-0S-rpq"/>
+                                </constraints>
+                                <string key="text">Always contact your physician before starting any new exercise program to make sure you're healthy enough for the activity level.</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="brc-Vj-CWt" firstAttribute="centerX" secondItem="fO2-kR-Lva" secondAttribute="centerX" constant="1" id="FOL-PA-Xvz"/>
-                            <constraint firstItem="fO2-kR-Lva" firstAttribute="top" secondItem="6Ff-2f-TLu" secondAttribute="bottom" constant="49" id="J4p-VB-Yop"/>
+                            <constraint firstItem="DK0-GS-J76" firstAttribute="leading" secondItem="25t-rv-9Ss" secondAttribute="leadingMargin" constant="-1" id="4ZU-Vm-U6h"/>
+                            <constraint firstItem="brc-Vj-CWt" firstAttribute="centerX" secondItem="fO2-kR-Lva" secondAttribute="centerX" id="FOL-PA-Xvz"/>
+                            <constraint firstItem="fO2-kR-Lva" firstAttribute="top" secondItem="6Ff-2f-TLu" secondAttribute="bottom" constant="29" id="J4p-VB-Yop"/>
                             <constraint firstItem="4GA-9m-RmT" firstAttribute="leading" secondItem="brc-Vj-CWt" secondAttribute="leading" id="JpN-OH-U23"/>
-                            <constraint firstItem="6Ff-2f-TLu" firstAttribute="centerX" secondItem="fO2-kR-Lva" secondAttribute="centerX" constant="1" id="TAz-jV-KET"/>
-                            <constraint firstItem="fO2-kR-Lva" firstAttribute="top" secondItem="brc-Vj-CWt" secondAttribute="bottom" constant="131" id="UXG-a7-itq"/>
-                            <constraint firstItem="fO2-kR-Lva" firstAttribute="centerX" secondItem="25t-rv-9Ss" secondAttribute="centerX" constant="-1" id="Yoe-f6-Hop"/>
+                            <constraint firstItem="6Ff-2f-TLu" firstAttribute="centerX" secondItem="fO2-kR-Lva" secondAttribute="centerX" id="TAz-jV-KET"/>
+                            <constraint firstItem="fO2-kR-Lva" firstAttribute="top" secondItem="brc-Vj-CWt" secondAttribute="bottom" constant="111" id="UXG-a7-itq"/>
+                            <constraint firstItem="fO2-kR-Lva" firstAttribute="centerX" secondItem="25t-rv-9Ss" secondAttribute="centerX" id="Yoe-f6-Hop"/>
+                            <constraint firstItem="DK0-GS-J76" firstAttribute="centerX" secondItem="4GA-9m-RmT" secondAttribute="centerX" id="ek6-ef-bTD"/>
                             <constraint firstItem="6Ff-2f-TLu" firstAttribute="leading" secondItem="brc-Vj-CWt" secondAttribute="leading" id="fWA-yT-49Z"/>
                             <constraint firstItem="4GA-9m-RmT" firstAttribute="top" secondItem="wRe-Sh-UaP" secondAttribute="bottom" constant="48" id="hBL-Wi-laH"/>
                             <constraint firstItem="6Ff-2f-TLu" firstAttribute="top" secondItem="4GA-9m-RmT" secondAttribute="bottom" constant="96" id="kgH-To-0lz"/>
                             <constraint firstItem="4GA-9m-RmT" firstAttribute="leading" secondItem="25t-rv-9Ss" secondAttribute="leadingMargin" id="pCF-I7-QQx"/>
                             <constraint firstItem="4GA-9m-RmT" firstAttribute="trailing" secondItem="brc-Vj-CWt" secondAttribute="trailing" constant="-3" id="pFh-9d-uMI"/>
-                            <constraint firstItem="MbD-1U-3eu" firstAttribute="top" secondItem="fO2-kR-Lva" secondAttribute="bottom" constant="79" id="pog-nu-BH7"/>
+                            <constraint firstItem="MbD-1U-3eu" firstAttribute="top" secondItem="fO2-kR-Lva" secondAttribute="bottom" constant="99" id="pog-nu-BH7"/>
+                            <constraint firstItem="MbD-1U-3eu" firstAttribute="top" secondItem="DK0-GS-J76" secondAttribute="bottom" constant="20" id="tFf-9o-X0d"/>
                             <constraint firstItem="fO2-kR-Lva" firstAttribute="width" secondItem="fO2-kR-Lva" secondAttribute="height" multiplier="290:363" constant="126.49862258953169" id="tQ0-7N-8p7"/>
                         </constraints>
                     </view>
@@ -207,75 +233,132 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aim for doing at least 8 1MinuteWorkouts during the day and then 8 more before or after work." lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91X-0D-svm">
-                                <rect key="frame" x="71" y="192" width="288" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aim for doing at least 8 1MinuteWorkouts during the day and then do one of the 7 minute Workouts before or after work." lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91X-0D-svm">
+                                <rect key="frame" x="71" y="192" width="288" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="6Ga-zG-R3N"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-xf-gTN">
-                                <rect key="frame" x="14" y="192" width="42" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-xf-gTN">
+                                <rect key="frame" x="14" y="199" width="42" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="nOa-pk-MDV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="57"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mins" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxp-rx-T69">
-                                <rect key="frame" x="16" y="241" width="38" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mins" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxp-rx-T69">
+                                <rect key="frame" x="16" y="248" width="38" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout Goals..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-Cg-Mjp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Goals..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-Cg-Mjp">
                                 <rect key="frame" x="16" y="68" width="340" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="yYD-qQ-P2Q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Supplement your 1MinuteWorkouts strength training with at least 3 cardio workouts a week. " lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkN-KF-0PX">
-                                <rect key="frame" x="71" y="288" width="288" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Supplement your 1MinuteWorkouts strength training with at least 3 cardio workouts a week. " lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkN-KF-0PX">
+                                <rect key="frame" x="71" y="298" width="288" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="MRD-ZV-YU2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sg-SZ-tEa">
-                                <rect key="frame" x="14" y="279" width="42" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sg-SZ-tEa">
+                                <rect key="frame" x="14" y="295" width="42" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="jij-UR-AJY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="57"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X's" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-kx-Hmm">
-                                <rect key="frame" x="16" y="337" width="38" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X's" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-kx-Hmm">
+                                <rect key="frame" x="16" y="353" width="38" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="It's important to have a plan... setting goals  helps keep us on track. Here are some to shoot for:" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-Xy-scq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's important to have a plan... setting goals  helps keep us on track. Here are some to shoot for:" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-Xy-scq">
                                 <rect key="frame" x="16" y="105" width="343" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="fnY-WY-aVh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alternate days between your additional 1MinuteWorkouts and cardio. Shoot for at least 15 minutes of cardio per session." lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bth-0Z-Nf8">
-                                <rect key="frame" x="71" y="362" width="288" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alternate days between your additional 7 minute Workouts and cardio. Shoot for at least 15 minutes of cardio per session." lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bth-0Z-Nf8">
+                                <rect key="frame" x="71" y="372" width="288" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="kj9-ua-6Nu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thumbs-up_wt" translatesAutoresizingMaskIntoConstraints="NO" id="qMf-L6-fET">
-                                <rect key="frame" x="103" y="481" width="166" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbs-up_wt" translatesAutoresizingMaskIntoConstraints="NO" id="qMf-L6-fET">
+                                <rect key="frame" x="114" y="471" width="144" height="103"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFH-Zg-6Gy">
+                                <rect key="frame" x="16" y="602" width="343" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Qvl-Lh-XjU"/>
+                                </constraints>
+                                <string key="text">Always contact your physician before starting any new exercise program to make sure you're healthy enough for the activity level.</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.68235294120000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bth-0Z-Nf8" firstAttribute="top" secondItem="mkN-KF-0PX" secondAttribute="bottom" constant="8" symbolic="YES" id="03m-mv-1l0"/>
+                            <constraint firstItem="Alp-Xy-scq" firstAttribute="top" secondItem="Ffn-Cg-Mjp" secondAttribute="bottom" constant="14" id="0Xr-ld-g2p"/>
+                            <constraint firstItem="UGW-ny-m7u" firstAttribute="top" secondItem="AFH-Zg-6Gy" secondAttribute="bottom" constant="20" id="3CR-0F-Tke"/>
+                            <constraint firstItem="Vxp-rx-T69" firstAttribute="leading" secondItem="GPI-kx-Hmm" secondAttribute="leading" id="E07-uJ-yaN"/>
+                            <constraint firstItem="GPI-kx-Hmm" firstAttribute="leading" secondItem="AFH-Zg-6Gy" secondAttribute="leading" id="Fr6-yG-vNm"/>
+                            <constraint firstItem="Ffn-Cg-Mjp" firstAttribute="top" secondItem="fOY-VL-Dwx" secondAttribute="bottom" constant="48" id="Gdn-D1-pGz"/>
+                            <constraint firstItem="FIu-xf-gTN" firstAttribute="leading" secondItem="6Sg-SZ-tEa" secondAttribute="leading" id="K8t-u6-anj"/>
+                            <constraint firstItem="AFH-Zg-6Gy" firstAttribute="top" secondItem="qMf-L6-fET" secondAttribute="bottom" constant="28" id="KYL-ih-9xA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="91X-0D-svm" secondAttribute="trailing" id="LBh-89-pfT"/>
+                            <constraint firstItem="91X-0D-svm" firstAttribute="top" secondItem="Alp-Xy-scq" secondAttribute="bottom" constant="23" id="Na9-SS-bbt"/>
+                            <constraint firstItem="bth-0Z-Nf8" firstAttribute="leading" secondItem="Ilo-xD-AES" secondAttribute="leadingMargin" constant="55" id="Ort-QR-aHC"/>
+                            <constraint firstItem="Alp-Xy-scq" firstAttribute="leading" secondItem="Vxp-rx-T69" secondAttribute="leading" id="Pe9-7z-H2P"/>
+                            <constraint firstItem="Ffn-Cg-Mjp" firstAttribute="leading" secondItem="Ilo-xD-AES" secondAttribute="leadingMargin" id="QAp-Sm-241"/>
+                            <constraint firstItem="FIu-xf-gTN" firstAttribute="centerX" secondItem="Vxp-rx-T69" secondAttribute="centerX" id="QoX-Bw-HWn"/>
+                            <constraint firstItem="91X-0D-svm" firstAttribute="leading" secondItem="mkN-KF-0PX" secondAttribute="leading" id="TKo-Bm-GoK"/>
+                            <constraint firstItem="Ffn-Cg-Mjp" firstAttribute="centerX" secondItem="qMf-L6-fET" secondAttribute="centerX" id="UkZ-jB-X5d"/>
+                            <constraint firstItem="bth-0Z-Nf8" firstAttribute="trailing" secondItem="AFH-Zg-6Gy" secondAttribute="trailing" id="Unt-Vc-I6x"/>
+                            <constraint firstItem="qMf-L6-fET" firstAttribute="top" secondItem="bth-0Z-Nf8" secondAttribute="bottom" constant="20" id="XgS-ga-Z8X"/>
+                            <constraint firstItem="91X-0D-svm" firstAttribute="trailing" secondItem="mkN-KF-0PX" secondAttribute="trailing" id="ZQj-Xx-lxB"/>
+                            <constraint firstItem="Vxp-rx-T69" firstAttribute="top" secondItem="FIu-xf-gTN" secondAttribute="bottom" constant="1" id="adw-mD-j0q"/>
+                            <constraint firstItem="mkN-KF-0PX" firstAttribute="top" secondItem="91X-0D-svm" secondAttribute="bottom" constant="18" id="bO8-9Y-Z1w"/>
+                            <constraint firstItem="91X-0D-svm" firstAttribute="leading" secondItem="FIu-xf-gTN" secondAttribute="trailing" constant="15" id="cUj-MO-sDN"/>
+                            <constraint firstItem="91X-0D-svm" firstAttribute="leading" secondItem="Vxp-rx-T69" secondAttribute="trailing" constant="17" id="hdG-6y-o49"/>
+                            <constraint firstItem="mkN-KF-0PX" firstAttribute="leading" secondItem="bth-0Z-Nf8" secondAttribute="leading" id="j08-yW-cSE"/>
+                            <constraint firstItem="6Sg-SZ-tEa" firstAttribute="top" secondItem="Vxp-rx-T69" secondAttribute="bottom" constant="32" id="jcg-I5-5Ld"/>
+                            <constraint firstItem="Ffn-Cg-Mjp" firstAttribute="leading" secondItem="Alp-Xy-scq" secondAttribute="leading" id="mbm-gr-fF2"/>
+                            <constraint firstItem="GPI-kx-Hmm" firstAttribute="top" secondItem="Vxp-rx-T69" secondAttribute="bottom" constant="90" id="oEA-DR-kHc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Alp-Xy-scq" secondAttribute="trailing" id="ocV-oo-8Rs"/>
+                            <constraint firstItem="qMf-L6-fET" firstAttribute="leading" secondItem="Ilo-xD-AES" secondAttribute="leadingMargin" constant="98" id="pfR-wF-pQj"/>
+                            <constraint firstItem="FIu-xf-gTN" firstAttribute="trailing" secondItem="6Sg-SZ-tEa" secondAttribute="trailing" id="sX4-p8-AgU"/>
+                            <constraint firstItem="mkN-KF-0PX" firstAttribute="trailing" secondItem="bth-0Z-Nf8" secondAttribute="trailing" id="sz4-CN-IRg"/>
+                            <constraint firstItem="FIu-xf-gTN" firstAttribute="top" secondItem="Alp-Xy-scq" secondAttribute="bottom" constant="30" id="t8x-Yh-8c9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ffn-Cg-Mjp" secondAttribute="trailing" constant="3" id="tQq-J0-JOt"/>
+                            <constraint firstItem="Vxp-rx-T69" firstAttribute="trailing" secondItem="GPI-kx-Hmm" secondAttribute="trailing" id="xVO-so-U5M"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rS0-ND-sGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -365,7 +448,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="0id-98-qxp" id="fgz-4d-Nrs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Workout Notification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKS-ZR-BG1">
@@ -395,7 +478,7 @@
                                         <rect key="frame" x="0.0" y="103" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sst-aD-mRd" id="kwt-CH-vRs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Workout Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO8-4O-tja">
@@ -425,7 +508,7 @@
                                         <rect key="frame" x="0.0" y="155" width="375" height="222"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0b-Xo-qBe" id="odt-Bc-R3k">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOz-hU-Rua">
@@ -449,7 +532,7 @@
                                         <rect key="frame" x="0.0" y="377" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9g7-WO-0wv" id="ZJx-ZX-6jm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday - Friday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38d-5z-DaD">
@@ -480,7 +563,7 @@
                                         <rect key="frame" x="0.0" y="429" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MfF-7Y-LrR" id="V3d-eL-PbX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday and Sunday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ss9-dY-OF5">
@@ -511,7 +594,7 @@
                                         <rect key="frame" x="0.0" y="481" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yy1-GC-Alc" id="LJA-ab-jn9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMO-9m-qOW">

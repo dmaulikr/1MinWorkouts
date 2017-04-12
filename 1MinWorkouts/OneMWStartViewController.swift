@@ -12,201 +12,17 @@ import UserNotifications
 class OneMWStartViewController: UIViewController {
     
     let lastWorkoutLabelSettings = UserDefaults.standard // instantiates a user default holder for the next workout labels
+    let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
     
     @IBOutlet var UBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var LBBtnLastWorkoutLabel: UILabel!
     @IBOutlet var CoreBtnLastWorkoutLabel: UILabel!
-    @IBAction func endDayBtn(_ sender: Any) {
-        let message:UIAlertController = UIAlertController(title: "End Day", message: "Ending the day will cancel all workout notifications for the rest of the day. \n \n" + "Are you sure you want to end the day?", preferredStyle: UIAlertControllerStyle.alert)
-        message.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        message.addAction(UIAlertAction(title: "End Day", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.endDay()}))
-        
-        self.present(message, animated: true, completion: nil)
-        print("you hit end day btn")
+    @IBOutlet var TipStarterView: UIView!
+    @IBAction func closeTipBtn(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {self.TipStarterView.alpha = 0.0})
+        shownTipsSettings.set(true, forKey: "1MWStarterTip")
     }
     
-    func endDay(){
-        
-        // reset workout counter index to 0
-        GlobalVars.exerciseIndexCount = 0
-        
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() //  removes/clears all pending notification request
-        
-        // resets next days start notification
-        let today = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute, .second], from: today)
-        let hour = components.hour
-        let minute = components.minute
-        let month = components.month
-        let year = components.year
-        let day = components.day
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "e" // sets the day of the week to a single digit // Sunday = 1 // Monday = 2 // Tuesday = 3 // Wednesday = 4 // Thrusday = 5 // Friday = 6 // Saturday = 7
-        let dayOfWeek = dateFormatter.string(from: today) // sets the day of week to be used as a variable
-        
-        func notificationStart(dayCountStart: Int, maxLoop: Int, findSatSkipCount: Int, skipWeekendCount: Int){
-            var addDay = dayCountStart
-            var notifContent = "It's time for your first workout of the day!"
-            for _ in 1...maxLoop { // iterates based on var maxLoop setting
-                addDay += 1  // sets the notification date to next day and then increments the added day by one for each iteration of the Loop
-                
-                if addDay == findSatSkipCount{ // checks to find when Saturday is within the 7 iterations
-                    addDay = skipWeekendCount  // skips the weekend and adds two more notifications for 7 total set
-                    notifContent = "It's been several days since your last workout. Might be a good time to start up again before you get to saggy 😁"
-                }
-                
-                let center = UNUserNotificationCenter.current()
-                
-                let content = UNMutableNotificationContent()
-                content.body = notifContent
-                content.sound = UNNotificationSound.default()
-                
-                var dateComponents = DateComponents()
-                dateComponents.year = year
-                dateComponents.month = month
-                dateComponents.day = day! + addDay
-                dateComponents.hour = GlobalVars.workoutNotificationStartHour
-                dateComponents.minute = GlobalVars.workoutNotificationStartMin
-                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                center.add(request)
-                
-                print("notification set for \(dateComponents.month!)/\(dateComponents.day!)/\(dateComponents.year!) - \(dateComponents.hour!):\(dateComponents.minute!)")
-            }
-        }
-        
-        switch dayOfWeek{
-        case "1": // Sunday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 6, skipWeekendCount: 8)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 5, maxLoop: 4, findSatSkipCount: 8, skipWeekendCount: 8)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-        case "2": // Monday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 5, skipWeekendCount: 7)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 4, maxLoop: 4, findSatSkipCount: 7, skipWeekendCount: 12)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-        case "3": // Tuesday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 4, skipWeekendCount: 6)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 3, maxLoop: 4, findSatSkipCount: 6, skipWeekendCount: 11)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-            
-        case "4": // Wednesday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 3, skipWeekendCount: 5)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 2, maxLoop: 4, findSatSkipCount: 5, skipWeekendCount: 10)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-            
-        case "5": // Thrusday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 2, skipWeekendCount: 4)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 1, maxLoop: 4, findSatSkipCount: 4, skipWeekendCount: 9)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-            
-        case "6": // Friday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 2, maxLoop: 7, findSatSkipCount: 8, skipWeekendCount: 10)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 4, findSatSkipCount: 3, skipWeekendCount: 8)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-        case "7": // Saturday
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == false{
-                
-                notificationStart(dayCountStart: 1, maxLoop: 7, findSatSkipCount: 7, skipWeekendCount: 9)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == false && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 3, findSatSkipCount: 2, skipWeekendCount: 7)
-                
-            }
-            if GlobalVars.notificationSettingsWeekday == true && GlobalVars.notificationSettingsWeekend == true{
-                
-                notificationStart(dayCountStart: 0, maxLoop: 7, findSatSkipCount: 999, skipWeekendCount: 999)
-                
-            }
-            
-            
-        default:
-            break
-        }
-    }
-  
     
     // function that sets todays current date to the selected muscle group
     func getTodaysDate(){
@@ -305,6 +121,21 @@ class OneMWStartViewController: UIViewController {
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+        TipStarterView.alpha = 0.0
+        // checks to see if Tip has been shown yet
+        let tipViewed = shownTipsSettings.bool(forKey: "1MWStarterTip")
+        if tipViewed == false{
+            UIView.animate(withDuration: 0.5, animations: {self.TipStarterView.alpha = 1.0})
+            //TipStarterView.isHidden = false
+        }else{
+            TipStarterView.alpha = 0.0
+        }
+        
+        //enables 1MW tab so user can get back if doing 1MW workouts
+        if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
+            tabBarItem.isEnabled = true
+        }
+        
         setNotifVars() // sets the notification default settings to the appropriate GlobalVars
         
         // checks to see if the user has seen the OOBE Tute/Disclaimer/Setup
