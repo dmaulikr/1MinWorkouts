@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC12930E1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */; };
 		AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12930F1AF4196600830EA5 /* AboutViewController.swift */; };
+		AC1DB1771E285EED000ACEDC /* WorkoutsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */; };
 		AC1DB17A1E295D63000ACEDC /* WorkoutsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */; };
 		AC1DB17B1E295D63000ACEDC /* WorkoutsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */; };
 		AC2645151A85434100E5B081 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2645141A85434100E5B081 /* MyTabBarController.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		AC12930D1AF417AC00830EA5 /* SettingsStartDayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStartDayTableViewController.swift; sourceTree = "<group>"; };
 		AC12930F1AF4196600830EA5 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ../AboutViewController.swift; sourceTree = "<group>"; };
+		AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewController.swift; sourceTree = "<group>"; };
 		AC1DB1781E295D63000ACEDC /* WorkoutsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsTableViewCell.swift; sourceTree = "<group>"; };
 		AC1DB1791E295D63000ACEDC /* WorkoutsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutsTableViewCell.xib; sourceTree = "<group>"; };
 		AC2645141A85434100E5B081 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		AC1DB1731E2858B3000ACEDC /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				AC1DB1761E285EED000ACEDC /* WorkoutsTableViewController.swift */,
 				AC5CBA901E8DC00800A39DF4 /* WorkoutsViewController_table.swift */,
 				ACD1CD761A52310B00CC197E /* WorkoutsViewController.swift */,
 				AC6C90AC1E2DA3E9007BF264 /* ExercisesViewController.swift */,
@@ -343,6 +346,7 @@
 				AC3555131AD33DA500998E0F /* StartDaySettingsViewController.swift in Sources */,
 				ACE0F26B1AC0D642003E4F5E /* TutorialViewController.swift in Sources */,
 				ACD1CD7B1A545EEB00CC197E /* OneMWStartViewController.swift in Sources */,
+				AC1DB1771E285EED000ACEDC /* WorkoutsTableViewController.swift in Sources */,
 				ACE0F2721ACA2AF0003E4F5E /* BWWalkthroughPageViewController.swift in Sources */,
 				AC5CBA911E8DC00800A39DF4 /* WorkoutsViewController_table.swift in Sources */,
 				AC1293101AF4196600830EA5 /* AboutViewController.swift in Sources */,
