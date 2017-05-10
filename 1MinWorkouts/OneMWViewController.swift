@@ -379,7 +379,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
             self.tabBarController?.tabBar.isHidden = true
             
             UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
-                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 190 //-198
+                self.nextWorkoutView.center.y = self.nextWorkoutView.center.y - 215 //-195
                 print("------------ viewWillAppear animate")
             }) { (value:Bool) in
                 // stops the countdown
@@ -432,19 +432,7 @@ class OneMWViewController: UIViewController, OneMWWorkoutViewControllerDelegate 
         GlobalVars.nextExerciseSecondsCount = totalTime; // sets timer to an hour
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(ExercisesViewController.exerciseTimerGetReady), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        // checks to make sure the next workout counter view is only shown when needed
-//        if unlinkedBtn.isHidden == true && linkedBtn.isHidden == false{
-//            nextWorkoutView.center.y = nextWorkoutView.center.y - 198
-//        }else {
-//            nextWorkoutView.center.y = nextWorkoutView.center.y
-//        }
-//        
-//        // makes sure the next workout countdown value is set prior to showing it
-//        self.nextWorkoutCountdownLabel.text = "30"
-//    }
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         

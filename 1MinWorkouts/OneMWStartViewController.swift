@@ -121,6 +121,9 @@ class OneMWStartViewController: UIViewController {
     let vc = TutorialXIBViewController(nibName: "TutorialXIBViewController", bundle: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.tabBarController?.tabBar.isHidden = false
+        
         TipStarterView.alpha = 0.0
         // checks to see if Tip has been shown yet
         let tipViewed = shownTipsSettings.bool(forKey: "1MWStarterTip")
