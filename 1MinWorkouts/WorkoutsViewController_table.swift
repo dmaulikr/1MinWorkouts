@@ -70,7 +70,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
         // sets the table cell index to 0
         GlobalVars.workoutsIndexCount = 0
         
-        // instantiates the Upper Body array data
+        // instantiates the Upper Body array data -------------------------------------------------------------------------//
         var newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7",  tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
@@ -132,6 +132,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
             "Do as many as you can, takeing breaks as needed.")  // 6
         GlobalVars.workoutsUB.append(newExercise)
         
+        
         // instantiates the Lower Body array data -------------------------------------------------------------------------//
         newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
@@ -188,6 +189,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.workoutsLB.append(newExercise)
+        
         
         // instantiates the Core array data -------------------------------------------------------------------------//
         newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "workout-progress-Step1_7", tips:
@@ -354,8 +356,8 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //1
         GlobalVars.workouts7M.append(newExercise)
         
-        // instantiates the 7 Min Tabata array data -------------------------------------------------------------------------//
         
+        // instantiates the 7 Min Tabata array data -------------------------------------------------------------------------//
         newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_14", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
@@ -594,6 +596,9 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 if selectedRow == 2{
                     let vc = segue.destination as! WorkoutsViewController
                     vc.navTitle = "Core"
+//                    vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
+//                    vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
+//                    vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)
                     vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
                     vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
                     vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)

@@ -118,7 +118,6 @@ class WorkoutsTableViewController: UITableViewController {
             "Do as many as you can in a minute, but take breaks as needed.\n\n") // 5
         GlobalVars.workoutsUB.append(newExercise)
         
-        
         newExercise = Exercise(name: "Tricep Dips", filename: "dips", meterFilename: "workout-progress-Step7_7", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
                 "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
@@ -524,7 +523,7 @@ class WorkoutsTableViewController: UITableViewController {
     }
     
     
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).row == 0{
             
             // performs the segue to the next screen
