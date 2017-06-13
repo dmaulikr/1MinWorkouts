@@ -8,12 +8,31 @@
 
 import UIKit
 import AudioToolbox
+import AVFoundation
 
 protocol OneMWWorkoutViewControllerDelegate{
     func myVCDidFinish(_ controller:OneMWWorkoutViewController,indexCount:Int,nextWorkout:String)
 }
 
 class OneMWWorkoutViewController: UIViewController {
+    
+    //this is your audio playback instance
+    var audioPlayer_GetReady = AVAudioPlayer()
+    var audioPlayer_Begin = AVAudioPlayer()
+    var audioPlayer_SwitchSides = AVAudioPlayer()
+    var audioPlayer_TenSecs = AVAudioPlayer()
+    var audioPlayer_NiceJob = AVAudioPlayer()
+    var counter = 0
+    var timer : Timer?
+    func vibratePhone() {
+        counter += 1
+        switch counter {
+        case 1, 2:
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        default:
+            timer?.invalidate()
+        }
+    }
     
     var delegate:OneMWWorkoutViewControllerDelegate? = nil
     var exerciseTitle = ""
@@ -163,8 +182,10 @@ class OneMWWorkoutViewController: UIViewController {
         
         // what happens when the timer has 10 seconds left
         if exerciseTitle != "Side Plank"{ // if Side Plank doesn't do the 10 sec reminder vibrate since you switch at 30 sec
-            if (GlobalVars.exerciseSecondsCount == 10) {
-                AudioServicesPlaySystemSound(1361) // was 1360, plays double vibrate when there's 10 secs left in workout
+            if (GlobalVars.exerciseSecondsCount == 11) {                //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))// plays double vibrate
+                counter = 0
+                timer = Timer.scheduledTimer(timeInterval: 0.6, target: self, selector: #selector(OneMWWorkoutViewController.vibratePhone), userInfo: nil, repeats: true) // plays double vibrate
+                audioPlayer_TenSecs.play()  // plays ten seconds audio
             }
         }
         
@@ -173,7 +194,10 @@ class OneMWWorkoutViewController: UIViewController {
             exerciseImage = UIImage(named: "side-plank-left") // sets the new side plank image to the var
             exerciseTypeImage.image = exerciseImage // switches the side plank image
             exerciseCountdownTimer.invalidate() // stops all timers
-            AudioServicesPlaySystemSound(1360) // plays double vibrate
+            //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))// plays double vibrate
+            counter = 0
+            timer = Timer.scheduledTimer(timeInterval: 0.6, target: self, selector: #selector(OneMWWorkoutViewController.vibratePhone), userInfo: nil, repeats: true) // plays double vibrate
+            audioPlayer_SwitchSides.play()  // plays switch sides audio
             getReadyView.isHidden = false // shows the get ready view
             getReadyCounterLabel.isHidden = false // shows the get ready count down label
             getReadyLabel.text = "Switch Sides" // changes the get rady note
@@ -200,7 +224,8 @@ class OneMWWorkoutViewController: UIViewController {
                 dismiss(animated: true, completion: nil)
                 
                 // plays vibrate and tone
-                AudioServicesPlaySystemSound(1120)
+                audioPlayer_NiceJob.play() // plays nice job audio
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))  // sends single vibrate
                 
                 // sets the next workout time
                 changeNextWorkoutTime()
@@ -249,8 +274,8 @@ class OneMWWorkoutViewController: UIViewController {
             
             self.present(alert, animated: true, completion: nil)
             
-            //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate when workout is done
-            AudioServicesPlaySystemSound(1120) // plays vibrate and tone
+            audioPlayer_NiceJob.play() // plays nice job audio
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))  // sends single vibrate
             }
         }
     }
@@ -266,7 +291,7 @@ class OneMWWorkoutViewController: UIViewController {
         exerciseCountdownTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(OneMWWorkoutViewController.exerciseTimerRun), userInfo: nil, repeats: true) // sets the timer interval to 1.0 seconds and uses the timerRun method as the countdown
     }
     
-    //----------------------------------------- 5 seconds countdown get ready timer -----------------------------------------//
+    //----------------------------------------- 5 seconds countdown get ready timer ------------------------------------//
     func exerciseTimerGetReady(){
         GlobalVars.exerciseSecondsCount -= 1 // decreases the count down by 1
         let minutes = (GlobalVars.exerciseSecondsCount / 60) // converts the seconds into minute format
@@ -278,6 +303,8 @@ class OneMWWorkoutViewController: UIViewController {
         if (GlobalVars.exerciseSecondsCount == 0) {
             // sets workout timer to 30 seconds remaining after switch sides view for Side Plank
             if switchSidesSubTitle.isHidden == true && exerciseTitle == "Side Plank"{
+                audioPlayer_Begin.play() // plays begin audio
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))  // sends single vibrate
                 exerciseCountdownTimer.invalidate() // stops all timers
                 workoutCountdownLabel.text = "30"
                 setExerciseTimer(30, timerLabel: "30")
@@ -291,9 +318,9 @@ class OneMWWorkoutViewController: UIViewController {
                 getReadyView.isHidden = true
                 workoutCountdownLabel.isHidden = false
                 setExerciseTimer(60, timerLabel: "60")
-            
-                //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate)) // sends vibrate and message tone when 5 sec countdown is done
-                AudioServicesPlaySystemSound(1120) // plays vibrate and tone 1008-start/stop 1110 (nice option, maybe too simple)
+                
+                audioPlayer_Begin.play() // plays begin audio
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))  // sends single vibrate
                 print("get ready triggered else")
             }
         }
@@ -314,6 +341,68 @@ class OneMWWorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //------------------ creates required tones for each workout -------------------------------//
+        // address of the audio file.
+        let GetReady = Bundle.main.path(forResource: "Get Ready", ofType: "m4a")
+        // this tells the compiler what to do when action is received
+        do {
+            audioPlayer_GetReady = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: GetReady! ))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        
+        // address of the audio file.
+        let Begin = Bundle.main.path(forResource: "Begin", ofType: "m4a")
+        // this tells the compiler what to do when action is received
+        do {
+            audioPlayer_Begin = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: Begin! ))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        
+        // address of the audio file.
+        let TenSeconds = Bundle.main.path(forResource: "10 Seconds", ofType: "m4a")
+        // this tells the compiler what to do when action is received
+        do {
+            audioPlayer_TenSecs = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: TenSeconds! ))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        
+        // address of the audio file.
+        let SwitchSides = Bundle.main.path(forResource: "Switch Sides", ofType: "m4a")
+        // this tells the compiler what to do when action is received
+        do {
+            audioPlayer_SwitchSides = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: SwitchSides! ))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        
+        // address of the audio file.
+        let NiceJob = Bundle.main.path(forResource: "Nice Job", ofType: "m4a")
+        // this tells the compiler what to do when action is received
+        do {
+            audioPlayer_NiceJob = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: NiceJob! ))
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        //------------------ </end> creates required tones for each workout -------------------------------//
+        
         // sets up the initial view and points page vars at right vars
         exercisesCount = GlobalVars.exerciseUB.count
         navigationItem.title = navTitle
@@ -323,6 +412,7 @@ class OneMWWorkoutViewController: UIViewController {
         startWorkoutBtn.isHidden = true
         
         // sets the get ready to workout countdown view
+        audioPlayer_GetReady.play()
         getReadyView.isHidden = false
         workoutCountdownLabel.isHidden = true
         setExerciseTimerGetReady(5, timerLabel: "5")
