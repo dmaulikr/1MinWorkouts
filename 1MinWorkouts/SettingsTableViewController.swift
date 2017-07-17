@@ -15,8 +15,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     
     @IBOutlet var startDayDetailLabel: UILabel!
     @IBOutlet var aboutDetailLabel: UILabel!
+    @IBOutlet var viewFirstWorkoutNotificationSettings: UITableViewCell!
     @IBOutlet var viewWalkthroughCell: UITableViewCell!
     @IBOutlet var ShowTipsCell: UITableViewCell!
+    @IBOutlet var viewAboutSettings: UITableViewCell!
     @IBOutlet var TipIcon: UIImageView!
     
     @IBAction func sendFeedbackBtn(_ sender: AnyObject) {
@@ -94,6 +96,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).row == 0 {
+            viewFirstWorkoutNotificationSettings.isSelected = false
+            print("notif settings hit")
+        }
         
         if (indexPath as NSIndexPath).row == 1 {
             viewWalkthroughCell.isSelected = false
@@ -171,6 +177,11 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
                 shownTipsSettings.set(true, forKey: "StatsStarterTip")
             }
         }
+        if (indexPath as NSIndexPath).row == 3 {
+            viewAboutSettings.isSelected = false
+            print("about settings hit")
+        }
+
     }
     
     func myVCDidFinish(_ controller: SettingsStartDayTableViewController, text: String) {

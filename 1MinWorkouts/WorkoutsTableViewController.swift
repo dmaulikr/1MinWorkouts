@@ -1,18 +1,17 @@
 //
-//  WorkoutsViewController_table.swift
+//  WorkoutsTableViewController.swift
 //  1MinWorkouts
 //
-//  Created by Justin Spirent on 3/30/17.
+//  Created by Justin Spirent on 1/12/17.
 //  Copyright © 2017 Good Enough LLC. All rights reserved.
 //
 
 import UIKit
 
-class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class WorkoutsTableViewController: UITableViewController {
+    
     let shownTipsSettings = UserDefaults.standard // instantiates a user defaultholder for keeping track of the tips shown or not
     
-    @IBOutlet var workoutsTableView: UITableView!
     @IBOutlet var TipWorkoutsView: UIView!
     @IBAction func CloseWorkoutsTipBtn(_ sender: Any) {
         UIView.animate(withDuration: 0.3, animations: {self.TipWorkoutsView.alpha = 0.0})
@@ -32,21 +31,19 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         
-        TipWorkoutsView.alpha = 0.0
         // checks to see if Tip has been shown yet
         let tipViewed = shownTipsSettings.bool(forKey: "WorkoutsStarterTip")
         if tipViewed == false{
-            UIView.animate(withDuration: 0.5, animations: {self.TipWorkoutsView.alpha = 1.0})
-            //TipStarterView.isHidden = false
+            TipWorkoutsView.isHidden = false
         }else{
-            TipWorkoutsView.alpha = 0.0
+            TipWorkoutsView.isHidden = true
         }
         
         //enables 1MW tab so user can get back if doing 1MW workouts
         if  let arrayOfTabBarItems = tabBarController?.tabBar.items as AnyObject as? NSArray,let tabBarItem = arrayOfTabBarItems[0] as? UITabBarItem {
             tabBarItem.isEnabled = true
         }
-        
+
     }
     
     override func viewDidLoad() {
@@ -58,7 +55,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         // creates an invisible footer that hides the empty table dividers
-        workoutsTableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView = UIView(frame: .zero)
         
         // defines the content in the array for each of the table cells
         arrayOfCellData = [cellData(cell : 1, titleText : "Upper Body", nextWorkoutText : "Strength/Cardio - 7 mins", BGImage: #imageLiteral(resourceName: "UpperBody-7mins")),
@@ -70,7 +67,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
         // sets the table cell index to 0
         GlobalVars.workoutsIndexCount = 0
         
-        // instantiates the Upper Body array data -------------------------------------------------------------------------//
+        // instantiates the Upper Body array data
         var newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7",  tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
@@ -104,7 +101,7 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
             "Do as many as you can, takeing breaks as needed.") // 3
         GlobalVars.workoutsUB.append(newExercise)
-        
+    
         newExercise = Exercise(name: "Wide Push-Ups", filename: "push-ups-wide", meterFilename: "workout-progress-Step5_7", tips:
             "1. Lie on the floor face down and place your hands about a shoulder and half width apart (your elbows should be at 90 degree angles and parallel with the floor when in the down position) while holding your torso up at arms length. \n\n" +
                 "2. Lower yourself down until your chest almost touches the floor as you inhale.\n\n" +
@@ -121,7 +118,6 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
             "Do as many as you can in a minute, but take breaks as needed.\n\n") // 5
         GlobalVars.workoutsUB.append(newExercise)
         
-        
         newExercise = Exercise(name: "Tricep Dips", filename: "dips", meterFilename: "workout-progress-Step7_7", tips:
             "1. Position your hands shoulder-width apart on a secured table/desk or stable chair. \n\n" +
                 "2. Slide your butt off the front of the chair with your legs extended out in front of you. \n\n" +
@@ -131,7 +127,6 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 "6. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise. \n\n" +
             "Do as many as you can, takeing breaks as needed.")  // 6
         GlobalVars.workoutsUB.append(newExercise)
-        
         
         // instantiates the Lower Body array data -------------------------------------------------------------------------//
         newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_7", tips:
@@ -189,7 +184,6 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 "3. Stay on your tip toes for two seconds. Then, begin to lower your heels, and move your weight away from the balls of your feet until your heels are back on the ground while inhaling. \n\n" +
             "Do as many as you can in a minute, but take breaks as needed.") // 7
         GlobalVars.workoutsLB.append(newExercise)
-        
         
         // instantiates the Core array data -------------------------------------------------------------------------//
         newExercise = Exercise(name: "Crunches", filename: "sit-ups", meterFilename: "workout-progress-Step1_7", tips:
@@ -327,8 +321,8 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
         
         newExercise = Exercise(name: "High Knees/Run In Place", filename: "high-knees", meterFilename: "workout-progress- Step9_12", tips:
             "1. Stand in place with your feet hip-width apart. /n/n" +
-                "2. Drive your right knee toward your chest and quickly place it back on the ground. /n/n" +
-                "3. Follow immediately by driving your left knee toward your chest. /n/n" +
+            "2. Drive your right knee toward your chest and quickly place it back on the ground. /n/n" +
+            "3. Follow immediately by driving your left knee toward your chest. /n/n" +
             "Continue to alternate knees as quickly as you can. Take breaks as needed.")
         GlobalVars.workouts7M.append(newExercise)
         
@@ -355,9 +349,9 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                 "4. Do not let your hips sag (this is the challenging part of this move). As you get tired, you’ll want to drop your hips, but focus on keeping them stationary. \n\n" +
             "Hold for 30 seconds then switch sides for the remainder of the minute, but take breaks as needed.") //1
         GlobalVars.workouts7M.append(newExercise)
-        
-        
+    
         // instantiates the 7 Min Tabata array data -------------------------------------------------------------------------//
+        
         newExercise = Exercise(name: "Jumping Jacks", filename: "jumping-jacks", meterFilename: "workout-progress-Step1_14", tips:
             "1. Stand with your feet together and your hands at your sides. \n\n" +
                 "2. Jump straight up while simultaneously spreading your legs shoulder width apart and raising your hands over your head. Like you're making a snow angle jumping in the air. \n\n" +
@@ -480,27 +474,27 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
             "Do as many as you can in a minute, but take breaks as needed.\n\n")
         GlobalVars.workouts7T.append(newExercise) // 13
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // lists all the cells that have been defined in the cell array
         return arrayOfCellData.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         if arrayOfCellData[indexPath.row].cell == 1{
             let cell = Bundle.main.loadNibNamed("WorkoutsTableViewCell", owner: self, options: nil)?.first as! WorkoutsTableViewCell
             
@@ -520,16 +514,16 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if arrayOfCellData[indexPath.row].cell == 1{
-//            return 95
-//        }else{
-//            return 95
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if arrayOfCellData[indexPath.row].cell == 1{
+            return 95
+        }else{
+            return 95
+        }
+    }
     
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).row == 0{
             
             // performs the segue to the next screen
@@ -544,12 +538,12 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
             
             print("LB cell hit")
             
-        }
+            }
         if (indexPath as NSIndexPath).row == 2{
-            
+                
             // performs the segue to the next screen
             performSegue(withIdentifier: "segueToWorkouts", sender: self)
-            
+                
             print("Core cell hit")
         }
         if (indexPath as NSIndexPath).row == 3{
@@ -571,9 +565,9 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segueToWorkouts"{
-            if let indexPath = workoutsTableView.indexPathForSelectedRow{
-                let selectedRow = indexPath.row
-                
+            if let indexPath = tableView.indexPathForSelectedRow{
+            let selectedRow = indexPath.row
+            
                 if selectedRow == 0{
                     let vc = segue.destination as! WorkoutsViewController
                     vc.navTitle = "Upper Body"
@@ -582,23 +576,20 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                     vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
                     print("UB Segue and selectedCell = \(selectedRow)")
                 }
-                
+            
                 if selectedRow == 1{
                     let vc = segue.destination as! WorkoutsViewController
                     vc.navTitle = "Lower Body"
                     vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                     vc.exerciseImage = UIImage(named: GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].filename)
                     vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
-                    
+                
                     print("LB Segue and selectedCell = \(selectedRow)")
                 }
-                
+            
                 if selectedRow == 2{
                     let vc = segue.destination as! WorkoutsViewController
                     vc.navTitle = "Core"
-//                    vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
-//                    vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
-//                    vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)
                     vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
                     vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
                     vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)
@@ -612,22 +603,21 @@ class WorkoutsViewController_table: UIViewController, UITableViewDelegate, UITab
                     vc.exerciseTitle = GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].name
                     vc.exerciseImage = UIImage(named: GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].filename)
                     vc.meterImage = UIImage(named: GlobalVars.workouts7M[GlobalVars.workoutsIndexCount].meterFilename)
-                    
+                
                     print("7M Segue and selectedCell = \(selectedRow)")
                 }
-                
+            
                 if selectedRow == 4{
                     let vc = segue.destination as! WorkoutsViewController
                     vc.navTitle = "7 Minute Tabata"
                     vc.exerciseTitle = GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].name
                     vc.exerciseImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].filename)
                     vc.meterImage = UIImage(named: GlobalVars.workouts7T[GlobalVars.workoutsIndexCount].meterFilename)
-                    
+                
                     print("7T Segue and selectedCell = \(selectedRow)")
                 }
             }
         }
     }
-    
-}
 
+}
