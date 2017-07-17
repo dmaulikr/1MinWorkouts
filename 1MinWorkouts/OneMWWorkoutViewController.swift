@@ -413,6 +413,7 @@ class OneMWWorkoutViewController: UIViewController {
         
         // sets the get ready to workout countdown view
         audioPlayer_GetReady.play()
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))  // sends single vibrate
         getReadyView.isHidden = false
         workoutCountdownLabel.isHidden = true
         setExerciseTimerGetReady(5, timerLabel: "5")
