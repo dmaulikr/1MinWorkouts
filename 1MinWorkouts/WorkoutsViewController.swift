@@ -20,6 +20,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     var meterImage = UIImage(named: "")
     var exerciseCountdownTimer = Timer()
     var totalTime = 0
+    var setsCounterCount = 1
+    var totalWorkoutDuration = 0
     
     @IBOutlet var exerciseTypeTitle: UILabel!
     @IBOutlet var switchSidesSubTitle: UILabel!
@@ -47,6 +49,39 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     
     @IBOutlet var nextWorkoutView: UIVisualEffectView!
     @IBOutlet var nextWorkoutCountdownLabel: UILabel!
+    @IBOutlet var RepeatSetsBtnLabel: UIButton!
+    @IBOutlet var totalWorkoutTimeLabel: UILabel!
+    @IBOutlet var setCountLabel: UILabel!
+    
+    @IBAction func repeatSetsBtn(_ sender: Any) {
+        if setsCounterCount < 10{
+            setsCounterCount += 1
+            RepeatSetsBtnLabel.setTitle("\(setsCounterCount)", for: .normal)
+            setCountLabel.text = "x's"
+            if navTitle == "1MW Upper Body" || navTitle == "1MW Lower Body" || navTitle == "1MW Core" || navTitle == "7 Minute Workout" || navTitle == "7 Minute Tabata"{
+                totalWorkoutDuration = 7 * setsCounterCount
+                totalWorkoutTimeLabel.text = "\(totalWorkoutDuration) mins"
+            }else if navTitle == "2 Min Upper Body" || navTitle == "2 Min Lower Body"{
+                totalWorkoutDuration = 2 * setsCounterCount
+                totalWorkoutTimeLabel.text = "\(totalWorkoutDuration) mins"
+            }else if navTitle == "4 Minute Fully Body"{
+                totalWorkoutDuration = 4 * setsCounterCount
+                totalWorkoutTimeLabel.text = "\(totalWorkoutDuration) mins"
+            }
+        }else if setsCounterCount == 10{
+            setsCounterCount = 1
+            RepeatSetsBtnLabel.setTitle("\(setsCounterCount)", for: .normal)
+            setCountLabel.text = "x"
+            if navTitle == "1MW Upper Body" || navTitle == "1MW Lower Body" || navTitle == "1MW Core" || navTitle == "7 Minute Workout" || navTitle == "7 Minute Tabata"{
+                totalWorkoutTimeLabel.text = "7 mins"
+            }else if navTitle == "2 Min Upper Body" || navTitle == "2 Min Lower Body"{
+                totalWorkoutTimeLabel.text = "2 mins"
+            }else if navTitle == "4 Minute Fully Body"{
+                totalWorkoutTimeLabel.text = "4 mins"
+            }
+        }
+    }
+    
     
     //---------------- use this to play through stock iOS tones --------------//
 //    var alertTone = UInt32(1100)// double vibrate (got to 1301)
@@ -102,7 +137,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 self.exerciseCountdownTimer.invalidate()
                 
                 //Sets the next exercise wait timer after the animation loads
-                if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
+                if self.navTitle == "1MW Upper Body" || self.navTitle == "1MW Lower Body" || self.navTitle == "1MW Core"{
                     self.setExerciseTimer(30, timerLabel: "30")
                 }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
                     self.setExerciseTimer(10, timerLabel: "10")
@@ -124,7 +159,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         }
         
         // makes sure the next workout countdown value is set prior to showing it
-        if self.navTitle == "Upper Body" || self.navTitle == "Lower Body" || self.navTitle == "Core"{
+        if self.navTitle == "1MW Upper Body" || self.navTitle == "1MW Lower Body" || self.navTitle == "1MW Core"{
             self.nextWorkoutCountdownLabel.text = "30"
         }else if self.navTitle == "7 Minute Workout" || self.navTitle == "7 Minute Tabata"{
             self.nextWorkoutCountdownLabel.text = "10"
@@ -133,6 +168,21 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // defined the border color of the Repeat Sets button
+        RepeatSetsBtnLabel.layer.borderWidth = 1
+        RepeatSetsBtnLabel.layer.borderColor = UIColor(red:0.43, green:0.70, blue:0.85, alpha:1.00).cgColor
+        
+        // sets the default Sets Count
+        RepeatSetsBtnLabel.setTitle("\(setsCounterCount)", for: .normal)
+        setCountLabel.text = "x"
+        if navTitle == "1MW Upper Body" || navTitle == "1MW Lower Body" || navTitle == "1MW Core" || navTitle == "7 Minute Workout" || navTitle == "7 Minute Tabata"{
+            totalWorkoutTimeLabel.text = "7 mins"
+        }else if navTitle == "2 Min Upper Body" || navTitle == "2 Min Lower Body"{
+            totalWorkoutTimeLabel.text = "2 mins"
+        }else if navTitle == "4 Minute Fully Body"{
+            totalWorkoutTimeLabel.text = "4 mins"
+        }
         
         // sets the navbar background color and font color
         navigationController?.navigationBar.barTintColor = UIColor(red:0.53, green:0.73, blue:0.85, alpha:1.00)
@@ -193,13 +243,13 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
     
 
     func myVCDidFinish(_ controller: ExercisesViewController, indexCount: Int) {
-        if navigationItem.title == "Upper Body"{
+        if navigationItem.title == "1MW Upper Body"{
             let image = UIImage(named: GlobalVars.workoutsUB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workoutsUB[indexCount].name
             switchSidesSubTitle.isHidden = true
         }
-        if navigationItem.title == "Lower Body"{
+        if navigationItem.title == "1MW Lower Body"{
             let image = UIImage(named: GlobalVars.workoutsLB[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workoutsLB[indexCount].name
@@ -212,7 +262,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 switchSidesSubTitle.isHidden = true
             }
         }
-        if navigationItem.title == "Core"{
+        if navigationItem.title == "1MW Core"{
             let image = UIImage(named: GlobalVars.workouts7M[indexCount].filename)
             exerciseTypeImage.image = image
             exerciseTypeTitle.text = GlobalVars.workouts7M[indexCount].name
@@ -259,34 +309,34 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         if segue.identifier == "segueToExercises"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "1MW Upper Body"{
                 // set up WorkoutsViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
                 let vc = segue.destination as! ExercisesViewController
-                vc.navTitle = "Upper Body"
+                vc.navTitle = "1MW Upper Body"
                 vc.exerciseTitle = GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].filename)
                 vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
             }
-            if navigationItem.title == "Lower Body"{
+            if navigationItem.title == "1MW Lower Body"{
                 // set up WorkoutsViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destination as! ExercisesViewController
-                vc.navTitle = "Lower Body"
+                vc.navTitle = "1MW Lower Body"
                 vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].filename)
                 vc.meterImage = UIImage(named: GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].meterFilename)
                 vc.delegate = self
             }
-            if navigationItem.title == "Core"{
+            if navigationItem.title == "1MW Core"{
                 // set up WorkoutsViewController to show Core stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destination as! ExercisesViewController
-                vc.navTitle = "Core"
+                vc.navTitle = "1MW Core"
                 vc.exerciseTitle = GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].name
                 vc.exerciseImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].filename)
                 vc.meterImage = UIImage(named: GlobalVars.workoutsCore[GlobalVars.workoutsIndexCount].meterFilename)
@@ -319,14 +369,14 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         if segue.identifier == "segueToExercisesList"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "1MW Upper Body"{
                 // set up WorkoutsViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "Upper Body Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds \n" +
+                    "Do each exercise for 30 seconds, then \n" +
                     "Rest for 30 seconds \n \n" +
                     "1. Jumping Jacks\n" +
                     "2. Push-Ups\n" +
@@ -334,17 +384,17 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "4. Tricep Dips \n" +
                     "5. Wide Push-Ups \n" +
                     "6. Curls \n" +
-                    "7. Tricep Dips \n" +
-                    "   Done!"
+                    "7. Tricep Dips \n\n" +
+                    "Rest for 60 seconds, repeat as many sets as you can."
             }
-            if navigationItem.title == "Lower Body"{
+            if navigationItem.title == "1MW Lower Body"{
                 // set up WorkoutsViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "Lower Body Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds \n" +
+                    "Do each exercise for 30 seconds, then \n" +
                     "Rest for 30 seconds \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Squats \n" +
@@ -352,18 +402,18 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "4. Calf Raises \n" +
                     "5. Squats \n" +
                     "6. Lunges \n" +
-                    "7. Calf Raises \n" +
-                "   Done!"
+                    "7. Calf Raises \n\n" +
+                    "Rest for 60 seconds, repeat as many sets as you can."
 
             }
-            if navigationItem.title == "Core"{
+            if navigationItem.title == "1MW Core"{
                 // set up WorkoutsViewController to show Core stuff
                 GlobalVars.exerciseGroup = false
                 
                 let vc = segue.destination as! WorkoutsInfoViewController
-                vc.exerciseTitle = "Corey Workout Exercises"
+                vc.exerciseTitle = "Core Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds \n" +
+                    "Do each exercise for 30 seconds, then \n" +
                     "Rest for 30 seconds \n \n" +
                     "1. Crunches \n" +
                     "2. Side Plank \n" +
@@ -371,8 +421,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "4. Plank \n" +
                     "5. Crunches \n" +
                     "6. Side Plank \n" +
-                    "7. Leg Lifts \n" +
-                "   Done!"
+                    "7. Leg Lifts \n\n" +
+                    "Rest for 60 seconds, repeat as many sets as you can."
                 
             }
             if navigationItem.title == "7 Minute Workout"{
@@ -382,7 +432,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "7 Minute Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 30 seconds \n" +
+                    "Do each exercise for 30 seconds, then \n" +
                     "Rest for 10 seconds \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Wall Sit \n" +
@@ -395,8 +445,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "9. High Knees/Run In Place \n" +
                     "10. Lunges \n" +
                     "11. Push-Ups with Rotation \n" +
-                    "12. Side Plank \n" +
-                    "   Done!"
+                    "12. Side Plank \n\n" +
+                    "Rest for 60 seconds, repeat as many sets as you can."
 
             }
             if navigationItem.title == "7 Minute Tabata"{
@@ -406,7 +456,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 let vc = segue.destination as! WorkoutsInfoViewController
                 vc.exerciseTitle = "7 Minute Tabata Workout Exercises"
                 vc.exerciseTips =
-                    "Exercise for 20 seconds \n" +
+                    "Do each exercise for 20 seconds, then \n" +
                     "Rest for 10 seconds  \n \n" +
                     "1. Jumping Jacks \n" +
                     "2. Squats \n" +
@@ -421,8 +471,8 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                     "11. Lunges \n" +
                     "12. Crunches \n" +
                     "13. Plank \n" +
-                    "14. Curls \n" +
-                "   Done!"
+                    "14. Curls \n\n" +
+                    "Rest for 60 seconds, repeat as many sets as you can."
 
             }
         }
@@ -430,7 +480,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
         if segue.identifier == "segueToExerciseInfo"{
             
             // false = UB objects (default start)  true = LB objects
-            if navigationItem.title == "Upper Body"{
+            if navigationItem.title == "1MW Upper Body"{
                 // set up WorkoutsViewController to show Upper Body stuff
                 GlobalVars.exerciseGroup = true
                 
@@ -438,7 +488,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.exerciseTitle = GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseTips = GlobalVars.workoutsUB[GlobalVars.workoutsIndexCount].tips
             }
-            if navigationItem.title == "Lower Body"{
+            if navigationItem.title == "1MW Lower Body"{
                 // set up WorkoutsViewController to show Lower Body stuff
                 GlobalVars.exerciseGroup = false
                 
@@ -446,7 +496,7 @@ class WorkoutsViewController: UIViewController, WorkoutViewControllerDelegate {
                 vc.exerciseTitle = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].name
                 vc.exerciseTips = GlobalVars.workoutsLB[GlobalVars.workoutsIndexCount].tips
             }
-            if navigationItem.title == "Core"{
+            if navigationItem.title == "1MW Core"{
                 // set up WorkoutsViewController to show Core stuff
                 GlobalVars.exerciseGroup = false
                 

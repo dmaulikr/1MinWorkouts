@@ -21,7 +21,7 @@ class ExercisesViewController: UIViewController {
     var navTitle = ""
     var exercisesCount = 0
     var meterImage = UIImage(named: "")
-    
+       
     var exerciseCountdownTimer = Timer()
     //var exerciseSecondsCount = 0
     var totalTime = 0
@@ -35,6 +35,7 @@ class ExercisesViewController: UIViewController {
     @IBOutlet var switchSidesSubTitle: UILabel!
     @IBOutlet var exerciseTypeImage: UIImageView!
     @IBOutlet var workoutMeterImage: UIImageView!
+    @IBOutlet var setsCounterLabel: UILabel!
     
     @IBOutlet var nextWorkoutView: UIVisualEffectView! // whole view container for get next workout count down
     @IBOutlet var nextWorkoutCountdownLabel: UILabel! // label that counts down for next workout
